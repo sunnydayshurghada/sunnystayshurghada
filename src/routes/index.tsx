@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import {
   BedDouble,
   Users,
+  Bed,
   Sun,
   ArrowUpDown,
   Wifi,
@@ -18,6 +19,7 @@ import {
   Mail,
   MessageCircle,
   ExternalLink,
+  
 } from "lucide-react";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { BookingWidget } from "@/components/BookingWidget";
@@ -77,13 +79,14 @@ const heroPhoto = heroLivingKitchen.url;
 const FEATURES = [
   { icon: BedDouble, key: "features.bedrooms" },
   { icon: Users, key: "features.guests" },
+  { icon: Bed, key: "features.beds" },
   { icon: Sun, key: "features.balconies" },
   { icon: ArrowUpDown, key: "features.elevator" },
   { icon: Wifi, key: "features.wifi" },
   { icon: Snowflake, key: "features.ac" },
   { icon: ChefHat, key: "features.kitchen" },
-  { icon: WashingMachine, key: "features.washer" },
   { icon: Bath, key: "features.bath" },
+  { icon: WashingMachine, key: "features.washer" },
   { icon: Laptop, key: "features.desk" },
 ] as const;
 
@@ -165,7 +168,10 @@ function SiteHeader() {
 function Hero() {
   const { t } = useTranslation();
   return (
-    <section id="top" className="relative min-h-[92vh] flex items-center overflow-hidden bg-forest">
+    <section
+      id="top"
+      className="relative flex items-center overflow-hidden bg-forest min-h-[75vh] md:min-h-[90vh]"
+    >
       <img
         src={heroPhoto}
         alt=""
@@ -173,31 +179,34 @@ function Hero() {
         height={1280}
         className="absolute inset-0 w-full h-full object-cover"
       />
-      <div className="absolute inset-0 bg-gradient-to-b from-forest/60 via-forest/45 to-forest/80" />
+      <div className="absolute inset-0 bg-gradient-to-br from-forest/70 via-forest/40 to-forest/80" />
 
-      <div className="relative z-10 w-full max-w-[560px] px-6 md:px-0 md:ml-16 lg:ml-[clamp(120px,9vw,180px)] py-24 text-center md:text-left animate-fade-rise">
-        <span className="inline-block text-gold uppercase tracking-[0.45em] text-[11px] md:text-xs mb-8">
-          {t("hero.eyebrow")}
+      <div className="relative z-10 w-full max-w-[560px] mx-auto md:mx-0 px-6 md:pl-[9vw] md:pr-8 py-20 text-center md:text-start animate-fade-rise">
+        <span className="inline-block text-gold uppercase tracking-[0.5em] text-[10px] md:text-[11px] mb-6">
+          {t("hero.welcome_to")}
         </span>
-        <h1 className="font-display text-paper text-5xl sm:text-6xl md:text-7xl lg:text-[92px] leading-[1.02] tracking-tight mb-8">
+        <h1 className="font-display text-paper text-5xl sm:text-6xl md:text-7xl lg:text-[80px] leading-[1.02] tracking-tight mb-6">
           {t("hero.headline")}
         </h1>
-        <p className="text-paper/85 text-lg md:text-2xl font-display italic max-w-2xl mx-auto leading-relaxed mb-12">
-          {t("hero.sub")}
+        <p className="text-paper/90 text-xl md:text-2xl font-display italic leading-relaxed mb-5">
+          {t("hero.subhead")}
         </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <p className="text-paper/70 text-sm md:text-base tracking-[0.25em] uppercase mb-10">
+          {t("hero.mantra")}
+        </p>
+        <div className="flex flex-col sm:flex-row gap-3 justify-center md:justify-start items-stretch sm:items-center">
           <a
             href={AIRBNB_LISTING_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-gold text-forest px-8 py-4 rounded-full text-xs uppercase tracking-[0.25em] font-semibold hover:bg-paper transition-colors shadow-lg shadow-forest/40"
+            className="group inline-flex items-center justify-center gap-2 bg-gold text-forest px-8 py-4 rounded-full text-xs uppercase tracking-[0.25em] font-semibold shadow-lift transition-all duration-300 hover:bg-paper hover:-translate-y-0.5 hover:shadow-luxe"
           >
             {t("hero.cta_primary")}
-            <ExternalLink className="h-3.5 w-3.5" strokeWidth={2} />
+            <ExternalLink className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5" strokeWidth={2} />
           </a>
           <a
             href="#gallery"
-            className="inline-flex items-center gap-2 bg-transparent text-paper border border-paper/50 px-8 py-4 rounded-full text-xs uppercase tracking-[0.25em] font-medium hover:bg-paper/10 transition-colors"
+            className="inline-flex items-center justify-center gap-2 bg-transparent text-paper border border-paper/50 px-8 py-4 rounded-full text-xs uppercase tracking-[0.25em] font-medium transition-all duration-300 hover:bg-paper/10 hover:border-paper hover:-translate-y-0.5"
           >
             {t("hero.cta_secondary")}
           </a>
@@ -217,7 +226,7 @@ function Hero() {
 function GallerySection() {
   const { t } = useTranslation();
   return (
-    <section id="gallery" className="py-24 md:py-32 bg-paper">
+    <section id="gallery" className="py-28 md:py-40 bg-paper">
       <div className="max-w-7xl mx-auto px-6">
         <SectionHeader
           eyebrow={t("gallery.eyebrow")}
@@ -225,7 +234,7 @@ function GallerySection() {
           sub={t("gallery.sub")}
         />
 
-        <div className="mt-16 columns-1 md:columns-2 lg:columns-3 gap-6 [column-fill:_balance]">
+        <div className="mt-20 columns-1 md:columns-2 lg:columns-3 gap-6 [column-fill:_balance]">
           {GALLERY.map((photo, i) => (
             <figure
               key={photo.url}
@@ -250,7 +259,7 @@ function GallerySection() {
 function FeaturesSection() {
   const { t } = useTranslation();
   return (
-    <section id="features" className="py-24 md:py-32 bg-sand">
+    <section id="features" className="py-28 md:py-40 bg-sand">
       <div className="max-w-7xl mx-auto px-6">
         <SectionHeader
           eyebrow={t("features.eyebrow")}
@@ -258,16 +267,16 @@ function FeaturesSection() {
           sub={t("features.sub", { defaultValue: "" })}
         />
 
-        <div className="mt-16 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">
+        <div className="mt-20 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 md:gap-6">
           {FEATURES.map(({ icon: Icon, key }) => (
             <div
               key={key}
-              className="bg-paper rounded-2xl p-6 md:p-7 flex flex-col items-start gap-4 shadow-soft border border-forest/5 transition-all duration-300 hover:-translate-y-1 hover:shadow-lift"
+              className="group bg-paper rounded-3xl p-7 md:p-8 flex flex-col items-start gap-5 shadow-soft border border-forest/[0.06] transition-all duration-500 ease-out hover:-translate-y-1.5 hover:shadow-luxe hover:border-gold/30"
             >
-              <span className="inline-flex items-center justify-center h-11 w-11 rounded-xl bg-gold/10 text-gold">
-                <Icon className="h-5 w-5" strokeWidth={1.75} />
+              <span className="inline-flex items-center justify-center h-12 w-12 rounded-2xl bg-gradient-to-br from-gold/15 to-gold/5 text-gold transition-all duration-500 group-hover:from-gold group-hover:to-gold group-hover:text-paper">
+                <Icon className="h-5 w-5" strokeWidth={1.5} />
               </span>
-              <span className="text-sm md:text-[15px] font-medium text-forest leading-snug">
+              <span className="text-[15px] font-medium text-forest leading-snug">
                 {t(key)}
               </span>
             </div>
@@ -283,7 +292,7 @@ function FeaturesSection() {
 function HostsSection() {
   const { t } = useTranslation();
   return (
-    <section id="hosts" className="py-24 md:py-32 bg-paper">
+    <section id="hosts" className="py-28 md:py-40 bg-paper">
       <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-[220px_1fr] gap-10 md:gap-20 items-center">
         <div className="mx-auto md:mx-0">
           <div className="relative h-[150px] w-[150px] md:h-[200px] md:w-[200px] rounded-full border-2 border-gold/60 p-1.5 shadow-[0_25px_60px_-25px_rgba(23,59,99,0.4)]">
@@ -319,26 +328,26 @@ function HostsSection() {
 function WhySection() {
   const { t } = useTranslation();
   return (
-    <section className="py-24 md:py-32 bg-cloud">
+    <section className="py-28 md:py-40 bg-cloud">
       <div className="max-w-7xl mx-auto px-6">
         <SectionHeader
           eyebrow={t("why.eyebrow")}
           title={t("why.title")}
         />
 
-        <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="mt-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-7">
           {REASONS.map(({ icon: Icon, titleKey, bodyKey }) => (
             <div
               key={titleKey}
-              className="bg-paper rounded-2xl p-8 shadow-soft border border-forest/5 transition-all duration-300 hover:-translate-y-1 hover:shadow-lift"
+              className="group bg-paper rounded-3xl p-8 md:p-9 shadow-soft border border-forest/[0.06] transition-all duration-500 ease-out hover:-translate-y-1.5 hover:shadow-luxe hover:border-gold/30"
             >
-              <span className="inline-flex items-center justify-center h-12 w-12 rounded-xl bg-forest/5 text-gold">
-                <Icon className="h-5 w-5" strokeWidth={1.75} />
+              <span className="inline-flex items-center justify-center h-14 w-14 rounded-2xl bg-gradient-to-br from-gold/15 to-gold/5 text-gold transition-all duration-500 group-hover:from-gold group-hover:to-gold group-hover:text-paper">
+                <Icon className="h-6 w-6" strokeWidth={1.5} />
               </span>
-              <h3 className="mt-6 font-display text-2xl text-forest leading-tight">
+              <h3 className="mt-7 font-display text-2xl md:text-[26px] text-forest leading-tight">
                 {t(titleKey)}
               </h3>
-              <p className="mt-3 text-sm text-forest/70 leading-relaxed">
+              <p className="mt-3 text-[15px] text-forest/70 leading-relaxed">
                 {t(bodyKey)}
               </p>
             </div>
@@ -354,7 +363,7 @@ function WhySection() {
 function BookingSection() {
   const { t } = useTranslation();
   return (
-    <section id="booking" className="py-24 md:py-32 bg-sand">
+    <section id="booking" className="py-28 md:py-40 bg-sand">
       <div className="max-w-6xl mx-auto px-6 grid lg:grid-cols-[1.1fr_1fr] gap-12 lg:gap-20">
         <div>
           <span className="text-[11px] uppercase tracking-[0.35em] text-gold font-medium">
@@ -403,46 +412,95 @@ function BookingSection() {
 function SiteFooter() {
   const { t } = useTranslation();
   return (
-    <footer className="bg-forest text-paper">
-      <div className="max-w-7xl mx-auto px-6 py-20 grid md:grid-cols-[2fr_1fr] gap-10">
-        <div className="md:col-span-2">
+    <footer className="bg-forest text-paper relative overflow-hidden">
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold/50 to-transparent" />
+
+      <div className="max-w-7xl mx-auto px-6 md:px-8 pt-24 md:pt-32 pb-16 grid gap-14 md:gap-10 md:grid-cols-4">
+        {/* Column 1 — Brand */}
+        <div className="md:col-span-1">
           <div className="inline-flex bg-paper rounded-2xl px-5 py-4 shadow-soft">
             <img
               src={brandLogo.url}
               alt="Sunny Stays Hurghada"
-              className="h-14 md:h-16 w-auto select-none"
+              className="h-12 md:h-14 w-auto select-none"
               draggable={false}
             />
           </div>
-          <p className="mt-5 text-sm text-paper/60">{t("footer.address_line")}</p>
-          <p className="mt-4 text-sm text-paper/70 max-w-sm leading-relaxed font-light">
-            {t("tagline")}
+          <p className="mt-6 text-[15px] text-paper/70 leading-relaxed font-light max-w-xs">
+            {t("footer.brand_blurb")}
           </p>
         </div>
 
+        {/* Column 2 — Apartments */}
         <div>
-          <h4 className="text-[10px] uppercase tracking-[0.3em] text-gold font-medium mb-5">
-            {t("footer.contact_title")}
+          <h4 className="text-[10px] uppercase tracking-[0.3em] text-gold font-medium mb-6">
+            {t("footer.apartments_title")}
           </h4>
-          <ul className="space-y-3 text-sm text-paper/75">
+          <ul className="space-y-3 text-[15px] text-paper/75 font-light">
+            <li>
+              <a href="#gallery" className="hover:text-gold transition-colors">
+                {t("footer.apartment_madaris")}
+              </a>
+            </li>
+            <li className="text-paper/45 italic">
+              {t("footer.apartment_future")}
+            </li>
+          </ul>
+        </div>
+
+        {/* Column 3 — Quick links */}
+        <div>
+          <h4 className="text-[10px] uppercase tracking-[0.3em] text-gold font-medium mb-6">
+            {t("footer.links_title")}
+          </h4>
+          <ul className="space-y-3 text-[15px] text-paper/75 font-light">
+            <li><a href="#top" className="hover:text-gold transition-colors">{t("footer.link_home")}</a></li>
+            <li><a href="#gallery" className="hover:text-gold transition-colors">{t("footer.link_gallery")}</a></li>
+            <li><a href="#features" className="hover:text-gold transition-colors">{t("footer.link_amenities")}</a></li>
+            <li><a href="#hosts" className="hover:text-gold transition-colors">{t("footer.link_hosts")}</a></li>
+            <li><a href="#booking" className="hover:text-gold transition-colors">{t("footer.link_location")}</a></li>
             <li>
               <a
-                href={`mailto:${HOST_EMAIL}`}
-                className="inline-flex items-center gap-2 hover:text-gold transition-colors"
+                href={AIRBNB_LISTING_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 hover:text-gold transition-colors"
               >
-                <Mail className="h-3.5 w-3.5" strokeWidth={2} />
-                {HOST_EMAIL}
+                {t("footer.link_book")}
+                <ExternalLink className="h-3 w-3" strokeWidth={2} />
               </a>
+            </li>
+          </ul>
+        </div>
+
+        {/* Column 4 — Contact */}
+        <div>
+          <h4 className="text-[10px] uppercase tracking-[0.3em] text-gold font-medium mb-6">
+            {t("footer.contact_title")}
+          </h4>
+          <ul className="space-y-4 text-[15px] text-paper/75 font-light">
+            <li className="flex items-start gap-3">
+              <MapPin className="h-4 w-4 mt-0.5 text-gold shrink-0" strokeWidth={1.75} />
+              <span>{t("footer.address_short")}</span>
             </li>
             <li>
               <a
                 href={WHATSAPP_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 hover:text-gold transition-colors"
+                className="inline-flex items-center gap-3 hover:text-gold transition-colors"
               >
-                <MessageCircle className="h-3.5 w-3.5" strokeWidth={2} />
-                {t("footer.whatsapp")} +20 155 605 5957
+                <MessageCircle className="h-4 w-4 text-gold shrink-0" strokeWidth={1.75} />
+                <span>+20 155 605 5957</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href={`mailto:${HOST_EMAIL}`}
+                className="inline-flex items-center gap-3 hover:text-gold transition-colors break-all"
+              >
+                <Mail className="h-4 w-4 text-gold shrink-0" strokeWidth={1.75} />
+                <span>{HOST_EMAIL}</span>
               </a>
             </li>
             <li>
@@ -450,28 +508,20 @@ function SiteFooter() {
                 href={AIRBNB_LISTING_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 hover:text-gold transition-colors"
+                className="inline-flex items-center gap-3 hover:text-gold transition-colors"
               >
-                <ExternalLink className="h-3.5 w-3.5" strokeWidth={2} />
-                {t("footer.airbnb")}
+                <ExternalLink className="h-4 w-4 text-gold shrink-0" strokeWidth={1.75} />
+                <span>{t("footer.airbnb")}</span>
               </a>
             </li>
           </ul>
         </div>
-
       </div>
 
       <div className="border-t border-paper/10">
-        <div className="max-w-7xl mx-auto px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-4 text-[10px] uppercase tracking-[0.3em] text-paper/50">
-          <span>{t("footer.rights")}</span>
-          <div className="flex gap-6">
-            <a href="#" className="hover:text-gold transition-colors">
-              {t("footer.imprint")}
-            </a>
-            <a href="#" className="hover:text-gold transition-colors">
-              {t("footer.privacy")}
-            </a>
-          </div>
+        <div className="max-w-7xl mx-auto px-6 md:px-8 py-8 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-paper/55">
+          <span className="tracking-wide">{t("footer.copyright")}</span>
+          <span className="tracking-wide italic font-light">{t("footer.designed_with")}</span>
         </div>
       </div>
     </footer>

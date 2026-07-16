@@ -13,7 +13,10 @@
     "headline": "Sunny Stays Hurghada",
     "sub": "Fühlen Sie sich zuhause am Roten Meer.",
     "cta_primary": "Auf Airbnb buchen",
-    "cta_secondary": "Wohnung ansehen"
+    "cta_secondary": "Wohnung ansehen",
+    "welcome_to": "WILLKOMMEN BEI",
+    "subhead": "Ihr Zuhause am Roten Meer",
+    "mantra": "Entspannen · Auftanken · Zuhause fühlen"
   },
   "gallery": {
     "eyebrow": "Fotografie",
@@ -45,7 +48,8 @@
     "kitchen": "Voll ausgestattete Küche",
     "washer": "Waschmaschine",
     "bath": "Badewanne",
-    "desk": "Arbeitsplatz"
+    "desk": "Arbeitsplatz",
+    "beds": "4 Betten"
   },
   "hosts": {
     "eyebrow": "Ihre Gastgeber",
@@ -124,7 +128,20 @@
     "imprint": "Impressum",
     "privacy": "Datenschutz",
     "contact": "Kontakt",
-    "rights": "© 2026 Sunny Stays Hurghada — Alle Rechte vorbehalten"
+    "rights": "© 2026 Sunny Stays Hurghada — Alle Rechte vorbehalten",
+    "brand_blurb": "Boutique-Ferienwohnungen in Hurghada — gestaltet, damit sich jeder Gast wie zuhause fühlt.",
+    "apartments_title": "Wohnungen",
+    "apartment_madaris": "Madaris Apartment",
+    "apartment_future": "Weitere Wohnungen folgen",
+    "link_home": "Start",
+    "link_gallery": "Galerie",
+    "link_amenities": "Ausstattung",
+    "link_hosts": "Gastgeber",
+    "link_location": "Lage",
+    "link_book": "Auf Airbnb buchen",
+    "address_short": "Hurghada, Ägypten",
+    "copyright": "© 2026 Sunny Stays Hurghada",
+    "designed_with": "Mit ❤️ gestaltet für unvergessliche Urlaube in Hurghada."
   },
   "language": "Sprache"
 }

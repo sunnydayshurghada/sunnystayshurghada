@@ -13,7 +13,10 @@
     "headline": "Sunny Stays Hurghada",
     "sub": "Voel u thuis aan de Rode Zee.",
     "cta_primary": "Boek op Airbnb",
-    "cta_secondary": "Bekijk appartement"
+    "cta_secondary": "Bekijk appartement",
+    "welcome_to": "WELKOM BIJ",
+    "subhead": "Uw thuis aan de Rode Zee",
+    "mantra": "Ontspannen · Genieten · Thuis voelen"
   },
   "gallery": {
     "eyebrow": "Fotografie",
@@ -44,7 +47,8 @@
     "kitchen": "Volledig uitgeruste keuken",
     "washer": "Wasmachine",
     "bath": "Ligbad",
-    "desk": "Werkplek"
+    "desk": "Werkplek",
+    "beds": "4 Bedden"
   },
   "hosts": {
     "eyebrow": "Uw gastheren",
@@ -77,7 +81,11 @@
     "checkin": "Aankomst (vanaf 14:00)",
     "checkout": "Vertrek (vóór 11:00)",
     "guests": "Gasten",
-    "guests_options": { "two": "2 gasten", "four": "4 gasten", "family": "Familie (tot 6)" },
+    "guests_options": {
+      "two": "2 gasten",
+      "four": "4 gasten",
+      "family": "Familie (tot 6)"
+    },
     "name": "Uw naam",
     "email": "E-mailadres",
     "phone": "Telefoon (optioneel)",
@@ -101,7 +109,20 @@
     "imprint": "Colofon",
     "privacy": "Privacy",
     "contact": "Contact",
-    "rights": "© 2026 Sunny Stays Hurghada"
+    "rights": "© 2026 Sunny Stays Hurghada",
+    "brand_blurb": "Boutique-vakantieappartementen in Hurghada — ontworpen zodat elke gast zich thuis voelt.",
+    "apartments_title": "Appartementen",
+    "apartment_madaris": "Madaris Apartment",
+    "apartment_future": "Meer appartementen binnenkort",
+    "link_home": "Home",
+    "link_gallery": "Galerij",
+    "link_amenities": "Voorzieningen",
+    "link_hosts": "Gastheren",
+    "link_location": "Locatie",
+    "link_book": "Boek op Airbnb",
+    "address_short": "Hurghada, Egypte",
+    "copyright": "© 2026 Sunny Stays Hurghada",
+    "designed_with": "Met ❤️ ontworpen voor onvergetelijke vakanties in Hurghada."
   },
   "language": "Taal"
 }

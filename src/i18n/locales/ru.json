@@ -13,7 +13,10 @@
     "headline": "Sunny Stays Hurghada",
     "sub": "Почувствуйте себя как дома у Красного моря.",
     "cta_primary": "Забронировать на Airbnb",
-    "cta_secondary": "Посмотреть квартиру"
+    "cta_secondary": "Посмотреть квартиру",
+    "welcome_to": "ДОБРО ПОЖАЛОВАТЬ В",
+    "subhead": "Ваш дом у Красного моря",
+    "mantra": "Расслабьтесь · Отдохните · Почувствуйте себя дома"
   },
   "gallery": {
     "eyebrow": "Фотографии",
@@ -44,7 +47,8 @@
     "kitchen": "Полностью оборудованная кухня",
     "washer": "Стиральная машина",
     "bath": "Ванна",
-    "desk": "Рабочее место"
+    "desk": "Рабочее место",
+    "beds": "4 кровати"
   },
   "hosts": {
     "eyebrow": "Ваши хозяева",
@@ -77,7 +81,11 @@
     "checkin": "Заезд (с 14:00)",
     "checkout": "Выезд (до 11:00)",
     "guests": "Гости",
-    "guests_options": { "two": "2 гостя", "four": "4 гостя", "family": "Семья (до 6)" },
+    "guests_options": {
+      "two": "2 гостя",
+      "four": "4 гостя",
+      "family": "Семья (до 6)"
+    },
     "name": "Ваше имя",
     "email": "Электронная почта",
     "phone": "Телефон (необязательно)",
@@ -101,7 +109,20 @@
     "imprint": "Реквизиты",
     "privacy": "Конфиденциальность",
     "contact": "Контакты",
-    "rights": "© 2026 Sunny Stays Hurghada"
+    "rights": "© 2026 Sunny Stays Hurghada",
+    "brand_blurb": "Бутик-апартаменты в Хургаде, созданные для того, чтобы каждый гость чувствовал себя как дома.",
+    "apartments_title": "Апартаменты",
+    "apartment_madaris": "Madaris Apartment",
+    "apartment_future": "Новые апартаменты скоро",
+    "link_home": "Главная",
+    "link_gallery": "Галерея",
+    "link_amenities": "Удобства",
+    "link_hosts": "Хозяева",
+    "link_location": "Расположение",
+    "link_book": "Забронировать на Airbnb",
+    "address_short": "Хургада, Египет",
+    "copyright": "© 2026 Sunny Stays Hurghada",
+    "designed_with": "Создано с ❤️ для незабываемого отдыха в Хургаде."
   },
   "language": "Язык"
 }
