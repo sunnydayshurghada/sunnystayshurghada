@@ -49,7 +49,23 @@
     "cta": "Beschikbaarheid checken",
     "no_charge": "Directe boeking bij de gastheer",
     "submitted_title": "Aanvraag verzonden",
-    "submitted_desc": "We nemen binnen 24 uur contact met u op."
+    "submitted_desc": "We nemen binnen 24 uur contact met u op.",
+    "name": "Uw naam",
+    "email": "E-mailadres",
+    "phone": "Telefoon (optioneel)",
+    "message": "Bericht aan de gastheer (optioneel)",
+    "sending": "Verzenden…",
+    "airbnb_trust": "Ook geverifieerd op Airbnb",
+    "errors": {
+      "generic": "Er ging iets mis. Probeer het opnieuw.",
+      "checkin_in_past": "De check-in kan niet in het verleden liggen.",
+      "invalid_range": "Check-out moet na check-in liggen.",
+      "range_too_long": "Verblijf maximaal 60 nachten.",
+      "invalid_guests": "Kies tussen 1 en 6 gasten.",
+      "invalid_name": "Voer een geldige naam in.",
+      "invalid_email": "Voer een geldig e-mailadres in.",
+      "dates_unavailable": "Helaas zijn deze data al geboekt."
+    }
   },
   "footer": {
     "imprint": "Colofon",

@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { BookingWidget } from "@/components/BookingWidget";
+import { AIRBNB_LISTING_URL } from "@/lib/airbnb";
 
 // Photos from the Airbnb listing (Madaris & Sheraton Road, Hurghada)
 const AIRBNB = "https://a0.muscache.com/im/pictures/hosting/Hosting-1726918631381181396/original";
@@ -39,6 +40,16 @@ function Index() {
           </nav>
 
           <div className="flex items-center gap-3 md:gap-6">
+            <a
+              href={AIRBNB_LISTING_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden md:inline-flex items-center gap-1.5 text-[11px] uppercase tracking-widest text-forest/60 hover:text-[#FF385C] transition-colors"
+              title={t("booking.airbnb_trust")}
+            >
+              <span className="text-[#FF385C] text-base leading-none">◈</span>
+              Airbnb
+            </a>
             <LanguageSwitcher />
             <a
               href="#booking"
