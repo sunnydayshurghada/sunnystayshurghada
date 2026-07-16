@@ -1,53 +1,30 @@
-## Goal
-Elevate the existing single-page site to a premium boutique-hotel feel — same structure, richer visual language, real apartment photos only, new brand name **Sunny Stays Hurghada**.
+Use the uploaded PNG logo verbatim (transparent background, unmodified) as the site's primary brand mark.
 
-## Brand & tokens
-- Rename **Madaris Stays → Sunny Stays Hurghada** everywhere (all 6 i18n locale JSONs + `<title>` in `__root.tsx`), tagline **Your Home by the Red Sea**.
-- New palette in `src/styles.css` (`@theme` tokens, replacing the current forest/sand/gold):
-  - `--color-navy: #173B63`
-  - `--color-gold: #C8A15A`
-  - `--color-sand: #F7F2EA` (light sand bg)
-  - `--color-cloud: #F1F1EE` (light grey bg)
-  - `--color-ink: #1a1a1a`, `--color-paper: #ffffff`
-  - Subtle shadow token `--shadow-soft`
-- Drop the bright forest green; navy becomes the dominant dark.
-- Typography via `<link>` in `__root.tsx` head (no CSS URL imports): **Cormorant Garamond** (display) + **Inter** (body). Wire into `--font-display` / `--font-sans`.
+1. **Upload the logo as a Lovable asset**
+   - `lovable-assets create --file /mnt/user-uploads/ChatGPT_Image_16._Juli_2026_21_26_33.png --filename sunny-stays-hurghada-logo.png > src/assets/sunny-stays-hurghada-logo.png.asset.json`
+   - The original PNG already has a transparent background and will not be modified.
 
-## Sections (edit `src/routes/index.tsx`, keep order)
-1. **Header** — same nav; rename brand; slightly airier padding.
-2. **Hero** — grow to `min-h-[92vh]`, real apartment overview photo (widest of the 10 uploaded DSC images, picked by inspecting sizes: `dsc06684` / `dsc06687`), dark navy overlay `bg-navy/55`, huge Cormorant headline **"Sunny Stays Hurghada"**, sub **"Feel at Home by the Red Sea"**, two buttons: primary gold **Book on Airbnb** (→ `AIRBNB_LISTING_URL`), ghost white **View Apartment** (→ `#gallery`). Fade-in on mount.
-3. **Gallery — masonry** using CSS `columns-1 md:columns-2 lg:columns-3` with all 10 real photos (`dsc06669, 70, 74, 78, 81, 84, 87, 88, 97, 708`), `rounded-2xl`, `shadow-soft`, `hover:scale-[1.02] transition` — no small thumbnails. Priority order: living → balcony → bedroom1 → bedroom2 → kitchen → bathroom.
-4. **Apartment Features** — grid of 10 cards (icon + label) using lucide icons: `BedDouble` 2 Bedrooms, `Users` Sleeps 6, `Sun` 3 Balconies, `ArrowUpDown` Elevator, `Wifi` Fast Wi-Fi, `Snowflake` AC, `ChefHat` Kitchen, `WashingMachine` Washer, `Bath` Bathtub, `Laptop` Work Desk. Rounded-2xl white cards on light sand section, soft shadow, gold icon.
-5. **Meet Your Hosts** — two-column: circular framed photo (reuse one uploaded photo as placeholder OR neutral silhouette — noting the user hasn't provided a host photo; will use a warm placeholder circle with initials **W & partner** until they upload one), warm copy as given. Background: white.
-6. **Why Stay With Us** — 4 elegant cards (Heart, Zap, Home, MapPin icons): Personal Recommendations / Fast Response / Comfort Like Home / Perfect Location. Light grey background.
-7. **Booking / Pricing** — keep existing `BookingWidget.tsx` but change price display from `€40 / night` to **"Starting from…"** with small line **"Current prices available on Airbnb — vary by season"** and keep the form + Airbnb trust link. Light sand background.
-8. **Footer** — minimal, navy background, gold accents: brand + "Madaris Apartment · Hurghada, Egypt", link row (Airbnb, WhatsApp `wa.me/...` placeholder, Email `mailto:wafaa@fraktion42.net`, Instagram placeholder). Add small legal row.
+2. **Header (`SiteHeader` in `src/routes/index.tsx`)**
+   - Replace the current two-line text lockup ("Boutique · Hurghada" + "Sunny Stays Hurghada") with an `<img>` of the logo.
+   - `alt="Sunny Stays Hurghada"`, `className="h-9 md:h-14 w-auto"` (≈36px mobile / ≈56px desktop), preserving natural proportions with `w-auto`.
+   - Bump header height from `h-20` to `h-24` and increase left padding slightly so the logo has breathing room.
+   - Keep the anchor to `#top`, keep the nav links and Airbnb CTA untouched.
 
-Section background rhythm: white → light sand → white → light grey → white → light sand → navy footer.
+3. **Footer (`SiteFooter`)**
+   - Replace the "Boutique · Hurghada" eyebrow + italic brand line with the same logo (`h-12 md:h-14 w-auto`).
+   - Since the logo art is deep navy on transparency and the footer is navy, wrap it in a small rounded light-sand plaque (`bg-paper rounded-xl px-5 py-3 inline-flex`) so the logo remains legible without altering its colors.
+   - Keep address, tagline, contact, and social columns unchanged.
 
-## Animations
-- Add `animate-fade-in` on hero text and section headings (existing keyframes in Tailwind config — verify or add via `@keyframes` in `styles.css`).
-- Card hover: `transition-all duration-300 hover:-translate-y-1 hover:shadow-lg`.
-- No parallax, no flashy motion.
+4. **Root head (`src/routes/__root.tsx`)**
+   - Point `<link rel="icon">` / `apple-touch-icon` to the new logo URL so browser tabs use the brand mark.
 
-## i18n
-Update all 6 locale files (`de, en, ar, ar-EG, nl, ru`) with:
-- new brand + tagline
-- hero sub, both CTA labels
-- 10 amenity labels
-- host section (title + paragraph)
-- 4 "Why stay" card titles/descs
-- pricing "Starting from…" copy
-- footer address
+5. **Text sweep — "Madaris Stays" → "Sunny Stays Hurghada"**
+   - Grep the repo (`rg "Madaris Stays"`) and replace any remaining occurrences across `src/i18n/locales/*.json`, route heads, and components. (Most were already migrated; this is a safety pass.)
+   - Leave "Madaris Apartment" as-is where it names the property.
 
-## Open item
-No host photo was uploaded. Plan uses an elegant monogram circle ("W&W" or similar) as a tasteful stand-in. If you'd rather I skip the host image until you send one, say so and I'll leave a subtle typographic placeholder.
+6. **Verify**
+   - Reload the preview, confirm the logo renders crisply at both breakpoints in header and footer, transparent background intact, no color shift, and no leftover "Madaris Stays" strings.
 
-## Out of scope
-- Booking form logic, database, RLS, server functions — untouched.
-- No new photos generated. Only the 10 already-uploaded apartment photos are used.
-
-## Technical notes
-- Files touched: `src/routes/index.tsx`, `src/routes/__root.tsx` (title + font `<link>` tags), `src/styles.css` (tokens + fade-in keyframes), `src/components/BookingWidget.tsx` (price block copy), all `src/i18n/locales/*.json`.
-- New component: `src/components/FeatureCard.tsx`, `src/components/ReasonCard.tsx` to keep `index.tsx` readable.
-- No package installs (lucide-react already used).
+### Out of scope
+- No changes to hero, gallery, features, hosts, booking, i18n keys other than brand-name string sweep, styles.css tokens, routes, or backend.
+- No regeneration or editing of the logo artwork.
