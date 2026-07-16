@@ -80,18 +80,23 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Haus am See — Boutique-Retreat in den Bayerischen Alpen" },
+      { title: "Madaris Stays — Ferienwohnung in Hurghada am Roten Meer" },
       {
         name: "description",
         content:
-          "Architektonische Stille und kuratierter Luxus am See. Buchen Sie unser Boutique-Refugium in den Bayerischen Alpen — mehrsprachig, direkt beim Gastgeber.",
+          "Komfortable 2-Schlafzimmer-Wohnung in Madaris, Hurghada — Minuten von der Sheraton Road, Stränden und Restaurants. Direkt beim Gastgeber buchen, mehrsprachig.",
       },
-      { property: "og:title", content: "Haus am See — Boutique-Retreat" },
+      { property: "og:title", content: "Madaris Stays — Hurghada" },
       {
         property: "og:description",
-        content: "Architektonische Stille und kuratierter Luxus am See in den Bayerischen Alpen.",
+        content: "Komfortable Ferienwohnung in Madaris, Hurghada — direkt beim Gastgeber buchen.",
       },
       { property: "og:type", content: "website" },
+      {
+        property: "og:image",
+        content:
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-1726918631381181396/original/74d06523-75c3-4325-81af-87e2682952e7.jpeg?im_w=1200",
+      },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [

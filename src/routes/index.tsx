@@ -2,10 +2,13 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { BookingWidget } from "@/components/BookingWidget";
-import heroImg from "@/assets/hero.jpg";
-import livingImg from "@/assets/gallery-living.jpg";
-import bedroomImg from "@/assets/gallery-bedroom.jpg";
-import bathroomImg from "@/assets/gallery-bathroom.jpg";
+
+// Photos from the Airbnb listing (Madaris & Sheraton Road, Hurghada)
+const AIRBNB = "https://a0.muscache.com/im/pictures/hosting/Hosting-1726918631381181396/original";
+const heroImg = `${AIRBNB}/74d06523-75c3-4325-81af-87e2682952e7.jpeg?im_w=1920`;
+const livingImg = `${AIRBNB}/dab4f49e-7ab8-402e-a4df-489943e01658.jpeg?im_w=1600`;
+const bedroomImg = `${AIRBNB}/1dbc0d11-b4b9-4761-a4d1-026e67f8d794.jpeg?im_w=1200`;
+const bathroomImg = `${AIRBNB}/065954dc-3382-4b78-b739-8183cb7aa77f.jpeg?im_w=1200`;
 
 export const Route = createFileRoute("/")({
   component: Index,

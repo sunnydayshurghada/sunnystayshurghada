@@ -1,53 +1,53 @@
 {
-  "brand": "HAUS AM SEE",
+  "brand": "MADARIS STAYS",
   "nav": {
     "gallery": "Galerie",
     "amenities": "Ausstattung",
-    "reviews": "Bewertungen",
-    "book": "Jetzt buchen"
+    "reviews": "Gastgeber",
+    "book": "Jetzt anfragen"
   },
   "hero": {
-    "eyebrow": "Die Bayerischen Alpen",
-    "title_1": "Ein Zufluchtsort für die",
-    "title_accent": "Seele",
-    "subtitle": "Erleben Sie architektonische Stille und kuratierten Luxus im Haus am See – unser exklusives Refugium am Ufer."
+    "eyebrow": "Hurghada · Ägypten",
+    "title_1": "Ihr Zuhause am",
+    "title_accent": "Roten Meer",
+    "subtitle": "Komfortable 2-Schlafzimmer-Wohnung in Madaris — nur Minuten von der Sheraton Road, Stränden, Restaurants und Cafés entfernt."
   },
   "gallery": {
     "title": "Galerie",
-    "living": "Wohnbereich",
-    "suite": "Die Suite",
-    "bathroom": "Spa-Bad"
+    "living": "Wohnbereich mit Klimaanlage",
+    "suite": "Schlafzimmer",
+    "bathroom": "Badezimmer mit Badewanne"
   },
   "amenities": {
     "title": "Ausstattung & Komfort",
-    "space_label": "Fläche",
-    "space_value": "140 m² Private Lodge",
+    "space_label": "Wohnung",
+    "space_value": "2 Schlafzimmer · 4 Betten · 3 Balkone",
     "capacity_label": "Kapazität",
-    "capacity_value": "Bis zu 4 Gäste",
-    "wellness_label": "Wellness",
-    "wellness_value": "Private finnische Sauna",
-    "heat_label": "Wärme",
-    "heat_value": "Offener Kamin"
+    "capacity_value": "Bis zu 6 Gäste · 1 Bad",
+    "wellness_label": "Komfort",
+    "wellness_value": "Klimaanlage · schnelles WLAN · Waschmaschine",
+    "heat_label": "Extras",
+    "heat_value": "Kostenloser Parkplatz · Aufzug · 4. Stock"
   },
   "review": {
-    "title": "Gäste-Stimmen",
-    "quote": "„Ein architektonisches Meisterwerk. Wie das Licht am Morgen auf das Holz fällt – das werde ich nie vergessen.\"",
-    "author": "— Elena V., Mailand"
+    "title": "Ihre Gastgeber",
+    "quote": "„Gemeinsam mit meinem deutschen Ehemann haben wir ein gemütliches Zuhause geschaffen, in dem Sie sich vom ersten Moment an wohlfühlen sollen. Wir geben Ihnen gerne persönliche Tipps für Hurghada.\"",
+    "author": "— Wafaa, Gastgeberin"
   },
   "booking": {
     "per_night": "/ Nacht",
-    "rating": "4,9 (24 Bewertungen)",
-    "checkin": "Anreise",
-    "checkout": "Abreise",
+    "rating": "Neues Inserat",
+    "checkin": "Anreise (ab 14:00)",
+    "checkout": "Abreise (bis 11:00)",
     "add_date": "Datum wählen",
     "guests": "Gäste",
     "guests_options": {
-      "two": "2 Erwachsene",
-      "four": "4 Erwachsene",
-      "family": "Familie (2+2)"
+      "two": "2 Gäste",
+      "four": "4 Gäste",
+      "family": "Familie (bis 6)"
     },
-    "cta": "Verfügbarkeit prüfen",
-    "no_charge": "Keine sofortige Belastung",
+    "cta": "Verfügbarkeit anfragen",
+    "no_charge": "Direktbuchung beim Gastgeber",
     "submitted_title": "Anfrage gesendet",
     "submitted_desc": "Wir melden uns innerhalb von 24 Stunden bei Ihnen."
   },
@@ -55,7 +55,7 @@
     "imprint": "Impressum",
     "privacy": "Datenschutz",
     "contact": "Kontakt",
-    "rights": "© 2026 Haus am See"
+    "rights": "© 2026 Madaris Stays"
   },
   "language": "Sprache"
 }

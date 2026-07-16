@@ -1,61 +1,61 @@
 {
-  "brand": "HAUS AM SEE",
+  "brand": "MADARIS STAYS",
   "nav": {
     "gallery": "Gallery",
     "amenities": "Amenities",
-    "reviews": "Reviews",
-    "book": "Book Now"
+    "reviews": "Hosts",
+    "book": "Enquire"
   },
   "hero": {
-    "eyebrow": "The Bavarian Alps",
-    "title_1": "A Sanctuary for the",
-    "title_accent": "Soul",
-    "subtitle": "Experience architectural silence and curated luxury at Haus am See — our premier lakeside retreat."
+    "eyebrow": "Hurghada · Egypt",
+    "title_1": "Your home by the",
+    "title_accent": "Red Sea",
+    "subtitle": "Comfortable 2-bedroom apartment in Madaris — minutes from Sheraton Road, beaches, restaurants and cafés."
   },
   "gallery": {
     "title": "Gallery",
-    "living": "Main Living Area",
-    "suite": "The Suite",
-    "bathroom": "Spa Bathroom"
+    "living": "Air-conditioned living room",
+    "suite": "Bedroom",
+    "bathroom": "Bathroom with bathtub"
   },
   "amenities": {
-    "title": "Amenities & Comfort",
-    "space_label": "Space",
-    "space_value": "140 m² Private Lodge",
+    "title": "Amenities & comfort",
+    "space_label": "Apartment",
+    "space_value": "2 bedrooms · 4 beds · 3 balconies",
     "capacity_label": "Capacity",
-    "capacity_value": "Up to 4 Guests",
-    "wellness_label": "Wellness",
-    "wellness_value": "Private Finnish Sauna",
-    "heat_label": "Heat",
-    "heat_value": "Open Hearth Fireplace"
+    "capacity_value": "Up to 6 guests · 1 bathroom",
+    "wellness_label": "Comfort",
+    "wellness_value": "Air conditioning · fast Wi-Fi · washing machine",
+    "heat_label": "Extras",
+    "heat_value": "Free parking · elevator · 4th floor"
   },
   "review": {
-    "title": "Guest Experience",
-    "quote": "\"An architectural masterpiece. The way the light hits the timber in the morning is something I will never forget.\"",
-    "author": "— Elena V., Milan"
+    "title": "Your hosts",
+    "quote": "\"Together with my German husband, we've created a cozy home where you'll feel welcome from the very first moment. We love sharing personal tips for Hurghada.\"",
+    "author": "— Wafaa, Host"
   },
   "booking": {
     "per_night": "/ night",
-    "rating": "4.9 (24 Reviews)",
-    "checkin": "Check-in",
-    "checkout": "Check-out",
-    "add_date": "Add date",
+    "rating": "New listing",
+    "checkin": "Check-in (from 2:00 PM)",
+    "checkout": "Check-out (by 11:00 AM)",
+    "add_date": "Select date",
     "guests": "Guests",
     "guests_options": {
-      "two": "2 Adults",
-      "four": "4 Adults",
-      "family": "Family (2+2)"
+      "two": "2 guests",
+      "four": "4 guests",
+      "family": "Family (up to 6)"
     },
-    "cta": "Check Availability",
-    "no_charge": "No immediate payment required",
+    "cta": "Check availability",
+    "no_charge": "Direct booking with the host",
     "submitted_title": "Request sent",
-    "submitted_desc": "We will get back to you within 24 hours."
+    "submitted_desc": "We'll get back to you within 24 hours."
   },
   "footer": {
     "imprint": "Imprint",
     "privacy": "Privacy",
     "contact": "Contact",
-    "rights": "© 2026 Haus am See"
+    "rights": "© 2026 Madaris Stays"
   },
   "language": "Language"
 }

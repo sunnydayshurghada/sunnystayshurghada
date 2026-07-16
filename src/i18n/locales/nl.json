@@ -1,53 +1,53 @@
 {
-  "brand": "HAUS AM SEE",
+  "brand": "MADARIS STAYS",
   "nav": {
     "gallery": "Galerij",
     "amenities": "Voorzieningen",
-    "reviews": "Beoordelingen",
-    "book": "Boek nu"
+    "reviews": "Gastheren",
+    "book": "Aanvragen"
   },
   "hero": {
-    "eyebrow": "De Beierse Alpen",
-    "title_1": "Een toevluchtsoord voor de",
-    "title_accent": "Ziel",
-    "subtitle": "Ervaar architectonische stilte en gecureerde luxe in Haus am See — onze exclusieve retraite aan het meer."
+    "eyebrow": "Hurghada · Egypte",
+    "title_1": "Uw thuis aan de",
+    "title_accent": "Rode Zee",
+    "subtitle": "Comfortabel appartement met 2 slaapkamers in Madaris — op enkele minuten van Sheraton Road, stranden, restaurants en cafés."
   },
   "gallery": {
     "title": "Galerij",
-    "living": "Woonruimte",
-    "suite": "De Suite",
-    "bathroom": "Spa-badkamer"
+    "living": "Woonkamer met airco",
+    "suite": "Slaapkamer",
+    "bathroom": "Badkamer met ligbad"
   },
   "amenities": {
-    "title": "Voorzieningen & Comfort",
-    "space_label": "Ruimte",
-    "space_value": "140 m² privélodge",
+    "title": "Voorzieningen & comfort",
+    "space_label": "Appartement",
+    "space_value": "2 slaapkamers · 4 bedden · 3 balkons",
     "capacity_label": "Capaciteit",
-    "capacity_value": "Tot 4 gasten",
-    "wellness_label": "Wellness",
-    "wellness_value": "Finse sauna",
-    "heat_label": "Warmte",
-    "heat_value": "Open haard"
+    "capacity_value": "Tot 6 gasten · 1 badkamer",
+    "wellness_label": "Comfort",
+    "wellness_value": "Airconditioning · snel wifi · wasmachine",
+    "heat_label": "Extra's",
+    "heat_value": "Gratis parkeren · lift · 4e verdieping"
   },
   "review": {
-    "title": "Ervaring van gasten",
-    "quote": "\"Een architectonisch meesterwerk. De manier waarop het licht 's ochtends op het hout valt, zal ik nooit vergeten.\"",
-    "author": "— Elena V., Milaan"
+    "title": "Uw gastheren",
+    "quote": "\"Samen met mijn Duitse man hebben we een gezellig thuis gecreëerd waar u zich vanaf het eerste moment welkom voelt. We delen graag persoonlijke tips voor Hurghada.\"",
+    "author": "— Wafaa, gastvrouw"
   },
   "booking": {
     "per_night": "/ nacht",
-    "rating": "4,9 (24 beoordelingen)",
-    "checkin": "Aankomst",
-    "checkout": "Vertrek",
+    "rating": "Nieuwe vermelding",
+    "checkin": "Check-in (vanaf 14:00)",
+    "checkout": "Check-out (voor 11:00)",
     "add_date": "Datum kiezen",
     "guests": "Gasten",
     "guests_options": {
-      "two": "2 volwassenen",
-      "four": "4 volwassenen",
-      "family": "Gezin (2+2)"
+      "two": "2 gasten",
+      "four": "4 gasten",
+      "family": "Familie (tot 6)"
     },
-    "cta": "Beschikbaarheid controleren",
-    "no_charge": "Geen directe betaling vereist",
+    "cta": "Beschikbaarheid checken",
+    "no_charge": "Directe boeking bij de gastheer",
     "submitted_title": "Aanvraag verzonden",
     "submitted_desc": "We nemen binnen 24 uur contact met u op."
   },
@@ -55,7 +55,7 @@
     "imprint": "Colofon",
     "privacy": "Privacy",
     "contact": "Contact",
-    "rights": "© 2026 Haus am See"
+    "rights": "© 2026 Madaris Stays"
   },
   "language": "Taal"
 }
