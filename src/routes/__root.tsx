@@ -127,8 +127,28 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+      <I18nBootstrap />
       <Outlet />
+      <Toaster position="top-center" richColors />
     </QueryClientProvider>
   );
+}
+
+function I18nBootstrap() {
+  // Initializes i18n and syncs <html lang/dir> with the active language.
+  const { i18n } = useTranslation();
+  useEffect(() => {
+    const apply = () => {
+      const lang = i18n.language || "de";
+      const isRtl = lang.startsWith("ar");
+      document.documentElement.lang = lang;
+      document.documentElement.dir = isRtl ? "rtl" : "ltr";
+    };
+    apply();
+    i18n.on("languageChanged", apply);
+    return () => {
+      i18n.off("languageChanged", apply);
+    };
+  }, [i18n]);
+  return null;
 }
