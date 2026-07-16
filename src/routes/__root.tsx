@@ -75,32 +75,23 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   );
 }
 
+const SITE_TITLE = "Sunny Stays Hurghada — Your Home by the Red Sea";
+const SITE_DESC =
+  "Boutique 2-bedroom holiday apartment in Hurghada. Real photos, direct booking with the host, warm Egyptian-German hospitality.";
+
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Madaris Stays — Ferienwohnung in Hurghada am Roten Meer" },
-      {
-        name: "description",
-        content:
-          "Komfortable 2-Schlafzimmer-Wohnung in Madaris, Hurghada — Minuten von der Sheraton Road, Stränden und Restaurants. Direkt beim Gastgeber buchen, mehrsprachig.",
-      },
-      { property: "og:title", content: "Madaris Stays — Ferienwohnung in Hurghada am Roten Meer" },
-      {
-        property: "og:description",
-        content: "Komfortable 2-Schlafzimmer-Wohnung in Madaris, Hurghada — Minuten von der Sheraton Road, Stränden und Restaurants. Direkt beim Gastgeber buchen, mehrsprachig.",
-      },
+      { title: SITE_TITLE },
+      { name: "description", content: SITE_DESC },
+      { property: "og:title", content: SITE_TITLE },
+      { property: "og:description", content: SITE_DESC },
       { property: "og:type", content: "website" },
-      {
-        property: "og:image",
-        content:
-          "https://a0.muscache.com/im/pictures/hosting/Hosting-1726918631381181396/original/74d06523-75c3-4325-81af-87e2682952e7.jpeg?im_w=1200",
-      },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Madaris Stays — Ferienwohnung in Hurghada am Roten Meer" },
-      { name: "twitter:description", content: "Komfortable 2-Schlafzimmer-Wohnung in Madaris, Hurghada — Minuten von der Sheraton Road, Stränden und Restaurants. Direkt beim Gastgeber buchen, mehrsprachig." },
-      { name: "twitter:image", content: "https://a0.muscache.com/im/pictures/hosting/Hosting-1726918631381181396/original/74d06523-75c3-4325-81af-87e2682952e7.jpeg?im_w=1200" },
+      { name: "twitter:title", content: SITE_TITLE },
+      { name: "twitter:description", content: SITE_DESC },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
@@ -109,7 +100,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Noto+Sans+Arabic:wght@300;400;500;600&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=Noto+Sans+Arabic:wght@300;400;500;600&display=swap",
       },
     ],
   }),
@@ -146,7 +137,6 @@ function RootComponent() {
 }
 
 function I18nBootstrap() {
-  // Initializes i18n and syncs <html lang/dir> with the active language.
   const { i18n } = useTranslation();
   useEffect(() => {
     const apply = () => {

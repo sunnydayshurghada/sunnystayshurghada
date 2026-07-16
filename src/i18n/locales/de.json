@@ -1,40 +1,81 @@
 {
-  "brand": "MADARIS STAYS",
+  "brand": "SUNNY STAYS HURGHADA",
+  "tagline": "Ihr Zuhause am Roten Meer",
   "nav": {
     "gallery": "Galerie",
-    "amenities": "Ausstattung",
-    "reviews": "Gastgeber",
-    "book": "Jetzt anfragen"
+    "features": "Ausstattung",
+    "hosts": "Gastgeber",
+    "why": "Warum wir",
+    "book": "Buchen"
   },
   "hero": {
-    "eyebrow": "Hurghada · Ägypten",
-    "title_1": "Ihr Zuhause am",
-    "title_accent": "Roten Meer",
-    "subtitle": "Komfortable 2-Schlafzimmer-Wohnung in Madaris — nur Minuten von der Sheraton Road, Stränden, Restaurants und Cafés entfernt."
+    "eyebrow": "Hurghada · Rotes Meer",
+    "headline": "Sunny Stays Hurghada",
+    "sub": "Fühlen Sie sich zuhause am Roten Meer.",
+    "cta_primary": "Auf Airbnb buchen",
+    "cta_secondary": "Wohnung ansehen"
   },
   "gallery": {
-    "title": "Galerie",
-    "living": "Wohnbereich mit Klimaanlage",
-    "suite": "Schlafzimmer",
-    "bathroom": "Badezimmer mit Badewanne"
+    "eyebrow": "Fotografie",
+    "title": "Ein Zuhause, in dem man bleiben möchte",
+    "sub": "Jedes Foto stammt aus unserer Wohnung — keine Stockbilder, keine Filter.",
+    "living": "Wohnbereich",
+    "balcony": "Balkon",
+    "bedroom_master": "Hauptschlafzimmer",
+    "bedroom_twin": "Zweites Schlafzimmer",
+    "kitchen": "Küche",
+    "bathroom": "Badezimmer",
+    "detail": "Details",
+    "suite": "Schlafzimmer"
   },
-  "amenities": {
-    "title": "Ausstattung & Komfort",
-    "space_label": "Wohnung",
-    "space_value": "2 Schlafzimmer · 4 Betten · 3 Balkone",
-    "capacity_label": "Kapazität",
-    "capacity_value": "Bis zu 6 Gäste · 1 Bad",
-    "wellness_label": "Komfort",
-    "wellness_value": "Klimaanlage · schnelles WLAN · Waschmaschine",
-    "heat_label": "Extras",
-    "heat_value": "Kostenloser Parkplatz · Aufzug · 4. Stock"
+  "features": {
+    "eyebrow": "Ausstattung",
+    "title": "Alles, was Sie brauchen — elegant gedacht",
+    "sub": "Die Komfortdetails, auf die wir selbst beim Reisen achten.",
+    "bedrooms": "2 Schlafzimmer",
+    "guests": "Bis zu 6 Gäste",
+    "balconies": "3 Balkone",
+    "elevator": "Aufzug",
+    "wifi": "Schnelles WLAN",
+    "ac": "Klimaanlage",
+    "kitchen": "Voll ausgestattete Küche",
+    "washer": "Waschmaschine",
+    "bath": "Badewanne",
+    "desk": "Arbeitsplatz"
+  },
+  "hosts": {
+    "eyebrow": "Ihre Gastgeber",
+    "title": "Ägyptische Gastfreundschaft, deutscher Komfort",
+    "body": "Wir sind ein deutsch-ägyptisches Paar, das Gäste aus aller Welt herzlich willkommen heißt. Unser Ziel ist es, ägyptische Gastfreundschaft mit dem Komfort zu verbinden, den wir selbst auf Reisen schätzen.",
+    "signature": "Wafaa & Familie"
+  },
+  "why": {
+    "eyebrow": "Warum bei uns bleiben",
+    "title": "Kleine Details, großer Unterschied",
+    "recs_title": "Persönliche Empfehlungen",
+    "recs_body": "Kuratierte Tipps zu Restaurants, Schnorchelplätzen und ruhigen Stränden — von Menschen, die hier leben.",
+    "response_title": "Schnelle Antwort",
+    "response_body": "Meist antworten wir innerhalb einer Stunde — vor, während und nach Ihrem Aufenthalt.",
+    "comfort_title": "Komfort wie zuhause",
+    "comfort_body": "Frische Bettwäsche, leise Klimaanlage, schnelles WLAN und eine voll ausgestattete Küche.",
+    "location_title": "Perfekte Lage",
+    "location_body": "Nur Minuten von der Sheraton Road, dem Marina, Stränden, Cafés und Supermärkten."
+  },
+  "pricing": {
+    "eyebrow": "Verfügbarkeit",
+    "starting_from": "Ab …",
+    "note": "Aktuelle Preise auf Airbnb — variieren nach Saison.",
+    "cta_airbnb": "Preise auf Airbnb ansehen",
+    "cta_enquire": "Oder senden Sie uns unten eine Anfrage"
   },
   "review": {
     "title": "Ihre Gastgeber",
-    "quote": "„Gemeinsam mit meinem deutschen Ehemann haben wir ein gemütliches Zuhause geschaffen, in dem Sie sich vom ersten Moment an wohlfühlen sollen. Wir geben Ihnen gerne persönliche Tipps für Hurghada.\"",
+    "quote": "„Gemeinsam mit meinem deutschen Ehemann haben wir ein gemütliches Zuhause geschaffen, in dem Sie sich vom ersten Moment an wohlfühlen sollen.\"",
     "author": "— Wafaa, Gastgeberin"
   },
   "booking": {
+    "eyebrow": "Anfrage",
+    "title": "Schreiben Sie uns",
     "per_night": "/ Nacht",
     "rating": "Neues Inserat",
     "checkin": "Anreise (ab 14:00)",
@@ -50,9 +91,9 @@
     "email": "E-Mail-Adresse",
     "phone": "Telefon (optional)",
     "message": "Nachricht an den Gastgeber (optional)",
-    "cta": "Verfügbarkeit anfragen",
+    "cta": "Anfrage senden",
     "sending": "Wird gesendet…",
-    "no_charge": "Direktbuchung beim Gastgeber",
+    "no_charge": "Direktbuchung beim Gastgeber — keine Gebühren",
     "submitted_title": "Anfrage gesendet",
     "submitted_desc": "Wir melden uns innerhalb von 24 Stunden bei Ihnen.",
     "airbnb_trust": "Auch auf Airbnb verifiziert",
@@ -68,10 +109,19 @@
     }
   },
   "footer": {
+    "brand_line": "Sunny Stays Hurghada",
+    "address_line": "Madaris Apartment · Hurghada, Ägypten",
+    "contact_title": "Kontakt",
+    "links_title": "Links",
+    "social_title": "Folgen",
+    "airbnb": "Airbnb-Inserat",
+    "whatsapp": "WhatsApp",
+    "email": "E-Mail",
+    "instagram": "Instagram",
     "imprint": "Impressum",
     "privacy": "Datenschutz",
     "contact": "Kontakt",
-    "rights": "© 2026 Madaris Stays"
+    "rights": "© 2026 Sunny Stays Hurghada — Alle Rechte vorbehalten"
   },
   "language": "Sprache"
 }
