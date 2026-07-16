@@ -442,7 +442,7 @@ function SiteFooter() {
                 className="inline-flex items-center gap-2 hover:text-gold transition-colors"
               >
                 <MessageCircle className="h-3.5 w-3.5" strokeWidth={2} />
-                {t("footer.whatsapp")}
+                {t("footer.whatsapp")} +20 155 605 5957
               </a>
             </li>
             <li>
