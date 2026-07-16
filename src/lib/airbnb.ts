@@ -5,9 +5,5 @@ export const AIRBNB_LISTING_URL =
 // Host email (from the property owner).
 export const HOST_EMAIL = "wafaa@fraktion42.net";
 
-// WhatsApp — number is a placeholder until confirmed by the host.
-// Update this string once the real number is provided.
-export const WHATSAPP_URL = "https://wa.me/";
-
-// Instagram — placeholder until confirmed.
-export const INSTAGRAM_URL = "https://www.instagram.com/";
+// WhatsApp — direct chat link to the host number.
+export const WHATSAPP_URL = "https://wa.me/201556055957";

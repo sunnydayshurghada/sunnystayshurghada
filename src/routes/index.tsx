@@ -17,7 +17,6 @@ import {
   MapPin,
   Mail,
   MessageCircle,
-  Instagram,
   ExternalLink,
 } from "lucide-react";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
@@ -26,7 +25,6 @@ import {
   AIRBNB_LISTING_URL,
   HOST_EMAIL,
   WHATSAPP_URL,
-  INSTAGRAM_URL,
 } from "@/lib/airbnb";
 import brandLogo from "@/assets/sunny-stays-hurghada-logo.png.asset.json";
 import hostsPhoto from "@/assets/hosts-wafaa-alex.jpg.asset.json";
@@ -406,7 +404,7 @@ function SiteFooter() {
   const { t } = useTranslation();
   return (
     <footer className="bg-forest text-paper">
-      <div className="max-w-7xl mx-auto px-6 py-20 grid md:grid-cols-4 gap-10">
+      <div className="max-w-7xl mx-auto px-6 py-20 grid md:grid-cols-[2fr_1fr] gap-10">
         <div className="md:col-span-2">
           <div className="inline-flex bg-paper rounded-2xl px-5 py-4 shadow-soft">
             <img
@@ -444,7 +442,7 @@ function SiteFooter() {
                 className="inline-flex items-center gap-2 hover:text-gold transition-colors"
               >
                 <MessageCircle className="h-3.5 w-3.5" strokeWidth={2} />
-                {t("footer.whatsapp")}
+                {t("footer.whatsapp")} +20 155 605 5957
               </a>
             </li>
             <li>
@@ -461,24 +459,6 @@ function SiteFooter() {
           </ul>
         </div>
 
-        <div>
-          <h4 className="text-[10px] uppercase tracking-[0.3em] text-gold font-medium mb-5">
-            {t("footer.social_title")}
-          </h4>
-          <ul className="space-y-3 text-sm text-paper/75">
-            <li>
-              <a
-                href={INSTAGRAM_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 hover:text-gold transition-colors"
-              >
-                <Instagram className="h-3.5 w-3.5" strokeWidth={2} />
-                {t("footer.instagram")}
-              </a>
-            </li>
-          </ul>
-        </div>
       </div>
 
       <div className="border-t border-paper/10">
