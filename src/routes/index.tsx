@@ -30,6 +30,7 @@ import {
 } from "@/lib/airbnb";
 import brandLogo from "@/assets/sunny-stays-hurghada-logo.png.asset.json";
 import hostsPhoto from "@/assets/hosts-wafaa-alex.jpg.asset.json";
+import heroLivingKitchen from "@/assets/hero-living-kitchen.png.asset.json";
 
 // Real photos of the apartment. No stock, no AI, no placeholder imagery.
 import p6669 from "@/assets/dsc06669.jpg.asset.json";
@@ -71,8 +72,8 @@ const GALLERY: readonly Photo[] = [
   { url: p6687.url, captionKey: "gallery.detail", aspect: "aspect-[4/3]" },
 ];
 
-// Balcony with chairs — warm, sunny, welcoming.
-const heroPhoto = p6669.url;
+// Living room and kitchen — warm, sunny, welcoming.
+const heroPhoto = heroLivingKitchen.url;
 
 
 const FEATURES = [
