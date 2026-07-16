@@ -29,6 +29,7 @@ import {
   INSTAGRAM_URL,
 } from "@/lib/airbnb";
 import brandLogo from "@/assets/sunny-stays-hurghada-logo.png.asset.json";
+import hostsPhoto from "@/assets/hosts-wafaa-alex.jpg.asset.json";
 
 // Real photos of the apartment. No stock, no AI, no placeholder imagery.
 import p6669 from "@/assets/dsc06669.jpg.asset.json";
@@ -278,15 +279,17 @@ function HostsSection() {
   const { t } = useTranslation();
   return (
     <section id="hosts" className="py-24 md:py-32 bg-paper">
-      <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-[280px_1fr] gap-12 md:gap-20 items-center">
+      <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-[220px_1fr] gap-10 md:gap-20 items-center">
         <div className="mx-auto md:mx-0">
-          <div className="relative h-56 w-56 md:h-64 md:w-64 rounded-full bg-gradient-to-br from-sand to-cloud border border-gold/30 shadow-soft flex items-center justify-center overflow-hidden">
-            <div className="absolute inset-3 rounded-full border border-gold/20" />
-            <span className="font-display italic text-forest text-5xl md:text-6xl">W &amp; F</span>
+          <div className="relative h-[150px] w-[150px] md:h-[200px] md:w-[200px] rounded-full border-2 border-gold/60 p-1.5 shadow-[0_25px_60px_-25px_rgba(23,59,99,0.4)]">
+            <img
+              src={hostsPhoto.url}
+              alt="Wafaa and Alex, hosts of Sunny Stays Hurghada"
+              className="h-full w-full rounded-full object-cover"
+              style={{ objectPosition: "50% 20%" }}
+              draggable={false}
+            />
           </div>
-          <p className="mt-6 text-center md:text-start text-[11px] uppercase tracking-[0.3em] text-forest/50">
-            {t("hosts.signature")}
-          </p>
         </div>
 
         <div className="text-center md:text-start">

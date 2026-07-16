@@ -1,30 +1,24 @@
-Use the uploaded PNG logo verbatim (transparent background, unmodified) as the site's primary brand mark.
+Replace the "W & F" monogram placeholder in `HostsSection` with the uploaded host photo and update the copy.
 
-1. **Upload the logo as a Lovable asset**
-   - `lovable-assets create --file /mnt/user-uploads/ChatGPT_Image_16._Juli_2026_21_26_33.png --filename sunny-stays-hurghada-logo.png > src/assets/sunny-stays-hurghada-logo.png.asset.json`
-   - The original PNG already has a transparent background and will not be modified.
+1. **Upload the photo as a CDN asset**
+   - `lovable-assets create --file /mnt/user-uploads/WhatsApp_Image_2026-07-14_at_23.30.27_1-2.jpeg --filename hosts-wafaa-alex.jpg > src/assets/hosts-wafaa-alex.jpg.asset.json`
+   - No cropping, retouching or regeneration — the CSS circular mask handles the round frame.
 
-2. **Header (`SiteHeader` in `src/routes/index.tsx`)**
-   - Replace the current two-line text lockup ("Boutique · Hurghada" + "Sunny Stays Hurghada") with an `<img>` of the logo.
-   - `alt="Sunny Stays Hurghada"`, `className="h-9 md:h-14 w-auto"` (≈36px mobile / ≈56px desktop), preserving natural proportions with `w-auto`.
-   - Bump header height from `h-20` to `h-24` and increase left padding slightly so the logo has breathing room.
-   - Keep the anchor to `#top`, keep the nav links and Airbnb CTA untouched.
+2. **`HostsSection` in `src/routes/index.tsx`**
+   - Import the new asset pointer.
+   - Replace the monogram `<span>W & F</span>` frame with an `<img>` (`object-cover`, positioned to keep both faces visible via `object-[50%_20%]`), preserving the gold ring and adding a softer premium shadow (`shadow-[0_25px_60px_-25px_rgba(23,59,99,0.35)]`).
+   - Size: `h-[150px] w-[150px] md:h-[200px] md:w-[200px]`.
+   - Keep the existing grid layout: image left / text right on desktop (`md:grid-cols-[220px_1fr]`), stacked on mobile — matches the requested behaviour.
+   - Remove the tiny "signature" caption under the monogram (was tied to the initials).
 
-3. **Footer (`SiteFooter`)**
-   - Replace the "Boutique · Hurghada" eyebrow + italic brand line with the same logo (`h-12 md:h-14 w-auto`).
-   - Since the logo art is deep navy on transparency and the footer is navy, wrap it in a small rounded light-sand plaque (`bg-paper rounded-xl px-5 py-3 inline-flex`) so the logo remains legible without altering its colors.
-   - Keep address, tagline, contact, and social columns unchanged.
+3. **Copy**
+   - Update the English locale `hosts.title` → "Meet Your Hosts".
+   - Update `hosts.body` → the provided Wafaa & Alex paragraph.
+   - Mirror the same two strings into the other locales (`de`, `ar`, `ar-EG`, `nl`, `ru`) so nothing regresses to the old text; translations for the body will be provided in each locale's language, keeping meaning identical.
 
-4. **Root head (`src/routes/__root.tsx`)**
-   - Point `<link rel="icon">` / `apple-touch-icon` to the new logo URL so browser tabs use the brand mark.
-
-5. **Text sweep — "Madaris Stays" → "Sunny Stays Hurghada"**
-   - Grep the repo (`rg "Madaris Stays"`) and replace any remaining occurrences across `src/i18n/locales/*.json`, route heads, and components. (Most were already migrated; this is a safety pass.)
-   - Leave "Madaris Apartment" as-is where it names the property.
-
-6. **Verify**
-   - Reload the preview, confirm the logo renders crisply at both breakpoints in header and footer, transparent background intact, no color shift, and no leftover "Madaris Stays" strings.
+4. **Verify**
+   - Reload the preview at desktop and mobile widths, confirm the photo is crisp inside the gold ring, the shadow is subtle, and no other section changed.
 
 ### Out of scope
-- No changes to hero, gallery, features, hosts, booking, i18n keys other than brand-name string sweep, styles.css tokens, routes, or backend.
-- No regeneration or editing of the logo artwork.
+- No changes to header/logo, hero, gallery, features, why-stay, booking, footer, styles.css, routes, or backend.
+- No edits to the uploaded photo file itself.
