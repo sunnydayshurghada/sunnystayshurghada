@@ -55,11 +55,11 @@ export function BookingWidget() {
     const { data, error } = await supabase.rpc("create_booking_request", {
       _guest_name: parsed.data.guest_name,
       _guest_email: parsed.data.guest_email,
-      _guest_phone: parsed.data.guest_phone || null,
+      _guest_phone: parsed.data.guest_phone || "",
       _checkin: parsed.data.checkin,
       _checkout: parsed.data.checkout,
       _guests: parsed.data.guests,
-      _message: parsed.data.message || null,
+      _message: parsed.data.message || "",
     });
     setPending(false);
 
