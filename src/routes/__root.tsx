@@ -86,10 +86,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         content:
           "Komfortable 2-Schlafzimmer-Wohnung in Madaris, Hurghada — Minuten von der Sheraton Road, Stränden und Restaurants. Direkt beim Gastgeber buchen, mehrsprachig.",
       },
-      { property: "og:title", content: "Madaris Stays — Hurghada" },
+      { property: "og:title", content: "Madaris Stays — Ferienwohnung in Hurghada am Roten Meer" },
       {
         property: "og:description",
-        content: "Komfortable Ferienwohnung in Madaris, Hurghada — direkt beim Gastgeber buchen.",
+        content: "Komfortable 2-Schlafzimmer-Wohnung in Madaris, Hurghada — Minuten von der Sheraton Road, Stränden und Restaurants. Direkt beim Gastgeber buchen, mehrsprachig.",
       },
       { property: "og:type", content: "website" },
       {
@@ -98,6 +98,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "https://a0.muscache.com/im/pictures/hosting/Hosting-1726918631381181396/original/74d06523-75c3-4325-81af-87e2682952e7.jpeg?im_w=1200",
       },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Madaris Stays — Ferienwohnung in Hurghada am Roten Meer" },
+      { name: "twitter:description", content: "Komfortable 2-Schlafzimmer-Wohnung in Madaris, Hurghada — Minuten von der Sheraton Road, Stränden und Restaurants. Direkt beim Gastgeber buchen, mehrsprachig." },
+      { name: "twitter:image", content: "https://a0.muscache.com/im/pictures/hosting/Hosting-1726918631381181396/original/74d06523-75c3-4325-81af-87e2682952e7.jpeg?im_w=1200" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
