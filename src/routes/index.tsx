@@ -17,7 +17,6 @@ import {
   MapPin,
   Mail,
   MessageCircle,
-  Instagram,
   ExternalLink,
 } from "lucide-react";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
@@ -26,7 +25,6 @@ import {
   AIRBNB_LISTING_URL,
   HOST_EMAIL,
   WHATSAPP_URL,
-  INSTAGRAM_URL,
 } from "@/lib/airbnb";
 import brandLogo from "@/assets/sunny-stays-hurghada-logo.png.asset.json";
 import hostsPhoto from "@/assets/hosts-wafaa-alex.jpg.asset.json";
