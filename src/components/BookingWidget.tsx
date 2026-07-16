@@ -79,7 +79,7 @@ export function BookingWidget() {
     <div className="bg-card text-forest p-8 md:p-10 shadow-2xl">
       <div className="flex justify-between items-baseline mb-8">
         <span className="text-3xl font-display">
-          €450
+          €40
           <span className="text-sm font-sans text-forest/50 ms-1 italic">
             {t("booking.per_night")}
           </span>
