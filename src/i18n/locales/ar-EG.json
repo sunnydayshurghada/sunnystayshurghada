@@ -49,7 +49,23 @@
     "cta": "شوف المتاح",
     "no_charge": "حجز مباشر مع صاحب البيت",
     "submitted_title": "الطلب اتبعت",
-    "submitted_desc": "هنرجعلك خلال 24 ساعة."
+    "submitted_desc": "هنرجعلك خلال 24 ساعة.",
+    "name": "اسمك",
+    "email": "الإيميل",
+    "phone": "التليفون (اختياري)",
+    "message": "رسالة لصاحب البيت (اختياري)",
+    "sending": "بيتبعت…",
+    "airbnb_trust": "متأكد كمان على Airbnb",
+    "errors": {
+      "generic": "حصل خطأ. جرّب تاني.",
+      "checkin_in_past": "تاريخ الدخول مينفعش يكون فات.",
+      "invalid_range": "تاريخ الخروج لازم يكون بعد الدخول.",
+      "range_too_long": "أقصى إقامة 60 ليلة.",
+      "invalid_guests": "اختار من 1 لحد 6 ضيوف.",
+      "invalid_name": "دخّل اسم صحيح.",
+      "invalid_email": "دخّل إيميل صحيح.",
+      "dates_unavailable": "للأسف التواريخ دي محجوزة."
+    }
   },
   "footer": {
     "imprint": "بيانات الموقع",
