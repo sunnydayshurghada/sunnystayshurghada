@@ -1,0 +1,61 @@
+{
+  "brand": "HAUS AM SEE",
+  "nav": {
+    "gallery": "Galerie",
+    "amenities": "Ausstattung",
+    "reviews": "Bewertungen",
+    "book": "Jetzt buchen"
+  },
+  "hero": {
+    "eyebrow": "Die Bayerischen Alpen",
+    "title_1": "Ein Zufluchtsort für die",
+    "title_accent": "Seele",
+    "subtitle": "Erleben Sie architektonische Stille und kuratierten Luxus im Haus am See – unser exklusives Refugium am Ufer."
+  },
+  "gallery": {
+    "title": "Galerie",
+    "living": "Wohnbereich",
+    "suite": "Die Suite",
+    "bathroom": "Spa-Bad"
+  },
+  "amenities": {
+    "title": "Ausstattung & Komfort",
+    "space_label": "Fläche",
+    "space_value": "140 m² Private Lodge",
+    "capacity_label": "Kapazität",
+    "capacity_value": "Bis zu 4 Gäste",
+    "wellness_label": "Wellness",
+    "wellness_value": "Private finnische Sauna",
+    "heat_label": "Wärme",
+    "heat_value": "Offener Kamin"
+  },
+  "review": {
+    "title": "Gäste-Stimmen",
+    "quote": "„Ein architektonisches Meisterwerk. Wie das Licht am Morgen auf das Holz fällt – das werde ich nie vergessen.\"",
+    "author": "— Elena V., Mailand"
+  },
+  "booking": {
+    "per_night": "/ Nacht",
+    "rating": "4,9 (24 Bewertungen)",
+    "checkin": "Anreise",
+    "checkout": "Abreise",
+    "add_date": "Datum wählen",
+    "guests": "Gäste",
+    "guests_options": {
+      "two": "2 Erwachsene",
+      "four": "4 Erwachsene",
+      "family": "Familie (2+2)"
+    },
+    "cta": "Verfügbarkeit prüfen",
+    "no_charge": "Keine sofortige Belastung",
+    "submitted_title": "Anfrage gesendet",
+    "submitted_desc": "Wir melden uns innerhalb von 24 Stunden bei Ihnen."
+  },
+  "footer": {
+    "imprint": "Impressum",
+    "privacy": "Datenschutz",
+    "contact": "Kontakt",
+    "rights": "© 2026 Haus am See"
+  },
+  "language": "Sprache"
+}

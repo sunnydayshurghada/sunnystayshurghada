@@ -1,0 +1,61 @@
+{
+  "brand": "HAUS AM SEE",
+  "nav": {
+    "gallery": "Galerij",
+    "amenities": "Voorzieningen",
+    "reviews": "Beoordelingen",
+    "book": "Boek nu"
+  },
+  "hero": {
+    "eyebrow": "De Beierse Alpen",
+    "title_1": "Een toevluchtsoord voor de",
+    "title_accent": "Ziel",
+    "subtitle": "Ervaar architectonische stilte en gecureerde luxe in Haus am See — onze exclusieve retraite aan het meer."
+  },
+  "gallery": {
+    "title": "Galerij",
+    "living": "Woonruimte",
+    "suite": "De Suite",
+    "bathroom": "Spa-badkamer"
+  },
+  "amenities": {
+    "title": "Voorzieningen & Comfort",
+    "space_label": "Ruimte",
+    "space_value": "140 m² privélodge",
+    "capacity_label": "Capaciteit",
+    "capacity_value": "Tot 4 gasten",
+    "wellness_label": "Wellness",
+    "wellness_value": "Finse sauna",
+    "heat_label": "Warmte",
+    "heat_value": "Open haard"
+  },
+  "review": {
+    "title": "Ervaring van gasten",
+    "quote": "\"Een architectonisch meesterwerk. De manier waarop het licht 's ochtends op het hout valt, zal ik nooit vergeten.\"",
+    "author": "— Elena V., Milaan"
+  },
+  "booking": {
+    "per_night": "/ nacht",
+    "rating": "4,9 (24 beoordelingen)",
+    "checkin": "Aankomst",
+    "checkout": "Vertrek",
+    "add_date": "Datum kiezen",
+    "guests": "Gasten",
+    "guests_options": {
+      "two": "2 volwassenen",
+      "four": "4 volwassenen",
+      "family": "Gezin (2+2)"
+    },
+    "cta": "Beschikbaarheid controleren",
+    "no_charge": "Geen directe betaling vereist",
+    "submitted_title": "Aanvraag verzonden",
+    "submitted_desc": "We nemen binnen 24 uur contact met u op."
+  },
+  "footer": {
+    "imprint": "Colofon",
+    "privacy": "Privacy",
+    "contact": "Contact",
+    "rights": "© 2026 Haus am See"
+  },
+  "language": "Taal"
+}
