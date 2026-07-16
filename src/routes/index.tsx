@@ -109,6 +109,7 @@ function Index() {
       <FeaturesSection />
       <HostsSection />
       <WhySection />
+      <LocationSection />
       <BookingSection />
       <SiteFooter />
       {/* Preserve legacy translation key so the fallback locale still resolves */}
