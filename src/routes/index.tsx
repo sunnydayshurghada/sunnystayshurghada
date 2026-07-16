@@ -23,6 +23,7 @@ import {
 } from "lucide-react";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { BookingWidget } from "@/components/BookingWidget";
+import { LocationSection } from "@/components/LocationSection";
 import {
   AIRBNB_LISTING_URL,
   HOST_EMAIL,
@@ -108,6 +109,7 @@ function Index() {
       <FeaturesSection />
       <HostsSection />
       <WhySection />
+      <LocationSection />
       <BookingSection />
       <SiteFooter />
       {/* Preserve legacy translation key so the fallback locale still resolves */}
@@ -141,6 +143,9 @@ function SiteHeader() {
           </a>
           <a href="#hosts" className="hover:text-gold transition-colors">
             {t("nav.hosts")}
+          </a>
+          <a href="#location" className="hover:text-gold transition-colors">
+            {t("nav.location")}
           </a>
           <a href="#booking" className="hover:text-gold transition-colors">
             {t("nav.book")}
@@ -458,7 +463,7 @@ function SiteFooter() {
             <li><a href="#gallery" className="hover:text-gold transition-colors">{t("footer.link_gallery")}</a></li>
             <li><a href="#features" className="hover:text-gold transition-colors">{t("footer.link_amenities")}</a></li>
             <li><a href="#hosts" className="hover:text-gold transition-colors">{t("footer.link_hosts")}</a></li>
-            <li><a href="#booking" className="hover:text-gold transition-colors">{t("footer.link_location")}</a></li>
+            <li><a href="#location" className="hover:text-gold transition-colors">{t("footer.link_location")}</a></li>
             <li>
               <a
                 href={AIRBNB_LISTING_URL}

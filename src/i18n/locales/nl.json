@@ -6,7 +6,8 @@
     "features": "Voorzieningen",
     "hosts": "Gastheren",
     "why": "Waarom wij",
-    "book": "Boeken"
+    "book": "Boeken",
+    "location": "Locatie"
   },
   "hero": {
     "eyebrow": "Hurghada · Rode Zee",
@@ -125,5 +126,45 @@
     "copyright": "© 2026 Sunny Stays Hurghada",
     "designed_with": "Met ❤️ ontworpen voor onvergetelijke vakanties in Hurghada."
   },
-  "language": "Taal"
+  "language": "Taal",
+  "location": {
+    "eyebrow": "Locatie",
+    "title": "Ontdek de omgeving",
+    "sub": "Verblijf in het hart van Madaris, op enkele minuten van Sheraton Road, stranden, restaurants en cafés.",
+    "open_in_maps": "Openen in Google Maps",
+    "get_directions": "Routebeschrijving",
+    "address_label": "Adres",
+    "address_line1": "Wasta Straat 9, Madaris",
+    "address_line2": "Hurghada, Rode Zee, Egypte",
+    "weather_label": "Huidig weer",
+    "weather_city": "Hurghada, Egypte",
+    "weather_unavailable": "Weergegevens momenteel niet beschikbaar.",
+    "feels_like": "Gevoelstemp.",
+    "today": "Vandaag",
+    "nearby_title": "In de buurt",
+    "nearby": {
+      "beach": {
+        "title": "Strand",
+        "distance": "≈ 5 min rijden"
+      },
+      "restaurants": {
+        "title": "Restaurants",
+        "distance": "≈ 3 min lopen"
+      },
+      "cafes": {
+        "title": "Cafés",
+        "distance": "≈ 3 min lopen"
+      },
+      "supermarket": {
+        "title": "Supermarkt",
+        "distance": "≈ 2 min lopen"
+      },
+      "airport": {
+        "title": "Luchthaven Hurghada",
+        "distance": "≈ 15 min rijden"
+      }
+    },
+    "cta_airbnb": "Boek op Airbnb",
+    "cta_maps": "Openen in Google Maps"
+  }
 }

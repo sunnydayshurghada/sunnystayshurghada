@@ -6,7 +6,8 @@
     "features": "Удобства",
     "hosts": "Хозяева",
     "why": "Почему мы",
-    "book": "Забронировать"
+    "book": "Забронировать",
+    "location": "Расположение"
   },
   "hero": {
     "eyebrow": "Хургада · Красное море",
@@ -125,5 +126,45 @@
     "copyright": "© 2026 Sunny Stays Hurghada",
     "designed_with": "Создано с ❤️ для незабываемого отдыха в Хургаде."
   },
-  "language": "Язык"
+  "language": "Язык",
+  "location": {
+    "eyebrow": "Расположение",
+    "title": "Изучите район",
+    "sub": "Остановитесь в самом сердце Мадариса — в нескольких минутах от Sheraton Road, пляжей, ресторанов и кафе.",
+    "open_in_maps": "Открыть в Google Maps",
+    "get_directions": "Проложить маршрут",
+    "address_label": "Адрес",
+    "address_line1": "ул. Уаста 9, Мадарис",
+    "address_line2": "Хургада, Красное море, Египет",
+    "weather_label": "Текущая погода",
+    "weather_city": "Хургада, Египет",
+    "weather_unavailable": "Данные о погоде временно недоступны.",
+    "feels_like": "Ощущается как",
+    "today": "Сегодня",
+    "nearby_title": "Рядом",
+    "nearby": {
+      "beach": {
+        "title": "Пляж",
+        "distance": "≈ 5 мин на машине"
+      },
+      "restaurants": {
+        "title": "Рестораны",
+        "distance": "≈ 3 мин пешком"
+      },
+      "cafes": {
+        "title": "Кафе",
+        "distance": "≈ 3 мин пешком"
+      },
+      "supermarket": {
+        "title": "Супермаркет",
+        "distance": "≈ 2 мин пешком"
+      },
+      "airport": {
+        "title": "Аэропорт Хургады",
+        "distance": "≈ 15 мин на машине"
+      }
+    },
+    "cta_airbnb": "Забронировать на Airbnb",
+    "cta_maps": "Открыть в Google Maps"
+  }
 }
