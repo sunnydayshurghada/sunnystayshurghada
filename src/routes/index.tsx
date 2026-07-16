@@ -168,7 +168,10 @@ function SiteHeader() {
 function Hero() {
   const { t } = useTranslation();
   return (
-    <section id="top" className="relative min-h-[92vh] flex items-center overflow-hidden bg-forest">
+    <section
+      id="top"
+      className="relative flex items-center overflow-hidden bg-forest min-h-[75vh] md:min-h-[90vh]"
+    >
       <img
         src={heroPhoto}
         alt=""
@@ -176,31 +179,34 @@ function Hero() {
         height={1280}
         className="absolute inset-0 w-full h-full object-cover"
       />
-      <div className="absolute inset-0 bg-gradient-to-b from-forest/60 via-forest/45 to-forest/80" />
+      <div className="absolute inset-0 bg-gradient-to-br from-forest/70 via-forest/40 to-forest/80" />
 
-      <div className="relative z-10 w-full max-w-[560px] px-6 md:px-0 md:ml-16 lg:ml-[clamp(120px,9vw,180px)] py-24 text-center md:text-left animate-fade-rise">
-        <span className="inline-block text-gold uppercase tracking-[0.45em] text-[11px] md:text-xs mb-8">
-          {t("hero.eyebrow")}
+      <div className="relative z-10 w-full max-w-[560px] mx-auto md:mx-0 px-6 md:pl-[9vw] md:pr-8 py-20 text-center md:text-start animate-fade-rise">
+        <span className="inline-block text-gold uppercase tracking-[0.5em] text-[10px] md:text-[11px] mb-6">
+          {t("hero.welcome_to")}
         </span>
-        <h1 className="font-display text-paper text-5xl sm:text-6xl md:text-7xl lg:text-[92px] leading-[1.02] tracking-tight mb-8">
+        <h1 className="font-display text-paper text-5xl sm:text-6xl md:text-7xl lg:text-[80px] leading-[1.02] tracking-tight mb-6">
           {t("hero.headline")}
         </h1>
-        <p className="text-paper/85 text-lg md:text-2xl font-display italic max-w-2xl mx-auto leading-relaxed mb-12">
-          {t("hero.sub")}
+        <p className="text-paper/90 text-xl md:text-2xl font-display italic leading-relaxed mb-5">
+          {t("hero.subhead")}
         </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <p className="text-paper/70 text-sm md:text-base tracking-[0.25em] uppercase mb-10">
+          {t("hero.mantra")}
+        </p>
+        <div className="flex flex-col sm:flex-row gap-3 justify-center md:justify-start items-stretch sm:items-center">
           <a
             href={AIRBNB_LISTING_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-gold text-forest px-8 py-4 rounded-full text-xs uppercase tracking-[0.25em] font-semibold hover:bg-paper transition-colors shadow-lg shadow-forest/40"
+            className="group inline-flex items-center justify-center gap-2 bg-gold text-forest px-8 py-4 rounded-full text-xs uppercase tracking-[0.25em] font-semibold shadow-lift transition-all duration-300 hover:bg-paper hover:-translate-y-0.5 hover:shadow-luxe"
           >
             {t("hero.cta_primary")}
-            <ExternalLink className="h-3.5 w-3.5" strokeWidth={2} />
+            <ExternalLink className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5" strokeWidth={2} />
           </a>
           <a
             href="#gallery"
-            className="inline-flex items-center gap-2 bg-transparent text-paper border border-paper/50 px-8 py-4 rounded-full text-xs uppercase tracking-[0.25em] font-medium hover:bg-paper/10 transition-colors"
+            className="inline-flex items-center justify-center gap-2 bg-transparent text-paper border border-paper/50 px-8 py-4 rounded-full text-xs uppercase tracking-[0.25em] font-medium transition-all duration-300 hover:bg-paper/10 hover:border-paper hover:-translate-y-0.5"
           >
             {t("hero.cta_secondary")}
           </a>
