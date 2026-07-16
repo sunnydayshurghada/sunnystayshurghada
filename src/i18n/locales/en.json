@@ -6,7 +6,8 @@
     "features": "Features",
     "hosts": "Hosts",
     "why": "Why us",
-    "book": "Book"
+    "book": "Book",
+    "location": "Location"
   },
   "hero": {
     "eyebrow": "Hurghada · Red Sea",
@@ -143,5 +144,45 @@
     "copyright": "© 2026 Sunny Stays Hurghada",
     "designed_with": "Designed with ❤️ for unforgettable holidays in Hurghada."
   },
-  "language": "Language"
+  "language": "Language",
+  "location": {
+    "eyebrow": "Location",
+    "title": "Explore the Location",
+    "sub": "Stay in the heart of Madaris, only minutes from Sheraton Road, beaches, restaurants and cafés.",
+    "open_in_maps": "Open in Google Maps",
+    "get_directions": "Get Directions",
+    "address_label": "Address",
+    "address_line1": "Wasta Street 9, Madaris",
+    "address_line2": "Hurghada, Red Sea, Egypt",
+    "weather_label": "Current Weather",
+    "weather_city": "Hurghada, Egypt",
+    "weather_unavailable": "Live weather unavailable right now.",
+    "feels_like": "Feels like",
+    "today": "Today",
+    "nearby_title": "Nearby Highlights",
+    "nearby": {
+      "beach": {
+        "title": "Beach",
+        "distance": "≈ 5 min drive"
+      },
+      "restaurants": {
+        "title": "Restaurants",
+        "distance": "≈ 3 min walk"
+      },
+      "cafes": {
+        "title": "Cafés",
+        "distance": "≈ 3 min walk"
+      },
+      "supermarket": {
+        "title": "Supermarket",
+        "distance": "≈ 2 min walk"
+      },
+      "airport": {
+        "title": "Hurghada Airport",
+        "distance": "≈ 15 min drive"
+      }
+    },
+    "cta_airbnb": "Book on Airbnb",
+    "cta_maps": "Open in Google Maps"
+  }
 }

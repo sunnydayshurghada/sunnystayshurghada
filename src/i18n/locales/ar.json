@@ -6,7 +6,8 @@
     "features": "المرافق",
     "hosts": "المضيفون",
     "why": "لماذا نحن",
-    "book": "احجز"
+    "book": "احجز",
+    "location": "الموقع"
   },
   "hero": {
     "eyebrow": "الغردقة · البحر الأحمر",
@@ -125,5 +126,45 @@
     "copyright": "© 2026 Sunny Stays Hurghada",
     "designed_with": "صُمّم بـ ❤️ لإجازات لا تُنسى في الغردقة."
   },
-  "language": "اللغة"
+  "language": "اللغة",
+  "location": {
+    "eyebrow": "الموقع",
+    "title": "استكشف المنطقة",
+    "sub": "إقامة في قلب المدارس، على بُعد دقائق من شارع شيراتون والشواطئ والمطاعم والمقاهي.",
+    "open_in_maps": "فتح في خرائط جوجل",
+    "get_directions": "الحصول على الاتجاهات",
+    "address_label": "العنوان",
+    "address_line1": "شارع الواسطة 9، المدارس",
+    "address_line2": "الغردقة، البحر الأحمر، مصر",
+    "weather_label": "الطقس الحالي",
+    "weather_city": "الغردقة، مصر",
+    "weather_unavailable": "بيانات الطقس غير متاحة حالياً.",
+    "feels_like": "الإحساس",
+    "today": "اليوم",
+    "nearby_title": "أماكن قريبة",
+    "nearby": {
+      "beach": {
+        "title": "الشاطئ",
+        "distance": "≈ 5 دقائق بالسيارة"
+      },
+      "restaurants": {
+        "title": "مطاعم",
+        "distance": "≈ 3 دقائق مشياً"
+      },
+      "cafes": {
+        "title": "مقاهي",
+        "distance": "≈ 3 دقائق مشياً"
+      },
+      "supermarket": {
+        "title": "سوبر ماركت",
+        "distance": "≈ 2 دقيقة مشياً"
+      },
+      "airport": {
+        "title": "مطار الغردقة",
+        "distance": "≈ 15 دقيقة بالسيارة"
+      }
+    },
+    "cta_airbnb": "احجز على Airbnb",
+    "cta_maps": "فتح في خرائط جوجل"
+  }
 }
