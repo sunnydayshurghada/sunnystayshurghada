@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { BookingWidget } from "@/components/BookingWidget";
+import { AIRBNB_LISTING_URL } from "@/lib/airbnb";
 
 // Photos from the Airbnb listing (Madaris & Sheraton Road, Hurghada)
 const AIRBNB = "https://a0.muscache.com/im/pictures/hosting/Hosting-1726918631381181396/original";
