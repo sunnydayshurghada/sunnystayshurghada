@@ -483,16 +483,26 @@ function SiteFooter() {
               <MapPin className="h-4 w-4 mt-0.5 text-gold shrink-0" strokeWidth={1.75} />
               <span>{t("footer.address_short")}</span>
             </li>
-            <li>
-              <a
-                href={WHATSAPP_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 hover:text-gold transition-colors"
-              >
-                <MessageCircle className="h-4 w-4 text-gold shrink-0" strokeWidth={1.75} />
-                <span>+20 155 605 5957</span>
-              </a>
+            <li className="flex items-start gap-3">
+              <MessageCircle className="h-4 w-4 mt-0.5 text-gold shrink-0" strokeWidth={1.75} />
+              <span className="flex flex-wrap items-center gap-x-2 gap-y-1">
+                <a
+                  href={WHATSAPP_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-gold transition-colors"
+                >
+                  {t("footer.whatsapp")}
+                </a>
+                <span aria-hidden="true" className="text-paper/30">·</span>
+                <a
+                  href="tel:+201556055957"
+                  dir="ltr"
+                  className="hover:text-gold transition-colors tracking-wide"
+                >
+                  +20&nbsp;155&nbsp;605&nbsp;5957
+                </a>
+              </span>
             </li>
             <li>
               <a
