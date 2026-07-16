@@ -24,7 +24,11 @@
     "bedroom_master": "غرفة النوم الرئيسية",
     "bedroom_twin": "غرفة النوم الثانية",
     "kitchen": "المطبخ",
+    "kitchen_breakfast": "المطبخ والإفطار",
     "bathroom": "الحمّام",
+    "living_entry": "غرفة المعيشة مع المدخل",
+    "living_sofa": "ركن الأريكة",
+    "living_tv": "منطقة التلفاز",
     "detail": "تفاصيل",
     "suite": "غرفة النوم"
   },

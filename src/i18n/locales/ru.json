@@ -24,7 +24,11 @@
     "bedroom_master": "Главная спальня",
     "bedroom_twin": "Вторая спальня",
     "kitchen": "Кухня",
+    "kitchen_breakfast": "Кухня и завтрак",
     "bathroom": "Ванная",
+    "living_entry": "Гостиная с входом",
+    "living_sofa": "Уголок с диваном",
+    "living_tv": "Зона ТВ",
     "detail": "Детали",
     "suite": "Спальня"
   },
