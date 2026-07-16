@@ -144,6 +144,9 @@ function SiteHeader() {
           <a href="#hosts" className="hover:text-gold transition-colors">
             {t("nav.hosts")}
           </a>
+          <a href="#location" className="hover:text-gold transition-colors">
+            {t("nav.location")}
+          </a>
           <a href="#booking" className="hover:text-gold transition-colors">
             {t("nav.book")}
           </a>
