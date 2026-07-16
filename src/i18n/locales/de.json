@@ -24,7 +24,11 @@
     "bedroom_master": "Hauptschlafzimmer",
     "bedroom_twin": "Zweites Schlafzimmer",
     "kitchen": "Küche",
+    "kitchen_breakfast": "Küche & Frühstück",
     "bathroom": "Badezimmer",
+    "living_entry": "Wohnbereich mit Eingang",
+    "living_sofa": "Sitzecke",
+    "living_tv": "TV-Bereich",
     "detail": "Details",
     "suite": "Schlafzimmer"
   },

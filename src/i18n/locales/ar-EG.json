@@ -24,7 +24,11 @@
     "bedroom_master": "أوضة النوم الكبيرة",
     "bedroom_twin": "أوضة النوم التانية",
     "kitchen": "المطبخ",
+    "kitchen_breakfast": "المطبخ والفطار",
     "bathroom": "الحمّام",
+    "living_entry": "الأنتريه مع الباب",
+    "living_sofa": "ركن الكنبة",
+    "living_tv": "منطقة التليفزيون",
     "detail": "تفاصيل",
     "suite": "أوضة النوم"
   },

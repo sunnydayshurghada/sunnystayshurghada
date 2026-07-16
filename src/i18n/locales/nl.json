@@ -24,7 +24,11 @@
     "bedroom_master": "Hoofdslaapkamer",
     "bedroom_twin": "Tweede slaapkamer",
     "kitchen": "Keuken",
+    "kitchen_breakfast": "Keuken & ontbijt",
     "bathroom": "Badkamer",
+    "living_entry": "Woonkamer met ingang",
+    "living_sofa": "Zithoek",
+    "living_tv": "TV-hoek",
     "detail": "Details",
     "suite": "Slaapkamer"
   },

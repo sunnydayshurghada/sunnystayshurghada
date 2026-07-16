@@ -41,7 +41,10 @@ import p6684 from "@/assets/dsc06684.jpg.asset.json";
 import p6687 from "@/assets/dsc06687.jpg.asset.json";
 import p6688 from "@/assets/dsc06688.jpg.asset.json";
 import p6697 from "@/assets/dsc06697.jpg.asset.json";
-import p6708 from "@/assets/dsc06708.jpg.asset.json";
+import p6718 from "@/assets/dsc06718.jpg.asset.json";
+import p6721 from "@/assets/dsc06721.jpg.asset.json";
+import p6723 from "@/assets/dsc06723.jpg.asset.json";
+import p6724 from "@/assets/dsc06724.jpg.asset.json";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -57,10 +60,13 @@ const GALLERY: readonly Photo[] = [
   { url: p6669.url, captionKey: "gallery.living", aspect: "aspect-[3/4]" },
   { url: p6681.url, captionKey: "gallery.bedroom_twin", aspect: "aspect-[4/3]" },
   { url: p6670.url, captionKey: "gallery.balcony", aspect: "aspect-[4/3]" },
-  { url: p6708.url, captionKey: "gallery.kitchen", aspect: "aspect-[3/4]" },
+  { url: p6724.url, captionKey: "gallery.kitchen_breakfast", aspect: "aspect-[4/3]" },
+  { url: p6723.url, captionKey: "gallery.living_entry", aspect: "aspect-[3/4]" },
   { url: p6697.url, captionKey: "gallery.bathroom", aspect: "aspect-[3/4]" },
+  { url: p6718.url, captionKey: "gallery.living_sofa", aspect: "aspect-[4/3]" },
   { url: p6688.url, captionKey: "gallery.detail", aspect: "aspect-[4/3]" },
   { url: p6678.url, captionKey: "gallery.detail", aspect: "aspect-[4/5]" },
+  { url: p6721.url, captionKey: "gallery.living_tv", aspect: "aspect-[4/3]" },
   { url: p6684.url, captionKey: "gallery.detail", aspect: "aspect-[4/3]" },
   { url: p6687.url, captionKey: "gallery.detail", aspect: "aspect-[4/3]" },
 ];
