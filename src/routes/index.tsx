@@ -226,7 +226,7 @@ function Hero() {
 function GallerySection() {
   const { t } = useTranslation();
   return (
-    <section id="gallery" className="py-24 md:py-32 bg-paper">
+    <section id="gallery" className="py-28 md:py-40 bg-paper">
       <div className="max-w-7xl mx-auto px-6">
         <SectionHeader
           eyebrow={t("gallery.eyebrow")}
@@ -234,7 +234,7 @@ function GallerySection() {
           sub={t("gallery.sub")}
         />
 
-        <div className="mt-16 columns-1 md:columns-2 lg:columns-3 gap-6 [column-fill:_balance]">
+        <div className="mt-20 columns-1 md:columns-2 lg:columns-3 gap-6 [column-fill:_balance]">
           {GALLERY.map((photo, i) => (
             <figure
               key={photo.url}
@@ -259,7 +259,7 @@ function GallerySection() {
 function FeaturesSection() {
   const { t } = useTranslation();
   return (
-    <section id="features" className="py-24 md:py-32 bg-sand">
+    <section id="features" className="py-28 md:py-40 bg-sand">
       <div className="max-w-7xl mx-auto px-6">
         <SectionHeader
           eyebrow={t("features.eyebrow")}
@@ -267,7 +267,7 @@ function FeaturesSection() {
           sub={t("features.sub", { defaultValue: "" })}
         />
 
-        <div className="mt-16 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">
+        <div className="mt-20 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">
           {FEATURES.map(({ icon: Icon, key }) => (
             <div
               key={key}
@@ -292,7 +292,7 @@ function FeaturesSection() {
 function HostsSection() {
   const { t } = useTranslation();
   return (
-    <section id="hosts" className="py-24 md:py-32 bg-paper">
+    <section id="hosts" className="py-28 md:py-40 bg-paper">
       <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-[220px_1fr] gap-10 md:gap-20 items-center">
         <div className="mx-auto md:mx-0">
           <div className="relative h-[150px] w-[150px] md:h-[200px] md:w-[200px] rounded-full border-2 border-gold/60 p-1.5 shadow-[0_25px_60px_-25px_rgba(23,59,99,0.4)]">
@@ -328,14 +328,14 @@ function HostsSection() {
 function WhySection() {
   const { t } = useTranslation();
   return (
-    <section className="py-24 md:py-32 bg-cloud">
+    <section className="py-28 md:py-40 bg-cloud">
       <div className="max-w-7xl mx-auto px-6">
         <SectionHeader
           eyebrow={t("why.eyebrow")}
           title={t("why.title")}
         />
 
-        <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="mt-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {REASONS.map(({ icon: Icon, titleKey, bodyKey }) => (
             <div
               key={titleKey}
@@ -363,7 +363,7 @@ function WhySection() {
 function BookingSection() {
   const { t } = useTranslation();
   return (
-    <section id="booking" className="py-24 md:py-32 bg-sand">
+    <section id="booking" className="py-28 md:py-40 bg-sand">
       <div className="max-w-6xl mx-auto px-6 grid lg:grid-cols-[1.1fr_1fr] gap-12 lg:gap-20">
         <div>
           <span className="text-[11px] uppercase tracking-[0.35em] text-gold font-medium">
