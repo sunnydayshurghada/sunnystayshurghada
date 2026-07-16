@@ -89,15 +89,21 @@ function Index() {
       {/* Gallery */}
       <section id="gallery" className="py-24 max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-12 gap-4 md:gap-6 h-auto md:h-[720px]">
-          <div className="col-span-12 md:col-span-8 h-[400px] md:h-full">
-            <img
-              src={livingImg}
-              alt={t("gallery.living")}
-              loading="lazy"
-              width={1200}
-              height={800}
-              className="w-full h-full object-cover"
-            />
+          <div className="col-span-12 md:col-span-8 h-[400px] md:h-full bg-forest/5 flex items-center justify-center">
+            {livingImg ? (
+              <img
+                src={livingImg}
+                alt={t("gallery.living")}
+                loading="lazy"
+                width={1200}
+                height={800}
+                className="w-full h-full object-cover"
+              />
+            ) : (
+              <span className="text-forest/40 text-xs uppercase tracking-widest px-6 text-center">
+                {t("gallery.living")}
+              </span>
+            )}
           </div>
           <div className="col-span-12 md:col-span-4 grid grid-cols-2 md:grid-cols-1 gap-4 md:gap-6">
             <div className="h-[220px] md:h-1/2">
