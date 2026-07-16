@@ -463,7 +463,7 @@ function SiteFooter() {
             <li><a href="#gallery" className="hover:text-gold transition-colors">{t("footer.link_gallery")}</a></li>
             <li><a href="#features" className="hover:text-gold transition-colors">{t("footer.link_amenities")}</a></li>
             <li><a href="#hosts" className="hover:text-gold transition-colors">{t("footer.link_hosts")}</a></li>
-            <li><a href="#booking" className="hover:text-gold transition-colors">{t("footer.link_location")}</a></li>
+            <li><a href="#location" className="hover:text-gold transition-colors">{t("footer.link_location")}</a></li>
             <li>
               <a
                 href={AIRBNB_LISTING_URL}
