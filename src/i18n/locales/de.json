@@ -46,10 +46,26 @@
       "four": "4 Gäste",
       "family": "Familie (bis 6)"
     },
+    "name": "Ihr Name",
+    "email": "E-Mail-Adresse",
+    "phone": "Telefon (optional)",
+    "message": "Nachricht an den Gastgeber (optional)",
     "cta": "Verfügbarkeit anfragen",
+    "sending": "Wird gesendet…",
     "no_charge": "Direktbuchung beim Gastgeber",
     "submitted_title": "Anfrage gesendet",
-    "submitted_desc": "Wir melden uns innerhalb von 24 Stunden bei Ihnen."
+    "submitted_desc": "Wir melden uns innerhalb von 24 Stunden bei Ihnen.",
+    "airbnb_trust": "Auch auf Airbnb verifiziert",
+    "errors": {
+      "generic": "Etwas ist schiefgelaufen. Bitte erneut versuchen.",
+      "checkin_in_past": "Die Anreise darf nicht in der Vergangenheit liegen.",
+      "invalid_range": "Die Abreise muss nach der Anreise liegen.",
+      "range_too_long": "Der Aufenthalt darf maximal 60 Nächte betragen.",
+      "invalid_guests": "Bitte 1 bis 6 Gäste wählen.",
+      "invalid_name": "Bitte geben Sie einen gültigen Namen ein.",
+      "invalid_email": "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
+      "dates_unavailable": "Dieser Zeitraum ist leider bereits belegt."
+    }
   },
   "footer": {
     "imprint": "Impressum",
