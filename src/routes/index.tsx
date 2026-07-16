@@ -404,7 +404,7 @@ function SiteFooter() {
   const { t } = useTranslation();
   return (
     <footer className="bg-forest text-paper">
-      <div className="max-w-7xl mx-auto px-6 py-20 grid md:grid-cols-4 gap-10">
+      <div className="max-w-7xl mx-auto px-6 py-20 grid md:grid-cols-[2fr_1fr] gap-10">
         <div className="md:col-span-2">
           <div className="inline-flex bg-paper rounded-2xl px-5 py-4 shadow-soft">
             <img
