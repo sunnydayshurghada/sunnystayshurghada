@@ -1,8 +1,9 @@
 import { useState, type FormEvent } from "react";
 import { useTranslation } from "react-i18next";
+import { useServerFn } from "@tanstack/react-start";
 import { toast } from "sonner";
 import { z } from "zod";
-import { supabase } from "@/integrations/supabase/client";
+import { createBookingRequest } from "@/lib/booking.functions";
 import { AIRBNB_LISTING_URL } from "@/lib/airbnb";
 
 const schema = z
@@ -24,14 +25,10 @@ const schema = z
     message: "checkin_in_past",
   });
 
-const errorKey = (raw: string): string => {
-  const m = raw.match(/(checkin_in_past|invalid_range|range_too_long|invalid_guests|invalid_name|invalid_email|dates_unavailable)/);
-  return m ? m[1] : "generic";
-};
-
 export function BookingWidget() {
   const { t } = useTranslation();
   const [pending, setPending] = useState(false);
+  const submitBooking = useServerFn(createBookingRequest);
 
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -52,28 +49,36 @@ export function BookingWidget() {
       return;
     }
     setPending(true);
-    const { data, error } = await supabase.rpc("create_booking_request", {
-      _guest_name: parsed.data.guest_name,
-      _guest_email: parsed.data.guest_email,
-      _guest_phone: parsed.data.guest_phone || "",
-      _checkin: parsed.data.checkin,
-      _checkout: parsed.data.checkout,
-      _guests: parsed.data.guests,
-      _message: parsed.data.message || "",
-    });
+    let result;
+    try {
+      result = await submitBooking({
+        data: {
+          guest_name: parsed.data.guest_name,
+          guest_email: parsed.data.guest_email,
+          guest_phone: parsed.data.guest_phone || "",
+          checkin: parsed.data.checkin,
+          checkout: parsed.data.checkout,
+          guests: parsed.data.guests,
+          message: parsed.data.message || "",
+        },
+      });
+    } catch {
+      setPending(false);
+      toast.error(t("booking.errors.generic"));
+      return;
+    }
     setPending(false);
 
-    if (error) {
-      const key = errorKey(error.message);
-      toast.error(t(`booking.errors.${key}`, { defaultValue: t("booking.errors.generic") }));
+    if (!result.ok) {
+      toast.error(t(`booking.errors.${result.error}`, { defaultValue: t("booking.errors.generic") }));
       return;
     }
     toast.success(t("booking.submitted_title"), {
       description: t("booking.submitted_desc"),
     });
     form.reset();
-    void data;
   };
+
 
   return (
     <div className="bg-card text-forest p-8 md:p-10 rounded-2xl shadow-[0_10px_30px_-12px_rgb(23_59_99_/_0.15)] border border-forest/5">
