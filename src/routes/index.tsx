@@ -267,16 +267,16 @@ function FeaturesSection() {
           sub={t("features.sub", { defaultValue: "" })}
         />
 
-        <div className="mt-20 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">
+        <div className="mt-20 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 md:gap-6">
           {FEATURES.map(({ icon: Icon, key }) => (
             <div
               key={key}
-              className="bg-paper rounded-2xl p-6 md:p-7 flex flex-col items-start gap-4 shadow-soft border border-forest/5 transition-all duration-300 hover:-translate-y-1 hover:shadow-lift"
+              className="group bg-paper rounded-3xl p-7 md:p-8 flex flex-col items-start gap-5 shadow-soft border border-forest/[0.06] transition-all duration-500 ease-out hover:-translate-y-1.5 hover:shadow-luxe hover:border-gold/30"
             >
-              <span className="inline-flex items-center justify-center h-11 w-11 rounded-xl bg-gold/10 text-gold">
-                <Icon className="h-5 w-5" strokeWidth={1.75} />
+              <span className="inline-flex items-center justify-center h-12 w-12 rounded-2xl bg-gradient-to-br from-gold/15 to-gold/5 text-gold transition-all duration-500 group-hover:from-gold group-hover:to-gold group-hover:text-paper">
+                <Icon className="h-5 w-5" strokeWidth={1.5} />
               </span>
-              <span className="text-sm md:text-[15px] font-medium text-forest leading-snug">
+              <span className="text-[15px] font-medium text-forest leading-snug">
                 {t(key)}
               </span>
             </div>
