@@ -76,18 +76,21 @@ export function BookingWidget() {
   };
 
   return (
-    <div className="bg-card text-forest p-8 md:p-10 shadow-2xl">
-      <div className="flex justify-between items-baseline mb-8">
-        <span className="text-3xl font-display">
-          €40
-          <span className="text-sm font-sans text-forest/50 ms-1 italic">
-            {t("booking.per_night")}
+    <div className="bg-card text-forest p-8 md:p-10 rounded-2xl shadow-[0_10px_30px_-12px_rgb(23_59_99_/_0.15)] border border-forest/5">
+      <div className="mb-8">
+        <span className="block text-[10px] uppercase tracking-[0.3em] text-gold font-medium mb-2">
+          {t("pricing.eyebrow", { defaultValue: "Availability" })}
+        </span>
+        <div className="flex items-baseline gap-2">
+          <span className="text-3xl font-display italic text-forest/90">
+            {t("pricing.starting_from", { defaultValue: "Starting from …" })}
           </span>
-        </span>
-        <span className="text-xs uppercase tracking-widest flex items-center gap-1">
-          <span className="text-gold">★</span> {t("booking.rating")}
-        </span>
+        </div>
+        <p className="text-xs text-forest/60 mt-2 leading-relaxed">
+          {t("pricing.note", { defaultValue: "Current prices available on Airbnb — rates vary by season." })}
+        </p>
       </div>
+
 
       <form onSubmit={onSubmit} className="space-y-3">
         <div className="grid grid-cols-2 gap-px bg-forest/10 border border-forest/10">

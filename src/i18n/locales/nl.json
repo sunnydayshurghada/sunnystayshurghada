@@ -1,77 +1,104 @@
 {
-  "brand": "MADARIS STAYS",
+  "brand": "SUNNY STAYS HURGHADA",
+  "tagline": "Uw thuis aan de Rode Zee",
   "nav": {
     "gallery": "Galerij",
-    "amenities": "Voorzieningen",
-    "reviews": "Gastheren",
-    "book": "Aanvragen"
+    "features": "Voorzieningen",
+    "hosts": "Gastheren",
+    "why": "Waarom wij",
+    "book": "Boeken"
   },
   "hero": {
-    "eyebrow": "Hurghada · Egypte",
-    "title_1": "Uw thuis aan de",
-    "title_accent": "Rode Zee",
-    "subtitle": "Comfortabel appartement met 2 slaapkamers in Madaris — op enkele minuten van Sheraton Road, stranden, restaurants en cafés."
+    "eyebrow": "Hurghada · Rode Zee",
+    "headline": "Sunny Stays Hurghada",
+    "sub": "Voel u thuis aan de Rode Zee.",
+    "cta_primary": "Boek op Airbnb",
+    "cta_secondary": "Bekijk appartement"
   },
   "gallery": {
-    "title": "Galerij",
-    "living": "Woonkamer met airco",
-    "suite": "Slaapkamer",
-    "bathroom": "Badkamer met ligbad"
+    "eyebrow": "Fotografie",
+    "title": "Een thuis om in te blijven",
+    "sub": "Elke foto is in ons appartement gemaakt — geen stockbeelden.",
+    "living": "Woonkamer",
+    "balcony": "Balkon",
+    "bedroom_master": "Hoofdslaapkamer",
+    "bedroom_twin": "Tweede slaapkamer",
+    "kitchen": "Keuken",
+    "bathroom": "Badkamer",
+    "detail": "Details",
+    "suite": "Slaapkamer"
   },
-  "amenities": {
-    "title": "Voorzieningen & comfort",
-    "space_label": "Appartement",
-    "space_value": "2 slaapkamers · 4 bedden · 3 balkons",
-    "capacity_label": "Capaciteit",
-    "capacity_value": "Tot 6 gasten · 1 badkamer",
-    "wellness_label": "Comfort",
-    "wellness_value": "Airconditioning · snel wifi · wasmachine",
-    "heat_label": "Extra's",
-    "heat_value": "Gratis parkeren · lift · 4e verdieping"
+  "features": {
+    "eyebrow": "Voorzieningen",
+    "title": "Alles wat u nodig heeft, elegant uitgevoerd",
+    "bedrooms": "2 Slaapkamers",
+    "guests": "Tot 6 gasten",
+    "balconies": "3 Balkons",
+    "elevator": "Lift",
+    "wifi": "Snel wifi",
+    "ac": "Airconditioning",
+    "kitchen": "Volledig uitgeruste keuken",
+    "washer": "Wasmachine",
+    "bath": "Ligbad",
+    "desk": "Werkplek"
   },
-  "review": {
-    "title": "Uw gastheren",
-    "quote": "\"Samen met mijn Duitse man hebben we een gezellig thuis gecreëerd waar u zich vanaf het eerste moment welkom voelt. We delen graag persoonlijke tips voor Hurghada.\"",
-    "author": "— Wafaa, gastvrouw"
+  "hosts": {
+    "eyebrow": "Uw gastheren",
+    "title": "Egyptische gastvrijheid, Duits comfort",
+    "body": "Wij zijn een Duits-Egyptisch echtpaar dat graag gasten uit de hele wereld ontvangt. Ons doel is Egyptische gastvrijheid te combineren met het comfort dat we zelf tijdens onze reizen waarderen.",
+    "signature": "Wafaa & familie"
+  },
+  "why": {
+    "eyebrow": "Waarom bij ons",
+    "title": "Kleine details, groot verschil",
+    "recs_title": "Persoonlijke aanbevelingen",
+    "recs_body": "Zorgvuldig gekozen tips van mensen die hier wonen.",
+    "response_title": "Snel antwoord",
+    "response_body": "Meestal binnen een uur reactie — voor, tijdens en na uw verblijf.",
+    "comfort_title": "Comfort als thuis",
+    "comfort_body": "Frisse lakens, stille airco, snel wifi en een volledig uitgeruste keuken.",
+    "location_title": "Perfecte locatie",
+    "location_body": "Op enkele minuten van Sheraton Road, stranden en cafés."
+  },
+  "pricing": {
+    "eyebrow": "Beschikbaarheid",
+    "starting_from": "Vanaf …",
+    "note": "Actuele prijzen op Airbnb — variëren per seizoen.",
+    "cta_airbnb": "Bekijk prijzen op Airbnb",
+    "cta_enquire": "Of stuur ons hieronder een aanvraag"
   },
   "booking": {
     "per_night": "/ nacht",
-    "rating": "Nieuwe vermelding",
-    "checkin": "Check-in (vanaf 14:00)",
-    "checkout": "Check-out (voor 11:00)",
-    "add_date": "Datum kiezen",
+    "rating": "Nieuwe woning",
+    "checkin": "Aankomst (vanaf 14:00)",
+    "checkout": "Vertrek (vóór 11:00)",
     "guests": "Gasten",
-    "guests_options": {
-      "two": "2 gasten",
-      "four": "4 gasten",
-      "family": "Familie (tot 6)"
-    },
-    "cta": "Beschikbaarheid checken",
-    "no_charge": "Directe boeking bij de gastheer",
-    "submitted_title": "Aanvraag verzonden",
-    "submitted_desc": "We nemen binnen 24 uur contact met u op.",
+    "guests_options": { "two": "2 gasten", "four": "4 gasten", "family": "Familie (tot 6)" },
     "name": "Uw naam",
     "email": "E-mailadres",
     "phone": "Telefoon (optioneel)",
     "message": "Bericht aan de gastheer (optioneel)",
+    "cta": "Aanvraag versturen",
     "sending": "Verzenden…",
-    "airbnb_trust": "Ook geverifieerd op Airbnb",
-    "errors": {
-      "generic": "Er ging iets mis. Probeer het opnieuw.",
-      "checkin_in_past": "De check-in kan niet in het verleden liggen.",
-      "invalid_range": "Check-out moet na check-in liggen.",
-      "range_too_long": "Verblijf maximaal 60 nachten.",
-      "invalid_guests": "Kies tussen 1 en 6 gasten.",
-      "invalid_name": "Voer een geldige naam in.",
-      "invalid_email": "Voer een geldig e-mailadres in.",
-      "dates_unavailable": "Helaas zijn deze data al geboekt."
-    }
+    "no_charge": "Direct boeken bij de gastheer",
+    "submitted_title": "Aanvraag verstuurd",
+    "submitted_desc": "We nemen binnen 24 uur contact met u op.",
+    "airbnb_trust": "Ook geverifieerd op Airbnb"
   },
   "footer": {
+    "brand_line": "Sunny Stays Hurghada",
+    "address_line": "Madaris-appartement · Hurghada, Egypte",
+    "contact_title": "Contact",
+    "links_title": "Links",
+    "social_title": "Volgen",
+    "airbnb": "Airbnb",
+    "whatsapp": "WhatsApp",
+    "email": "E-mail",
+    "instagram": "Instagram",
     "imprint": "Colofon",
     "privacy": "Privacy",
     "contact": "Contact",
-    "rights": "© 2026 Madaris Stays"
+    "rights": "© 2026 Sunny Stays Hurghada"
   },
   "language": "Taal"
 }

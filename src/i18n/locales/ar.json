@@ -1,77 +1,104 @@
 {
-  "brand": "MADARIS STAYS",
+  "brand": "SUNNY STAYS HURGHADA",
+  "tagline": "بيتك على البحر الأحمر",
   "nav": {
     "gallery": "المعرض",
-    "amenities": "المرافق",
-    "reviews": "المضيفون",
-    "book": "احجز الآن"
+    "features": "المرافق",
+    "hosts": "المضيفون",
+    "why": "لماذا نحن",
+    "book": "احجز"
   },
   "hero": {
-    "eyebrow": "الغردقة · مصر",
-    "title_1": "بيتك على",
-    "title_accent": "البحر الأحمر",
-    "subtitle": "شقة مريحة بغرفتَي نوم في منطقة المدارس — على بُعد دقائق من شارع شيراتون والشواطئ والمطاعم والمقاهي."
+    "eyebrow": "الغردقة · البحر الأحمر",
+    "headline": "Sunny Stays Hurghada",
+    "sub": "اشعر وكأنك في بيتك على البحر الأحمر.",
+    "cta_primary": "احجز عبر Airbnb",
+    "cta_secondary": "شاهد الشقة"
   },
   "gallery": {
-    "title": "المعرض",
-    "living": "غرفة معيشة مكيّفة",
-    "suite": "غرفة النوم",
-    "bathroom": "حمّام مع بانيو"
+    "eyebrow": "الصور",
+    "title": "بيت يستحق الإقامة فيه",
+    "sub": "كل الصور من داخل شقتنا — لا صور جاهزة.",
+    "living": "غرفة المعيشة",
+    "balcony": "البلكونة",
+    "bedroom_master": "غرفة النوم الرئيسية",
+    "bedroom_twin": "غرفة النوم الثانية",
+    "kitchen": "المطبخ",
+    "bathroom": "الحمّام",
+    "detail": "تفاصيل",
+    "suite": "غرفة النوم"
   },
-  "amenities": {
-    "title": "المرافق والراحة",
-    "space_label": "الشقة",
-    "space_value": "غرفتا نوم · 4 أسِرّة · 3 بلكونات",
-    "capacity_label": "السعة",
-    "capacity_value": "حتى 6 ضيوف · حمّام واحد",
-    "wellness_label": "الراحة",
-    "wellness_value": "تكييف · واي فاي سريع · غسّالة",
-    "heat_label": "مزايا إضافية",
-    "heat_value": "موقف مجاني · مصعد · الدور الرابع"
+  "features": {
+    "eyebrow": "المرافق",
+    "title": "كل ما تحتاجه، بأناقة",
+    "bedrooms": "غرفتا نوم",
+    "guests": "حتى 6 ضيوف",
+    "balconies": "3 بلكونات",
+    "elevator": "مصعد",
+    "wifi": "واي فاي سريع",
+    "ac": "تكييف",
+    "kitchen": "مطبخ مجهّز",
+    "washer": "غسّالة",
+    "bath": "بانيو",
+    "desk": "مكتب"
   },
-  "review": {
-    "title": "مضيفوك",
-    "quote": "«مع زوجي الألماني أنشأنا بيتاً دافئاً تشعرون فيه بالراحة من اللحظة الأولى، ويسعدنا أن نقدّم لكم نصائح شخصية حول الغردقة.»",
-    "author": "— وفاء، المضيفة"
+  "hosts": {
+    "eyebrow": "مضيفوك",
+    "title": "ضيافة مصرية وراحة ألمانية",
+    "body": "نحن زوجان ألماني-مصري نستقبل ضيوفاً من كل العالم. هدفنا أن نجمع بين الضيافة المصرية والراحة التي نقدّرها بأنفسنا خلال السفر.",
+    "signature": "وفاء والعائلة"
+  },
+  "why": {
+    "eyebrow": "لماذا نحن",
+    "title": "تفاصيل صغيرة، فرق كبير",
+    "recs_title": "توصيات شخصية",
+    "recs_body": "نصائح مختارة من أشخاص يعيشون هنا.",
+    "response_title": "ردّ سريع",
+    "response_body": "نردّ عادةً خلال ساعة.",
+    "comfort_title": "راحة كأنها بيتك",
+    "comfort_body": "أغطية نظيفة، تكييف هادئ وواي فاي سريع.",
+    "location_title": "موقع مثالي",
+    "location_body": "دقائق عن شارع شيراتون والشواطئ."
+  },
+  "pricing": {
+    "eyebrow": "الإتاحة",
+    "starting_from": "ابتداءً من …",
+    "note": "الأسعار الحالية على Airbnb — تتغيّر حسب الموسم.",
+    "cta_airbnb": "اطّلع على الأسعار على Airbnb",
+    "cta_enquire": "أو أرسل لنا استفساراً بالأسفل"
   },
   "booking": {
-    "per_night": "/ الليلة",
+    "per_night": "/ ليلة",
     "rating": "إعلان جديد",
-    "checkin": "تسجيل الدخول (من 14:00)",
-    "checkout": "المغادرة (قبل 11:00)",
-    "add_date": "اختر التاريخ",
+    "checkin": "الوصول (من 14:00)",
+    "checkout": "المغادرة (حتى 11:00)",
     "guests": "الضيوف",
-    "guests_options": {
-      "two": "ضيفان",
-      "four": "4 ضيوف",
-      "family": "عائلة (حتى 6)"
-    },
-    "cta": "تحقق من التوفّر",
-    "no_charge": "حجز مباشر مع المضيف",
-    "submitted_title": "تم إرسال الطلب",
-    "submitted_desc": "سنعاود التواصل معك خلال 24 ساعة.",
+    "guests_options": { "two": "ضيفان", "four": "4 ضيوف", "family": "عائلة (حتى 6)" },
     "name": "اسمك",
     "email": "البريد الإلكتروني",
     "phone": "الهاتف (اختياري)",
-    "message": "رسالة إلى المضيف (اختياري)",
+    "message": "رسالة للمضيف (اختياري)",
+    "cta": "إرسال الاستفسار",
     "sending": "جارٍ الإرسال…",
-    "airbnb_trust": "موثّق أيضاً على Airbnb",
-    "errors": {
-      "generic": "حدث خطأ ما. حاول مرة أخرى.",
-      "checkin_in_past": "لا يمكن أن يكون تاريخ الوصول في الماضي.",
-      "invalid_range": "يجب أن يكون تاريخ المغادرة بعد الوصول.",
-      "range_too_long": "الحد الأقصى للإقامة 60 ليلة.",
-      "invalid_guests": "اختر من 1 إلى 6 ضيوف.",
-      "invalid_name": "أدخل اسماً صحيحاً.",
-      "invalid_email": "أدخل بريداً إلكترونياً صحيحاً.",
-      "dates_unavailable": "عذراً، هذه التواريخ محجوزة بالفعل."
-    }
+    "no_charge": "حجز مباشر مع المضيف",
+    "submitted_title": "تم إرسال الطلب",
+    "submitted_desc": "سنردّ خلال 24 ساعة.",
+    "airbnb_trust": "موثّق أيضاً على Airbnb"
   },
   "footer": {
-    "imprint": "بيانات النشر",
+    "brand_line": "Sunny Stays Hurghada",
+    "address_line": "شقة المدارس · الغردقة، مصر",
+    "contact_title": "التواصل",
+    "links_title": "روابط",
+    "social_title": "تابعنا",
+    "airbnb": "Airbnb",
+    "whatsapp": "واتساب",
+    "email": "بريد",
+    "instagram": "Instagram",
+    "imprint": "المعلومات القانونية",
     "privacy": "الخصوصية",
     "contact": "اتصل بنا",
-    "rights": "© 2026 Madaris Stays"
+    "rights": "© 2026 Sunny Stays Hurghada"
   },
   "language": "اللغة"
 }

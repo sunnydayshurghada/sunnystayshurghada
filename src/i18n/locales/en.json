@@ -1,33 +1,72 @@
 {
-  "brand": "MADARIS STAYS",
+  "brand": "SUNNY STAYS HURGHADA",
+  "tagline": "Your Home by the Red Sea",
   "nav": {
     "gallery": "Gallery",
-    "amenities": "Amenities",
-    "reviews": "Hosts",
-    "book": "Enquire"
+    "features": "Features",
+    "hosts": "Hosts",
+    "why": "Why us",
+    "book": "Book"
   },
   "hero": {
-    "eyebrow": "Hurghada · Egypt",
-    "title_1": "Your home by the",
-    "title_accent": "Red Sea",
-    "subtitle": "Comfortable 2-bedroom apartment in Madaris — minutes from Sheraton Road, beaches, restaurants and cafés."
+    "eyebrow": "Hurghada · Red Sea",
+    "headline": "Sunny Stays Hurghada",
+    "sub": "Feel at home by the Red Sea.",
+    "cta_primary": "Book on Airbnb",
+    "cta_secondary": "View apartment"
   },
   "gallery": {
-    "title": "Gallery",
-    "living": "Air-conditioned living room",
-    "suite": "Bedroom",
-    "bathroom": "Bathroom with bathtub"
+    "eyebrow": "Photography",
+    "title": "A home worth staying in",
+    "sub": "Every photo taken inside our apartment — no stock, no filters.",
+    "living": "Living room",
+    "balcony": "Balcony",
+    "bedroom_master": "Master bedroom",
+    "bedroom_twin": "Second bedroom",
+    "kitchen": "Kitchen",
+    "bathroom": "Bathroom",
+    "detail": "Details",
+    "suite": "Bedroom"
   },
-  "amenities": {
-    "title": "Amenities & comfort",
-    "space_label": "Apartment",
-    "space_value": "2 bedrooms · 4 beds · 3 balconies",
-    "capacity_label": "Capacity",
-    "capacity_value": "Up to 6 guests · 1 bathroom",
-    "wellness_label": "Comfort",
-    "wellness_value": "Air conditioning · fast Wi-Fi · washing machine",
-    "heat_label": "Extras",
-    "heat_value": "Free parking · elevator · 4th floor"
+  "features": {
+    "eyebrow": "Amenities",
+    "title": "Everything you need, elegantly done",
+    "sub": "Comfort details we look for when we travel ourselves.",
+    "bedrooms": "2 Bedrooms",
+    "guests": "Sleeps up to 6",
+    "balconies": "3 Balconies",
+    "elevator": "Elevator",
+    "wifi": "Fast Wi-Fi",
+    "ac": "Air conditioning",
+    "kitchen": "Fully equipped kitchen",
+    "washer": "Washing machine",
+    "bath": "Bathtub",
+    "desk": "Work desk"
+  },
+  "hosts": {
+    "eyebrow": "Meet your hosts",
+    "title": "Egyptian hospitality, German comfort",
+    "body": "We are a German-Egyptian couple who love welcoming guests from all over the world. Our goal is to combine Egyptian hospitality with the comfort we appreciate when travelling ourselves.",
+    "signature": "Wafaa & family"
+  },
+  "why": {
+    "eyebrow": "Why stay with us",
+    "title": "Small details, big difference",
+    "recs_title": "Personal recommendations",
+    "recs_body": "Curated tips for restaurants, snorkelling spots and quiet beaches from people who live here.",
+    "response_title": "Fast response",
+    "response_body": "We usually reply within the hour — before, during and after your stay.",
+    "comfort_title": "Comfort like home",
+    "comfort_body": "Fresh linens, quiet air conditioning, fast Wi-Fi and a fully equipped kitchen.",
+    "location_title": "Perfect location",
+    "location_body": "Minutes from Sheraton Road, the marina, beaches, cafés and grocery stores."
+  },
+  "pricing": {
+    "eyebrow": "Availability",
+    "starting_from": "Starting from …",
+    "note": "Current prices available on Airbnb — rates vary by season.",
+    "cta_airbnb": "See prices on Airbnb",
+    "cta_enquire": "Or send us an enquiry below"
   },
   "review": {
     "title": "Your hosts",
@@ -35,6 +74,8 @@
     "author": "— Wafaa, Host"
   },
   "booking": {
+    "eyebrow": "Enquiry",
+    "title": "Send us a message",
     "per_night": "/ night",
     "rating": "New listing",
     "checkin": "Check-in (from 2:00 PM)",
@@ -46,8 +87,8 @@
       "four": "4 guests",
       "family": "Family (up to 6)"
     },
-    "cta": "Check availability",
-    "no_charge": "Direct booking with the host",
+    "cta": "Send enquiry",
+    "no_charge": "Direct booking with the host — no fees",
     "submitted_title": "Request sent",
     "submitted_desc": "We'll get back to you within 24 hours.",
     "name": "Your name",
@@ -68,10 +109,19 @@
     }
   },
   "footer": {
+    "brand_line": "Sunny Stays Hurghada",
+    "address_line": "Madaris Apartment · Hurghada, Egypt",
+    "contact_title": "Contact",
+    "links_title": "Links",
+    "social_title": "Follow",
+    "airbnb": "Airbnb listing",
+    "whatsapp": "WhatsApp",
+    "email": "Email",
+    "instagram": "Instagram",
     "imprint": "Imprint",
     "privacy": "Privacy",
     "contact": "Contact",
-    "rights": "© 2026 Madaris Stays"
+    "rights": "© 2026 Sunny Stays Hurghada — All rights reserved"
   },
   "language": "Language"
 }

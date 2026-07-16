@@ -5,15 +5,22 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --font-display: "Playfair Display", ui-serif, Georgia, serif;
+  --font-display: "Cormorant Garamond", ui-serif, Georgia, serif;
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
 
-  --color-forest: var(--forest);
-  --color-forest-foreground: var(--sand);
+  /* Brand palette — Sunny Stays Hurghada */
+  --color-navy: var(--navy);
+  --color-navy-foreground: var(--paper);
+  --color-forest: var(--navy);          /* alias for legacy classes */
+  --color-forest-foreground: var(--paper);
   --color-sand: var(--sand);
-  --color-sand-foreground: var(--forest);
+  --color-sand-foreground: var(--navy);
+  --color-cloud: var(--cloud);
+  --color-cloud-foreground: var(--navy);
   --color-gold: var(--gold);
-  --color-gold-foreground: var(--forest);
+  --color-gold-foreground: var(--paper);
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -35,48 +42,42 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
 
-  --radius-sm: 0;
-  --radius-md: 2px;
-  --radius-lg: 4px;
+  --shadow-soft: 0 10px 30px -12px rgb(23 59 99 / 0.15);
+  --shadow-lift: 0 20px 50px -20px rgb(23 59 99 / 0.25);
+
+  --radius-sm: 4px;
+  --radius-md: 10px;
+  --radius-lg: 18px;
+  --radius-xl: 28px;
 }
 
 :root {
-  --forest: oklch(0.28 0.028 165);
-  --sand: oklch(0.955 0.012 85);
-  --gold: oklch(0.72 0.09 78);
+  --navy: #173b63;
+  --gold: #c8a15a;
+  --sand: #f7f2ea;
+  --cloud: #f1f1ee;
+  --paper: #ffffff;
+  --ink: #1a1a1a;
 
-  --background: var(--sand);
-  --foreground: var(--forest);
-  --card: oklch(1 0 0);
-  --card-foreground: var(--forest);
-  --popover: oklch(1 0 0);
-  --popover-foreground: var(--forest);
-  --primary: var(--forest);
-  --primary-foreground: var(--sand);
-  --secondary: oklch(0.92 0.015 85);
-  --secondary-foreground: var(--forest);
-  --muted: oklch(0.92 0.015 85);
-  --muted-foreground: oklch(0.45 0.02 165);
+  --background: var(--paper);
+  --foreground: var(--navy);
+  --card: var(--paper);
+  --card-foreground: var(--navy);
+  --popover: var(--paper);
+  --popover-foreground: var(--navy);
+  --primary: var(--navy);
+  --primary-foreground: var(--paper);
+  --secondary: var(--sand);
+  --secondary-foreground: var(--navy);
+  --muted: var(--cloud);
+  --muted-foreground: oklch(0.45 0.02 250);
   --accent: var(--gold);
-  --accent-foreground: var(--forest);
+  --accent-foreground: var(--paper);
   --destructive: oklch(0.55 0.22 27);
   --destructive-foreground: oklch(0.98 0 0);
-  --border: oklch(0.28 0.028 165 / 0.1);
-  --input: oklch(0.28 0.028 165 / 0.15);
+  --border: oklch(0.28 0.028 250 / 0.1);
+  --input: oklch(0.28 0.028 250 / 0.15);
   --ring: var(--gold);
-}
-
-.dark {
-  --background: var(--forest);
-  --foreground: var(--sand);
-  --card: oklch(0.22 0.025 165);
-  --card-foreground: var(--sand);
-  --popover: oklch(0.22 0.025 165);
-  --popover-foreground: var(--sand);
-  --primary: var(--sand);
-  --primary-foreground: var(--forest);
-  --border: oklch(1 0 0 / 0.08);
-  --input: oklch(1 0 0 / 0.12);
 }
 
 @layer base {
@@ -87,10 +88,31 @@
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
-    font-weight: 300;
+    font-weight: 400;
     -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
   }
   [dir="rtl"] {
     font-family: "Inter", "Noto Sans Arabic", ui-sans-serif, system-ui, sans-serif;
   }
+}
+
+/* Fade + rise animation used across sections */
+@keyframes fade-rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@utility animate-fade-rise {
+  animation: fade-rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@utility animate-fade-rise-slow {
+  animation: fade-rise 1.2s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
