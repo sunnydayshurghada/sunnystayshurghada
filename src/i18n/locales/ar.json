@@ -13,7 +13,10 @@
     "headline": "Sunny Stays Hurghada",
     "sub": "اشعر وكأنك في بيتك على البحر الأحمر.",
     "cta_primary": "احجز عبر Airbnb",
-    "cta_secondary": "شاهد الشقة"
+    "cta_secondary": "شاهد الشقة",
+    "welcome_to": "أهلاً بكم في",
+    "subhead": "بيتك على البحر الأحمر",
+    "mantra": "استرخِ · استمتع · اشعر كأنك في بيتك"
   },
   "gallery": {
     "eyebrow": "الصور",
@@ -44,7 +47,8 @@
     "kitchen": "مطبخ مجهّز",
     "washer": "غسّالة",
     "bath": "بانيو",
-    "desk": "مكتب"
+    "desk": "مكتب",
+    "beds": "4 أسرّة"
   },
   "hosts": {
     "eyebrow": "مضيفوك",
@@ -77,7 +81,11 @@
     "checkin": "الوصول (من 14:00)",
     "checkout": "المغادرة (حتى 11:00)",
     "guests": "الضيوف",
-    "guests_options": { "two": "ضيفان", "four": "4 ضيوف", "family": "عائلة (حتى 6)" },
+    "guests_options": {
+      "two": "ضيفان",
+      "four": "4 ضيوف",
+      "family": "عائلة (حتى 6)"
+    },
     "name": "اسمك",
     "email": "البريد الإلكتروني",
     "phone": "الهاتف (اختياري)",
@@ -101,7 +109,20 @@
     "imprint": "المعلومات القانونية",
     "privacy": "الخصوصية",
     "contact": "اتصل بنا",
-    "rights": "© 2026 Sunny Stays Hurghada"
+    "rights": "© 2026 Sunny Stays Hurghada",
+    "brand_blurb": "شقق فندقية بوتيك في الغردقة — مُصمّمة ليشعر كل ضيف وكأنه في بيته.",
+    "apartments_title": "الشقق",
+    "apartment_madaris": "شقة المدارس",
+    "apartment_future": "شقق أخرى قريباً",
+    "link_home": "الرئيسية",
+    "link_gallery": "المعرض",
+    "link_amenities": "المرافق",
+    "link_hosts": "المضيفون",
+    "link_location": "الموقع",
+    "link_book": "احجز عبر Airbnb",
+    "address_short": "الغردقة، مصر",
+    "copyright": "© 2026 Sunny Stays Hurghada",
+    "designed_with": "صُمّم بـ ❤️ لإجازات لا تُنسى في الغردقة."
   },
   "language": "اللغة"
 }
