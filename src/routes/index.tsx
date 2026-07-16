@@ -412,46 +412,95 @@ function BookingSection() {
 function SiteFooter() {
   const { t } = useTranslation();
   return (
-    <footer className="bg-forest text-paper">
-      <div className="max-w-7xl mx-auto px-6 py-20 grid md:grid-cols-[2fr_1fr] gap-10">
-        <div className="md:col-span-2">
+    <footer className="bg-forest text-paper relative overflow-hidden">
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold/50 to-transparent" />
+
+      <div className="max-w-7xl mx-auto px-6 md:px-8 pt-24 md:pt-32 pb-16 grid gap-14 md:gap-10 md:grid-cols-4">
+        {/* Column 1 — Brand */}
+        <div className="md:col-span-1">
           <div className="inline-flex bg-paper rounded-2xl px-5 py-4 shadow-soft">
             <img
               src={brandLogo.url}
               alt="Sunny Stays Hurghada"
-              className="h-14 md:h-16 w-auto select-none"
+              className="h-12 md:h-14 w-auto select-none"
               draggable={false}
             />
           </div>
-          <p className="mt-5 text-sm text-paper/60">{t("footer.address_line")}</p>
-          <p className="mt-4 text-sm text-paper/70 max-w-sm leading-relaxed font-light">
-            {t("tagline")}
+          <p className="mt-6 text-[15px] text-paper/70 leading-relaxed font-light max-w-xs">
+            {t("footer.brand_blurb")}
           </p>
         </div>
 
+        {/* Column 2 — Apartments */}
         <div>
-          <h4 className="text-[10px] uppercase tracking-[0.3em] text-gold font-medium mb-5">
-            {t("footer.contact_title")}
+          <h4 className="text-[10px] uppercase tracking-[0.3em] text-gold font-medium mb-6">
+            {t("footer.apartments_title")}
           </h4>
-          <ul className="space-y-3 text-sm text-paper/75">
+          <ul className="space-y-3 text-[15px] text-paper/75 font-light">
+            <li>
+              <a href="#gallery" className="hover:text-gold transition-colors">
+                {t("footer.apartment_madaris")}
+              </a>
+            </li>
+            <li className="text-paper/45 italic">
+              {t("footer.apartment_future")}
+            </li>
+          </ul>
+        </div>
+
+        {/* Column 3 — Quick links */}
+        <div>
+          <h4 className="text-[10px] uppercase tracking-[0.3em] text-gold font-medium mb-6">
+            {t("footer.links_title")}
+          </h4>
+          <ul className="space-y-3 text-[15px] text-paper/75 font-light">
+            <li><a href="#top" className="hover:text-gold transition-colors">{t("footer.link_home")}</a></li>
+            <li><a href="#gallery" className="hover:text-gold transition-colors">{t("footer.link_gallery")}</a></li>
+            <li><a href="#features" className="hover:text-gold transition-colors">{t("footer.link_amenities")}</a></li>
+            <li><a href="#hosts" className="hover:text-gold transition-colors">{t("footer.link_hosts")}</a></li>
+            <li><a href="#booking" className="hover:text-gold transition-colors">{t("footer.link_location")}</a></li>
             <li>
               <a
-                href={`mailto:${HOST_EMAIL}`}
-                className="inline-flex items-center gap-2 hover:text-gold transition-colors"
+                href={AIRBNB_LISTING_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 hover:text-gold transition-colors"
               >
-                <Mail className="h-3.5 w-3.5" strokeWidth={2} />
-                {HOST_EMAIL}
+                {t("footer.link_book")}
+                <ExternalLink className="h-3 w-3" strokeWidth={2} />
               </a>
+            </li>
+          </ul>
+        </div>
+
+        {/* Column 4 — Contact */}
+        <div>
+          <h4 className="text-[10px] uppercase tracking-[0.3em] text-gold font-medium mb-6">
+            {t("footer.contact_title")}
+          </h4>
+          <ul className="space-y-4 text-[15px] text-paper/75 font-light">
+            <li className="flex items-start gap-3">
+              <MapPin className="h-4 w-4 mt-0.5 text-gold shrink-0" strokeWidth={1.75} />
+              <span>{t("footer.address_short")}</span>
             </li>
             <li>
               <a
                 href={WHATSAPP_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 hover:text-gold transition-colors"
+                className="inline-flex items-center gap-3 hover:text-gold transition-colors"
               >
-                <MessageCircle className="h-3.5 w-3.5" strokeWidth={2} />
-                {t("footer.whatsapp")} +20 155 605 5957
+                <MessageCircle className="h-4 w-4 text-gold shrink-0" strokeWidth={1.75} />
+                <span>+20 155 605 5957</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href={`mailto:${HOST_EMAIL}`}
+                className="inline-flex items-center gap-3 hover:text-gold transition-colors break-all"
+              >
+                <Mail className="h-4 w-4 text-gold shrink-0" strokeWidth={1.75} />
+                <span>{HOST_EMAIL}</span>
               </a>
             </li>
             <li>
@@ -459,28 +508,20 @@ function SiteFooter() {
                 href={AIRBNB_LISTING_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 hover:text-gold transition-colors"
+                className="inline-flex items-center gap-3 hover:text-gold transition-colors"
               >
-                <ExternalLink className="h-3.5 w-3.5" strokeWidth={2} />
-                {t("footer.airbnb")}
+                <ExternalLink className="h-4 w-4 text-gold shrink-0" strokeWidth={1.75} />
+                <span>{t("footer.airbnb")}</span>
               </a>
             </li>
           </ul>
         </div>
-
       </div>
 
       <div className="border-t border-paper/10">
-        <div className="max-w-7xl mx-auto px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-4 text-[10px] uppercase tracking-[0.3em] text-paper/50">
-          <span>{t("footer.rights")}</span>
-          <div className="flex gap-6">
-            <a href="#" className="hover:text-gold transition-colors">
-              {t("footer.imprint")}
-            </a>
-            <a href="#" className="hover:text-gold transition-colors">
-              {t("footer.privacy")}
-            </a>
-          </div>
+        <div className="max-w-7xl mx-auto px-6 md:px-8 py-8 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-paper/55">
+          <span className="tracking-wide">{t("footer.copyright")}</span>
+          <span className="tracking-wide italic font-light">{t("footer.designed_with")}</span>
         </div>
       </div>
     </footer>
