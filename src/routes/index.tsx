@@ -271,12 +271,12 @@ function FeaturesSection() {
           {FEATURES.map(({ icon: Icon, key }) => (
             <div
               key={key}
-              className="group bg-paper rounded-3xl p-7 md:p-8 flex flex-col items-start gap-5 shadow-soft border border-forest/[0.06] transition-all duration-500 ease-out hover:-translate-y-1.5 hover:shadow-luxe hover:border-gold/30"
+              className="group bg-paper rounded-3xl p-6 sm:p-7 md:p-8 flex flex-col items-start gap-5 shadow-soft border border-forest/[0.06] transition-all duration-500 ease-out hover:-translate-y-1.5 hover:shadow-luxe hover:border-gold/30 min-w-0"
             >
-              <span className="inline-flex items-center justify-center h-12 w-12 rounded-2xl bg-gradient-to-br from-gold/15 to-gold/5 text-gold transition-all duration-500 group-hover:from-gold group-hover:to-gold group-hover:text-paper">
+              <span className="inline-flex items-center justify-center h-12 w-12 shrink-0 rounded-2xl bg-gradient-to-br from-gold/15 to-gold/5 text-gold transition-all duration-500 group-hover:from-gold group-hover:to-gold group-hover:text-paper">
                 <Icon className="h-5 w-5" strokeWidth={1.5} />
               </span>
-              <span className="text-[15px] font-medium text-forest leading-snug">
+              <span className="w-full text-[14px] sm:text-[15px] font-medium text-forest leading-snug break-words [hyphens:auto]">
                 {t(key)}
               </span>
             </div>
@@ -483,16 +483,26 @@ function SiteFooter() {
               <MapPin className="h-4 w-4 mt-0.5 text-gold shrink-0" strokeWidth={1.75} />
               <span>{t("footer.address_short")}</span>
             </li>
-            <li>
-              <a
-                href={WHATSAPP_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 hover:text-gold transition-colors"
-              >
-                <MessageCircle className="h-4 w-4 text-gold shrink-0" strokeWidth={1.75} />
-                <span>+20 155 605 5957</span>
-              </a>
+            <li className="flex items-start gap-3">
+              <MessageCircle className="h-4 w-4 mt-0.5 text-gold shrink-0" strokeWidth={1.75} />
+              <span className="flex flex-wrap items-center gap-x-2 gap-y-1">
+                <a
+                  href={WHATSAPP_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-gold transition-colors"
+                >
+                  {t("footer.whatsapp")}
+                </a>
+                <span aria-hidden="true" className="text-paper/30">·</span>
+                <a
+                  href="tel:+201556055957"
+                  dir="ltr"
+                  className="hover:text-gold transition-colors tracking-wide"
+                >
+                  +20&nbsp;155&nbsp;605&nbsp;5957
+                </a>
+              </span>
             </li>
             <li>
               <a
