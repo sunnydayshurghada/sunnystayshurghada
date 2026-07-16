@@ -4,13 +4,17 @@ import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { BookingWidget } from "@/components/BookingWidget";
 import { AIRBNB_LISTING_URL } from "@/lib/airbnb";
 
-// Photos from the Airbnb listing (Madaris & Sheraton Road, Hurghada).
-// TODO: replace with user-uploaded originals — Airbnb CDN restricts hotlinking.
+// Original photos of the apartment (Madaris & Sheraton Road, Hurghada).
+import balconyAsset from "@/assets/dsc06669.jpg.asset.json";
+import bedroomMasterAsset from "@/assets/dsc06681.jpg.asset.json";
+import bedroomTwinAsset from "@/assets/dsc06674.jpg.asset.json";
+import bathroomAsset from "@/assets/dsc06697.jpg.asset.json";
 const AIRBNB = "https://a0.muscache.com/im/pictures/hosting/Hosting-1726918631381181396/original";
 const heroImg = `${AIRBNB}/74d06523-75c3-4325-81af-87e2682952e7.jpeg?im_w=1920`;
-const livingImg: string | null = null;
-const bedroomImg = `${AIRBNB}/1dbc0d11-b4b9-4761-a4d1-026e67f8d794.jpeg?im_w=1200`;
-const bathroomImg = `${AIRBNB}/065954dc-3382-4b78-b739-8183cb7aa77f.jpeg?im_w=1200`;
+const livingImg: string | null = bedroomMasterAsset.url;
+const bedroomImg = bedroomTwinAsset.url;
+const bathroomImg = bathroomAsset.url;
+void balconyAsset;
 
 export const Route = createFileRoute("/")({
   component: Index,
