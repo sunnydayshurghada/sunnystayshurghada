@@ -459,24 +459,6 @@ function SiteFooter() {
           </ul>
         </div>
 
-        <div>
-          <h4 className="text-[10px] uppercase tracking-[0.3em] text-gold font-medium mb-5">
-            {t("footer.social_title")}
-          </h4>
-          <ul className="space-y-3 text-sm text-paper/75">
-            <li>
-              <a
-                href={INSTAGRAM_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 hover:text-gold transition-colors"
-              >
-                <Instagram className="h-3.5 w-3.5" strokeWidth={2} />
-                {t("footer.instagram")}
-              </a>
-            </li>
-          </ul>
-        </div>
       </div>
 
       <div className="border-t border-paper/10">
