@@ -335,19 +335,19 @@ function WhySection() {
           title={t("why.title")}
         />
 
-        <div className="mt-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="mt-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-7">
           {REASONS.map(({ icon: Icon, titleKey, bodyKey }) => (
             <div
               key={titleKey}
-              className="bg-paper rounded-2xl p-8 shadow-soft border border-forest/5 transition-all duration-300 hover:-translate-y-1 hover:shadow-lift"
+              className="group bg-paper rounded-3xl p-8 md:p-9 shadow-soft border border-forest/[0.06] transition-all duration-500 ease-out hover:-translate-y-1.5 hover:shadow-luxe hover:border-gold/30"
             >
-              <span className="inline-flex items-center justify-center h-12 w-12 rounded-xl bg-forest/5 text-gold">
-                <Icon className="h-5 w-5" strokeWidth={1.75} />
+              <span className="inline-flex items-center justify-center h-14 w-14 rounded-2xl bg-gradient-to-br from-gold/15 to-gold/5 text-gold transition-all duration-500 group-hover:from-gold group-hover:to-gold group-hover:text-paper">
+                <Icon className="h-6 w-6" strokeWidth={1.5} />
               </span>
-              <h3 className="mt-6 font-display text-2xl text-forest leading-tight">
+              <h3 className="mt-7 font-display text-2xl md:text-[26px] text-forest leading-tight">
                 {t(titleKey)}
               </h3>
-              <p className="mt-3 text-sm text-forest/70 leading-relaxed">
+              <p className="mt-3 text-[15px] text-forest/70 leading-relaxed">
                 {t(bodyKey)}
               </p>
             </div>
