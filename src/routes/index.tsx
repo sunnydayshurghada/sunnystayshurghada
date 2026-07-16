@@ -40,6 +40,16 @@ function Index() {
           </nav>
 
           <div className="flex items-center gap-3 md:gap-6">
+            <a
+              href={AIRBNB_LISTING_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden md:inline-flex items-center gap-1.5 text-[11px] uppercase tracking-widest text-forest/60 hover:text-[#FF385C] transition-colors"
+              title={t("booking.airbnb_trust")}
+            >
+              <span className="text-[#FF385C] text-base leading-none">◈</span>
+              Airbnb
+            </a>
             <LanguageSwitcher />
             <a
               href="#booking"
