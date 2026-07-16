@@ -72,8 +72,8 @@ const GALLERY: readonly Photo[] = [
   { url: p6687.url, captionKey: "gallery.detail", aspect: "aspect-[4/3]" },
 ];
 
-// Balcony with chairs — warm, sunny, welcoming.
-const heroPhoto = p6669.url;
+// Living room and kitchen — warm, sunny, welcoming.
+const heroPhoto = heroLivingKitchen.url;
 
 
 const FEATURES = [
