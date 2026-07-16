@@ -106,7 +106,7 @@ function InteractiveMap() {
   );
 }
 
-const LazyMap = InteractiveMap;
+
 
 /* -------- Weather helpers -------- */
 
@@ -192,7 +192,7 @@ export function LocationSection() {
         <div className="mt-16 md:mt-20 grid lg:grid-cols-[3fr_2fr] gap-8 lg:gap-10 items-start">
           {/* MAP */}
           <div className="flex flex-col gap-4">
-            {visible ? <LazyMap /> : (
+            {visible ? <InteractiveMap /> : (
               <div className="w-full h-[340px] md:h-[520px] rounded-[20px] bg-cloud shadow-soft" />
             )}
             <div className="flex flex-col sm:flex-row gap-3">
