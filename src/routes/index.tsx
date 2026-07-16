@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import {
   BedDouble,
   Users,
+  Bed,
   Sun,
   ArrowUpDown,
   Wifi,
@@ -18,6 +19,7 @@ import {
   Mail,
   MessageCircle,
   ExternalLink,
+  Building2,
 } from "lucide-react";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { BookingWidget } from "@/components/BookingWidget";
