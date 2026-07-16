@@ -79,13 +79,14 @@ const heroPhoto = heroLivingKitchen.url;
 const FEATURES = [
   { icon: BedDouble, key: "features.bedrooms" },
   { icon: Users, key: "features.guests" },
+  { icon: Bed, key: "features.beds" },
   { icon: Sun, key: "features.balconies" },
   { icon: ArrowUpDown, key: "features.elevator" },
   { icon: Wifi, key: "features.wifi" },
   { icon: Snowflake, key: "features.ac" },
   { icon: ChefHat, key: "features.kitchen" },
-  { icon: WashingMachine, key: "features.washer" },
   { icon: Bath, key: "features.bath" },
+  { icon: WashingMachine, key: "features.washer" },
   { icon: Laptop, key: "features.desk" },
 ] as const;
 
