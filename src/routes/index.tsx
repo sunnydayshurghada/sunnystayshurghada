@@ -176,7 +176,7 @@ function Hero() {
       />
       <div className="absolute inset-0 bg-gradient-to-b from-forest/60 via-forest/45 to-forest/80" />
 
-      <div className="relative z-10 w-full max-w-6xl mx-auto px-6 py-24 text-center animate-fade-rise">
+      <div className="relative z-10 w-full max-w-[560px] px-6 md:px-0 md:ml-16 lg:ml-[clamp(120px,9vw,180px)] py-24 text-center md:text-left animate-fade-rise">
         <span className="inline-block text-gold uppercase tracking-[0.45em] text-[11px] md:text-xs mb-8">
           {t("hero.eyebrow")}
         </span>
