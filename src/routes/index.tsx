@@ -28,6 +28,7 @@ import {
   WHATSAPP_URL,
   INSTAGRAM_URL,
 } from "@/lib/airbnb";
+import brandLogo from "@/assets/sunny-stays-hurghada-logo.png.asset.json";
 
 // Real photos of the apartment. No stock, no AI, no placeholder imagery.
 import p6669 from "@/assets/dsc06669.jpg.asset.json";
@@ -111,15 +112,15 @@ function Index() {
 function SiteHeader() {
   const { t } = useTranslation();
   return (
-    <header className="sticky top-0 z-40 bg-paper/80 backdrop-blur-md border-b border-forest/5">
-      <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between gap-6">
-        <a href="#top" className="flex flex-col leading-none">
-          <span className="text-[11px] uppercase tracking-[0.35em] text-gold font-medium">
-            Boutique · Hurghada
-          </span>
-          <span className="text-lg md:text-xl font-display italic text-forest tracking-tight">
-            Sunny Stays <span className="not-italic font-semibold">Hurghada</span>
-          </span>
+    <header className="sticky top-0 z-40 bg-paper/85 backdrop-blur-md border-b border-forest/5">
+      <div className="max-w-7xl mx-auto px-4 md:px-8 h-20 md:h-24 flex items-center justify-between gap-6">
+        <a href="#top" aria-label="Sunny Stays Hurghada — home" className="flex items-center py-2">
+          <img
+            src={brandLogo.url}
+            alt="Sunny Stays Hurghada"
+            className="h-10 md:h-14 w-auto select-none"
+            draggable={false}
+          />
         </a>
 
         <nav className="hidden md:flex items-center gap-8 text-[11px] uppercase tracking-[0.25em] font-medium text-forest/70">
@@ -397,14 +398,16 @@ function SiteFooter() {
     <footer className="bg-forest text-paper">
       <div className="max-w-7xl mx-auto px-6 py-20 grid md:grid-cols-4 gap-10">
         <div className="md:col-span-2">
-          <span className="text-[11px] uppercase tracking-[0.35em] text-gold font-medium">
-            Boutique · Hurghada
-          </span>
-          <p className="mt-3 font-display italic text-3xl text-paper">
-            {t("footer.brand_line")}
-          </p>
-          <p className="mt-2 text-sm text-paper/60">{t("footer.address_line")}</p>
-          <p className="mt-6 text-sm text-paper/70 max-w-sm leading-relaxed font-light">
+          <div className="inline-flex bg-paper rounded-2xl px-5 py-4 shadow-soft">
+            <img
+              src={brandLogo.url}
+              alt="Sunny Stays Hurghada"
+              className="h-14 md:h-16 w-auto select-none"
+              draggable={false}
+            />
+          </div>
+          <p className="mt-5 text-sm text-paper/60">{t("footer.address_line")}</p>
+          <p className="mt-4 text-sm text-paper/70 max-w-sm leading-relaxed font-light">
             {t("tagline")}
           </p>
         </div>
