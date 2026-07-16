@@ -23,6 +23,7 @@ import {
 } from "lucide-react";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { BookingWidget } from "@/components/BookingWidget";
+import { LocationSection } from "@/components/LocationSection";
 import {
   AIRBNB_LISTING_URL,
   HOST_EMAIL,
