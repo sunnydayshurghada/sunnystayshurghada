@@ -3,11 +3,12 @@ import { useTranslation } from "react-i18next";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { BookingWidget } from "@/components/BookingWidget";
 import { AIRBNB_LISTING_URL } from "@/lib/airbnb";
-import livingImg from "@/assets/airbnb-living.jpg";
 
-// Photos from the Airbnb listing (Madaris & Sheraton Road, Hurghada)
+// Photos from the Airbnb listing (Madaris & Sheraton Road, Hurghada).
+// TODO: replace with user-uploaded originals — Airbnb CDN restricts hotlinking.
 const AIRBNB = "https://a0.muscache.com/im/pictures/hosting/Hosting-1726918631381181396/original";
 const heroImg = `${AIRBNB}/74d06523-75c3-4325-81af-87e2682952e7.jpeg?im_w=1920`;
+const livingImg: string | null = null;
 const bedroomImg = `${AIRBNB}/1dbc0d11-b4b9-4761-a4d1-026e67f8d794.jpeg?im_w=1200`;
 const bathroomImg = `${AIRBNB}/065954dc-3382-4b78-b739-8183cb7aa77f.jpeg?im_w=1200`;
 
@@ -88,15 +89,21 @@ function Index() {
       {/* Gallery */}
       <section id="gallery" className="py-24 max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-12 gap-4 md:gap-6 h-auto md:h-[720px]">
-          <div className="col-span-12 md:col-span-8 h-[400px] md:h-full">
-            <img
-              src={livingImg}
-              alt={t("gallery.living")}
-              loading="lazy"
-              width={1200}
-              height={800}
-              className="w-full h-full object-cover"
-            />
+          <div className="col-span-12 md:col-span-8 h-[400px] md:h-full bg-forest/5 flex items-center justify-center">
+            {livingImg ? (
+              <img
+                src={livingImg}
+                alt={t("gallery.living")}
+                loading="lazy"
+                width={1200}
+                height={800}
+                className="w-full h-full object-cover"
+              />
+            ) : (
+              <span className="text-forest/40 text-xs uppercase tracking-widest px-6 text-center">
+                {t("gallery.living")}
+              </span>
+            )}
           </div>
           <div className="col-span-12 md:col-span-4 grid grid-cols-2 md:grid-cols-1 gap-4 md:gap-6">
             <div className="h-[220px] md:h-1/2">
