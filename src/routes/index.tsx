@@ -30,6 +30,7 @@ import {
   WHATSAPP_URL,
 } from "@/lib/airbnb";
 import brandLogo from "@/assets/sunny-stays-hurghada-logo.png.asset.json";
+import { resolveLegalLang } from "@/lib/legal-lang";
 import hostsPhoto from "@/assets/hosts-wafaa-alex.jpg.asset.json";
 import heroLivingKitchen from "@/assets/hero-living-kitchen.png.asset.json";
 
