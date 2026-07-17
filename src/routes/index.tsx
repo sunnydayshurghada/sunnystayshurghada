@@ -415,7 +415,8 @@ function BookingSection() {
 /* ---------------- Footer ---------------- */
 
 function SiteFooter() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const legalLang = resolveLegalLang(i18n.language);
   return (
     <footer className="bg-forest text-paper relative overflow-hidden">
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold/50 to-transparent" />
