@@ -67,13 +67,13 @@ export function LegalPage({
       <footer className="bg-forest text-paper">
         <div className="max-w-5xl mx-auto px-6 md:px-8 py-10 flex flex-col md:flex-row gap-6 items-center justify-between text-sm text-paper/70">
           <div className="flex flex-wrap gap-x-6 gap-y-2 justify-center">
-            <Link to="/privacy" className="hover:text-gold transition-colors">
+            <Link to="/$lang/privacy" params={{ lang: legalLang }} className="hover:text-gold transition-colors">
               {t("footer.privacy", { defaultValue: "Privacy Policy" })}
             </Link>
-            <Link to="/imprint" className="hover:text-gold transition-colors">
+            <Link to="/$lang/imprint" params={{ lang: legalLang }} className="hover:text-gold transition-colors">
               {t("footer.imprint", { defaultValue: "Legal Notice" })}
             </Link>
-            <Link to="/terms" className="hover:text-gold transition-colors">
+            <Link to="/$lang/terms" params={{ lang: legalLang }} className="hover:text-gold transition-colors">
               {t("footer.terms", { defaultValue: "Terms & Conditions" })}
             </Link>
           </div>
