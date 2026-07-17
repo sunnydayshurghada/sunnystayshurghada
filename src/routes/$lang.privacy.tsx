@@ -36,72 +36,88 @@ function PrivacyPage() {
   return lang === "de" ? <PrivacyDE /> : <PrivacyEN />;
 }
 
+const WHATSAPP = "+20 155 605 5957";
+
 function PrivacyEN() {
   return (
     <LegalPage eyebrow="Legal" title="Privacy Policy">
-      <LegalMeta>Last updated: January 2026</LegalMeta>
+      <LegalMeta>Last updated: July 2026</LegalMeta>
 
       <LegalH2>1. Overview</LegalH2>
       <LegalP>
-        Sunny Stays Hurghada (“we”, “us”) respects your privacy. This policy explains
-        which personal data we collect when you visit our website or send a booking
-        enquiry, how we use it, and which rights you have under the EU General Data
-        Protection Regulation (GDPR).
+        Sunny Stays Hurghada is a privately operated vacation rental hosted by
+        Wafaa Belaid in Hurghada, Egypt. This policy explains which personal
+        data is collected when you visit this website or get in touch, how it
+        is used, and which rights you have.
       </LegalP>
 
-      <LegalH2>2. Controller</LegalH2>
+      <LegalH2>2. Responsible person</LegalH2>
       <LegalP>
-        Wafaa Fraktion — Sunny Stays Hurghada<br />
+        Wafaa Belaid — Sunny Stays Hurghada<br />
+        Hurghada, Red Sea Governorate, Egypt<br />
         Email: <a href={`mailto:${HOST_EMAIL}`} className="text-gold hover:underline">{HOST_EMAIL}</a>
       </LegalP>
 
       <LegalH2>3. Data we collect</LegalH2>
       <LegalList>
-        <li><strong>Booking enquiries:</strong> name, email address, phone number (optional), check-in / check-out dates, number of guests, and any message you send.</li>
-        <li><strong>Technical data:</strong> IP address, browser type, language, and timestamps, collected automatically by our hosting provider for security and stability.</li>
-        <li><strong>Third-party embeds:</strong> when you view the location section, Google Maps loads content from Google, which may process your IP address.</li>
+        <li><strong>Email contact:</strong> if you email us, we receive your email address and the content of your message.</li>
+        <li><strong>WhatsApp contact:</strong> if you message us on WhatsApp ({WHATSAPP}), your phone number and messages are processed by WhatsApp under its own privacy policy.</li>
+        <li><strong>Booking enquiries:</strong> name, email, optional phone number, stay dates, number of guests and any message you send.</li>
+        <li><strong>Technical data:</strong> IP address, browser type, language and timestamps, collected automatically by our hosting provider for security and stability.</li>
       </LegalList>
 
-      <LegalH2>4. Purpose &amp; legal basis</LegalH2>
+      <LegalH2>4. Third-party services</LegalH2>
       <LegalList>
-        <li>Answering booking enquiries and preparing / performing a rental agreement — Art. 6 (1)(b) GDPR.</li>
-        <li>Operating the website securely — Art. 6 (1)(f) GDPR (legitimate interest).</li>
-        <li>Fulfilling legal obligations, e.g. tax retention — Art. 6 (1)(c) GDPR.</li>
+        <li><strong>Google Maps:</strong> the location section embeds Google Maps (Google Ireland Ltd.). When it loads, Google may process your IP address and device data.</li>
+        <li><strong>Weather API:</strong> live weather in Hurghada is fetched from a third-party weather provider. Only technical request data (no personal data from you) is transmitted.</li>
+        <li><strong>Airbnb booking links:</strong> the site links to Airbnb listings. When you follow such a link, Airbnb’s privacy policy applies to any data you provide there.</li>
       </LegalList>
 
-      <LegalH2>5. Recipients &amp; processors</LegalH2>
+      <LegalH2>5. Language preference</LegalH2>
       <LegalP>
-        We use carefully selected service providers who process data on our behalf:
-        our hosting and database provider, our email provider, and Google Maps
-        (Google Ireland Ltd.) for the interactive map. We do not sell personal data.
+        The website remembers your chosen display language using a small entry
+        in your browser’s local storage. This is stored only on your device
+        and is not shared with us or third parties.
       </LegalP>
 
-      <LegalH2>6. Retention</LegalH2>
+      <LegalH2>6. Cookies &amp; analytics</LegalH2>
       <LegalP>
-        Booking enquiries are stored for as long as needed to answer them and to
-        fulfil legal retention periods (typically up to 10 years for tax-relevant
-        documents under German law). You may request earlier deletion where no
-        legal obligation applies.
+        This website does not use tracking cookies, advertising cookies or
+        third-party analytics. Only technically necessary browser storage (for
+        example, the language preference above) is used.
       </LegalP>
 
-      <LegalH2>7. Your rights</LegalH2>
+      <LegalH2>7. Purpose of processing</LegalH2>
+      <LegalList>
+        <li>Answering enquiries and preparing a stay.</li>
+        <li>Operating the website securely and reliably.</li>
+        <li>Fulfilling applicable legal obligations.</li>
+      </LegalList>
+
+      <LegalH2>8. Retention</LegalH2>
       <LegalP>
-        You have the right to access, rectify, delete, restrict or port your data,
-        and to object to processing based on legitimate interest. You may also
-        lodge a complaint with a supervisory authority. To exercise your rights,
-        contact us at <a href={`mailto:${HOST_EMAIL}`} className="text-gold hover:underline">{HOST_EMAIL}</a>.
+        Enquiries are kept for as long as needed to answer them and to comply
+        with applicable retention rules. You may request earlier deletion at
+        any time.
       </LegalP>
 
-      <LegalH2>8. Cookies</LegalH2>
+      <LegalH2>9. Your rights</LegalH2>
       <LegalP>
-        This website does not use tracking or advertising cookies. Only strictly
-        necessary storage is used to remember your language preference.
+        You may request access to, correction of, or deletion of your personal
+        data by contacting us at{" "}
+        <a href={`mailto:${HOST_EMAIL}`} className="text-gold hover:underline">{HOST_EMAIL}</a>.
       </LegalP>
 
-      <LegalH2>9. Changes</LegalH2>
+      <LegalH2>10. Where the website is operated from</LegalH2>
       <LegalP>
-        We may update this policy to reflect changes in our services or the law.
-        The current version is always available on this page.
+        This website is operated from Hurghada, Egypt.
+      </LegalP>
+
+      <LegalH2>11. Changes</LegalH2>
+      <LegalP>
+        This policy may be updated to reflect changes in the services offered
+        or the applicable law. The current version is always available on this
+        page.
       </LegalP>
     </LegalPage>
   );
@@ -110,74 +126,84 @@ function PrivacyEN() {
 function PrivacyDE() {
   return (
     <LegalPage eyebrow="Rechtliches" title="Datenschutzerklärung">
-      <LegalMeta>Stand: Januar 2026</LegalMeta>
+      <LegalMeta>Stand: Juli 2026</LegalMeta>
 
       <LegalH2>1. Überblick</LegalH2>
       <LegalP>
-        Sunny Stays Hurghada („wir“) achtet Ihre Privatsphäre. Diese Erklärung
-        informiert Sie darüber, welche personenbezogenen Daten wir erheben, wenn Sie
-        unsere Website besuchen oder eine Buchungsanfrage senden, wie wir sie
-        verwenden und welche Rechte Ihnen nach der EU-Datenschutz-Grundverordnung
-        (DSGVO) zustehen.
+        Sunny Stays Hurghada ist eine privat betriebene Ferienwohnung, die von
+        Wafaa Belaid in Hurghada, Ägypten, vermietet wird. Diese Erklärung
+        informiert darüber, welche personenbezogenen Daten beim Besuch der
+        Website oder bei einer Kontaktaufnahme erhoben werden, wie sie
+        verwendet werden und welche Rechte Ihnen zustehen.
       </LegalP>
 
-      <LegalH2>2. Verantwortlicher</LegalH2>
+      <LegalH2>2. Verantwortliche Person</LegalH2>
       <LegalP>
-        Wafaa Fraktion — Sunny Stays Hurghada<br />
+        Wafaa Belaid — Sunny Stays Hurghada<br />
+        Hurghada, Gouvernement Rotes Meer, Ägypten<br />
         E-Mail: <a href={`mailto:${HOST_EMAIL}`} className="text-gold hover:underline">{HOST_EMAIL}</a>
       </LegalP>
 
       <LegalH2>3. Erhobene Daten</LegalH2>
       <LegalList>
-        <li><strong>Buchungsanfragen:</strong> Name, E-Mail-Adresse, Telefonnummer (optional), An- und Abreisedatum, Anzahl der Gäste sowie Ihre Nachricht.</li>
+        <li><strong>E-Mail-Kontakt:</strong> Bei einer E-Mail an uns erhalten wir Ihre E-Mail-Adresse und den Inhalt Ihrer Nachricht.</li>
+        <li><strong>WhatsApp-Kontakt:</strong> Bei Nachrichten über WhatsApp ({WHATSAPP}) werden Ihre Telefonnummer und Nachrichten durch WhatsApp gemäß dessen eigener Datenschutzerklärung verarbeitet.</li>
+        <li><strong>Buchungsanfragen:</strong> Name, E-Mail, optionale Telefonnummer, Aufenthaltsdaten, Personenzahl und Ihre Nachricht.</li>
         <li><strong>Technische Daten:</strong> IP-Adresse, Browsertyp, Sprache und Zeitstempel, die unser Hosting-Anbieter aus Sicherheits- und Stabilitätsgründen automatisch erhebt.</li>
-        <li><strong>Eingebundene Drittdienste:</strong> Beim Aufruf des Standort-Bereichs lädt Google Maps Inhalte, wobei Google Ihre IP-Adresse verarbeiten kann.</li>
       </LegalList>
 
-      <LegalH2>4. Zweck &amp; Rechtsgrundlage</LegalH2>
+      <LegalH2>4. Drittdienste</LegalH2>
       <LegalList>
-        <li>Beantwortung von Anfragen und Anbahnung/Durchführung des Mietvertrags — Art. 6 Abs. 1 lit. b DSGVO.</li>
-        <li>Sicherer Betrieb der Website — Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse).</li>
-        <li>Erfüllung gesetzlicher Aufbewahrungspflichten — Art. 6 Abs. 1 lit. c DSGVO.</li>
+        <li><strong>Google Maps:</strong> Im Standort-Bereich wird Google Maps (Google Ireland Ltd.) eingebunden. Dabei kann Google Ihre IP-Adresse und Gerätedaten verarbeiten.</li>
+        <li><strong>Wetter-API:</strong> Aktuelle Wetterdaten für Hurghada werden von einem externen Wetterdienst geladen. Dabei werden nur technische Anfragen, jedoch keine personenbezogenen Daten von Ihnen übertragen.</li>
+        <li><strong>Airbnb-Buchungslinks:</strong> Die Website verlinkt auf Airbnb-Inserate. Wenn Sie einem solchen Link folgen, gilt die Datenschutzerklärung von Airbnb.</li>
       </LegalList>
 
-      <LegalH2>5. Empfänger &amp; Auftragsverarbeiter</LegalH2>
+      <LegalH2>5. Spracheinstellung</LegalH2>
       <LegalP>
-        Wir nutzen sorgfältig ausgewählte Dienstleister, die Daten in unserem Auftrag
-        verarbeiten: unseren Hosting- und Datenbankanbieter, unseren E-Mail-Anbieter
-        sowie Google Maps (Google Ireland Ltd.) für die interaktive Karte. Wir
-        verkaufen keine personenbezogenen Daten.
+        Die Website merkt sich Ihre gewählte Anzeigesprache über einen kleinen
+        Eintrag im lokalen Speicher Ihres Browsers. Dieser Eintrag verbleibt
+        auf Ihrem Gerät und wird nicht an uns oder Dritte übertragen.
       </LegalP>
 
-      <LegalH2>6. Speicherdauer</LegalH2>
+      <LegalH2>6. Cookies &amp; Analyse</LegalH2>
       <LegalP>
-        Anfragen speichern wir so lange, wie es zur Beantwortung erforderlich ist
-        und gesetzliche Aufbewahrungsfristen (in der Regel bis zu 10 Jahre für
-        steuerrelevante Unterlagen) es verlangen. Sie können eine frühere Löschung
-        verlangen, sofern keine gesetzliche Pflicht entgegensteht.
+        Diese Website verwendet keine Tracking- oder Werbe-Cookies und keine
+        externen Analysedienste. Es kommt ausschließlich technisch notwendiger
+        Browserspeicher zum Einsatz (z. B. für die Spracheinstellung).
       </LegalP>
 
-      <LegalH2>7. Ihre Rechte</LegalH2>
+      <LegalH2>7. Zwecke der Verarbeitung</LegalH2>
+      <LegalList>
+        <li>Beantwortung von Anfragen und Vorbereitung eines Aufenthalts.</li>
+        <li>Sicherer und zuverlässiger Betrieb der Website.</li>
+        <li>Erfüllung gesetzlicher Pflichten, soweit anwendbar.</li>
+      </LegalList>
+
+      <LegalH2>8. Speicherdauer</LegalH2>
       <LegalP>
-        Sie haben das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung und
-        Datenübertragbarkeit sowie ein Widerspruchsrecht gegen die Verarbeitung auf
-        Grundlage berechtigter Interessen. Zudem können Sie sich bei einer
-        Aufsichtsbehörde beschweren. Kontakt:{" "}
+        Anfragen werden so lange gespeichert, wie es zur Beantwortung
+        erforderlich ist und geltende Aufbewahrungspflichten es verlangen. Sie
+        können jederzeit eine frühere Löschung verlangen.
+      </LegalP>
+
+      <LegalH2>9. Ihre Rechte</LegalH2>
+      <LegalP>
+        Sie können Auskunft, Berichtigung oder Löschung Ihrer personenbezogenen
+        Daten verlangen. Kontakt:{" "}
         <a href={`mailto:${HOST_EMAIL}`} className="text-gold hover:underline">{HOST_EMAIL}</a>.
       </LegalP>
 
-      <LegalH2>8. Cookies</LegalH2>
+      <LegalH2>10. Betriebsort der Website</LegalH2>
       <LegalP>
-        Diese Website verwendet keine Tracking- oder Werbe-Cookies. Es wird nur ein
-        technisch notwendiger Speicher verwendet, um Ihre Spracheinstellung zu
-        merken.
+        Diese Website wird aus Hurghada, Ägypten, betrieben.
       </LegalP>
 
-      <LegalH2>9. Änderungen</LegalH2>
+      <LegalH2>11. Änderungen</LegalH2>
       <LegalP>
-        Wir können diese Erklärung anpassen, um Änderungen unserer Dienste oder der
-        Rechtslage abzubilden. Die jeweils aktuelle Fassung ist auf dieser Seite
-        verfügbar.
+        Diese Erklärung kann angepasst werden, um Änderungen der angebotenen
+        Leistungen oder der Rechtslage abzubilden. Die aktuelle Fassung ist
+        stets auf dieser Seite verfügbar.
       </LegalP>
     </LegalPage>
   );
