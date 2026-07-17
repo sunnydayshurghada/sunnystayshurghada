@@ -1,7 +1,14 @@
 import { createFileRoute, notFound } from "@tanstack/react-router";
-import { LegalPage, LegalH2, LegalP } from "@/components/LegalPage";
-import { HOST_EMAIL } from "@/lib/airbnb";
+import {
+  LegalPage,
+  LegalH2,
+  LegalP,
+  HostInfoCard,
+  EmailContactCard,
+  WhatsAppContactCard,
+} from "@/components/LegalPage";
 import { isLegalLang, type LegalLang } from "@/lib/legal-lang";
+
 
 export const Route = createFileRoute("/$lang/imprint")({
   beforeLoad: ({ params }) => {
