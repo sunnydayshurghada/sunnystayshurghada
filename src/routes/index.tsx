@@ -30,6 +30,7 @@ import {
   WHATSAPP_URL,
 } from "@/lib/airbnb";
 import brandLogo from "@/assets/sunny-stays-hurghada-logo.png.asset.json";
+import { resolveLegalLang } from "@/lib/legal-lang";
 import hostsPhoto from "@/assets/hosts-wafaa-alex.jpg.asset.json";
 import heroLivingKitchen from "@/assets/hero-living-kitchen.png.asset.json";
 
@@ -415,7 +416,8 @@ function BookingSection() {
 /* ---------------- Footer ---------------- */
 
 function SiteFooter() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const legalLang = resolveLegalLang(i18n.language);
   return (
     <footer className="bg-forest text-paper relative overflow-hidden">
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold/50 to-transparent" />
@@ -539,17 +541,17 @@ function SiteFooter() {
           </h4>
           <ul className="space-y-3 text-[15px] text-paper/75 font-light">
             <li>
-              <Link to="/privacy" className="hover:text-gold transition-colors">
+              <Link to="/$lang/privacy" params={{ lang: legalLang }} className="hover:text-gold transition-colors">
                 {t("footer.privacy")}
               </Link>
             </li>
             <li>
-              <Link to="/imprint" className="hover:text-gold transition-colors">
+              <Link to="/$lang/imprint" params={{ lang: legalLang }} className="hover:text-gold transition-colors">
                 {t("footer.imprint")}
               </Link>
             </li>
             <li>
-              <Link to="/terms" className="hover:text-gold transition-colors">
+              <Link to="/$lang/terms" params={{ lang: legalLang }} className="hover:text-gold transition-colors">
                 {t("footer.terms")}
               </Link>
             </li>
