@@ -23,11 +23,11 @@ export const Route = createFileRoute("/$lang/imprint")({
 const META = {
   de: {
     title: "Impressum — Sunny Stays Hurghada",
-    desc: "Anbieterkennzeichnung und rechtliche Angaben für Sunny Stays Hurghada.",
+    desc: "Rechtliche Angaben zum privaten Vermieter von Sunny Stays Hurghada.",
   },
   en: {
     title: "Legal Notice — Sunny Stays Hurghada",
-    desc: "Legal notice and provider information for Sunny Stays Hurghada.",
+    desc: "Legal notice for the private host of Sunny Stays Hurghada.",
   },
 } as const;
 
@@ -39,53 +39,49 @@ function ImprintPage() {
 function ImprintEN() {
   return (
     <LegalPage eyebrow="Legal" title="Legal Notice">
-      <LegalH2>Provider</LegalH2>
+      <LegalH2>Website Owner &amp; Host</LegalH2>
       <LegalP>
-        Sunny Stays Hurghada<br />
-        Wafaa Fraktion<br />
-        Hurghada, Red Sea Governorate, Egypt
+        Wafaa Belaid<br />
+        Hurghada<br />
+        Red Sea Governorate<br />
+        Egypt
       </LegalP>
 
       <LegalH2>Contact</LegalH2>
       <LegalP>
-        Email: <a href={`mailto:${HOST_EMAIL}`} className="text-gold hover:underline">{HOST_EMAIL}</a><br />
-        WhatsApp: +20 155 605 5957
+        Email: <a href={`mailto:${HOST_EMAIL}`} className="text-gold hover:underline">{HOST_EMAIL}</a>
+      </LegalP>
+
+      <LegalH2>About this website</LegalH2>
+      <LegalP>
+        Sunny Stays Hurghada is a privately operated vacation rental hosted by
+        Wafaa Belaid in Hurghada, Egypt. This website provides information about
+        the apartment, availability, booking options and guest services. It is
+        not operated by a company.
       </LegalP>
 
       <LegalH2>Responsible for content</LegalH2>
-      <LegalP>Wafaa Fraktion (address as above).</LegalP>
+      <LegalP>Wafaa Belaid (address as above).</LegalP>
 
       <LegalH2>Liability for content</LegalH2>
       <LegalP>
         The content of this website has been created with the greatest possible
-        care. However, we cannot guarantee its accuracy, completeness or
-        timeliness. As a service provider, we are responsible for our own content
-        on these pages in accordance with the general laws.
+        care. However, no guarantee is given for its accuracy, completeness or
+        timeliness.
       </LegalP>
 
       <LegalH2>Liability for links</LegalH2>
       <LegalP>
-        Our website contains links to external websites of third parties, on
-        whose contents we have no influence. Therefore, we cannot assume any
-        liability for these external contents.
+        This website contains links to external websites of third parties, on
+        whose contents we have no influence. No liability is assumed for such
+        external content; responsibility lies with the respective provider.
       </LegalP>
 
       <LegalH2>Copyright</LegalH2>
       <LegalP>
         All photography, text and design elements on this website are protected
         by copyright. Any reproduction, distribution or use outside the limits
-        of copyright law requires our prior written consent.
-      </LegalP>
-
-      <LegalH2>Dispute resolution</LegalH2>
-      <LegalP>
-        The European Commission provides a platform for online dispute resolution
-        at{" "}
-        <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener noreferrer" className="text-gold hover:underline">
-          ec.europa.eu/consumers/odr
-        </a>
-        . We are not obliged and not willing to participate in dispute resolution
-        procedures before a consumer arbitration board.
+        of copyright law requires prior written consent.
       </LegalP>
     </LegalPage>
   );
@@ -94,56 +90,50 @@ function ImprintEN() {
 function ImprintDE() {
   return (
     <LegalPage eyebrow="Rechtliches" title="Impressum">
-      <LegalH2>Anbieter</LegalH2>
+      <LegalH2>Betreiberin &amp; Gastgeberin</LegalH2>
       <LegalP>
-        Sunny Stays Hurghada<br />
-        Wafaa Fraktion<br />
-        Hurghada, Gouvernement Rotes Meer, Ägypten
+        Wafaa Belaid<br />
+        Hurghada<br />
+        Gouvernement Rotes Meer<br />
+        Ägypten
       </LegalP>
 
       <LegalH2>Kontakt</LegalH2>
       <LegalP>
-        E-Mail: <a href={`mailto:${HOST_EMAIL}`} className="text-gold hover:underline">{HOST_EMAIL}</a><br />
-        WhatsApp: +20 155 605 5957
+        E-Mail: <a href={`mailto:${HOST_EMAIL}`} className="text-gold hover:underline">{HOST_EMAIL}</a>
+      </LegalP>
+
+      <LegalH2>Über diese Website</LegalH2>
+      <LegalP>
+        Sunny Stays Hurghada ist eine privat betriebene Ferienwohnung, die von
+        Wafaa Belaid in Hurghada, Ägypten, vermietet wird. Diese Website
+        informiert über die Wohnung, Verfügbarkeiten, Buchungsmöglichkeiten und
+        Gäste-Services. Es handelt sich nicht um ein Unternehmen.
       </LegalP>
 
       <LegalH2>Verantwortlich für den Inhalt</LegalH2>
-      <LegalP>Wafaa Fraktion (Anschrift wie oben).</LegalP>
+      <LegalP>Wafaa Belaid (Anschrift wie oben).</LegalP>
 
       <LegalH2>Haftung für Inhalte</LegalH2>
       <LegalP>
-        Die Inhalte dieser Website wurden mit größtmöglicher Sorgfalt erstellt. Für
-        die Richtigkeit, Vollständigkeit und Aktualität der Inhalte können wir
-        jedoch keine Gewähr übernehmen. Als Diensteanbieter sind wir für eigene
-        Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich.
+        Die Inhalte dieser Website wurden mit größtmöglicher Sorgfalt erstellt.
+        Für Richtigkeit, Vollständigkeit und Aktualität kann jedoch keine Gewähr
+        übernommen werden.
       </LegalP>
 
       <LegalH2>Haftung für Links</LegalH2>
       <LegalP>
-        Unsere Website enthält Links zu externen Websites Dritter, auf deren
-        Inhalte wir keinen Einfluss haben. Für diese fremden Inhalte können wir
-        daher keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist
-        stets der jeweilige Anbieter oder Betreiber verantwortlich.
+        Diese Website enthält Links zu externen Websites Dritter, auf deren
+        Inhalte wir keinen Einfluss haben. Für diese fremden Inhalte wird keine
+        Haftung übernommen; verantwortlich ist stets der jeweilige Anbieter.
       </LegalP>
 
       <LegalH2>Urheberrecht</LegalH2>
       <LegalP>
         Alle auf dieser Website veröffentlichten Fotos, Texte und
-        Gestaltungselemente sind urheberrechtlich geschützt. Jede Vervielfältigung,
-        Verbreitung oder Nutzung außerhalb der Grenzen des Urheberrechts bedarf
-        unserer vorherigen schriftlichen Zustimmung.
-      </LegalP>
-
-      <LegalH2>Streitschlichtung</LegalH2>
-      <LegalP>
-        Die Europäische Kommission stellt eine Plattform zur
-        Online-Streitbeilegung bereit:{" "}
-        <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener noreferrer" className="text-gold hover:underline">
-          ec.europa.eu/consumers/odr
-        </a>
-        . Wir sind nicht verpflichtet und nicht bereit, an
-        Streitbeilegungsverfahren vor einer Verbraucher­schlichtungsstelle
-        teilzunehmen.
+        Gestaltungselemente sind urheberrechtlich geschützt. Jede
+        Vervielfältigung, Verbreitung oder Nutzung außerhalb der Grenzen des
+        Urheberrechts bedarf der vorherigen schriftlichen Zustimmung.
       </LegalP>
     </LegalPage>
   );
