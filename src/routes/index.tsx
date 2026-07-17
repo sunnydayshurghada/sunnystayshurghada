@@ -420,7 +420,7 @@ function SiteFooter() {
     <footer className="bg-forest text-paper relative overflow-hidden">
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold/50 to-transparent" />
 
-      <div className="max-w-7xl mx-auto px-6 md:px-8 pt-24 md:pt-32 pb-16 grid gap-14 md:gap-10 md:grid-cols-4">
+      <div className="max-w-7xl mx-auto px-6 md:px-8 pt-24 md:pt-32 pb-16 grid gap-14 md:gap-10 md:grid-cols-2 lg:grid-cols-5">
         {/* Column 1 — Brand */}
         <div className="md:col-span-1">
           <div className="inline-flex bg-paper rounded-2xl px-5 py-4 shadow-soft">
