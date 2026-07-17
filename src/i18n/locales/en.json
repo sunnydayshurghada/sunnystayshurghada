@@ -142,7 +142,9 @@
     "link_book": "Book on Airbnb",
     "address_short": "Hurghada, Egypt",
     "copyright": "© 2026 Sunny Stays Hurghada",
-    "designed_with": "Designed with ❤️ for unforgettable holidays in Hurghada."
+    "designed_with": "Designed with ❤️ for unforgettable holidays in Hurghada.",
+    "legal_title": "Legal",
+    "terms": "Terms & Conditions"
   },
   "language": "Language",
   "location": {
@@ -184,5 +186,8 @@
     },
     "cta_airbnb": "Book on Airbnb",
     "cta_maps": "Open in Google Maps"
+  },
+  "legal": {
+    "back": "Back to home"
   }
 }

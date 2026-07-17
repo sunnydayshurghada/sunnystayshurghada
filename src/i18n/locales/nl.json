@@ -124,7 +124,9 @@
     "link_book": "Boek op Airbnb",
     "address_short": "Hurghada, Egypte",
     "copyright": "© 2026 Sunny Stays Hurghada",
-    "designed_with": "Met ❤️ ontworpen voor onvergetelijke vakanties in Hurghada."
+    "designed_with": "Met ❤️ ontworpen voor onvergetelijke vakanties in Hurghada.",
+    "legal_title": "Juridisch",
+    "terms": "Voorwaarden"
   },
   "language": "Taal",
   "location": {
@@ -166,5 +168,8 @@
     },
     "cta_airbnb": "Boek op Airbnb",
     "cta_maps": "Openen in Google Maps"
+  },
+  "legal": {
+    "back": "Terug naar home"
   }
 }
