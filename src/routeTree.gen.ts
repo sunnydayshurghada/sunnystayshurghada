@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as LangPrivacyRouteImport } from './routes/$lang.privacy'
+import { Route as LangImprintRouteImport } from './routes/$lang.imprint'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -22,30 +23,39 @@ const LangPrivacyRoute = LangPrivacyRouteImport.update({
   path: '/$lang/privacy',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LangImprintRoute = LangImprintRouteImport.update({
+  id: '/$lang/imprint',
+  path: '/$lang/imprint',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/$lang/imprint': typeof LangImprintRoute
   '/$lang/privacy': typeof LangPrivacyRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/$lang/imprint': typeof LangImprintRoute
   '/$lang/privacy': typeof LangPrivacyRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/$lang/imprint': typeof LangImprintRoute
   '/$lang/privacy': typeof LangPrivacyRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/$lang/privacy'
+  fullPaths: '/' | '/$lang/imprint' | '/$lang/privacy'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/$lang/privacy'
-  id: '__root__' | '/' | '/$lang/privacy'
+  to: '/' | '/$lang/imprint' | '/$lang/privacy'
+  id: '__root__' | '/' | '/$lang/imprint' | '/$lang/privacy'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  LangImprintRoute: typeof LangImprintRoute
   LangPrivacyRoute: typeof LangPrivacyRoute
 }
 
@@ -65,11 +75,19 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LangPrivacyRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/$lang/imprint': {
+      id: '/$lang/imprint'
+      path: '/$lang/imprint'
+      fullPath: '/$lang/imprint'
+      preLoaderRoute: typeof LangImprintRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  LangImprintRoute: LangImprintRoute,
   LangPrivacyRoute: LangPrivacyRoute,
 }
 export const routeTree = rootRouteImport
