@@ -3,6 +3,7 @@ import { ArrowLeft } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import brandLogo from "@/assets/sunny-stays-hurghada-logo.png.asset.json";
 import { AIRBNB_LISTING_URL, HOST_EMAIL, WHATSAPP_URL } from "@/lib/airbnb";
+import { resolveLegalLang } from "@/lib/legal-lang";
 import type { ReactNode } from "react";
 
 export function LegalPage({
@@ -14,7 +15,8 @@ export function LegalPage({
   title: string;
   children: ReactNode;
 }) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const legalLang = resolveLegalLang(i18n.language);
 
   return (
     <div className="min-h-screen flex flex-col bg-paper text-navy">
