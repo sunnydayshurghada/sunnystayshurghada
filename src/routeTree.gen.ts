@@ -10,12 +10,18 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as LangTermsRouteImport } from './routes/$lang.terms'
 import { Route as LangPrivacyRouteImport } from './routes/$lang.privacy'
 import { Route as LangImprintRouteImport } from './routes/$lang.imprint'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LangTermsRoute = LangTermsRouteImport.update({
+  id: '/$lang/terms',
+  path: '/$lang/terms',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LangPrivacyRoute = LangPrivacyRouteImport.update({
@@ -33,30 +39,34 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/$lang/imprint': typeof LangImprintRoute
   '/$lang/privacy': typeof LangPrivacyRoute
+  '/$lang/terms': typeof LangTermsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/$lang/imprint': typeof LangImprintRoute
   '/$lang/privacy': typeof LangPrivacyRoute
+  '/$lang/terms': typeof LangTermsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/$lang/imprint': typeof LangImprintRoute
   '/$lang/privacy': typeof LangPrivacyRoute
+  '/$lang/terms': typeof LangTermsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/$lang/imprint' | '/$lang/privacy'
+  fullPaths: '/' | '/$lang/imprint' | '/$lang/privacy' | '/$lang/terms'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/$lang/imprint' | '/$lang/privacy'
-  id: '__root__' | '/' | '/$lang/imprint' | '/$lang/privacy'
+  to: '/' | '/$lang/imprint' | '/$lang/privacy' | '/$lang/terms'
+  id: '__root__' | '/' | '/$lang/imprint' | '/$lang/privacy' | '/$lang/terms'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   LangImprintRoute: typeof LangImprintRoute
   LangPrivacyRoute: typeof LangPrivacyRoute
+  LangTermsRoute: typeof LangTermsRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -66,6 +76,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/$lang/terms': {
+      id: '/$lang/terms'
+      path: '/$lang/terms'
+      fullPath: '/$lang/terms'
+      preLoaderRoute: typeof LangTermsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/$lang/privacy': {
@@ -89,6 +106,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   LangImprintRoute: LangImprintRoute,
   LangPrivacyRoute: LangPrivacyRoute,
+  LangTermsRoute: LangTermsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
