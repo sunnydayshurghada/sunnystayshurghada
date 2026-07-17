@@ -120,3 +120,73 @@ export function LegalMeta({ children }: { children: ReactNode }) {
     <p className="text-sm text-navy/55 italic mb-10 tracking-wide">{children}</p>
   );
 }
+
+/* Elegant host info card */
+export function HostInfoCard({ children }: { children: ReactNode }) {
+  return (
+    <div className="p-8 md:p-10 rounded-3xl bg-sand/60 border border-navy/8 shadow-soft">
+      {children}
+    </div>
+  );
+}
+
+/* Elegant contact card with icon */
+export function ContactCard({
+  href,
+  icon: Icon,
+  label,
+  value,
+  external = false,
+}: {
+  href: string;
+  icon: ComponentType<SVGProps<SVGSVGElement>>;
+  label: string;
+  value: string;
+  external?: boolean;
+}) {
+  return (
+    <a
+      href={href}
+      target={external ? "_blank" : undefined}
+      rel={external ? "noopener noreferrer" : undefined}
+      className="group flex items-center gap-5 p-6 md:p-7 rounded-3xl bg-paper border border-navy/8 shadow-soft transition-all duration-500 ease-out hover:-translate-y-1.5 hover:shadow-luxe hover:border-gold/30"
+    >
+      <div className="flex-shrink-0 h-12 w-12 rounded-2xl bg-gradient-to-br from-gold/20 to-gold/5 flex items-center justify-center text-gold transition-transform duration-500 group-hover:scale-110">
+        <Icon className="h-5 w-5" strokeWidth={1.75} />
+      </div>
+      <div className="min-w-0">
+        <p className="text-[11px] uppercase tracking-[0.25em] text-navy/50 font-medium mb-1">
+          {label}
+        </p>
+        <p className="text-navy font-medium text-base md:text-lg truncate group-hover:text-gold transition-colors">
+          {value}
+        </p>
+      </div>
+    </a>
+  );
+}
+
+/* Pre-configured contact cards */
+export function EmailContactCard({ label }: { label: string }) {
+  return (
+    <ContactCard
+      href={`mailto:${HOST_EMAIL}`}
+      icon={Mail}
+      label={label}
+      value={HOST_EMAIL}
+    />
+  );
+}
+
+export function WhatsAppContactCard({ label }: { label: string }) {
+  return (
+    <ContactCard
+      href={WHATSAPP_URL}
+      icon={MessageCircle}
+      label={label}
+      value="+20 155 605 5957"
+      external
+    />
+  );
+}
+
