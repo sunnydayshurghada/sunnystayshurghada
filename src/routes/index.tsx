@@ -531,6 +531,30 @@ function SiteFooter() {
             </li>
           </ul>
         </div>
+
+        {/* Column 5 — Legal */}
+        <div>
+          <h4 className="text-[10px] uppercase tracking-[0.3em] text-gold font-medium mb-6">
+            {t("footer.legal_title")}
+          </h4>
+          <ul className="space-y-3 text-[15px] text-paper/75 font-light">
+            <li>
+              <Link to="/privacy" className="hover:text-gold transition-colors">
+                {t("footer.privacy")}
+              </Link>
+            </li>
+            <li>
+              <Link to="/imprint" className="hover:text-gold transition-colors">
+                {t("footer.imprint")}
+              </Link>
+            </li>
+            <li>
+              <Link to="/terms" className="hover:text-gold transition-colors">
+                {t("footer.terms")}
+              </Link>
+            </li>
+          </ul>
+        </div>
       </div>
 
       <div className="border-t border-paper/10">
