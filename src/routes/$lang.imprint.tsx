@@ -46,18 +46,28 @@ function ImprintPage() {
 function ImprintEN() {
   return (
     <LegalPage eyebrow="Legal" title="Legal Notice">
-      <LegalH2>Website Owner &amp; Host</LegalH2>
-      <LegalP>
-        Wafaa Belaid<br />
-        Hurghada<br />
-        Red Sea Governorate<br />
-        Egypt
-      </LegalP>
+      <LegalH2>Host</LegalH2>
+      <HostInfoCard>
+        <p className="font-display text-2xl md:text-3xl text-navy mb-2">
+          Sunny Stays Hurghada
+        </p>
+        <p className="text-[11px] uppercase tracking-[0.25em] text-gold font-semibold mb-6">
+          Private Vacation Rental
+        </p>
+        <div className="space-y-1 text-[15px] md:text-base leading-[1.8] text-navy/80 font-light">
+          <p className="text-navy/50 text-sm mb-2">Hosted by</p>
+          <p className="font-medium text-navy text-lg">Wafaa Belaid</p>
+          <p>Hurghada</p>
+          <p>Red Sea Governorate</p>
+          <p>Egypt</p>
+        </div>
+      </HostInfoCard>
 
       <LegalH2>Contact</LegalH2>
-      <LegalP>
-        Email: <a href={`mailto:${HOST_EMAIL}`} className="text-gold hover:underline">{HOST_EMAIL}</a>
-      </LegalP>
+      <div className="grid sm:grid-cols-2 gap-5">
+        <EmailContactCard label="Email" />
+        <WhatsAppContactCard label="WhatsApp" />
+      </div>
 
       <LegalH2>About this website</LegalH2>
       <LegalP>
@@ -93,6 +103,7 @@ function ImprintEN() {
     </LegalPage>
   );
 }
+
 
 function ImprintDE() {
   return (
