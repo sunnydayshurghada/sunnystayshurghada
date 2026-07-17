@@ -541,17 +541,17 @@ function SiteFooter() {
           </h4>
           <ul className="space-y-3 text-[15px] text-paper/75 font-light">
             <li>
-              <Link to="/privacy" className="hover:text-gold transition-colors">
+              <Link to="/$lang/privacy" params={{ lang: legalLang }} className="hover:text-gold transition-colors">
                 {t("footer.privacy")}
               </Link>
             </li>
             <li>
-              <Link to="/imprint" className="hover:text-gold transition-colors">
+              <Link to="/$lang/imprint" params={{ lang: legalLang }} className="hover:text-gold transition-colors">
                 {t("footer.imprint")}
               </Link>
             </li>
             <li>
-              <Link to="/terms" className="hover:text-gold transition-colors">
+              <Link to="/$lang/terms" params={{ lang: legalLang }} className="hover:text-gold transition-colors">
                 {t("footer.terms")}
               </Link>
             </li>
