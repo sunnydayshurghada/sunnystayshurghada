@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
 import {
   BedDouble,
@@ -420,7 +420,7 @@ function SiteFooter() {
     <footer className="bg-forest text-paper relative overflow-hidden">
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold/50 to-transparent" />
 
-      <div className="max-w-7xl mx-auto px-6 md:px-8 pt-24 md:pt-32 pb-16 grid gap-14 md:gap-10 md:grid-cols-4">
+      <div className="max-w-7xl mx-auto px-6 md:px-8 pt-24 md:pt-32 pb-16 grid gap-14 md:gap-10 md:grid-cols-2 lg:grid-cols-5">
         {/* Column 1 — Brand */}
         <div className="md:col-span-1">
           <div className="inline-flex bg-paper rounded-2xl px-5 py-4 shadow-soft">
@@ -528,6 +528,30 @@ function SiteFooter() {
                 <ExternalLink className="h-4 w-4 text-gold shrink-0" strokeWidth={1.75} />
                 <span>{t("footer.airbnb")}</span>
               </a>
+            </li>
+          </ul>
+        </div>
+
+        {/* Column 5 — Legal */}
+        <div>
+          <h4 className="text-[10px] uppercase tracking-[0.3em] text-gold font-medium mb-6">
+            {t("footer.legal_title")}
+          </h4>
+          <ul className="space-y-3 text-[15px] text-paper/75 font-light">
+            <li>
+              <Link to="/privacy" className="hover:text-gold transition-colors">
+                {t("footer.privacy")}
+              </Link>
+            </li>
+            <li>
+              <Link to="/imprint" className="hover:text-gold transition-colors">
+                {t("footer.imprint")}
+              </Link>
+            </li>
+            <li>
+              <Link to="/terms" className="hover:text-gold transition-colors">
+                {t("footer.terms")}
+              </Link>
             </li>
           </ul>
         </div>

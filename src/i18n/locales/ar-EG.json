@@ -124,7 +124,9 @@
     "link_book": "احجز على Airbnb",
     "address_short": "الغردقة، مصر",
     "copyright": "© 2026 Sunny Stays Hurghada",
-    "designed_with": "معمول بـ ❤️ لإجازات ماتتنسيش في الغردقة."
+    "designed_with": "معمول بـ ❤️ لإجازات ماتتنسيش في الغردقة.",
+    "legal_title": "قانوني",
+    "terms": "الشروط والأحكام"
   },
   "language": "اللغة",
   "location": {
@@ -166,5 +168,8 @@
     },
     "cta_airbnb": "احجز على Airbnb",
     "cta_maps": "فتح في خرائط جوجل"
+  },
+  "legal": {
+    "back": "ارجع للرئيسية"
   }
 }

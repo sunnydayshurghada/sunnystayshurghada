@@ -124,7 +124,9 @@
     "link_book": "Забронировать на Airbnb",
     "address_short": "Хургада, Египет",
     "copyright": "© 2026 Sunny Stays Hurghada",
-    "designed_with": "Создано с ❤️ для незабываемого отдыха в Хургаде."
+    "designed_with": "Создано с ❤️ для незабываемого отдыха в Хургаде.",
+    "legal_title": "Правовая информация",
+    "terms": "Условия"
   },
   "language": "Язык",
   "location": {
@@ -166,5 +168,8 @@
     },
     "cta_airbnb": "Забронировать на Airbnb",
     "cta_maps": "Открыть в Google Maps"
+  },
+  "legal": {
+    "back": "На главную"
   }
 }
