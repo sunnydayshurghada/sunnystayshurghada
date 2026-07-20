@@ -3,7 +3,7 @@ import { createServerFn } from "@tanstack/react-start";
 // Hurghada, Egypt
 const LAT = 27.212769;
 const LNG = 33.832099;
-const GATEWAY = "https://connector-gateway.lovable.dev/google_maps";
+const WEATHER_API = "https://weather.googleapis.com";
 
 const LANG_MAP: Record<string, string> = {
   de: "de",
