@@ -61,8 +61,8 @@ export const getHurghadaWeather = createServerFn({ method: "GET" })
 
     try {
       const [curRes, fcRes] = await Promise.all([
-        fetch(currentUrl.toString(), { headers }),
-        fetch(forecastUrl.toString(), { headers }),
+        fetch(currentUrl.toString()),
+        fetch(forecastUrl.toString()),
       ]);
 
       if (!curRes.ok || !fcRes.ok) {
