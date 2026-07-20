@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowLeft, Mail, MessageCircle } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import brandLogo from "@/assets/sunny-stays-hurghada-logo.png.asset.json";
+import brandLogo from "@/assets/sunny-stays-hurghada-logo.png";
 import { AIRBNB_LISTING_URL, HOST_EMAIL, WHATSAPP_URL } from "@/lib/airbnb";
 import { resolveLegalLang } from "@/lib/legal-lang";
 import type { ReactNode, ComponentType, SVGProps } from "react";
@@ -26,7 +26,7 @@ export function LegalPage({
         <div className="max-w-5xl mx-auto px-6 md:px-8 h-20 flex items-center justify-between">
           <Link to="/" className="inline-flex items-center gap-3">
             <img
-              src={brandLogo.url}
+              src={brandLogo}
               alt="Sunny Stays Hurghada"
               className="h-10 md:h-12 w-auto select-none"
               draggable={false}

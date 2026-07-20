@@ -29,25 +29,25 @@ import {
   HOST_EMAIL,
   WHATSAPP_URL,
 } from "@/lib/airbnb";
-import brandLogo from "@/assets/sunny-stays-hurghada-logo.png.asset.json";
+import brandLogo from "@/assets/sunny-stays-hurghada-logo.png";
 import { resolveLegalLang } from "@/lib/legal-lang";
-import hostsPhoto from "@/assets/hosts-wafaa-alex.jpg.asset.json";
-import heroLivingKitchen from "@/assets/hero-living-kitchen.png.asset.json";
+import hostsPhoto from "@/assets/hosts-wafaa-alex.jpg";
+import heroLivingKitchen from "@/assets/hero-living-kitchen.png";
 
 // Real photos of the apartment. No stock, no AI, no placeholder imagery.
-import p6669 from "@/assets/dsc06669.jpg.asset.json";
-import p6670 from "@/assets/dsc06670.jpg.asset.json";
-import p6674 from "@/assets/dsc06674.jpg.asset.json";
-import p6678 from "@/assets/dsc06678.jpg.asset.json";
-import p6681 from "@/assets/dsc06681.jpg.asset.json";
-import p6684 from "@/assets/dsc06684.jpg.asset.json";
-import p6687 from "@/assets/dsc06687.jpg.asset.json";
-import p6688 from "@/assets/dsc06688.jpg.asset.json";
-import p6697 from "@/assets/dsc06697.jpg.asset.json";
-import p6718 from "@/assets/dsc06718.jpg.asset.json";
-import p6721 from "@/assets/dsc06721.jpg.asset.json";
-import p6723 from "@/assets/dsc06723.jpg.asset.json";
-import p6724 from "@/assets/dsc06724.jpg.asset.json";
+import p6669 from "@/assets/dsc06669.jpg";
+import p6670 from "@/assets/dsc06670.jpg";
+import p6674 from "@/assets/dsc06674.jpg";
+import p6678 from "@/assets/dsc06678.jpg";
+import p6681 from "@/assets/dsc06681.jpg";
+import p6684 from "@/assets/dsc06684.jpg";
+import p6687 from "@/assets/dsc06687.jpg";
+import p6688 from "@/assets/dsc06688.jpg";
+import p6697 from "@/assets/dsc06697.jpg";
+import p6718 from "@/assets/dsc06718.jpg";
+import p6721 from "@/assets/dsc06721.jpg";
+import p6723 from "@/assets/dsc06723.jpg";
+import p6724 from "@/assets/dsc06724.jpg";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -59,23 +59,23 @@ type Photo = { url: string; captionKey: string; aspect: string };
 // Each aspect controls the intrinsic ratio inside the columns layout so
 // the masonry keeps a natural rhythm instead of stripes.
 const GALLERY: readonly Photo[] = [
-  { url: p6674.url, captionKey: "gallery.bedroom_master", aspect: "aspect-[4/3]" },
-  { url: p6669.url, captionKey: "gallery.living", aspect: "aspect-[3/4]" },
-  { url: p6681.url, captionKey: "gallery.bedroom_twin", aspect: "aspect-[4/3]" },
-  { url: p6670.url, captionKey: "gallery.balcony", aspect: "aspect-[4/3]" },
-  { url: p6724.url, captionKey: "gallery.kitchen_breakfast", aspect: "aspect-[4/3]" },
-  { url: p6723.url, captionKey: "gallery.living_entry", aspect: "aspect-[3/4]" },
-  { url: p6697.url, captionKey: "gallery.bathroom", aspect: "aspect-[3/4]" },
-  { url: p6718.url, captionKey: "gallery.living_sofa", aspect: "aspect-[4/3]" },
-  { url: p6688.url, captionKey: "gallery.detail", aspect: "aspect-[4/3]" },
-  { url: p6678.url, captionKey: "gallery.detail", aspect: "aspect-[4/5]" },
-  { url: p6721.url, captionKey: "gallery.living_tv", aspect: "aspect-[4/3]" },
-  { url: p6684.url, captionKey: "gallery.detail", aspect: "aspect-[4/3]" },
-  { url: p6687.url, captionKey: "gallery.detail", aspect: "aspect-[4/3]" },
+  { url: p6674, captionKey: "gallery.bedroom_master", aspect: "aspect-[4/3]" },
+  { url: p6669, captionKey: "gallery.living", aspect: "aspect-[3/4]" },
+  { url: p6681, captionKey: "gallery.bedroom_twin", aspect: "aspect-[4/3]" },
+  { url: p6670, captionKey: "gallery.balcony", aspect: "aspect-[4/3]" },
+  { url: p6724, captionKey: "gallery.kitchen_breakfast", aspect: "aspect-[4/3]" },
+  { url: p6723, captionKey: "gallery.living_entry", aspect: "aspect-[3/4]" },
+  { url: p6697, captionKey: "gallery.bathroom", aspect: "aspect-[3/4]" },
+  { url: p6718, captionKey: "gallery.living_sofa", aspect: "aspect-[4/3]" },
+  { url: p6688, captionKey: "gallery.detail", aspect: "aspect-[4/3]" },
+  { url: p6678, captionKey: "gallery.detail", aspect: "aspect-[4/5]" },
+  { url: p6721, captionKey: "gallery.living_tv", aspect: "aspect-[4/3]" },
+  { url: p6684, captionKey: "gallery.detail", aspect: "aspect-[4/3]" },
+  { url: p6687, captionKey: "gallery.detail", aspect: "aspect-[4/3]" },
 ];
 
 // Living room and kitchen — warm, sunny, welcoming.
-const heroPhoto = heroLivingKitchen.url;
+const heroPhoto = heroLivingKitchen;
 
 
 const FEATURES = [
@@ -128,7 +128,7 @@ function SiteHeader() {
       <div className="max-w-7xl mx-auto px-4 md:px-8 h-20 md:h-24 flex items-center justify-between gap-6">
         <a href="#top" aria-label="Sunny Stays Hurghada — home" className="flex items-center py-2">
           <img
-            src={brandLogo.url}
+            src={brandLogo}
             alt="Sunny Stays Hurghada"
             className="h-10 md:h-14 w-auto select-none"
             draggable={false}
@@ -303,7 +303,7 @@ function HostsSection() {
         <div className="mx-auto md:mx-0">
           <div className="relative h-[150px] w-[150px] md:h-[200px] md:w-[200px] rounded-full border-2 border-gold/60 p-1.5 shadow-[0_25px_60px_-25px_rgba(23,59,99,0.4)]">
             <img
-              src={hostsPhoto.url}
+              src={hostsPhoto}
               alt="Wafaa and Alex, hosts of Sunny Stays Hurghada"
               className="h-full w-full rounded-full object-cover"
               style={{ objectPosition: "50% 20%" }}
@@ -427,7 +427,7 @@ function SiteFooter() {
         <div className="md:col-span-1">
           <div className="inline-flex bg-paper rounded-2xl px-5 py-4 shadow-soft">
             <img
-              src={brandLogo.url}
+              src={brandLogo}
               alt="Sunny Stays Hurghada"
               className="h-12 md:h-14 w-auto select-none"
               draggable={false}
