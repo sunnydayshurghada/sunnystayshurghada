@@ -14,6 +14,7 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { useTranslation } from "react-i18next";
 import { Toaster } from "@/components/ui/sonner";
 import "@/i18n/config";
+import brandLogo from "@/assets/sunny-stays-hurghada-logo.png";
 
 function NotFoundComponent() {
   return (
