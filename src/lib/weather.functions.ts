@@ -3,7 +3,7 @@ import { createServerFn } from "@tanstack/react-start";
 // Hurghada, Egypt
 const LAT = 27.212769;
 const LNG = 33.832099;
-const GATEWAY = "https://connector-gateway.lovable.dev/google_maps";
+const WEATHER_API = "https://weather.googleapis.com";
 
 const LANG_MAP: Record<string, string> = {
   de: "de",
@@ -39,23 +39,20 @@ export const getHurghadaWeather = createServerFn({ method: "GET" })
   }))
   .handler(async ({ data }): Promise<WeatherPayload> => {
     const apiKey = process.env.GOOGLE_MAPS_API_KEY;
-    const lovableKey = process.env.LOVABLE_API_KEY;
-    if (!apiKey || !lovableKey) {
+    if (!apiKey) {
       return { current: null, daily: [], error: "missing_credentials" };
     }
     const languageCode = LANG_MAP[data.lang] ?? "en";
-    const headers = {
-      Authorization: `Bearer ${lovableKey}`,
-      "X-Connection-Api-Key": apiKey,
-    };
 
-    const currentUrl = new URL(`${GATEWAY}/weather/v1/currentConditions:lookup`);
+    const currentUrl = new URL(`${WEATHER_API}/v1/currentConditions:lookup`);
+    currentUrl.searchParams.set("key", apiKey);
     currentUrl.searchParams.set("location.latitude", String(LAT));
     currentUrl.searchParams.set("location.longitude", String(LNG));
     currentUrl.searchParams.set("languageCode", languageCode);
     currentUrl.searchParams.set("unitsSystem", "METRIC");
 
-    const forecastUrl = new URL(`${GATEWAY}/weather/v1/forecast/days:lookup`);
+    const forecastUrl = new URL(`${WEATHER_API}/v1/forecast/days:lookup`);
+    forecastUrl.searchParams.set("key", apiKey);
     forecastUrl.searchParams.set("location.latitude", String(LAT));
     forecastUrl.searchParams.set("location.longitude", String(LNG));
     forecastUrl.searchParams.set("languageCode", languageCode);
@@ -64,8 +61,8 @@ export const getHurghadaWeather = createServerFn({ method: "GET" })
 
     try {
       const [curRes, fcRes] = await Promise.all([
-        fetch(currentUrl.toString(), { headers }),
-        fetch(forecastUrl.toString(), { headers }),
+        fetch(currentUrl.toString()),
+        fetch(forecastUrl.toString()),
       ]);
 
       if (!curRes.ok || !fcRes.ok) {
