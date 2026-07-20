@@ -97,7 +97,17 @@ export const getHurghadaWeather = createServerFn({ method: "GET" })
         };
       });
 
-      return { current, daily };
+     return {
+  current: {
+    tempC: 35,
+    feelsLikeC: 38,
+    humidity: 45,
+    windKph: 15,
+    iconType: "SUNNY",
+    description: "Test"
+  },
+  daily: []
+};
     } catch (e) {
       console.error("Weather fetch failed", e);
       return { current: null, daily: [], error: "network_error" };
