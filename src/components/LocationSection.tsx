@@ -22,6 +22,7 @@ import {
   CloudFog,
 } from "lucide-react";
 import { getHurghadaWeather } from "@/lib/weather.functions";
+import { getGoogleMapsBrowserConfig } from "@/lib/google-maps.functions";
 import { AIRBNB_LISTING_URL } from "@/lib/airbnb";
 
 const LAT = 27.212769;
@@ -41,19 +42,31 @@ declare global {
 function InteractiveMap() {
   const ref = useRef<HTMLDivElement>(null);
   const [loaded, setLoaded] = useState(false);
+  const fetchMapsConfig = useServerFn(getGoogleMapsBrowserConfig);
 
   useEffect(() => {
-    const host = typeof window !== "undefined" ? window.location.hostname : "";
-    const isLovableHost = /lovable\.(app|dev)$|lovableproject\.com$/.test(host);
-    const previewKey = import.meta.env.VITE_LOVABLE_CONNECTOR_GOOGLE_MAPS_BROWSER_KEY;
-    const prodKey =
-      import.meta.env.VITE_GOOGLE_MAPS_BROWSER_KEY_PROD ||
-      import.meta.env.VITE_GOOGLE_MAPS_BROWSER_KEY;
-    const key = isLovableHost ? (previewKey || prodKey) : (prodKey || previewKey);
-    const channel = import.meta.env.VITE_LOVABLE_CONNECTOR_GOOGLE_MAPS_TRACKING_ID;
-    if (!key) return;
+    let cancelled = false;
 
-    const init = () => {
+    const isUsableGoogleApiKey = (value: string | undefined) => {
+      const key = value?.trim();
+      if (!key || key.includes("@secret:")) return false;
+      return /^AIza[0-9A-Za-z_-]{20,}$/.test(key);
+    };
+
+    const pickBuildTimeKey = () => {
+      const host = window.location.hostname;
+      const isLovableHost = /lovable\.(app|dev)$|lovableproject\.com$/.test(host);
+      const previewKey = import.meta.env.VITE_LOVABLE_CONNECTOR_GOOGLE_MAPS_BROWSER_KEY;
+      const prodKey =
+        import.meta.env.VITE_GOOGLE_MAPS_BROWSER_KEY_PROD ||
+        import.meta.env.VITE_GOOGLE_MAPS_BROWSER_KEY;
+      const orderedKeys = isLovableHost
+        ? [previewKey, prodKey]
+        : [prodKey, previewKey];
+      return orderedKeys.find(isUsableGoogleApiKey) ?? null;
+    };
+
+    const init = (key: string, channel?: string | null) => {
       if (!ref.current || !window.google?.maps) return;
       const map = new window.google.maps.Map(ref.current, {
         center: { lat: LAT, lng: LNG },
@@ -74,31 +87,60 @@ function InteractiveMap() {
     };
 
     if (window.google?.maps) {
-      init();
+      const existingKey = pickBuildTimeKey();
+      if (existingKey) init(existingKey);
       return;
     }
 
-    window.__sunnyInitMap = init;
-    const existing = document.querySelector<HTMLScriptElement>("script[data-sunny-gmaps]");
-    if (existing) {
-      // Wait for existing script
-      const check = setInterval(() => {
-        if (window.google?.maps) {
-          clearInterval(check);
-          init();
-        }
-      }, 100);
-      return () => clearInterval(check);
+    async function loadMap() {
+      const buildTimeKey = pickBuildTimeKey();
+      const runtimeConfig = buildTimeKey
+        ? { key: buildTimeKey, channel: import.meta.env.VITE_LOVABLE_CONNECTOR_GOOGLE_MAPS_TRACKING_ID }
+        : await fetchMapsConfig();
+      const key = runtimeConfig.key;
+      const channel = runtimeConfig.channel;
+
+      if (cancelled || !key || !isUsableGoogleApiKey(key)) {
+        console.error("[maps] Google Maps browser key is missing or invalid");
+        return;
+      }
+
+      window.__sunnyInitMap = () => init(key, channel);
+      const existing = document.querySelector<HTMLScriptElement>("script[data-sunny-gmaps]");
+      if (existing) {
+        const check = setInterval(() => {
+          if (window.google?.maps) {
+            clearInterval(check);
+            init(key, channel);
+          }
+        }, 100);
+        return () => clearInterval(check);
+      }
+
+      const script = document.createElement("script");
+      const params = new URLSearchParams({
+        key,
+        loading: "async",
+        callback: "__sunnyInitMap",
+      });
+      if (channel) params.set("channel", channel);
+      script.src = `https://maps.googleapis.com/maps/api/js?${params.toString()}`;
+      script.async = true;
+      script.defer = true;
+      script.dataset.sunnyGmaps = "1";
+      document.head.appendChild(script);
     }
-    const script = document.createElement("script");
-    script.src = `https://maps.googleapis.com/maps/api/js?key=${key}&loading=async&callback=__sunnyInitMap${
-      channel ? `&channel=${channel}` : ""
-    }`;
-    script.async = true;
-    script.defer = true;
-    script.dataset.sunnyGmaps = "1";
-    document.head.appendChild(script);
-  }, []);
+
+    let cleanup: (() => void) | undefined;
+    void loadMap().then((fn) => {
+      cleanup = fn;
+    });
+
+    return () => {
+      cancelled = true;
+      cleanup?.();
+    };
+  }, [fetchMapsConfig]);
 
   return (
     <div className="relative w-full h-[340px] md:h-[520px] rounded-[20px] overflow-hidden shadow-luxe bg-cloud">
