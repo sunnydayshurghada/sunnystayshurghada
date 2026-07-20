@@ -43,9 +43,13 @@ function InteractiveMap() {
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    const key =
-      import.meta.env.VITE_LOVABLE_CONNECTOR_GOOGLE_MAPS_BROWSER_KEY ||
+    const host = typeof window !== "undefined" ? window.location.hostname : "";
+    const isLovableHost = /lovable\.(app|dev)$|lovableproject\.com$/.test(host);
+    const previewKey = import.meta.env.VITE_LOVABLE_CONNECTOR_GOOGLE_MAPS_BROWSER_KEY;
+    const prodKey =
+      import.meta.env.VITE_GOOGLE_MAPS_BROWSER_KEY_PROD ||
       import.meta.env.VITE_GOOGLE_MAPS_BROWSER_KEY;
+    const key = isLovableHost ? (previewKey || prodKey) : (prodKey || previewKey);
     const channel = import.meta.env.VITE_LOVABLE_CONNECTOR_GOOGLE_MAPS_TRACKING_ID;
     if (!key) return;
 
