@@ -39,6 +39,22 @@ export const getHurghadaWeather = createServerFn({ method: "GET" })
   }))
   .handler(async ({ data }): Promise<WeatherPayload> => {
     const apiKey = process.env.GOOGLE_MAPS_API_KEY;
+    const keyPresent = !!apiKey;
+    console.log(
+      "[weather] env check",
+      JSON.stringify({
+        keyPresent,
+        keyLen: apiKey?.length ?? 0,
+        keyPrefix: apiKey ? apiKey.slice(0, 6) : "",
+        hasProcess: typeof process !== "undefined",
+        matchingEnvKeys:
+          typeof process !== "undefined"
+            ? Object.keys(process.env ?? {}).filter((k) =>
+                /GOOGLE|MAPS|WEATHER/i.test(k)
+              )
+            : [],
+      })
+    );
     if (!apiKey) {
       return { current: null, daily: [], error: "missing_credentials" };
     }
@@ -59,29 +75,47 @@ export const getHurghadaWeather = createServerFn({ method: "GET" })
     forecastUrl.searchParams.set("unitsSystem", "METRIC");
     forecastUrl.searchParams.set("days", "7");
 
+    const redact = (u: URL) => {
+      const c = new URL(u.toString());
+      c.searchParams.set("key", "REDACTED");
+      return c.toString();
+    };
+
+    console.log(
+      "[weather] requesting",
+      JSON.stringify({
+        currentUrl: redact(currentUrl),
+        forecastUrl: redact(forecastUrl),
+      })
+    );
+
     try {
       const [curRes, fcRes] = await Promise.all([
-        fetch(currentUrl.toString(), { headers: { "Accept": "application/json" } }),
-        fetch(forecastUrl.toString(), { headers: { "Accept": "application/json" } }),
+        fetch(currentUrl.toString(), { headers: { Accept: "application/json" } }),
+        fetch(forecastUrl.toString(), { headers: { Accept: "application/json" } }),
       ]);
 
+      const curBody = await curRes.text();
+      const fcBody = await fcRes.text();
+
+      console.log(
+        "[weather] responses",
+        JSON.stringify({
+          currentStatus: curRes.status,
+          currentOk: curRes.ok,
+          currentBody: curBody.slice(0, 1500),
+          forecastStatus: fcRes.status,
+          forecastOk: fcRes.ok,
+          forecastBody: fcBody.slice(0, 1500),
+        })
+      );
+
       if (!curRes.ok || !fcRes.ok) {
-        const curBody = curRes.ok ? "<ok>" : await curRes.text();
-        const fcBody = fcRes.ok ? "<ok>" : await fcRes.text();
-        console.error(
-          "[weather] upstream error",
-          JSON.stringify({
-            currentStatus: curRes.status,
-            currentBody: curBody.slice(0, 800),
-            forecastStatus: fcRes.status,
-            forecastBody: fcBody.slice(0, 800),
-          })
-        );
         return { current: null, daily: [], error: "upstream_error" };
       }
 
-      const cur = (await curRes.json()) as any;
-      const fc = (await fcRes.json()) as any;
+      const cur = JSON.parse(curBody) as any;
+      const fc = JSON.parse(fcBody) as any;
 
       const current = cur
         ? {
