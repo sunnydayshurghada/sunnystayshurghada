@@ -61,13 +61,22 @@ export const getHurghadaWeather = createServerFn({ method: "GET" })
 
     try {
       const [curRes, fcRes] = await Promise.all([
-        fetch(currentUrl.toString()),
-        fetch(forecastUrl.toString()),
+        fetch(currentUrl.toString(), { headers: { "Accept": "application/json" } }),
+        fetch(forecastUrl.toString(), { headers: { "Accept": "application/json" } }),
       ]);
 
       if (!curRes.ok || !fcRes.ok) {
-        const body = !curRes.ok ? await curRes.text() : await fcRes.text();
-        console.error("Weather API error", curRes.status, fcRes.status, body);
+        const curBody = curRes.ok ? "<ok>" : await curRes.text();
+        const fcBody = fcRes.ok ? "<ok>" : await fcRes.text();
+        console.error(
+          "[weather] upstream error",
+          JSON.stringify({
+            currentStatus: curRes.status,
+            currentBody: curBody.slice(0, 800),
+            forecastStatus: fcRes.status,
+            forecastBody: fcBody.slice(0, 800),
+          })
+        );
         return { current: null, daily: [], error: "upstream_error" };
       }
 
@@ -77,7 +86,9 @@ export const getHurghadaWeather = createServerFn({ method: "GET" })
       const current = cur
         ? {
             tempC: Math.round(cur.temperature?.degrees ?? 0),
-            feelsLikeC: Math.round(cur.feelsLikeTemperature?.degrees ?? cur.temperature?.degrees ?? 0),
+            feelsLikeC: Math.round(
+              cur.feelsLikeTemperature?.degrees ?? cur.temperature?.degrees ?? 0
+            ),
             humidity: Math.round(cur.relativeHumidity ?? 0),
             windKph: Math.round(cur.wind?.speed?.value ?? 0),
             iconType: cur.weatherCondition?.type ?? "UNKNOWN",
@@ -87,29 +98,23 @@ export const getHurghadaWeather = createServerFn({ method: "GET" })
 
       const daily = ((fc.forecastDays ?? []) as any[]).map((d) => {
         const dp = d.displayDate ?? {};
-        const iso = `${dp.year}-${String(dp.month).padStart(2, "0")}-${String(dp.day).padStart(2, "0")}`;
+        const iso = `${dp.year}-${String(dp.month).padStart(2, "0")}-${String(
+          dp.day
+        ).padStart(2, "0")}`;
         return {
           date: iso,
           minC: Math.round(d.minTemperature?.degrees ?? 0),
           maxC: Math.round(d.maxTemperature?.degrees ?? 0),
           iconType: d.daytimeForecast?.weatherCondition?.type ?? "UNKNOWN",
-          description: d.daytimeForecast?.weatherCondition?.description?.text ?? "",
+          description:
+            d.daytimeForecast?.weatherCondition?.description?.text ?? "",
         };
       });
 
-     return {
-  current: {
-    tempC: 35,
-    feelsLikeC: 38,
-    humidity: 45,
-    windKph: 15,
-    iconType: "SUNNY",
-    description: "Test"
-  },
-  daily: []
-};
+      return { current, daily };
     } catch (e) {
-      console.error("Weather fetch failed", e);
+      console.error("[weather] network error", e);
       return { current: null, daily: [], error: "network_error" };
     }
   });
+
