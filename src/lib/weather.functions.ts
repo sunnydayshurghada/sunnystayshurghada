@@ -14,6 +14,12 @@ const LANG_MAP: Record<string, string> = {
   "ar-EG": "ar",
 };
 
+function readGoogleWeatherApiKey() {
+  const apiKey = process.env.GOOGLE_WEATHER_API_KEY?.trim();
+  if (!apiKey || apiKey.includes("@secret:")) return null;
+  return /^AIza[0-9A-Za-z_-]{20,}$/.test(apiKey) ? apiKey : null;
+}
+
 type WeatherPayload = {
   current: {
     tempC: number;
@@ -38,7 +44,7 @@ export const getHurghadaWeather = createServerFn({ method: "GET" })
     lang: input?.lang ?? "en",
   }))
   .handler(async ({ data }): Promise<WeatherPayload> => {
-    const apiKey = process.env.GOOGLE_WEATHER_API_KEY;
+    const apiKey = readGoogleWeatherApiKey();
     const keyPresent = !!apiKey;
     console.log(
       "[weather] env check",
