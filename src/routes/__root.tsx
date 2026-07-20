@@ -14,6 +14,7 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { useTranslation } from "react-i18next";
 import { Toaster } from "@/components/ui/sonner";
 import "@/i18n/config";
+import brandLogo from "@/assets/sunny-stays-hurghada-logo.png";
 
 function NotFoundComponent() {
   return (
@@ -95,8 +96,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     ],
     links: [
       { rel: "stylesheet", href: appCss },
-      { rel: "icon", type: "image/png", href: "/__l5e/assets-v1/b11e5543-8105-489a-9978-8de6d34c56c2/sunny-stays-hurghada-logo.png" },
-      { rel: "apple-touch-icon", href: "/__l5e/assets-v1/b11e5543-8105-489a-9978-8de6d34c56c2/sunny-stays-hurghada-logo.png" },
+      { rel: "icon", type: "image/png", href: brandLogo },
+      { rel: "apple-touch-icon", href: brandLogo },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
