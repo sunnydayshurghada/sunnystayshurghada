@@ -38,7 +38,7 @@ export const getHurghadaWeather = createServerFn({ method: "GET" })
     lang: input?.lang ?? "en",
   }))
   .handler(async ({ data }): Promise<WeatherPayload> => {
-    const apiKey = process.env.GOOGLE_MAPS_API_KEY;
+    const apiKey = process.env.GOOGLE_WEATHER_API_KEY;
     const keyPresent = !!apiKey;
     console.log(
       "[weather] env check",
