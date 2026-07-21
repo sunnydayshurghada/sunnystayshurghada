@@ -32,9 +32,10 @@ export function BookingWidget() {
 
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    console.log("[booking] submit fired");
     const form = e.currentTarget;
     const fd = new FormData(form);
-    const parsed = schema.safeParse({
+    const raw = {
       guest_name: fd.get("guest_name"),
       guest_email: fd.get("guest_email"),
       guest_phone: fd.get("guest_phone") || "",
@@ -42,12 +43,16 @@ export function BookingWidget() {
       checkout: fd.get("checkout"),
       guests: fd.get("guests"),
       message: fd.get("message") || "",
-    });
+    };
+    console.log("[booking] raw", raw);
+    const parsed = schema.safeParse(raw);
     if (!parsed.success) {
+      console.log("[booking] validation failed", parsed.error.issues);
       const first = parsed.error.issues[0];
       toast.error(t(`booking.errors.${first.message}` as const, { defaultValue: t("booking.errors.generic") }));
       return;
     }
+    console.log("[booking] validation ok, calling server fn");
     setPending(true);
     let result;
     try {
@@ -62,14 +67,17 @@ export function BookingWidget() {
           message: parsed.data.message || "",
         },
       });
-    } catch {
+    } catch (err) {
+      console.log("[booking] server fn threw", err);
       setPending(false);
       toast.error(t("booking.errors.generic"));
       return;
     }
+    console.log("[booking] server fn result", result);
     setPending(false);
 
     if (!result.ok) {
+      console.log("[booking] not ok, error code", result.error);
       toast.error(t(`booking.errors.${result.error}`, { defaultValue: t("booking.errors.generic") }));
       return;
     }
