@@ -67,12 +67,20 @@ export function BookingWidget() {
           message: parsed.data.message || "",
         },
       });
-    } catch {
+    } catch (err) {
+      console.log("[booking] server fn threw", err);
       setPending(false);
       toast.error(t("booking.errors.generic"));
       return;
     }
+    console.log("[booking] server fn result", result);
     setPending(false);
+
+    if (!result.ok) {
+      console.log("[booking] not ok, error code", result.error);
+      toast.error(t(`booking.errors.${result.error}`, { defaultValue: t("booking.errors.generic") }));
+      return;
+    }
 
     if (!result.ok) {
       toast.error(t(`booking.errors.${result.error}`, { defaultValue: t("booking.errors.generic") }));
