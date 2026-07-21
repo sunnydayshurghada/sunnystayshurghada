@@ -1,5 +1,7 @@
 import { createServerFn } from "@tanstack/react-start";
+import { createClient } from "@supabase/supabase-js";
 import { z } from "zod";
+import type { Database } from "@/integrations/supabase/types";
 
 const bookingSchema = z.object({
   guest_name: z.string().trim().min(2).max(120),
@@ -13,11 +15,41 @@ const bookingSchema = z.object({
 
 export type BookingInput = z.infer<typeof bookingSchema>;
 
+function isNewSupabaseApiKey(value: string): boolean {
+  return value.startsWith("sb_publishable_") || value.startsWith("sb_secret_");
+}
+
 export const createBookingRequest = createServerFn({ method: "POST" })
   .inputValidator((input: unknown) => bookingSchema.parse(input))
   .handler(async ({ data }): Promise<{ ok: true; id: string } | { ok: false; error: string }> => {
-    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
-    const { data: newId, error } = await supabaseAdmin.rpc("create_booking_request", {
+    const SUPABASE_URL = process.env.SUPABASE_URL;
+    const SUPABASE_PUBLISHABLE_KEY = process.env.SUPABASE_PUBLISHABLE_KEY;
+
+    if (!SUPABASE_URL || !SUPABASE_PUBLISHABLE_KEY) {
+      const missing = [
+        ...(!SUPABASE_URL ? ["SUPABASE_URL"] : []),
+        ...(!SUPABASE_PUBLISHABLE_KEY ? ["SUPABASE_PUBLISHABLE_KEY"] : []),
+      ];
+      console.error(`[booking] Missing Supabase env vars: ${missing.join(", ")}`);
+      return { ok: false, error: "generic" };
+    }
+
+    const key = SUPABASE_PUBLISHABLE_KEY;
+    const supabase = createClient<Database>(SUPABASE_URL, key, {
+      auth: { storage: undefined, persistSession: false, autoRefreshToken: false },
+      global: {
+        fetch: (input, init) => {
+          const headers = new Headers(init?.headers);
+          if (isNewSupabaseApiKey(key) && headers.get("Authorization") === `Bearer ${key}`) {
+            headers.delete("Authorization");
+          }
+          headers.set("apikey", key);
+          return fetch(input, { ...init, headers });
+        },
+      },
+    });
+
+    const { data: newId, error } = await supabase.rpc("create_booking_request", {
       _guest_name: data.guest_name,
       _guest_email: data.guest_email,
       _guest_phone: data.guest_phone,

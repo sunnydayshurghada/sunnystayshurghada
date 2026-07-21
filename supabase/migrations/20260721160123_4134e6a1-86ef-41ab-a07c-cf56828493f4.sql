@@ -1,0 +1,1 @@
+GRANT EXECUTE ON FUNCTION public.create_booking_request(text, text, text, date, date, integer, text) TO anon, authenticated;
