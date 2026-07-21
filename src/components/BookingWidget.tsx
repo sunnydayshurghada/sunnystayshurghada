@@ -16,11 +16,11 @@ const schema = z
     guests: z.coerce.number().int().min(1).max(6),
     message: z.string().trim().max(1000).optional().or(z.literal("")),
   })
-  .refine((v) => new Date(v.checkout) > new Date(v.checkin), {
+  .refine((v) => v.checkout > v.checkin, {
     path: ["checkout"],
     message: "invalid_range",
   })
-  .refine((v) => new Date(v.checkin) >= new Date(new Date().toDateString()), {
+  .refine((v) => v.checkin >= new Date().toISOString().slice(0, 10), {
     path: ["checkin"],
     message: "checkin_in_past",
   });
