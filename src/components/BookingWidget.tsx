@@ -81,11 +81,6 @@ export function BookingWidget() {
       toast.error(t(`booking.errors.${result.error}`, { defaultValue: t("booking.errors.generic") }));
       return;
     }
-
-    if (!result.ok) {
-      toast.error(t(`booking.errors.${result.error}`, { defaultValue: t("booking.errors.generic") }));
-      return;
-    }
     toast.success(t("booking.submitted_title"), {
       description: t("booking.submitted_desc"),
     });
