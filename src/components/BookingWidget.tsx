@@ -46,13 +46,18 @@ export function BookingWidget() {
     const fd = new FormData(form);
 
     if (!checkin || !checkout || nights < 1) {
-      toast.error(t("booking.errors.invalid_range"));
+      toast.error(t("booking.errors.select_dates"));
+      return;
+    }
+    if (!fd.get("guests")) {
+      toast.error(t("booking.errors.select_guests"));
       return;
     }
     if (!rangeIsFree(checkin, checkout, blocked)) {
       toast.error(t("booking.errors.dates_unavailable"));
       return;
     }
+
 
     const parsed = schema.safeParse({
       guest_name: fd.get("guest_name"),
