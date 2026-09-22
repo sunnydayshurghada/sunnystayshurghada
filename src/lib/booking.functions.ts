@@ -5,6 +5,7 @@ import type { Database } from "@/integrations/supabase/types";
 import { HOST_EMAIL } from "@/lib/airbnb";
 
 const bookingSchema = z.object({
+  property_id: z.string().uuid().nullish(),
   guest_name: z.string().trim().min(2).max(120),
   guest_email: z.string().trim().email().max(255),
   guest_phone: z.string().trim().max(40).default(""),
