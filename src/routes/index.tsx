@@ -34,6 +34,7 @@ import { resolveLegalLang } from "@/lib/legal-lang";
 import hostsPhoto from "@/assets/hosts-wafaa-alex.jpg";
 import heroLivingKitchen from "@/assets/hero-living-kitchen.png";
 import heroVideo from "@/assets/madaris-hero.mp4.asset.json";
+import heroVideoWebm from "@/assets/madaris-hero.webm.asset.json";
 
 // Real photos of the apartment. No stock, no AI, no placeholder imagery.
 import p6669 from "@/assets/dsc06669.jpg";
@@ -198,7 +199,6 @@ function Hero() {
     >
       <video
         className="absolute inset-0 h-full w-full object-cover"
-        src={heroVideo.url}
         poster={heroPhoto}
         autoPlay
         muted
@@ -206,7 +206,10 @@ function Hero() {
         playsInline
         preload="metadata"
         aria-hidden="true"
-      />
+      >
+        <source src={heroVideoWebm.url} type="video/webm" />
+        <source src={heroVideo.url} type="video/mp4" />
+      </video>
       <div className="absolute inset-0 bg-gradient-to-br from-forest/70 via-forest/40 to-forest/80" />
 
       <div className="relative z-10 w-full max-w-[560px] mx-auto md:mx-0 px-6 md:pl-[9vw] md:pr-8 py-20 text-center md:text-start animate-fade-rise">
