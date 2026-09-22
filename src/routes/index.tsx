@@ -510,10 +510,6 @@ function DivingSection() {
             {t("dive.cta")}
             <ExternalLink className="h-3.5 w-3.5" strokeWidth={2} aria-hidden="true" />
           </a>
-
-          <span className="sr-only">
-            {t("dive.cta")} — bluemarlin-redsea.com
-          </span>
         </div>
       </div>
     </section>
