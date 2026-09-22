@@ -169,6 +169,46 @@ export const confirmBooking = createServerFn({ method: "POST" })
       }
       return { ok: false, error: code };
     }
+    // Freeze the financial figures at confirmation time so later commission or
+    // price changes never rewrite historic owner statements.
+    try {
+      const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+      const { data: b } = await supabaseAdmin
+        .from("bookings")
+        .select("property_id, total_amount, amount_paid, cleaning_fee, discount_amount, currency, financial_snapshot")
+        .eq("id", data.id)
+        .maybeSingle();
+      if (b && !b.financial_snapshot) {
+        const { data: fin } = await supabaseAdmin
+          .from("property_financial_settings")
+          .select("*")
+          .eq("property_id", b.property_id)
+          .maybeSingle();
+        const gross = b.total_amount ?? 0;
+        const commission =
+          Math.round((gross * Number(fin?.commission_percent ?? 0)) / 100) +
+          Number(fin?.commission_fixed ?? 0);
+        const paymentFee = Math.round(
+          ((b.amount_paid ?? 0) * Number(fin?.payment_fee_percent ?? 0)) / 100,
+        );
+        await supabaseAdmin
+          .from("bookings")
+          .update({
+            financial_snapshot: {
+              gross,
+              cleaning: b.cleaning_fee ?? 0,
+              discount: b.discount_amount ?? 0,
+              commission,
+              payment_fee: paymentFee,
+              currency: b.currency,
+              frozen_at: new Date().toISOString(),
+            } as never,
+          })
+          .eq("id", data.id);
+      }
+    } catch (e) {
+      console.error("[admin] financial snapshot failed", e);
+    }
     {
       const { notifyGuest, notifyInternal, safeNotify } = await import(
         "@/lib/notifications.server"
@@ -176,6 +216,7 @@ export const confirmBooking = createServerFn({ method: "POST" })
       await safeNotify(() => notifyGuest(data.id, "booking_confirmed"), "guest confirmation");
       await safeNotify(() => notifyInternal("confirmed_booking", data.id), "internal confirmation");
     }
+
     return { ok: true };
   });
 
