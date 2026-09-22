@@ -24,6 +24,8 @@ import { AirbnbSyncPanel } from "@/components/AirbnbSyncPanel";
 import { PropertyManager } from "@/components/PropertyManager";
 import { PricingManager } from "@/components/PricingManager";
 import { NotificationsManager } from "@/components/NotificationsManager";
+import { OwnersManager } from "@/components/OwnersManager";
+
 import brandLogo from "@/assets/sunny-stays-hurghada-logo.png";
 
 export const Route = createFileRoute("/_authenticated/admin")({
