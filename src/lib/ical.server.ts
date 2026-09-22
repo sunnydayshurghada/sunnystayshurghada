@@ -1,5 +1,6 @@
 /**
  * Server-only iCal helpers: Airbnb import + privacy-safe export feed.
+ * Everything is scoped to a single property; calendars never mix.
  * Never import this from client code.
  */
 import type { SupabaseClient } from "@supabase/supabase-js";
@@ -14,21 +15,63 @@ export type SyncResult = {
   error?: string;
 };
 
+type Integration = Database["public"]["Tables"]["calendar_integrations"]["Row"];
+
 async function admin(): Promise<SupabaseClient<Database>> {
   const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
   return supabaseAdmin as unknown as SupabaseClient<Database>;
 }
 
-export async function getSettings() {
+export async function defaultPropertyId(): Promise<string | null> {
   const db = await admin();
-  const { data } = await db.from("ical_settings").select("*").eq("id", true).maybeSingle();
+  const { data } = await db
+    .from("properties")
+    .select("id")
+    .eq("status", "active")
+    .order("sort_order")
+    .order("created_at")
+    .limit(1)
+    .maybeSingle();
+  return data?.id ?? null;
+}
+
+function newToken(): string {
+  return crypto.randomUUID().replace(/-/g, "") + crypto.randomUUID().replace(/-/g, "").slice(0, 8);
+}
+
+/** Integration row for one property, created on demand. */
+export async function getIntegration(propertyId: string): Promise<Integration> {
+  const db = await admin();
+  const { data } = await db
+    .from("calendar_integrations")
+    .select("*")
+    .eq("property_id", propertyId)
+    .maybeSingle();
   if (data) return data;
   const { data: created } = await db
-    .from("ical_settings")
-    .insert({ id: true })
+    .from("calendar_integrations")
+    .insert({ property_id: propertyId, export_token: newToken() })
     .select("*")
     .single();
   return created!;
+}
+
+/** Shared cron secret (still stored on the legacy global settings row). */
+export async function getCronSecret(): Promise<string | null> {
+  const db = await admin();
+  const { data } = await db.from("ical_settings").select("cron_secret").eq("id", true).maybeSingle();
+  return data?.cron_secret ?? null;
+}
+
+/** Resolve an export token to its property. */
+export async function findPropertyByExportToken(token: string): Promise<string | null> {
+  const db = await admin();
+  const { data } = await db
+    .from("calendar_integrations")
+    .select("property_id, export_token")
+    .eq("export_token", token)
+    .maybeSingle();
+  return data?.property_id ?? null;
 }
 
 /** Unfold RFC 5545 line folding and split into logical lines. */
@@ -94,20 +137,28 @@ function isBlockingEvent(e: IcalEvent): boolean {
 
 export async function syncAirbnb(
   triggerSource: "manual" | "cron" | "confirm",
+  propertyId?: string | null,
 ): Promise<SyncResult> {
   const db = await admin();
-  const settings = await getSettings();
+  const pid = propertyId ?? (await defaultPropertyId());
+  if (!pid) return { ok: false, imported: 0, removed: 0, error: "no_property" };
+
+  const settings = await getIntegration(pid);
   const url = settings.airbnb_ical_url;
 
   const finish = async (result: SyncResult, message?: string) => {
-    await db.from("ical_settings").update({
-      last_sync_at: new Date().toISOString(),
-      last_sync_status: result.ok ? "ok" : "error",
-      last_sync_error: result.ok ? null : (result.error ?? null),
-      last_sync_imported: result.imported,
-      updated_at: new Date().toISOString(),
-    }).eq("id", true);
+    await db
+      .from("calendar_integrations")
+      .update({
+        last_sync_at: new Date().toISOString(),
+        last_sync_status: result.ok ? "ok" : "error",
+        last_sync_error: result.ok ? null : (result.error ?? null),
+        last_sync_imported: result.imported,
+        updated_at: new Date().toISOString(),
+      })
+      .eq("property_id", pid);
     await db.from("ical_sync_log").insert({
+      property_id: pid,
       status: result.ok ? "ok" : "error",
       imported: result.imported,
       removed: result.removed,
@@ -141,6 +192,7 @@ export async function syncAirbnb(
     const { data: existing } = await db
       .from("calendar_blocks")
       .select("id, start_date, end_date")
+      .eq("property_id", pid)
       .eq("external_uid", uid)
       .maybeSingle();
 
@@ -155,6 +207,7 @@ export async function syncAirbnb(
       }
     } else {
       await db.from("calendar_blocks").insert({
+        property_id: pid,
         start_date: e.start,
         end_date: e.end,
         entry_type: "booking",
@@ -167,16 +220,34 @@ export async function syncAirbnb(
     imported += 1;
   }
 
-  // Ranges gone from the Airbnb feed (cancelled) are released again.
+  // Ranges gone from this property's Airbnb feed (cancelled) are released again.
   const { data: removedRows } = await db
     .from("calendar_blocks")
     .delete()
+    .eq("property_id", pid)
     .eq("source", "airbnb")
     .not("external_uid", "is", null)
     .lt("last_seen_at", now)
     .select("id");
 
   return finish({ ok: true, imported, removed: removedRows?.length ?? 0 });
+}
+
+/** Cron entry point: every active property with a configured Airbnb feed. */
+export async function syncAllProperties(): Promise<
+  { property_id: string; result: SyncResult }[]
+> {
+  const db = await admin();
+  const { data } = await db
+    .from("calendar_integrations")
+    .select("property_id, airbnb_ical_url")
+    .not("airbnb_ical_url", "is", null);
+
+  const out: { property_id: string; result: SyncResult }[] = [];
+  for (const row of data ?? []) {
+    out.push({ property_id: row.property_id, result: await syncAirbnb("cron", row.property_id) });
+  }
+  return out;
 }
 
 function icalDate(d: string): string {
@@ -202,16 +273,21 @@ function fold(line: string): string {
 }
 
 /**
- * Privacy-safe export: only dates, a neutral summary and a stable UID.
+ * Privacy-safe export for ONE property: only dates, a neutral summary and a stable UID.
  * Airbnb-imported ranges are excluded to avoid sync loops.
  */
-export async function buildExportIcs(): Promise<string> {
+export async function buildExportIcs(propertyId: string): Promise<string> {
   const db = await admin();
   const [{ data: bookings }, { data: blocks }] = await Promise.all([
-    db.from("bookings").select("id, checkin, checkout, updated_at").eq("status", "confirmed"),
+    db
+      .from("bookings")
+      .select("id, checkin, checkout, updated_at")
+      .eq("property_id", propertyId)
+      .eq("status", "confirmed"),
     db
       .from("calendar_blocks")
       .select("id, start_date, end_date, updated_at, source, external_uid")
+      .eq("property_id", propertyId)
       .is("external_uid", null),
   ]);
 
