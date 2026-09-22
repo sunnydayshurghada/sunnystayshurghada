@@ -173,5 +173,12 @@
   },
   "legal": {
     "back": "Terug naar home"
+  },
+  "calendar": {
+    "available": "Beschikbaar",
+    "unavailable": "Niet beschikbaar",
+    "nights": "{{count}} nacht",
+    "nights_plural": "{{count}} nachten",
+    "request_hint": "Aanvraag – nog geen boeking. De gastheer bevestigt persoonlijk."
   }
 }

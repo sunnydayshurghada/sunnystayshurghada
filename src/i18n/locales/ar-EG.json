@@ -173,5 +173,12 @@
   },
   "legal": {
     "back": "ارجع للرئيسية"
+  },
+  "calendar": {
+    "available": "متاح",
+    "unavailable": "مش متاح",
+    "nights": "{{count}} ليلة",
+    "nights_plural": "{{count}} ليالي",
+    "request_hint": "ده طلب مش حجز مؤكد. المضيف بيأكده بنفسه."
   }
 }
