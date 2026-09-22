@@ -29,44 +29,143 @@ export type Database = {
         }
         Relationships: []
       }
+      booking_settings: {
+        Row: {
+          auto_confirm_direct_bookings: boolean
+          cleaning_fee: number
+          currency: string
+          deposit_fixed_amount: number
+          deposit_percent: number
+          hold_minutes: number
+          id: boolean
+          nightly_rate: number
+          payment_mode: string
+          payments_enabled: boolean
+          updated_at: string
+        }
+        Insert: {
+          auto_confirm_direct_bookings?: boolean
+          cleaning_fee?: number
+          currency?: string
+          deposit_fixed_amount?: number
+          deposit_percent?: number
+          hold_minutes?: number
+          id?: boolean
+          nightly_rate?: number
+          payment_mode?: string
+          payments_enabled?: boolean
+          updated_at?: string
+        }
+        Update: {
+          auto_confirm_direct_bookings?: boolean
+          cleaning_fee?: number
+          currency?: string
+          deposit_fixed_amount?: number
+          deposit_percent?: number
+          hold_minutes?: number
+          id?: boolean
+          nightly_rate?: number
+          payment_mode?: string
+          payments_enabled?: boolean
+          updated_at?: string
+        }
+        Relationships: []
+      }
       bookings: {
         Row: {
+          amount_paid: number
+          booking_status: string
+          booking_type: string
+          cancelled_at: string | null
           checkin: string
           checkout: string
+          cleaning_fee: number
+          confirmed_at: string | null
           created_at: string
+          currency: string
+          deposit_amount: number
+          discount_amount: number
           guest_email: string
           guest_name: string
           guest_phone: string | null
           guests: number
           id: string
           message: string | null
+          nightly_total: number
+          payment_expires_at: string | null
+          payment_method: string | null
+          payment_provider: string | null
+          payment_reference: string | null
+          payment_status: string
+          payment_transaction_id: string | null
+          price_snapshot: Json | null
+          refunded_at: string | null
           status: string
+          total_amount: number
           updated_at: string
         }
         Insert: {
+          amount_paid?: number
+          booking_status?: string
+          booking_type?: string
+          cancelled_at?: string | null
           checkin: string
           checkout: string
+          cleaning_fee?: number
+          confirmed_at?: string | null
           created_at?: string
+          currency?: string
+          deposit_amount?: number
+          discount_amount?: number
           guest_email: string
           guest_name: string
           guest_phone?: string | null
           guests?: number
           id?: string
           message?: string | null
+          nightly_total?: number
+          payment_expires_at?: string | null
+          payment_method?: string | null
+          payment_provider?: string | null
+          payment_reference?: string | null
+          payment_status?: string
+          payment_transaction_id?: string | null
+          price_snapshot?: Json | null
+          refunded_at?: string | null
           status?: string
+          total_amount?: number
           updated_at?: string
         }
         Update: {
+          amount_paid?: number
+          booking_status?: string
+          booking_type?: string
+          cancelled_at?: string | null
           checkin?: string
           checkout?: string
+          cleaning_fee?: number
+          confirmed_at?: string | null
           created_at?: string
+          currency?: string
+          deposit_amount?: number
+          discount_amount?: number
           guest_email?: string
           guest_name?: string
           guest_phone?: string | null
           guests?: number
           id?: string
           message?: string | null
+          nightly_total?: number
+          payment_expires_at?: string | null
+          payment_method?: string | null
+          payment_provider?: string | null
+          payment_reference?: string | null
+          payment_status?: string
+          payment_transaction_id?: string | null
+          price_snapshot?: Json | null
+          refunded_at?: string | null
           status?: string
+          total_amount?: number
           updated_at?: string
         }
         Relationships: []
@@ -188,6 +287,59 @@ export type Database = {
         }
         Relationships: []
       }
+      payment_transactions: {
+        Row: {
+          amount: number
+          booking_id: string | null
+          created_at: string
+          currency: string
+          id: string
+          method: string | null
+          provider: string
+          provider_transaction_id: string | null
+          raw_payload: Json | null
+          status: string
+          updated_at: string
+          verified_at: string | null
+        }
+        Insert: {
+          amount?: number
+          booking_id?: string | null
+          created_at?: string
+          currency?: string
+          id?: string
+          method?: string | null
+          provider: string
+          provider_transaction_id?: string | null
+          raw_payload?: Json | null
+          status?: string
+          updated_at?: string
+          verified_at?: string | null
+        }
+        Update: {
+          amount?: number
+          booking_id?: string | null
+          created_at?: string
+          currency?: string
+          id?: string
+          method?: string | null
+          provider?: string
+          provider_transaction_id?: string | null
+          raw_payload?: Json | null
+          status?: string
+          updated_at?: string
+          verified_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "payment_transactions_booking_id_fkey"
+            columns: ["booking_id"]
+            isOneToOne: false
+            referencedRelation: "bookings"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       user_roles: {
         Row: {
           created_at: string
@@ -264,6 +416,7 @@ export type Database = {
           start_date: string
         }[]
       }
+      release_expired_holds: { Args: never; Returns: number }
     }
     Enums: {
       app_role: "admin"
