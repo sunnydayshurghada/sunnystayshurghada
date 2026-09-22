@@ -14,6 +14,21 @@ export type Database = {
   }
   public: {
     Tables: {
+      admin_allowlist: {
+        Row: {
+          created_at: string
+          email: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+        }
+        Relationships: []
+      }
       bookings: {
         Row: {
           checkin: string
@@ -52,6 +67,51 @@ export type Database = {
           id?: string
           message?: string | null
           status?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      calendar_blocks: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          end_date: string
+          entry_type: string
+          guest_name: string | null
+          guest_phone: string | null
+          guests: number | null
+          id: string
+          note: string | null
+          source: string
+          start_date: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string | null
+          end_date: string
+          entry_type?: string
+          guest_name?: string | null
+          guest_phone?: string | null
+          guests?: number | null
+          id?: string
+          note?: string | null
+          source?: string
+          start_date: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          created_by?: string | null
+          end_date?: string
+          entry_type?: string
+          guest_name?: string | null
+          guest_phone?: string | null
+          guests?: number | null
+          id?: string
+          note?: string | null
+          source?: string
+          start_date?: string
           updated_at?: string
         }
         Relationships: []
@@ -96,10 +156,16 @@ export type Database = {
       }
     }
     Functions: {
+      admin_confirm_booking: { Args: { _id: string }; Returns: string }
+      admin_set_booking_status: {
+        Args: { _id: string; _status: string }
+        Returns: string
+      }
       check_availability: {
         Args: { _checkin: string; _checkout: string }
         Returns: boolean
       }
+      claim_admin_role: { Args: never; Returns: boolean }
       create_booking_request: {
         Args: {
           _checkin: string
@@ -118,6 +184,13 @@ export type Database = {
           _user_id: string
         }
         Returns: boolean
+      }
+      public_blocked_ranges: {
+        Args: never
+        Returns: {
+          end_date: string
+          start_date: string
+        }[]
       }
     }
     Enums: {
