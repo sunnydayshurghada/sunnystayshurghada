@@ -46,13 +46,18 @@ export function BookingWidget() {
     const fd = new FormData(form);
 
     if (!checkin || !checkout || nights < 1) {
-      toast.error(t("booking.errors.invalid_range"));
+      toast.error(t("booking.errors.select_dates"));
+      return;
+    }
+    if (!fd.get("guests")) {
+      toast.error(t("booking.errors.select_guests"));
       return;
     }
     if (!rangeIsFree(checkin, checkout, blocked)) {
       toast.error(t("booking.errors.dates_unavailable"));
       return;
     }
+
 
     const parsed = schema.safeParse({
       guest_name: fd.get("guest_name"),
@@ -121,18 +126,28 @@ export function BookingWidget() {
       <form onSubmit={onSubmit} className="space-y-3">
         <AvailabilityCalendar ranges={blocked} selected={range} onSelect={setRange} />
 
-        <div className="grid grid-cols-2 gap-px bg-forest/10 border border-forest/10">
-          <div className="bg-card p-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div className="rounded-2xl border border-forest/10 bg-card p-4">
             <span className="block text-[10px] uppercase tracking-widest text-forest/50 mb-1">
               {t("booking.checkin")}
             </span>
-            <span className="text-sm font-medium">{dateLabel(checkin)}</span>
+            <span className="block text-base font-medium">
+              {checkin ? dateLabel(checkin) : t("calendar.not_selected")}
+            </span>
+            <span className="mt-1 block text-[11px] text-gold">
+              {t("calendar.checkin_time")}
+            </span>
           </div>
-          <div className="bg-card p-4">
+          <div className="rounded-2xl border border-forest/10 bg-card p-4">
             <span className="block text-[10px] uppercase tracking-widest text-forest/50 mb-1">
               {t("booking.checkout")}
             </span>
-            <span className="text-sm font-medium">{dateLabel(checkout)}</span>
+            <span className="block text-base font-medium">
+              {checkout ? dateLabel(checkout) : t("calendar.not_selected")}
+            </span>
+            <span className="mt-1 block text-[11px] text-gold">
+              {t("calendar.checkout_time")}
+            </span>
           </div>
         </div>
         {nights > 0 && (
@@ -141,13 +156,14 @@ export function BookingWidget() {
           </p>
         )}
 
-        <div className="bg-card p-4 border border-forest/10">
+        <div className="rounded-2xl bg-card p-4 border border-forest/10">
           <label className="block text-[10px] uppercase tracking-widest text-forest/50 mb-1">
             {t("booking.guests")}
           </label>
           <select
             name="guests"
             defaultValue="2"
+            required
             className="w-full text-sm font-medium focus:outline-none bg-transparent"
           >
             <option value="2">{t("booking.guests_options.two")}</option>
@@ -155,6 +171,7 @@ export function BookingWidget() {
             <option value="6">{t("booking.guests_options.family")}</option>
           </select>
         </div>
+
 
         <div className="grid grid-cols-1 gap-3">
           <input

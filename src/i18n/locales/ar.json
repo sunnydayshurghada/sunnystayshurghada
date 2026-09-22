@@ -82,8 +82,8 @@
   "booking": {
     "per_night": "/ ليلة",
     "rating": "إعلان جديد",
-    "checkin": "الوصول (من 14:00)",
-    "checkout": "المغادرة (حتى 11:00)",
+    "checkin": "الوصول",
+    "checkout": "المغادرة",
     "guests": "الضيوف",
     "guests_options": {
       "two": "ضيفان",
@@ -99,7 +99,11 @@
     "no_charge": "حجز مباشر مع المضيف",
     "submitted_title": "تم إرسال الطلب",
     "submitted_desc": "سنردّ خلال 24 ساعة.",
-    "airbnb_trust": "موثّق أيضاً على Airbnb"
+    "airbnb_trust": "موثّق أيضاً على Airbnb",
+    "errors": {
+      "select_dates": "يرجى اختيار تاريخ الوصول والمغادرة.",
+      "select_guests": "يرجى اختيار عدد الضيوف."
+    }
   },
   "footer": {
     "brand_line": "Sunny Stays Hurghada",
@@ -179,6 +183,16 @@
     "unavailable": "غير متاح",
     "nights": "{{count}} ليلة",
     "nights_plural": "{{count}} ليالٍ",
-    "request_hint": "طلب وليس حجزاً مؤكداً. يؤكده المضيف شخصياً."
+    "request_hint": "طلب وليس حجزاً مؤكداً. يؤكده المضيف شخصياً.",
+    "selected": "محدد",
+    "prev_month": "الشهر السابق",
+    "next_month": "الشهر التالي",
+    "hint_checkin": "اختر تاريخ الوصول.",
+    "hint_checkout": "اختر الآن تاريخ المغادرة.",
+    "checkin_time": "الوصول من الساعة 14:00",
+    "checkout_time": "المغادرة حتى الساعة 11:00",
+    "not_selected": "لم يتم الاختيار بعد",
+    "nights_other": "{{count}} ليالٍ",
+    "nights_one": "{{count}} ليلة"
   }
 }

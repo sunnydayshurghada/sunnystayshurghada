@@ -113,8 +113,8 @@
     "title": "Schreiben Sie uns",
     "per_night": "/ Nacht",
     "rating": "Neues Inserat",
-    "checkin": "Anreise (ab 14:00)",
-    "checkout": "Abreise (bis 11:00)",
+    "checkin": "Anreise",
+    "checkout": "Abreise",
     "add_date": "Datum wählen",
     "guests": "Gäste",
     "guests_options": {
@@ -140,7 +140,9 @@
       "invalid_guests": "Bitte 1 bis 6 Gäste wählen.",
       "invalid_name": "Bitte geben Sie einen gültigen Namen ein.",
       "invalid_email": "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
-      "dates_unavailable": "Dieser Zeitraum ist leider bereits belegt."
+      "dates_unavailable": "Dieser Zeitraum ist leider bereits belegt.",
+      "select_dates": "Bitte Anreise und Abreise auswählen.",
+      "select_guests": "Bitte Gästezahl auswählen."
     }
   },
   "footer": {
@@ -221,6 +223,16 @@
     "unavailable": "Nicht verfügbar",
     "nights": "{{count}} Nacht",
     "nights_plural": "{{count}} Nächte",
-    "request_hint": "Anfrage – noch keine Buchung. Der Gastgeber bestätigt persönlich."
+    "request_hint": "Anfrage – noch keine Buchung. Der Gastgeber bestätigt persönlich.",
+    "selected": "Ausgewählt",
+    "prev_month": "Vorheriger Monat",
+    "next_month": "Nächster Monat",
+    "hint_checkin": "Wählen Sie Ihr Anreisedatum.",
+    "hint_checkout": "Wählen Sie nun Ihr Abreisedatum.",
+    "checkin_time": "Anreise ab 14:00 Uhr",
+    "checkout_time": "Abreise bis 11:00 Uhr",
+    "not_selected": "Noch nicht gewählt",
+    "nights_other": "{{count}} Nächte",
+    "nights_one": "{{count}} Nacht"
   }
 }

@@ -1,8 +1,15 @@
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { DayPicker, type DateRange } from "react-day-picker";
 import { de, enUS, nl, ru, arSA } from "react-day-picker/locale";
 import { useTranslation } from "react-i18next";
-import { blockedNights, startOfToday, type BlockedRange } from "@/lib/availability";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import {
+  blockedNights,
+  startOfToday,
+  toISODate,
+  parseISODate,
+  type BlockedRange,
+} from "@/lib/availability";
 
 const LOCALES: Record<string, typeof de> = {
   de,
@@ -13,56 +20,189 @@ const LOCALES: Record<string, typeof de> = {
   "ar-EG": arSA,
 };
 
+function addDays(d: Date, n: number): Date {
+  const x = new Date(d);
+  x.setDate(x.getDate() + n);
+  return x;
+}
+
+function addMonths(d: Date, n: number): Date {
+  return new Date(d.getFullYear(), d.getMonth() + n, 1);
+}
+
+function sameDay(a: Date, b: Date) {
+  return toISODate(a) === toISODate(b);
+}
+
 export function AvailabilityCalendar({
   ranges,
   selected,
   onSelect,
-  numberOfMonths = 1,
 }: {
   ranges: BlockedRange[];
   selected: DateRange | undefined;
   onSelect: (range: DateRange | undefined) => void;
-  numberOfMonths?: number;
 }) {
   const { t, i18n } = useTranslation();
   const today = startOfToday();
-  const disabledDays = useMemo(() => blockedNights(ranges), [ranges]);
+  const firstMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+  const [month, setMonth] = useState<Date>(firstMonth);
+  const [months, setMonths] = useState(1);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 768px)");
+    const apply = () => setMonths(mq.matches ? 2 : 1);
+    apply();
+    mq.addEventListener("change", apply);
+    return () => mq.removeEventListener("change", apply);
+  }, []);
+
   const locale = LOCALES[i18n.language] ?? LOCALES[i18n.language.split("-")[0]] ?? de;
-  const dir = i18n.language.startsWith("ar") ? "rtl" : "ltr";
+  const rtl = i18n.language.startsWith("ar");
+
+  const blockedSet = useMemo(
+    () => new Set(blockedNights(ranges).map(toISODate)),
+    [ranges],
+  );
+
+  const from = selected?.from;
+  const to = selected?.to;
+  const picking = Boolean(from && !to);
+
+  /** First blocked night strictly after the chosen check-in (max check-out). */
+  const maxCheckout = useMemo(() => {
+    if (!from) return undefined;
+    let best: Date | undefined;
+    for (const r of ranges) {
+      const s = parseISODate(r.start_date);
+      if (s > from && (!best || s < best)) best = s;
+    }
+    return best;
+  }, [from, ranges]);
+
+  const isDisabled = (day: Date) => {
+    if (day < today) return true;
+    if (picking && from) {
+      if (day <= from) return true;
+      if (maxCheckout) {
+        if (day > maxCheckout) return true;
+        if (sameDay(day, maxCheckout)) return false;
+      }
+    }
+    return blockedSet.has(toISODate(day));
+  };
+
+  const handleDayClick = (day: Date) => {
+    if (isDisabled(day)) return;
+    if (!from || to) {
+      onSelect({ from: day, to: undefined });
+      return;
+    }
+    if (day <= from) {
+      onSelect({ from: day, to: undefined });
+      return;
+    }
+    onSelect({ from, to: day });
+  };
+
+  const canGoBack = month > firstMonth;
+  const label = new Intl.DateTimeFormat(i18n.language, {
+    month: "long",
+    year: "numeric",
+  });
+  const caption =
+    months === 2
+      ? `${label.format(month)} – ${label.format(addMonths(month, 1))}`
+      : label.format(month);
+
+  const Prev = rtl ? ChevronRight : ChevronLeft;
+  const Next = rtl ? ChevronLeft : ChevronRight;
 
   return (
-    <div className="rounded-2xl border border-forest/10 bg-card p-3 sm:p-4">
+    <div className="rounded-3xl border border-forest/10 bg-card p-2 sm:p-6 shadow-[0_10px_30px_-18px_rgb(23_59_99_/_0.35)]">
+      <div className="mb-4 flex items-center justify-between gap-3">
+        <button
+          type="button"
+          aria-label={t("calendar.prev_month")}
+          disabled={!canGoBack}
+          onClick={() => setMonth(addMonths(month, -1))}
+          className="flex h-10 w-10 items-center justify-center rounded-full border border-forest/15 text-forest transition-colors hover:border-gold hover:bg-gold/10 hover:text-gold disabled:opacity-30 disabled:hover:border-forest/15 disabled:hover:bg-transparent disabled:hover:text-forest"
+        >
+          <Prev className="h-5 w-5" />
+        </button>
+        <span className="font-display text-base sm:text-lg font-semibold capitalize text-forest text-center">
+          {caption}
+        </span>
+        <button
+          type="button"
+          aria-label={t("calendar.next_month")}
+          onClick={() => setMonth(addMonths(month, 1))}
+          className="flex h-10 w-10 items-center justify-center rounded-full border border-forest/15 text-forest transition-colors hover:border-gold hover:bg-gold/10 hover:text-gold"
+        >
+          <Next className="h-5 w-5" />
+        </button>
+      </div>
+
       <DayPicker
         mode="range"
         locale={locale}
-        dir={dir}
-        numberOfMonths={numberOfMonths}
+        dir={rtl ? "rtl" : "ltr"}
+        month={month}
+        onMonthChange={setMonth}
+        numberOfMonths={months}
         selected={selected}
-        onSelect={onSelect}
-        disabled={[{ before: today }, ...disabledDays]}
-        excludeDisabled
+        onSelect={() => {}}
+        onDayClick={handleDayClick}
+        disabled={isDisabled}
+        hideNavigation
         showOutsideDays={false}
-        className="w-full [--rdp-accent-color:var(--color-gold)] [--rdp-accent-background-color:color-mix(in_srgb,var(--color-gold)_18%,transparent)] [--rdp-day-height:2.3rem] [--rdp-day-width:2.3rem] text-forest"
+        className="w-full text-forest"
         classNames={{
+          months: "flex flex-col md:flex-row gap-6 md:gap-8 justify-center",
+          month: "flex-1",
           month_caption:
-            "flex justify-center py-2 text-sm font-display font-semibold text-forest capitalize",
-          nav: "absolute end-1 top-1 flex gap-1",
-          weekday: "text-[10px] uppercase tracking-widest text-forest/40 font-medium",
-          day: "text-sm",
-          today: "font-bold text-gold",
-          disabled: "line-through opacity-35",
+            "mb-2 flex justify-center text-xs uppercase tracking-[0.25em] text-forest/50",
+          month_grid: "w-full table-fixed border-collapse",
+          weekdays: "",
+          weekday:
+            "pb-2 text-[11px] font-medium uppercase tracking-widest text-forest/40",
+          day: "p-0.5 text-center",
+          day_button:
+            "mx-auto flex h-9 w-9 sm:h-11 sm:w-11 items-center justify-center rounded-full text-sm transition-colors hover:bg-gold/15",
+          today: "[&_button]:ring-1 [&_button]:ring-gold/60 [&_button]:font-semibold",
+          selected: "",
+          range_start:
+            "[&_button]:bg-gold [&_button]:text-forest [&_button]:font-bold [&_button]:hover:bg-gold",
+          range_end:
+            "[&_button]:bg-gold [&_button]:text-forest [&_button]:font-bold [&_button]:hover:bg-gold",
+          range_middle:
+            "[&_button]:bg-gold/25 [&_button]:text-forest [&_button]:rounded-full",
+          disabled:
+            "[&_button]:text-forest/25 [&_button]:line-through [&_button]:hover:bg-transparent [&_button]:cursor-not-allowed",
+          outside: "invisible",
         }}
       />
-      <div className="mt-2 flex flex-wrap items-center justify-center gap-4 border-t border-forest/10 pt-3 text-[10px] uppercase tracking-widest text-forest/55">
+
+      <div className="mt-4 flex flex-wrap items-center justify-center gap-4 border-t border-forest/10 pt-4 text-[10px] uppercase tracking-widest text-forest/55">
         <span className="flex items-center gap-1.5">
-          <span className="h-2.5 w-2.5 rounded-full bg-gold" />
+          <span className="h-2.5 w-2.5 rounded-full border border-forest/25" />
           {t("calendar.available")}
         </span>
         <span className="flex items-center gap-1.5">
-          <span className="h-2.5 w-2.5 rounded-full bg-forest/25" />
+          <span className="h-2.5 w-2.5 rounded-full bg-gold" />
+          {t("calendar.selected")}
+        </span>
+        <span className="flex items-center gap-1.5">
+          <span className="h-2.5 w-2.5 rounded-full bg-forest/20" />
           {t("calendar.unavailable")}
         </span>
       </div>
+
+      <p className="mt-3 text-center text-[11px] text-forest/60">
+        {picking ? t("calendar.hint_checkout") : t("calendar.hint_checkin")}
+      </p>
     </div>
   );
 }
+
+export { addDays };
