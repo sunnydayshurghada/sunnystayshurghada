@@ -168,6 +168,7 @@ function AdminPage() {
       () =>
         doCreate({
           data: {
+            property_id: String(fd.get("property_id") ?? "") || syncPropertyId,
             start_date: String(fd.get("start_date") ?? ""),
             end_date: String(fd.get("end_date") ?? ""),
             entry_type,
