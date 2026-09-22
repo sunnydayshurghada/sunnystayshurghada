@@ -212,7 +212,8 @@
       "pending": "Request (pending)",
       "confirmed": "Confirmed",
       "manual": "Own booking",
-      "blocked": "Blocked"
+      "blocked": "Blocked",
+      "airbnb": "Airbnb"
     },
     "requests_open": "Open requests",
     "no_open_requests": "No open requests.",
@@ -271,7 +272,47 @@
       "not_found": "Entry not found.",
       "forbidden": "Not allowed.",
       "invalid_range": "The check-out date must be after the check-in date.",
-      "generic": "Something went wrong. Please try again."
+      "generic": "Something went wrong. Please try again.",
+      "external_readonly": "Airbnb entries can only be changed on Airbnb."
+    },
+    "sync": {
+      "title": "Airbnb synchronisation",
+      "import_title": "Import Airbnb calendar",
+      "import_hint": "Paste the private iCal export address from your Airbnb account. It is stored on the server only and never shown publicly. It is fetched automatically every 15 minutes.",
+      "url_label": "Airbnb iCal address",
+      "url_saved_hint": "Saved:",
+      "save_url": "Save address",
+      "connection": "Connection",
+      "status_ok": "Connected",
+      "status_error": "Error",
+      "status_waiting": "Not synced yet",
+      "status_not_connected": "Not connected",
+      "last_sync": "Last sync",
+      "next_sync": "Next sync",
+      "imported_count": "Imported ranges",
+      "sync_now": "Sync now",
+      "export_title": "Our calendar for Airbnb",
+      "export_hint": "Import this address once in Airbnb as an external calendar. It contains dates only — no names, contacts or prices. Airbnb ranges are never exported back.",
+      "copy": "Copy",
+      "rotate_token": "Generate new link",
+      "log_title": "Recent syncs",
+      "log_empty": "No sync yet.",
+      "log_ok": "{{imported}} imported · {{removed}} removed",
+      "airbnb_readonly": "Airbnb – change on Airbnb only",
+      "toast": {
+        "url_saved": "Airbnb address saved.",
+        "synced": "Synced – {{count}} ranges from Airbnb.",
+        "token_rotated": "New export link created – please update it on Airbnb.",
+        "copied": "Link copied."
+      },
+      "errors": {
+        "no_url": "No Airbnb address stored yet.",
+        "invalid_url": "This address is invalid. It must start with https://.",
+        "fetch_failed": "The Airbnb calendar could not be reached. Please check the address.",
+        "invalid_calendar": "The address does not return a valid calendar.",
+        "forbidden": "Not allowed.",
+        "generic": "Something went wrong."
+      }
     }
   },
   "auth": {
