@@ -145,12 +145,12 @@ function SiteHeader() {
   const { t } = useTranslation();
   return (
     <header className="sticky top-0 z-40 bg-paper/85 backdrop-blur-md border-b border-forest/5">
-      <div className="max-w-7xl mx-auto px-4 md:px-8 h-20 md:h-24 flex items-center justify-between gap-6">
+      <div className="max-w-7xl mx-auto px-4 md:px-8 h-20 md:h-28 flex items-center justify-between gap-6">
         <a href="#top" aria-label="Sunny Stays Hurghada — home" className="flex items-center py-2">
           <img
             src={brandLogo}
             alt="Sunny Stays Hurghada"
-            className="h-10 md:h-14 w-auto select-none"
+            className="h-14 md:h-20 w-auto select-none"
             draggable={false}
           />
         </a>
