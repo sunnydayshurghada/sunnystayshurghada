@@ -613,5 +613,170 @@
       "send_failed": "Die E-Mail konnte nicht versendet werden.",
       "generic": "Das hat nicht geklappt."
     }
+  },
+  "owner": {
+    "eyebrow": "Eigentümerportal",
+    "title": "Willkommen",
+    "sign_out": "Abmelden",
+    "all_properties": "Alle Wohnungen",
+    "none": "Keine Einträge",
+    "guests": "Gäste",
+    "nights": "Nächte",
+    "save": "Speichern",
+    "export_csv": "CSV exportieren",
+    "occupied_now": "Aktuell belegt",
+    "free_now": "Aktuell frei",
+    "next_arrival": "Nächste Anreise",
+    "next_departure": "Nächste Abreise",
+    "arrivals": "Nächste Anreisen",
+    "departures": "Nächste Abreisen",
+    "sync_error": "Kalender-Synchronisation fehlerhaft",
+    "cancelled_on": "Storniert am",
+    "add_block": "Sperrzeit eintragen",
+    "block_note": "Grund",
+    "block_created": "Sperrzeit eingetragen",
+    "profile_saved": "Profil gespeichert",
+    "first_name": "Vorname",
+    "last_name": "Nachname",
+    "phone": "Telefon",
+    "tabs": {
+      "overview": "Übersicht",
+      "bookings": "Buchungen",
+      "cancellations": "Stornierungen",
+      "calendar": "Kalender",
+      "profile": "Profil"
+    },
+    "periods": {
+      "this_month": "Aktueller Monat",
+      "last_month": "Letzter Monat",
+      "next_month": "Nächster Monat",
+      "this_year": "Aktuelles Jahr",
+      "custom": "Zeitraum wählen"
+    },
+    "metrics": {
+      "properties": "Wohnungen",
+      "current_guests": "Aktuelle Gäste",
+      "new_inquiries": "Neue Anfragen",
+      "confirmed": "Bestätigte Buchungen",
+      "cancelled": "Stornierungen",
+      "nights_booked": "Belegte Nächte",
+      "nights_available": "Verfügbare Nächte",
+      "occupancy": "Auslastung",
+      "revenue": "Buchungsumsatz",
+      "paid": "Bezahlt",
+      "open": "Offen",
+      "refunds": "Erstattungen"
+    },
+    "finance": {
+      "cleaning": "Reinigung",
+      "discount": "Rabatt",
+      "paid": "Gezahlt",
+      "commission": "Provision",
+      "net": "Nettoerlös",
+      "refund": "Erstattung"
+    },
+    "filters": {
+      "any_status": "Alle Buchungsstatus",
+      "any_payment": "Alle Zahlungsstatus",
+      "any_source": "Alle Quellen"
+    },
+    "booking_status": {
+      "pending": "Offene Anfrage",
+      "confirmed": "Bestätigt",
+      "rejected": "Abgelehnt",
+      "cancelled": "Storniert"
+    },
+    "payment_status": {
+      "unpaid": "Unbezahlt",
+      "pending": "Ausstehend",
+      "paid": "Bezahlt",
+      "refunded": "Erstattet"
+    },
+    "sources": {
+      "direct": "Direkt",
+      "airbnb": "Airbnb",
+      "manual": "Manuell",
+      "other": "Andere"
+    },
+    "kinds": {
+      "confirmed": "Bestätigte Buchung",
+      "inquiry": "Reservierungsanfrage",
+      "airbnb": "Airbnb-Buchung",
+      "manual": "Manuelle Buchung",
+      "block": "Gesperrter Zeitraum",
+      "cancelled": "Stornierung"
+    },
+    "status": {
+      "active": "Aktiv",
+      "draft": "Entwurf",
+      "inactive": "Inaktiv"
+    },
+    "errors": {
+      "no_properties": "Ihnen ist derzeit keine Wohnung zugeordnet.",
+      "account_disabled": "Dieses Konto ist deaktiviert.",
+      "forbidden": "Keine Berechtigung.",
+      "dates_unavailable": "Der Zeitraum ist bereits belegt.",
+      "invalid_range": "Ungültiger Zeitraum.",
+      "generic": "Das hat nicht geklappt."
+    }
+  },
+  "owners": {
+    "title": "Eigentümer",
+    "invite": "Eigentümer einladen",
+    "send_invite": "Einladung senden",
+    "resend_invite": "Einladung erneut senden",
+    "email": "E-Mail",
+    "first_name": "Vorname",
+    "last_name": "Nachname",
+    "phone": "Telefon",
+    "active": "Aktiv",
+    "inactive": "Deaktiviert",
+    "activate": "Aktivieren",
+    "deactivate": "Deaktivieren",
+    "last_login": "Letzte Anmeldung",
+    "invite_expires": "Einladung gültig bis",
+    "assign_property": "Wohnung zuordnen",
+    "assign": "Zuordnen",
+    "remove": "Entfernen",
+    "audit": "Audit-Protokoll",
+    "audit_empty": "Noch keine Einträge.",
+    "roles": {
+      "owner": "Eigentümer",
+      "booking_manager": "Buchungsverwaltung",
+      "super_admin": "Super-Administrator"
+    },
+    "perms": {
+      "can_view_bookings": "Buchungen ansehen",
+      "can_view_calendar": "Kalender ansehen",
+      "can_view_guest_contact_data": "Gastkontaktdaten",
+      "can_view_financials": "Finanzdaten",
+      "can_view_payments": "Zahlungen",
+      "can_create_calendar_blocks": "Sperrzeiten eintragen",
+      "can_manage_prices": "Preise verwalten",
+      "can_receive_notifications": "Benachrichtigungen"
+    },
+    "actions": {
+      "login": "Anmeldung",
+      "owner_invited": "Einladung versendet",
+      "owner_activated": "Konto aktiviert",
+      "owner_deactivated": "Konto deaktiviert",
+      "property_assigned": "Wohnung zugeordnet",
+      "permissions_changed": "Berechtigungen geändert",
+      "assignment_removed": "Zuordnung entfernt",
+      "data_export": "Datenexport",
+      "calendar_block_created": "Sperrzeit angelegt"
+    },
+    "toast": {
+      "invited": "Einladung versendet",
+      "assigned": "Wohnung zugeordnet",
+      "removed": "Zuordnung entfernt"
+    },
+    "errors": {
+      "forbidden": "Keine Berechtigung.",
+      "create_failed": "Konto konnte nicht angelegt werden.",
+      "invite_failed": "Einladung konnte nicht versendet werden.",
+      "self_lock": "Das eigene Konto kann nicht deaktiviert werden.",
+      "generic": "Das hat nicht geklappt."
+    }
   }
 }

@@ -169,6 +169,46 @@ export const confirmBooking = createServerFn({ method: "POST" })
       }
       return { ok: false, error: code };
     }
+    // Freeze the financial figures at confirmation time so later commission or
+    // price changes never rewrite historic owner statements.
+    try {
+      const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+      const { data: b } = await supabaseAdmin
+        .from("bookings")
+        .select("property_id, total_amount, amount_paid, cleaning_fee, discount_amount, currency, financial_snapshot")
+        .eq("id", data.id)
+        .maybeSingle();
+      if (b && !b.financial_snapshot) {
+        const { data: fin } = await supabaseAdmin
+          .from("property_financial_settings")
+          .select("*")
+          .eq("property_id", b.property_id)
+          .maybeSingle();
+        const gross = b.total_amount ?? 0;
+        const commission =
+          Math.round((gross * Number(fin?.commission_percent ?? 0)) / 100) +
+          Number(fin?.commission_fixed ?? 0);
+        const paymentFee = Math.round(
+          ((b.amount_paid ?? 0) * Number(fin?.payment_fee_percent ?? 0)) / 100,
+        );
+        await supabaseAdmin
+          .from("bookings")
+          .update({
+            financial_snapshot: {
+              gross,
+              cleaning: b.cleaning_fee ?? 0,
+              discount: b.discount_amount ?? 0,
+              commission,
+              payment_fee: paymentFee,
+              currency: b.currency,
+              frozen_at: new Date().toISOString(),
+            } as never,
+          })
+          .eq("id", data.id);
+      }
+    } catch (e) {
+      console.error("[admin] financial snapshot failed", e);
+    }
     {
       const { notifyGuest, notifyInternal, safeNotify } = await import(
         "@/lib/notifications.server"
@@ -176,6 +216,7 @@ export const confirmBooking = createServerFn({ method: "POST" })
       await safeNotify(() => notifyGuest(data.id, "booking_confirmed"), "guest confirmation");
       await safeNotify(() => notifyInternal("confirmed_booking", data.id), "internal confirmation");
     }
+
     return { ok: true };
   });
 
@@ -183,15 +224,36 @@ export const setBookingStatus = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
   .inputValidator((input: unknown) =>
     z
-      .object({ id: z.string().uuid(), status: z.enum(["rejected", "cancelled", "pending"]) })
+      .object({
+        id: z.string().uuid(),
+        status: z.enum(["rejected", "cancelled", "pending"]),
+        reason: z.string().trim().max(500).nullish(),
+        cancelledBy: z.string().trim().max(120).nullish(),
+        refundAmount: z.number().int().min(0).nullish(),
+        refundStatus: z.enum(["none", "pending", "partial", "refunded"]).nullish(),
+      })
       .parse(input),
   )
   .handler(async ({ data, context }): Promise<{ ok: boolean; error?: string }> => {
     const { error } = await context.supabase.rpc("admin_set_booking_status", {
+
       _id: data.id,
       _status: data.status,
     });
     if (error) return { ok: false, error: errorCode(error.message) };
+    // Cancelled bookings stay on record with reason, actor and refund state.
+    if (data.status !== "pending") {
+      await context.supabase
+        .from("bookings")
+        .update({
+          cancellation_reason: data.reason ?? null,
+          cancelled_by: data.cancelledBy ?? "admin",
+          refund_amount: data.refundAmount ?? 0,
+          refund_status: data.refundStatus ?? (data.refundAmount ? "pending" : "none"),
+        })
+        .eq("id", data.id);
+    }
+
     {
       const { notifyGuest, notifyInternal, safeNotify } = await import(
         "@/lib/notifications.server"

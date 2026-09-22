@@ -573,5 +573,170 @@
       "send_failed": "The email could not be sent.",
       "generic": "That did not work."
     }
+  },
+  "owner": {
+    "eyebrow": "Owner portal",
+    "title": "Welcome",
+    "sign_out": "Sign out",
+    "all_properties": "All apartments",
+    "none": "No entries",
+    "guests": "guests",
+    "nights": "nights",
+    "save": "Save",
+    "export_csv": "Export CSV",
+    "occupied_now": "Occupied today",
+    "free_now": "Free today",
+    "next_arrival": "Next arrival",
+    "next_departure": "Next departure",
+    "arrivals": "Next arrivals",
+    "departures": "Next departures",
+    "sync_error": "Calendar sync error",
+    "cancelled_on": "Cancelled on",
+    "add_block": "Add blocked period",
+    "block_note": "Reason",
+    "block_created": "Blocked period saved",
+    "profile_saved": "Profile saved",
+    "first_name": "First name",
+    "last_name": "Last name",
+    "phone": "Phone",
+    "tabs": {
+      "overview": "Overview",
+      "bookings": "Bookings",
+      "cancellations": "Cancellations",
+      "calendar": "Calendar",
+      "profile": "Profile"
+    },
+    "periods": {
+      "this_month": "This month",
+      "last_month": "Last month",
+      "next_month": "Next month",
+      "this_year": "This year",
+      "custom": "Custom range"
+    },
+    "metrics": {
+      "properties": "Apartments",
+      "current_guests": "Current guests",
+      "new_inquiries": "New inquiries",
+      "confirmed": "Confirmed bookings",
+      "cancelled": "Cancellations",
+      "nights_booked": "Booked nights",
+      "nights_available": "Available nights",
+      "occupancy": "Occupancy",
+      "revenue": "Booking revenue",
+      "paid": "Paid",
+      "open": "Outstanding",
+      "refunds": "Refunds"
+    },
+    "finance": {
+      "cleaning": "Cleaning",
+      "discount": "Discount",
+      "paid": "Paid",
+      "commission": "Commission",
+      "net": "Net payout",
+      "refund": "Refund"
+    },
+    "filters": {
+      "any_status": "Any booking status",
+      "any_payment": "Any payment status",
+      "any_source": "Any source"
+    },
+    "booking_status": {
+      "pending": "Open inquiry",
+      "confirmed": "Confirmed",
+      "rejected": "Declined",
+      "cancelled": "Cancelled"
+    },
+    "payment_status": {
+      "unpaid": "Unpaid",
+      "pending": "Pending",
+      "paid": "Paid",
+      "refunded": "Refunded"
+    },
+    "sources": {
+      "direct": "Direct",
+      "airbnb": "Airbnb",
+      "manual": "Manual",
+      "other": "Other"
+    },
+    "kinds": {
+      "confirmed": "Confirmed booking",
+      "inquiry": "Reservation inquiry",
+      "airbnb": "Airbnb booking",
+      "manual": "Manual booking",
+      "block": "Blocked period",
+      "cancelled": "Cancellation"
+    },
+    "status": {
+      "active": "Active",
+      "draft": "Draft",
+      "inactive": "Inactive"
+    },
+    "errors": {
+      "no_properties": "No apartment is assigned to you yet.",
+      "account_disabled": "This account is deactivated.",
+      "forbidden": "Not allowed.",
+      "dates_unavailable": "These dates are already taken.",
+      "invalid_range": "Invalid date range.",
+      "generic": "That did not work."
+    }
+  },
+  "owners": {
+    "title": "Owners",
+    "invite": "Invite owner",
+    "send_invite": "Send invitation",
+    "resend_invite": "Resend invitation",
+    "email": "Email",
+    "first_name": "First name",
+    "last_name": "Last name",
+    "phone": "Phone",
+    "active": "Active",
+    "inactive": "Deactivated",
+    "activate": "Activate",
+    "deactivate": "Deactivate",
+    "last_login": "Last sign-in",
+    "invite_expires": "Invitation valid until",
+    "assign_property": "Assign apartment",
+    "assign": "Assign",
+    "remove": "Remove",
+    "audit": "Audit log",
+    "audit_empty": "No entries yet.",
+    "roles": {
+      "owner": "Owner",
+      "booking_manager": "Booking manager",
+      "super_admin": "Super administrator"
+    },
+    "perms": {
+      "can_view_bookings": "View bookings",
+      "can_view_calendar": "View calendar",
+      "can_view_guest_contact_data": "Guest contact data",
+      "can_view_financials": "Financials",
+      "can_view_payments": "Payments",
+      "can_create_calendar_blocks": "Create blocks",
+      "can_manage_prices": "Manage prices",
+      "can_receive_notifications": "Notifications"
+    },
+    "actions": {
+      "login": "Sign-in",
+      "owner_invited": "Invitation sent",
+      "owner_activated": "Account activated",
+      "owner_deactivated": "Account deactivated",
+      "property_assigned": "Apartment assigned",
+      "permissions_changed": "Permissions changed",
+      "assignment_removed": "Assignment removed",
+      "data_export": "Data export",
+      "calendar_block_created": "Block created"
+    },
+    "toast": {
+      "invited": "Invitation sent",
+      "assigned": "Apartment assigned",
+      "removed": "Assignment removed"
+    },
+    "errors": {
+      "forbidden": "Not allowed.",
+      "create_failed": "Account could not be created.",
+      "invite_failed": "Invitation could not be sent.",
+      "self_lock": "You cannot deactivate your own account.",
+      "generic": "That did not work."
+    }
   }
 }

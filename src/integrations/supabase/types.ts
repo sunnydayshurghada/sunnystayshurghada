@@ -115,7 +115,9 @@ export type Database = {
           booking_number: string | null
           booking_status: string
           booking_type: string
+          cancellation_reason: string | null
           cancelled_at: string | null
+          cancelled_by: string | null
           checkin: string
           checkout: string
           cleaning_fee: number
@@ -124,6 +126,7 @@ export type Database = {
           currency: string
           deposit_amount: number
           discount_amount: number
+          financial_snapshot: Json | null
           guest_email: string
           guest_language: string
           guest_name: string
@@ -140,6 +143,8 @@ export type Database = {
           payment_transaction_id: string | null
           price_snapshot: Json | null
           property_id: string
+          refund_amount: number
+          refund_status: string
           refunded_at: string | null
           source: string
           status: string
@@ -151,7 +156,9 @@ export type Database = {
           booking_number?: string | null
           booking_status?: string
           booking_type?: string
+          cancellation_reason?: string | null
           cancelled_at?: string | null
+          cancelled_by?: string | null
           checkin: string
           checkout: string
           cleaning_fee?: number
@@ -160,6 +167,7 @@ export type Database = {
           currency?: string
           deposit_amount?: number
           discount_amount?: number
+          financial_snapshot?: Json | null
           guest_email: string
           guest_language?: string
           guest_name: string
@@ -176,6 +184,8 @@ export type Database = {
           payment_transaction_id?: string | null
           price_snapshot?: Json | null
           property_id?: string
+          refund_amount?: number
+          refund_status?: string
           refunded_at?: string | null
           source?: string
           status?: string
@@ -187,7 +197,9 @@ export type Database = {
           booking_number?: string | null
           booking_status?: string
           booking_type?: string
+          cancellation_reason?: string | null
           cancelled_at?: string | null
+          cancelled_by?: string | null
           checkin?: string
           checkout?: string
           cleaning_fee?: number
@@ -196,6 +208,7 @@ export type Database = {
           currency?: string
           deposit_amount?: number
           discount_amount?: number
+          financial_snapshot?: Json | null
           guest_email?: string
           guest_language?: string
           guest_name?: string
@@ -212,6 +225,8 @@ export type Database = {
           payment_transaction_id?: string | null
           price_snapshot?: Json | null
           property_id?: string
+          refund_amount?: number
+          refund_status?: string
           refunded_at?: string | null
           source?: string
           status?: string
@@ -875,6 +890,44 @@ export type Database = {
         }
         Relationships: []
       }
+      property_financial_settings: {
+        Row: {
+          cleaning_belongs_to_owner: boolean
+          commission_fixed: number
+          commission_percent: number
+          created_at: string
+          payment_fee_percent: number
+          property_id: string
+          updated_at: string
+        }
+        Insert: {
+          cleaning_belongs_to_owner?: boolean
+          commission_fixed?: number
+          commission_percent?: number
+          created_at?: string
+          payment_fee_percent?: number
+          property_id: string
+          updated_at?: string
+        }
+        Update: {
+          cleaning_belongs_to_owner?: boolean
+          commission_fixed?: number
+          commission_percent?: number
+          created_at?: string
+          payment_fee_percent?: number
+          property_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "property_financial_settings_property_id_fkey"
+            columns: ["property_id"]
+            isOneToOne: true
+            referencedRelation: "properties"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       property_images: {
         Row: {
           alt_text: Json
@@ -1070,6 +1123,163 @@ export type Database = {
           },
         ]
       }
+      property_user_assignments: {
+        Row: {
+          active: boolean
+          assignment_role: string
+          can_create_calendar_blocks: boolean
+          can_manage_prices: boolean
+          can_receive_notifications: boolean
+          can_view_bookings: boolean
+          can_view_calendar: boolean
+          can_view_financials: boolean
+          can_view_guest_contact_data: boolean
+          can_view_payments: boolean
+          created_at: string
+          id: string
+          ownership_share_percent: number | null
+          property_id: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          active?: boolean
+          assignment_role?: string
+          can_create_calendar_blocks?: boolean
+          can_manage_prices?: boolean
+          can_receive_notifications?: boolean
+          can_view_bookings?: boolean
+          can_view_calendar?: boolean
+          can_view_financials?: boolean
+          can_view_guest_contact_data?: boolean
+          can_view_payments?: boolean
+          created_at?: string
+          id?: string
+          ownership_share_percent?: number | null
+          property_id: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          active?: boolean
+          assignment_role?: string
+          can_create_calendar_blocks?: boolean
+          can_manage_prices?: boolean
+          can_receive_notifications?: boolean
+          can_view_bookings?: boolean
+          can_view_calendar?: boolean
+          can_view_financials?: boolean
+          can_view_guest_contact_data?: boolean
+          can_view_payments?: boolean
+          created_at?: string
+          id?: string
+          ownership_share_percent?: number | null
+          property_id?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "property_user_assignments_property_id_fkey"
+            columns: ["property_id"]
+            isOneToOne: false
+            referencedRelation: "properties"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      security_audit_log: {
+        Row: {
+          action: string
+          actor_email: string | null
+          actor_id: string | null
+          created_at: string
+          detail: Json
+          id: string
+          property_id: string | null
+          target: string | null
+        }
+        Insert: {
+          action: string
+          actor_email?: string | null
+          actor_id?: string | null
+          created_at?: string
+          detail?: Json
+          id?: string
+          property_id?: string | null
+          target?: string | null
+        }
+        Update: {
+          action?: string
+          actor_email?: string | null
+          actor_id?: string | null
+          created_at?: string
+          detail?: Json
+          id?: string
+          property_id?: string | null
+          target?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "security_audit_log_property_id_fkey"
+            columns: ["property_id"]
+            isOneToOne: false
+            referencedRelation: "properties"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      user_profiles: {
+        Row: {
+          active: boolean
+          created_at: string
+          email: string
+          first_name: string
+          invitation_accepted_at: string | null
+          invitation_expires_at: string | null
+          invited_at: string | null
+          last_login_at: string | null
+          last_name: string
+          phone: string | null
+          preferred_language: string
+          role: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          active?: boolean
+          created_at?: string
+          email: string
+          first_name?: string
+          invitation_accepted_at?: string | null
+          invitation_expires_at?: string | null
+          invited_at?: string | null
+          last_login_at?: string | null
+          last_name?: string
+          phone?: string | null
+          preferred_language?: string
+          role?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          active?: boolean
+          created_at?: string
+          email?: string
+          first_name?: string
+          invitation_accepted_at?: string | null
+          invitation_expires_at?: string | null
+          invited_at?: string | null
+          last_login_at?: string | null
+          last_name?: string
+          phone?: string | null
+          preferred_language?: string
+          role?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           created_at: string
@@ -1150,6 +1360,10 @@ export type Database = {
         Returns: string
       }
       default_property_id: { Args: never; Returns: string }
+      has_property_permission: {
+        Args: { _permission: string; _property_id: string; _user_id: string }
+        Returns: boolean
+      }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]
@@ -1157,6 +1371,7 @@ export type Database = {
         }
         Returns: boolean
       }
+      is_staff: { Args: { _user_id: string }; Returns: boolean }
       public_blocked_ranges: {
         Args: never
         Returns: {
@@ -1174,7 +1389,7 @@ export type Database = {
       release_expired_holds: { Args: never; Returns: number }
     }
     Enums: {
-      app_role: "admin"
+      app_role: "admin" | "super_admin" | "booking_manager" | "owner"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -1302,7 +1517,7 @@ export type CompositeTypes<
 export const Constants = {
   public: {
     Enums: {
-      app_role: ["admin"],
+      app_role: ["admin", "super_admin", "booking_manager", "owner"],
     },
   },
 } as const

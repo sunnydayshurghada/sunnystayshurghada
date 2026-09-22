@@ -573,5 +573,170 @@
       "send_failed": "تعذر إرسال البريد.",
       "generic": "لم تنجح العملية."
     }
+  },
+  "owner": {
+    "eyebrow": "بوابة المُلّاك",
+    "title": "أهلاً بك",
+    "sign_out": "تسجيل الخروج",
+    "all_properties": "كل الشقق",
+    "none": "لا توجد بيانات",
+    "guests": "ضيوف",
+    "nights": "ليالٍ",
+    "save": "حفظ",
+    "export_csv": "تصدير CSV",
+    "occupied_now": "مشغولة اليوم",
+    "free_now": "متاحة اليوم",
+    "next_arrival": "الوصول القادم",
+    "next_departure": "المغادرة القادمة",
+    "arrivals": "عمليات الوصول القادمة",
+    "departures": "عمليات المغادرة القادمة",
+    "sync_error": "خطأ في مزامنة التقويم",
+    "cancelled_on": "أُلغيت في",
+    "add_block": "إضافة فترة حجب",
+    "block_note": "السبب",
+    "block_created": "تم حفظ فترة الحجب",
+    "profile_saved": "تم حفظ الملف الشخصي",
+    "first_name": "الاسم الأول",
+    "last_name": "اسم العائلة",
+    "phone": "الهاتف",
+    "tabs": {
+      "overview": "نظرة عامة",
+      "bookings": "الحجوزات",
+      "cancellations": "الإلغاءات",
+      "calendar": "التقويم",
+      "profile": "الملف الشخصي"
+    },
+    "periods": {
+      "this_month": "هذا الشهر",
+      "last_month": "الشهر الماضي",
+      "next_month": "الشهر القادم",
+      "this_year": "هذه السنة",
+      "custom": "فترة مخصصة"
+    },
+    "metrics": {
+      "properties": "الشقق",
+      "current_guests": "الضيوف الحاليون",
+      "new_inquiries": "طلبات جديدة",
+      "confirmed": "حجوزات مؤكدة",
+      "cancelled": "إلغاءات",
+      "nights_booked": "ليالٍ محجوزة",
+      "nights_available": "ليالٍ متاحة",
+      "occupancy": "نسبة الإشغال",
+      "revenue": "إيراد الحجوزات",
+      "paid": "المدفوع",
+      "open": "المستحق",
+      "refunds": "المبالغ المستردة"
+    },
+    "finance": {
+      "cleaning": "التنظيف",
+      "discount": "الخصم",
+      "paid": "المدفوع",
+      "commission": "العمولة",
+      "net": "الصافي",
+      "refund": "الاسترداد"
+    },
+    "filters": {
+      "any_status": "كل حالات الحجز",
+      "any_payment": "كل حالات الدفع",
+      "any_source": "كل المصادر"
+    },
+    "booking_status": {
+      "pending": "طلب مفتوح",
+      "confirmed": "مؤكد",
+      "rejected": "مرفوض",
+      "cancelled": "ملغى"
+    },
+    "payment_status": {
+      "unpaid": "غير مدفوع",
+      "pending": "قيد الانتظار",
+      "paid": "مدفوع",
+      "refunded": "مسترد"
+    },
+    "sources": {
+      "direct": "مباشر",
+      "airbnb": "Airbnb",
+      "manual": "يدوي",
+      "other": "أخرى"
+    },
+    "kinds": {
+      "confirmed": "حجز مؤكد",
+      "inquiry": "طلب حجز",
+      "airbnb": "حجز Airbnb",
+      "manual": "حجز يدوي",
+      "block": "فترة محجوبة",
+      "cancelled": "إلغاء"
+    },
+    "status": {
+      "active": "نشطة",
+      "draft": "مسودة",
+      "inactive": "غير نشطة"
+    },
+    "errors": {
+      "no_properties": "لا توجد شقة مخصصة لك حالياً.",
+      "account_disabled": "هذا الحساب معطّل.",
+      "forbidden": "غير مسموح.",
+      "dates_unavailable": "هذه الفترة محجوزة بالفعل.",
+      "invalid_range": "فترة غير صالحة.",
+      "generic": "لم ينجح ذلك."
+    }
+  },
+  "owners": {
+    "title": "المُلّاك",
+    "invite": "دعوة مالك",
+    "send_invite": "إرسال الدعوة",
+    "resend_invite": "إعادة إرسال الدعوة",
+    "email": "البريد الإلكتروني",
+    "first_name": "الاسم الأول",
+    "last_name": "اسم العائلة",
+    "phone": "الهاتف",
+    "active": "نشط",
+    "inactive": "معطّل",
+    "activate": "تفعيل",
+    "deactivate": "تعطيل",
+    "last_login": "آخر تسجيل دخول",
+    "invite_expires": "الدعوة صالحة حتى",
+    "assign_property": "تخصيص شقة",
+    "assign": "تخصيص",
+    "remove": "إزالة",
+    "audit": "سجل التدقيق",
+    "audit_empty": "لا توجد إدخالات.",
+    "roles": {
+      "owner": "مالك",
+      "booking_manager": "إدارة الحجوزات",
+      "super_admin": "مدير عام"
+    },
+    "perms": {
+      "can_view_bookings": "عرض الحجوزات",
+      "can_view_calendar": "عرض التقويم",
+      "can_view_guest_contact_data": "بيانات تواصل الضيوف",
+      "can_view_financials": "البيانات المالية",
+      "can_view_payments": "المدفوعات",
+      "can_create_calendar_blocks": "إضافة فترات حجب",
+      "can_manage_prices": "إدارة الأسعار",
+      "can_receive_notifications": "الإشعارات"
+    },
+    "actions": {
+      "login": "تسجيل دخول",
+      "owner_invited": "تم إرسال الدعوة",
+      "owner_activated": "تم تفعيل الحساب",
+      "owner_deactivated": "تم تعطيل الحساب",
+      "property_assigned": "تم تخصيص شقة",
+      "permissions_changed": "تم تغيير الصلاحيات",
+      "assignment_removed": "تمت إزالة التخصيص",
+      "data_export": "تصدير بيانات",
+      "calendar_block_created": "تم إنشاء فترة حجب"
+    },
+    "toast": {
+      "invited": "تم إرسال الدعوة",
+      "assigned": "تم تخصيص الشقة",
+      "removed": "تمت إزالة التخصيص"
+    },
+    "errors": {
+      "forbidden": "غير مسموح.",
+      "create_failed": "تعذّر إنشاء الحساب.",
+      "invite_failed": "تعذّر إرسال الدعوة.",
+      "self_lock": "لا يمكنك تعطيل حسابك.",
+      "generic": "لم ينجح ذلك."
+    }
   }
 }
