@@ -67,5 +67,38 @@ export const createBookingRequest = createServerFn({ method: "POST" })
       );
       return { ok: false, error: m ? m[1] : "generic" };
     }
-    return { ok: true, id: newId as string };
+    const bookingId = newId as string;
+
+    // Notify the hosts and acknowledge to the guest. Email problems must never
+    // fail the booking request itself.
+    try {
+      const { sendTemplateEmail } = await import("@/lib/email-templates/send-email");
+      await sendTemplateEmail("booking-request-host", HOST_EMAIL, {
+        templateData: {
+          guestName: data.guest_name,
+          guestEmail: data.guest_email,
+          guestPhone: data.guest_phone,
+          checkin: data.checkin,
+          checkout: data.checkout,
+          guests: data.guests,
+          message: data.message,
+        },
+        idempotencyKey: `booking-request-host-${bookingId}`,
+        replyTo: data.guest_email,
+      });
+      await sendTemplateEmail("booking-request-guest", data.guest_email, {
+        templateData: {
+          guestName: data.guest_name,
+          checkin: data.checkin,
+          checkout: data.checkout,
+          guests: data.guests,
+        },
+        idempotencyKey: `booking-request-guest-${bookingId}`,
+        replyTo: HOST_EMAIL,
+      });
+    } catch (e) {
+      console.error("[booking] email send failed", e);
+    }
+
+    return { ok: true, id: bookingId };
   });

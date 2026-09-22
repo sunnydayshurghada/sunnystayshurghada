@@ -1,4 +1,6 @@
 import type { ComponentType } from 'react'
+import { template as bookingRequestHostTemplate } from './booking-request-host'
+import { template as bookingRequestGuestTemplate } from './booking-request-guest'
 
 export interface TemplateEntry {
   component: ComponentType<any>
