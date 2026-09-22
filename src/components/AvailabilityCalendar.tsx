@@ -119,14 +119,14 @@ export function AvailabilityCalendar({
   const Next = rtl ? ChevronLeft : ChevronRight;
 
   return (
-    <div className="rounded-3xl border border-forest/10 bg-card p-2 sm:p-6 shadow-[0_10px_30px_-18px_rgb(23_59_99_/_0.35)]">
+    <div className="mx-auto w-full max-w-md rounded-3xl border border-forest/10 bg-card p-3 sm:p-5 shadow-[0_10px_30px_-18px_rgb(23_59_99_/_0.35)]">
       <div className="mb-4 flex items-center justify-between gap-3">
         <button
           type="button"
           aria-label={t("calendar.prev_month")}
           disabled={!canGoBack}
           onClick={() => setMonth(addMonths(month, -1))}
-          className="flex h-10 w-10 items-center justify-center rounded-full border border-forest/15 text-forest transition-colors hover:border-gold hover:bg-gold/10 hover:text-gold disabled:opacity-30 disabled:hover:border-forest/15 disabled:hover:bg-transparent disabled:hover:text-forest"
+          className="flex h-9 w-9 items-center justify-center rounded-full border border-forest/15 text-forest transition-colors hover:border-gold hover:bg-gold/10 hover:text-gold disabled:opacity-30 disabled:hover:border-forest/15 disabled:hover:bg-transparent disabled:hover:text-forest"
         >
           <Prev className="h-5 w-5" />
         </button>
@@ -137,7 +137,7 @@ export function AvailabilityCalendar({
           type="button"
           aria-label={t("calendar.next_month")}
           onClick={() => setMonth(addMonths(month, 1))}
-          className="flex h-10 w-10 items-center justify-center rounded-full border border-forest/15 text-forest transition-colors hover:border-gold hover:bg-gold/10 hover:text-gold"
+          className="flex h-9 w-9 items-center justify-center rounded-full border border-forest/15 text-forest transition-colors hover:border-gold hover:bg-gold/10 hover:text-gold"
         >
           <Next className="h-5 w-5" />
         </button>
@@ -158,17 +158,17 @@ export function AvailabilityCalendar({
         showOutsideDays={false}
         className="w-full text-forest"
         classNames={{
-          months: "flex flex-col md:flex-row gap-6 md:gap-8 justify-center",
+          months: "flex flex-col md:flex-row gap-4 md:gap-6 justify-center",
           month: "flex-1",
           month_caption:
-            "mb-2 flex justify-center text-xs uppercase tracking-[0.25em] text-forest/50",
+            "mb-2 flex justify-center text-[11px] uppercase tracking-[0.25em] text-forest/50",
           month_grid: "w-full table-fixed border-collapse",
           weekdays: "",
           weekday:
-            "pb-2 text-[11px] font-medium uppercase tracking-widest text-forest/40",
+            "pb-1.5 text-[10px] font-medium uppercase tracking-widest text-forest/40",
           day: "p-0.5 text-center",
           day_button:
-            "mx-auto flex h-9 w-9 sm:h-11 sm:w-11 items-center justify-center rounded-full text-sm transition-colors hover:bg-gold/15",
+            "mx-auto flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-full text-xs sm:text-sm transition-colors hover:bg-gold/15",
           today: "[&_button]:ring-1 [&_button]:ring-gold/60 [&_button]:font-semibold",
           selected: "",
           range_start:
