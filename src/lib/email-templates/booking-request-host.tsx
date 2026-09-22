@@ -34,7 +34,7 @@ const Email = ({
   <Html lang="de" dir="ltr">
     <Head />
     <Preview>
-      Neue Buchungsanfrage von {guestName || 'einem Gast'} ({checkin} – {checkout})
+      {`Neue Buchungsanfrage von ${guestName || 'einem Gast'} (${checkin ?? ''} – ${checkout ?? ''})`}
     </Preview>
     <Body style={main}>
       <Container style={container}>
