@@ -13,6 +13,7 @@ const bookingSchema = z.object({
   checkout: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
   guests: z.number().int().min(1).max(6),
   message: z.string().trim().max(1000).default(""),
+  language: z.string().trim().max(10).default("de"),
 });
 
 export type BookingInput = z.infer<typeof bookingSchema>;
@@ -116,35 +117,31 @@ export const createBookingRequest = createServerFn({ method: "POST" })
     }
 
 
-    // Notify the hosts and acknowledge to the guest. Email problems must never
-    // fail the booking request itself.
+    // Guest language drives the language of every guest email for this booking.
     try {
-      const { sendTemplateEmail } = await import("@/lib/email-templates/send-email");
-      await sendTemplateEmail("booking-request-host", HOST_EMAIL, {
-        templateData: {
-          guestName: data.guest_name,
-          guestEmail: data.guest_email,
-          guestPhone: data.guest_phone,
-          checkin: data.checkin,
-          checkout: data.checkout,
-          guests: data.guests,
-          message: data.message,
-        },
-        idempotencyKey: `booking-request-host-${bookingId}`,
-        replyTo: data.guest_email,
-      });
-      await sendTemplateEmail("booking-request-guest", data.guest_email, {
-        templateData: {
-          guestName: data.guest_name,
-          checkin: data.checkin,
-          checkout: data.checkout,
-          guests: data.guests,
-        },
-        idempotencyKey: `booking-request-guest-${bookingId}`,
-        replyTo: HOST_EMAIL,
-      });
+      const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+      const { normalizeLanguage } = await import("@/lib/notifications.server");
+      await supabaseAdmin
+        .from("bookings")
+        .update({ guest_language: normalizeLanguage(data.language) })
+        .eq("id", bookingId);
     } catch (e) {
-      console.error("[booking] email send failed", e);
+      console.error("[booking] language store failed", e);
+    }
+
+    // Acknowledge to the guest, alert the central desk and the assigned owners.
+    // Email problems must never fail the booking request itself.
+    try {
+      const { notifyGuest, notifyInternal, safeNotify, loadBookingContext } = await import(
+        "@/lib/notifications.server"
+      );
+      const ctx = await loadBookingContext(bookingId);
+      if (ctx) {
+        await safeNotify(() => notifyGuest(bookingId, "inquiry_received", ctx), "guest inquiry ack");
+        await safeNotify(() => notifyInternal("new_inquiry", bookingId, ctx), "internal inquiry");
+      }
+    } catch (e) {
+      console.error("[booking] notification failed", e);
     }
 
     return { ok: true, id: bookingId };

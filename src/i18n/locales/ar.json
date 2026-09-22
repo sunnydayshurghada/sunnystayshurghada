@@ -493,5 +493,85 @@
       "last_minute": "خصم اللحظة الأخيرة",
       "length_of_stay": "خصم الإقامة الطويلة"
     }
+  },
+  "notifications": {
+    "title": "البريد والإشعارات",
+    "intro": "المستلمون والقوالب تخص الشقة المختارة فقط.",
+    "pick_property": "اختر شقة من الأعلى أولاً.",
+    "central_label": "إدارة الحجوزات المركزية – تستلم كل الطلبات",
+    "central_note": "هذا العنوان يستلم كل طلب وكل حجز لجميع الشقق.",
+    "recipients": "الملاك والمستلمون",
+    "flags": {
+      "receive_new_inquiries": "طلبات جديدة",
+      "receive_confirmed_bookings": "حجوزات مؤكدة",
+      "receive_payments": "المدفوعات",
+      "receive_cancellations": "الإلغاءات",
+      "receive_booking_changes": "التعديلات",
+      "receive_calendar_errors": "أخطاء التقويم"
+    },
+    "template_keys": {
+      "inquiry_received": "تأكيد استلام الطلب",
+      "reservation_confirmed": "تأكيد الحجز المبدئي",
+      "booking_confirmed": "تأكيد الحجز النهائي",
+      "payment_confirmed": "تأكيد الدفع",
+      "inquiry_declined": "رفض الطلب",
+      "cancellation_confirmed": "تأكيد الإلغاء",
+      "booking_changed": "تعديل الحجز",
+      "payment_reminder": "تذكير بالدفع",
+      "pre_arrival_info": "معلومات قبل الوصول",
+      "departure_info": "معلومات المغادرة"
+    },
+    "languages": {
+      "de": "الألمانية",
+      "en": "الإنجليزية",
+      "ar": "العربية"
+    },
+    "sources": {
+      "property": "قالب خاص بالشقة",
+      "default": "قالب Sunny Stays الافتراضي"
+    },
+    "status": {
+      "sent": "تم الإرسال",
+      "failed": "فشل",
+      "suppressed": "محظور",
+      "retried": "إعادة المحاولة"
+    },
+    "name": "الاسم",
+    "email": "البريد الإلكتروني",
+    "role": "الدور",
+    "add": "إضافة مستلم",
+    "update": "حفظ المستلم",
+    "cancel": "إلغاء",
+    "edit": "تعديل",
+    "delete": "حذف",
+    "activate": "تفعيل",
+    "deactivate": "تعطيل",
+    "no_events": "لا توجد إشعارات",
+    "templates": "قوالب الضيوف",
+    "subject": "الموضوع",
+    "variables": "المتغيرات المتاحة",
+    "source": "المصدر",
+    "save_template": "حفظ القالب",
+    "reset_template": "استعادة القالب الافتراضي",
+    "preview": "معاينة ببيانات تجريبية",
+    "test_to": "إرسال بريد تجريبي إلى …",
+    "send_test": "إرسال بريد تجريبي",
+    "log": "سجل الإرسال",
+    "log_empty": "لم يتم إرسال أي بريد بعد.",
+    "retry_failed": "إعادة إرسال الرسائل الفاشلة",
+    "toast": {
+      "saved": "تم حفظ المستلم",
+      "deleted": "تم حذف المستلم",
+      "template_saved": "تم حفظ القالب",
+      "template_reset": "تمت استعادة القالب الافتراضي",
+      "test_sent": "تم إرسال البريد التجريبي",
+      "retried": "بدأت إعادة الإرسال"
+    },
+    "errors": {
+      "forbidden": "غير مسموح.",
+      "duplicate": "هذا العنوان مسجل بالفعل لهذه الشقة.",
+      "send_failed": "تعذر إرسال البريد.",
+      "generic": "لم تنجح العملية."
+    }
   }
 }

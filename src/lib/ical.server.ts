@@ -165,6 +165,19 @@ export async function syncAirbnb(
       trigger_source: triggerSource,
       message: message ?? result.error ?? null,
     });
+    // Sync failures alert the central desk (and owners who opted in).
+    if (!result.ok) {
+      try {
+        const { notifyOperational } = await import("@/lib/notifications.server");
+        await notifyOperational(
+          "sync_failed",
+          pid,
+          message ?? result.error ?? "unbekannter Fehler",
+        );
+      } catch (e) {
+        console.error("[ical] sync alert failed", e);
+      }
+    }
     return result;
   };
 

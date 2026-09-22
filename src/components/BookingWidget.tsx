@@ -136,6 +136,7 @@ export function BookingWidget({ propertyId }: { propertyId?: string | null } = {
           checkout: toISODate(checkout),
           guests: parsed.data.guests,
           message: parsed.data.message || "",
+          language: i18n.language,
         },
       });
     } catch {

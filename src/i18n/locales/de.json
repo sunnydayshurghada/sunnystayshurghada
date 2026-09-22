@@ -533,5 +533,85 @@
       "last_minute": "Last-Minute-Rabatt",
       "length_of_stay": "Langzeitrabatt"
     }
+  },
+  "notifications": {
+    "title": "E-Mail & Benachrichtigungen",
+    "intro": "Empfänger und Vorlagen gelten nur für die ausgewählte Wohnung.",
+    "pick_property": "Bitte zuerst oben eine Wohnung auswählen.",
+    "central_label": "Zentrale Buchungsverwaltung – erhält alle Anfragen",
+    "central_note": "Diese Adresse erhält jede Anfrage und jede Buchung aller Wohnungen.",
+    "recipients": "Eigentümer & Empfänger",
+    "flags": {
+      "receive_new_inquiries": "Neue Anfragen",
+      "receive_confirmed_bookings": "Bestätigte Buchungen",
+      "receive_payments": "Zahlungen",
+      "receive_cancellations": "Stornierungen",
+      "receive_booking_changes": "Änderungen",
+      "receive_calendar_errors": "Kalenderfehler"
+    },
+    "template_keys": {
+      "inquiry_received": "Eingangsbestätigung Anfrage",
+      "reservation_confirmed": "Reservierungsbestätigung",
+      "booking_confirmed": "Verbindliche Buchungsbestätigung",
+      "payment_confirmed": "Zahlungsbestätigung",
+      "inquiry_declined": "Ablehnung einer Anfrage",
+      "cancellation_confirmed": "Stornierungsbestätigung",
+      "booking_changed": "Änderung einer Buchung",
+      "payment_reminder": "Zahlungserinnerung",
+      "pre_arrival_info": "Informationen vor der Anreise",
+      "departure_info": "Informationen zur Abreise"
+    },
+    "languages": {
+      "de": "Deutsch",
+      "en": "Englisch",
+      "ar": "Arabisch"
+    },
+    "sources": {
+      "property": "Eigene Vorlage der Wohnung",
+      "default": "Sunny-Stays-Standardvorlage"
+    },
+    "status": {
+      "sent": "gesendet",
+      "failed": "fehlgeschlagen",
+      "suppressed": "blockiert",
+      "retried": "erneut versucht"
+    },
+    "name": "Name",
+    "email": "E-Mail-Adresse",
+    "role": "Rolle",
+    "add": "Empfänger hinzufügen",
+    "update": "Empfänger speichern",
+    "cancel": "Abbrechen",
+    "edit": "Bearbeiten",
+    "delete": "Löschen",
+    "activate": "Aktivieren",
+    "deactivate": "Deaktivieren",
+    "no_events": "Keine Benachrichtigungen",
+    "templates": "Gast-Vorlagen",
+    "subject": "Betreff",
+    "variables": "Verfügbare Platzhalter",
+    "source": "Quelle",
+    "save_template": "Vorlage speichern",
+    "reset_template": "Standardvorlage wiederherstellen",
+    "preview": "Vorschau mit Beispieldaten",
+    "test_to": "Test-E-Mail an …",
+    "send_test": "Test-E-Mail senden",
+    "log": "Versandprotokoll",
+    "log_empty": "Noch keine E-Mails versendet.",
+    "retry_failed": "Fehlgeschlagene erneut senden",
+    "toast": {
+      "saved": "Empfänger gespeichert",
+      "deleted": "Empfänger gelöscht",
+      "template_saved": "Vorlage gespeichert",
+      "template_reset": "Standardvorlage wiederhergestellt",
+      "test_sent": "Test-E-Mail versendet",
+      "retried": "Erneuter Versand gestartet"
+    },
+    "errors": {
+      "forbidden": "Keine Berechtigung.",
+      "duplicate": "Diese Adresse ist für diese Wohnung bereits hinterlegt.",
+      "send_failed": "Die E-Mail konnte nicht versendet werden.",
+      "generic": "Das hat nicht geklappt."
+    }
   }
 }
