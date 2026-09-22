@@ -481,6 +481,36 @@ function AdminPage() {
   );
 }
 
+/** Apartment picker inside the create forms — entries never land on the wrong calendar. */
+function PropertySelect({
+  properties,
+  value,
+}: {
+  properties: { id: string; internal_name: string }[];
+  value: string | null;
+}) {
+  const { t } = useTranslation();
+  return (
+    <label className="block">
+      <span className="block text-[10px] uppercase tracking-widest text-forest/50 mb-1">
+        {t("admin.property")}
+      </span>
+      <select
+        name="property_id"
+        defaultValue={value ?? ""}
+        key={value ?? ""}
+        className="w-full bg-card p-3 border border-forest/10 rounded-xl text-sm focus:outline-none focus:border-gold"
+      >
+        {properties.map((p) => (
+          <option key={p.id} value={p.id}>
+            {p.internal_name}
+          </option>
+        ))}
+      </select>
+    </label>
+  );
+}
+
 function Legend({ className, label }: { className: string; label: string }) {
   return (
     <span className="flex items-center gap-1.5">

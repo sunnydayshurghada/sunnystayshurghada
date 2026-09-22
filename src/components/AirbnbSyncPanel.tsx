@@ -11,7 +11,13 @@ import {
   syncAirbnbNow,
 } from "@/lib/ical.functions";
 
-export function AirbnbSyncPanel({ intlLocale }: { intlLocale: string }) {
+export function AirbnbSyncPanel({
+  intlLocale,
+  propertyId,
+}: {
+  intlLocale: string;
+  propertyId?: string | null;
+}) {
   const { t } = useTranslation();
   const queryClient = useQueryClient();
   const loadStatus = useServerFn(getIcalStatus);
