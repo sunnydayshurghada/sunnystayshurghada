@@ -240,5 +240,101 @@
     "title": "Tauchen im Roten Meer",
     "body": "Sie möchten während Ihres Aufenthalts die faszinierende Unterwasserwelt des Roten Meeres entdecken? Wir empfehlen Ihnen unsere befreundete Tauchbasis Bluemarlin Red Sea in Hurghada – geeignet für Anfänger und erfahrene Taucher.",
     "cta": "Bluemarlin Red Sea entdecken"
+  },
+  "admin": {
+    "loading": "Kalender wird geladen…",
+    "no_access_title": "Kein Zugriff",
+    "no_access_body": "Dieses Konto ist nicht als Gastgeber freigeschaltet.",
+    "sign_out": "Abmelden",
+    "overview": "Übersicht",
+    "calendar_title": "Buchungskalender",
+    "legend": {
+      "pending": "Anfrage (offen)",
+      "confirmed": "Bestätigt",
+      "manual": "Eigene Buchung",
+      "blocked": "Blockiert"
+    },
+    "requests_open": "Offene Anfragen",
+    "no_open_requests": "Keine offenen Anfragen.",
+    "received_on": "Eingegangen am {{date}}",
+    "checkin": "Anreise",
+    "checkout": "Abreise",
+    "guests": "Gäste",
+    "phone": "Telefon",
+    "email": "E-Mail",
+    "message": "Nachricht",
+    "confirm": "Bestätigen",
+    "reject": "Ablehnen",
+    "own_booking_title": "Eigene Buchung eintragen",
+    "guest_name_opt": "Name des Gastes (optional)",
+    "guests_opt": "Anzahl Gäste (optional)",
+    "phone_opt": "Telefon (optional)",
+    "source": "Buchungsquelle",
+    "note": "Notiz",
+    "submit_booking": "Buchung eintragen",
+    "block_title": "Zeitraum blockieren",
+    "from": "Von",
+    "to": "Bis",
+    "block_reason": "Grund / Notiz (nur intern)",
+    "block_hint": "Gäste sehen diese Tage nur als „Nicht verfügbar“ — der Grund bleibt intern.",
+    "submit_block": "Zeitraum blockieren",
+    "entries_title": "Eigene Einträge",
+    "entries_empty": "Noch keine eigenen Buchungen oder Sperrzeiten.",
+    "remove": "Entfernen",
+    "booking_label": "Buchung",
+    "blocked_label": "Blockiert",
+    "guests_count": "{{count}} Gäste",
+    "handled_title": "Bearbeitete Anfragen",
+    "handled_empty": "Noch keine.",
+    "status": {
+      "pending": "Offen",
+      "confirmed": "Bestätigt",
+      "rejected": "Abgelehnt",
+      "cancelled": "Storniert"
+    },
+    "sources": {
+      "direct": "Direkt",
+      "airbnb": "Airbnb",
+      "booking_com": "Booking.com",
+      "other": "Andere"
+    },
+    "toast": {
+      "booking_created": "Buchung eingetragen.",
+      "blocked": "Zeitraum blockiert.",
+      "confirmed": "Buchung bestätigt.",
+      "rejected": "Anfrage abgelehnt.",
+      "removed": "Eintrag entfernt."
+    },
+    "errors": {
+      "dates_unavailable": "Dieser Zeitraum ist inzwischen belegt — Bestätigung nicht möglich.",
+      "not_pending": "Diese Anfrage wurde bereits bearbeitet.",
+      "not_found": "Eintrag nicht gefunden.",
+      "forbidden": "Keine Berechtigung.",
+      "invalid_range": "Das Abreisedatum muss nach dem Anreisedatum liegen.",
+      "generic": "Etwas ist schiefgelaufen. Bitte erneut versuchen."
+    }
+  },
+  "auth": {
+    "internal": "Intern",
+    "signin_title": "Gastgeber-Login",
+    "forgot_title": "Passwort zurücksetzen",
+    "update_title": "Neues Passwort",
+    "email": "E-Mail",
+    "password": "Passwort",
+    "new_password": "Neues Passwort",
+    "wait": "Bitte warten…",
+    "signin": "Anmelden",
+    "send_link": "Link senden",
+    "save_password": "Passwort speichern",
+    "forgot_link": "Passwort vergessen?",
+    "back_to_login": "Zurück zum Login",
+    "toast": {
+      "need_email": "Bitte E-Mail-Adresse eingeben.",
+      "reset_sent": "Falls ein Zugang existiert, haben wir dir einen Link zum Zurücksetzen geschickt.",
+      "password_min": "Bitte ein Passwort mit mindestens 8 Zeichen eingeben.",
+      "password_saved": "Passwort gespeichert.",
+      "need_credentials": "Bitte E-Mail und ein Passwort mit mindestens 8 Zeichen eingeben.",
+      "signin_failed": "Anmeldung nicht möglich."
+    }
   }
 }

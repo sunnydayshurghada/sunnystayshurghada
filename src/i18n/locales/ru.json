@@ -200,5 +200,101 @@
     "title": "Дайвинг на Красном море",
     "body": "Хотите во время вашего отдыха открыть для себя удивительный подводный мир Красного моря? Мы рекомендуем дайвинг-центр наших друзей — Bluemarlin Red Sea в Хургаде. Подходит как новичкам, так и опытным дайверам.",
     "cta": "Открыть Bluemarlin Red Sea"
+  },
+  "admin": {
+    "loading": "Loading calendar…",
+    "no_access_title": "No access",
+    "no_access_body": "This account is not enabled as a host.",
+    "sign_out": "Sign out",
+    "overview": "Overview",
+    "calendar_title": "Booking calendar",
+    "legend": {
+      "pending": "Request (pending)",
+      "confirmed": "Confirmed",
+      "manual": "Own booking",
+      "blocked": "Blocked"
+    },
+    "requests_open": "Open requests",
+    "no_open_requests": "No open requests.",
+    "received_on": "Received on {{date}}",
+    "checkin": "Check-in",
+    "checkout": "Check-out",
+    "guests": "Guests",
+    "phone": "Phone",
+    "email": "Email",
+    "message": "Message",
+    "confirm": "Confirm",
+    "reject": "Reject",
+    "own_booking_title": "Add your own booking",
+    "guest_name_opt": "Guest name (optional)",
+    "guests_opt": "Number of guests (optional)",
+    "phone_opt": "Phone (optional)",
+    "source": "Booking source",
+    "note": "Note",
+    "submit_booking": "Add booking",
+    "block_title": "Block a period",
+    "from": "From",
+    "to": "To",
+    "block_reason": "Reason / note (internal only)",
+    "block_hint": "Guests only see these days as “Not available” — the reason stays internal.",
+    "submit_block": "Block period",
+    "entries_title": "Your entries",
+    "entries_empty": "No own bookings or blocked periods yet.",
+    "remove": "Remove",
+    "booking_label": "Booking",
+    "blocked_label": "Blocked",
+    "guests_count": "{{count}} guests",
+    "handled_title": "Handled requests",
+    "handled_empty": "None yet.",
+    "status": {
+      "pending": "Pending",
+      "confirmed": "Confirmed",
+      "rejected": "Rejected",
+      "cancelled": "Cancelled"
+    },
+    "sources": {
+      "direct": "Direct",
+      "airbnb": "Airbnb",
+      "booking_com": "Booking.com",
+      "other": "Other"
+    },
+    "toast": {
+      "booking_created": "Booking added.",
+      "blocked": "Period blocked.",
+      "confirmed": "Booking confirmed.",
+      "rejected": "Request rejected.",
+      "removed": "Entry removed."
+    },
+    "errors": {
+      "dates_unavailable": "These dates are no longer available — cannot confirm.",
+      "not_pending": "This request has already been handled.",
+      "not_found": "Entry not found.",
+      "forbidden": "Not allowed.",
+      "invalid_range": "The check-out date must be after the check-in date.",
+      "generic": "Something went wrong. Please try again."
+    }
+  },
+  "auth": {
+    "internal": "Internal",
+    "signin_title": "Host login",
+    "forgot_title": "Reset password",
+    "update_title": "New password",
+    "email": "Email",
+    "password": "Password",
+    "new_password": "New password",
+    "wait": "Please wait…",
+    "signin": "Sign in",
+    "send_link": "Send link",
+    "save_password": "Save password",
+    "forgot_link": "Forgot password?",
+    "back_to_login": "Back to login",
+    "toast": {
+      "need_email": "Please enter your email address.",
+      "reset_sent": "If an account exists, we sent you a reset link.",
+      "password_min": "Please enter a password with at least 8 characters.",
+      "password_saved": "Password saved.",
+      "need_credentials": "Please enter your email and a password with at least 8 characters.",
+      "signin_failed": "Sign-in failed."
+    }
   }
 }

@@ -200,5 +200,101 @@
     "title": "اكتشف جمال البحر الأحمر",
     "body": "لو حابب تكتشف عالم البحر الأحمر الجميل أثناء إقامتك، بنرشح لك أصحابنا في مركز Bluemarlin Red Sea للغوص في الغردقة. مناسب للمبتدئين وللغطاسين أصحاب الخبرة.",
     "cta": "اكتشف Bluemarlin Red Sea"
+  },
+  "admin": {
+    "loading": "جارٍ تحميل التقويم…",
+    "no_access_title": "لا يوجد وصول",
+    "no_access_body": "هذا الحساب غير مُفعّل كمضيف.",
+    "sign_out": "تسجيل الخروج",
+    "overview": "نظرة عامة",
+    "calendar_title": "تقويم الحجوزات",
+    "legend": {
+      "pending": "طلب (قيد الانتظار)",
+      "confirmed": "مؤكد",
+      "manual": "حجز خاص",
+      "blocked": "محجوب"
+    },
+    "requests_open": "الطلبات المفتوحة",
+    "no_open_requests": "لا توجد طلبات مفتوحة.",
+    "received_on": "وصل في {{date}}",
+    "checkin": "الوصول",
+    "checkout": "المغادرة",
+    "guests": "الضيوف",
+    "phone": "الهاتف",
+    "email": "البريد الإلكتروني",
+    "message": "الرسالة",
+    "confirm": "تأكيد",
+    "reject": "رفض",
+    "own_booking_title": "إضافة حجز خاص",
+    "guest_name_opt": "اسم الضيف (اختياري)",
+    "guests_opt": "عدد الضيوف (اختياري)",
+    "phone_opt": "الهاتف (اختياري)",
+    "source": "مصدر الحجز",
+    "note": "ملاحظة",
+    "submit_booking": "إضافة الحجز",
+    "block_title": "حجب فترة",
+    "from": "من",
+    "to": "إلى",
+    "block_reason": "السبب / ملاحظة (داخلي فقط)",
+    "block_hint": "يرى الضيوف هذه الأيام كـ«غير متاحة» فقط — يبقى السبب داخليًا.",
+    "submit_block": "حجب الفترة",
+    "entries_title": "إدخالاتك",
+    "entries_empty": "لا توجد حجوزات خاصة أو فترات محجوبة بعد.",
+    "remove": "حذف",
+    "booking_label": "حجز",
+    "blocked_label": "محجوب",
+    "guests_count": "{{count}} ضيوف",
+    "handled_title": "الطلبات المُعالَجة",
+    "handled_empty": "لا شيء حتى الآن.",
+    "status": {
+      "pending": "قيد الانتظار",
+      "confirmed": "مؤكد",
+      "rejected": "مرفوض",
+      "cancelled": "ملغى"
+    },
+    "sources": {
+      "direct": "مباشر",
+      "airbnb": "Airbnb",
+      "booking_com": "Booking.com",
+      "other": "أخرى"
+    },
+    "toast": {
+      "booking_created": "تم إضافة الحجز.",
+      "blocked": "تم حجب الفترة.",
+      "confirmed": "تم تأكيد الحجز.",
+      "rejected": "تم رفض الطلب.",
+      "removed": "تم حذف الإدخال."
+    },
+    "errors": {
+      "dates_unavailable": "هذه الفترة لم تعد متاحة — لا يمكن التأكيد.",
+      "not_pending": "تمت معالجة هذا الطلب بالفعل.",
+      "not_found": "الإدخال غير موجود.",
+      "forbidden": "غير مسموح.",
+      "invalid_range": "يجب أن يكون تاريخ المغادرة بعد تاريخ الوصول.",
+      "generic": "حدث خطأ ما. يرجى المحاولة مرة أخرى."
+    }
+  },
+  "auth": {
+    "internal": "داخلي",
+    "signin_title": "دخول المضيف",
+    "forgot_title": "إعادة تعيين كلمة المرور",
+    "update_title": "كلمة مرور جديدة",
+    "email": "البريد الإلكتروني",
+    "password": "كلمة المرور",
+    "new_password": "كلمة مرور جديدة",
+    "wait": "يرجى الانتظار…",
+    "signin": "تسجيل الدخول",
+    "send_link": "إرسال الرابط",
+    "save_password": "حفظ كلمة المرور",
+    "forgot_link": "نسيت كلمة المرور؟",
+    "back_to_login": "العودة لتسجيل الدخول",
+    "toast": {
+      "need_email": "يرجى إدخال البريد الإلكتروني.",
+      "reset_sent": "إذا كان الحساب موجودًا، فقد أرسلنا لك رابط إعادة التعيين.",
+      "password_min": "يرجى إدخال كلمة مرور من 8 أحرف على الأقل.",
+      "password_saved": "تم حفظ كلمة المرور.",
+      "need_credentials": "يرجى إدخال البريد الإلكتروني وكلمة مرور من 8 أحرف على الأقل.",
+      "signin_failed": "تعذّر تسجيل الدخول."
+    }
   }
 }
