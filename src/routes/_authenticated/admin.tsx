@@ -407,6 +407,9 @@ function AdminPage() {
                   className="bg-card rounded-2xl border border-forest/10 p-4 flex flex-wrap items-center justify-between gap-3"
                 >
                   <div className="text-sm">
+                    <span className="block text-[10px] uppercase tracking-[0.3em] text-gold mb-1">
+                      {propertyName(e.property_id)}
+                    </span>
                     <span className="font-medium">
                       {fmt(e.start_date)} – {fmt(e.end_date)}
                     </span>
@@ -455,6 +458,9 @@ function AdminPage() {
             <div className="grid gap-3 md:grid-cols-2">
               {otherRequests.map((b) => (
                 <div key={b.id} className="bg-card rounded-2xl border border-forest/10 p-4 text-sm">
+                  <span className="block text-[10px] uppercase tracking-[0.3em] text-gold mb-1">
+                    {propertyName(b.property_id)}
+                  </span>
                   <div className="flex items-center justify-between gap-3">
                     <span className="font-medium">
                       {fmt(b.checkin)} – {fmt(b.checkout)}
