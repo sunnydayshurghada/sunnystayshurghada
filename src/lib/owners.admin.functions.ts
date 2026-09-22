@@ -249,7 +249,14 @@ const assignmentInput = z.object({
   can_create_calendar_blocks: z.boolean(),
   can_manage_prices: z.boolean(),
   can_receive_notifications: z.boolean(),
+  can_view_service_agreement: z.boolean().default(true),
+  can_view_service_costs: z.boolean().default(false),
+  can_view_owner_statements: z.boolean().default(false),
+  can_view_receipts: z.boolean().default(false),
+  can_download_statements: z.boolean().default(false),
+  can_submit_financial_question: z.boolean().default(true),
   active: z.boolean().default(true),
+
 });
 
 export const saveAssignment = createServerFn({ method: "POST" })
