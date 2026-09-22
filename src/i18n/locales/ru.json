@@ -82,8 +82,8 @@
   "booking": {
     "per_night": "/ ночь",
     "rating": "Новое объявление",
-    "checkin": "Заезд (с 14:00)",
-    "checkout": "Выезд (до 11:00)",
+    "checkin": "Заезд",
+    "checkout": "Выезд",
     "guests": "Гости",
     "guests_options": {
       "two": "2 гостя",
@@ -191,6 +191,8 @@
     "hint_checkout": "Теперь выберите дату отъезда.",
     "checkin_time": "Заезд с 14:00",
     "checkout_time": "Выезд до 11:00",
-    "not_selected": "Ещё не выбрано"
+    "not_selected": "Ещё не выбрано",
+    "nights_other": "{{count}} ночей",
+    "nights_one": "{{count}} ночь"
   }
 }

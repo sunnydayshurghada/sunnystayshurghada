@@ -82,8 +82,8 @@
   "booking": {
     "per_night": "/ nacht",
     "rating": "Nieuwe woning",
-    "checkin": "Aankomst (vanaf 14:00)",
-    "checkout": "Vertrek (vóór 11:00)",
+    "checkin": "Aankomst",
+    "checkout": "Vertrek",
     "guests": "Gasten",
     "guests_options": {
       "two": "2 gasten",
@@ -191,6 +191,8 @@
     "hint_checkout": "Kies nu je vertrekdatum.",
     "checkin_time": "Inchecken vanaf 14:00 uur",
     "checkout_time": "Uitchecken tot 11:00 uur",
-    "not_selected": "Nog niet gekozen"
+    "not_selected": "Nog niet gekozen",
+    "nights_other": "{{count}} nachten",
+    "nights_one": "{{count}} nacht"
   }
 }

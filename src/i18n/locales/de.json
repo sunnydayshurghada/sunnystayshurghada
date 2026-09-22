@@ -113,8 +113,8 @@
     "title": "Schreiben Sie uns",
     "per_night": "/ Nacht",
     "rating": "Neues Inserat",
-    "checkin": "Anreise (ab 14:00)",
-    "checkout": "Abreise (bis 11:00)",
+    "checkin": "Anreise",
+    "checkout": "Abreise",
     "add_date": "Datum wählen",
     "guests": "Gäste",
     "guests_options": {
@@ -231,6 +231,8 @@
     "hint_checkout": "Wählen Sie nun Ihr Abreisedatum.",
     "checkin_time": "Anreise ab 14:00 Uhr",
     "checkout_time": "Abreise bis 11:00 Uhr",
-    "not_selected": "Noch nicht gewählt"
+    "not_selected": "Noch nicht gewählt",
+    "nights_other": "{{count}} Nächte",
+    "nights_one": "{{count}} Nacht"
   }
 }

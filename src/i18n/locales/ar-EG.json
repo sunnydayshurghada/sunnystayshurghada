@@ -82,8 +82,8 @@
   "booking": {
     "per_night": "/ ليلة",
     "rating": "إعلان جديد",
-    "checkin": "الوصول (من 14:00)",
-    "checkout": "المغادرة (لحد 11:00)",
+    "checkin": "الوصول",
+    "checkout": "المغادرة",
     "guests": "الضيوف",
     "guests_options": {
       "two": "ضيفين",
@@ -191,6 +191,8 @@
     "hint_checkout": "اختر الآن تاريخ المغادرة.",
     "checkin_time": "الوصول من الساعة 14:00",
     "checkout_time": "المغادرة حتى الساعة 11:00",
-    "not_selected": "لم يتم الاختيار بعد"
+    "not_selected": "لم يتم الاختيار بعد",
+    "nights_other": "{{count}} ليالي",
+    "nights_one": "{{count}} ليلة"
   }
 }

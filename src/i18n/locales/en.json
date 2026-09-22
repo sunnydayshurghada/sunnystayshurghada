@@ -113,8 +113,8 @@
     "title": "Send us a message",
     "per_night": "/ night",
     "rating": "New listing",
-    "checkin": "Check-in (from 2:00 PM)",
-    "checkout": "Check-out (by 11:00 AM)",
+    "checkin": "Check-in",
+    "checkout": "Check-out",
     "add_date": "Select date",
     "guests": "Guests",
     "guests_options": {
@@ -231,6 +231,8 @@
     "hint_checkout": "Now select your departure date.",
     "checkin_time": "Check-in from 2:00 PM",
     "checkout_time": "Check-out until 11:00 AM",
-    "not_selected": "Not selected yet"
+    "not_selected": "Not selected yet",
+    "nights_other": "{{count}} nights",
+    "nights_one": "{{count}} night"
   }
 }
