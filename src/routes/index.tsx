@@ -22,6 +22,7 @@ import {
   ExternalLink,
   Volume2,
   VolumeX,
+  Waves,
 } from "lucide-react";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { BookingWidget } from "@/components/BookingWidget";
@@ -133,6 +134,7 @@ function Index() {
       <WhySection />
       <LocationSection />
       <BookingSection />
+      <DivingSection />
       <SiteFooter />
       {/* Preserve legacy translation key so the fallback locale still resolves */}
       <span className="sr-only">{t("brand")}</span>
