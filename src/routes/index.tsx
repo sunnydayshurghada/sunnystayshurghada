@@ -33,6 +33,8 @@ import brandLogo from "@/assets/sunny-stays-hurghada-logo.png";
 import { resolveLegalLang } from "@/lib/legal-lang";
 import hostsPhoto from "@/assets/hosts-wafaa-alex.jpg";
 import heroLivingKitchen from "@/assets/hero-living-kitchen.png";
+import heroVideo from "@/assets/madaris-hero.mp4.asset.json";
+import heroVideoWebm from "@/assets/madaris-hero.webm.asset.json";
 
 // Real photos of the apartment. No stock, no AI, no placeholder imagery.
 import p6669 from "@/assets/dsc06669.jpg";
@@ -67,6 +69,7 @@ type Photo = { url: string; captionKey: string; aspect: string };
 // Each aspect controls the intrinsic ratio inside the columns layout so
 // the masonry keeps a natural rhythm instead of stripes.
 const GALLERY: readonly Photo[] = [
+  { url: heroLivingKitchen, captionKey: "gallery.living", aspect: "aspect-[4/3]" },
   { url: p6674, captionKey: "gallery.bedroom_master", aspect: "aspect-[4/3]" },
   { url: p6669, captionKey: "gallery.living", aspect: "aspect-[3/4]" },
   { url: p6681, captionKey: "gallery.bedroom_twin", aspect: "aspect-[4/3]" },
@@ -194,13 +197,19 @@ function Hero() {
       id="top"
       className="relative flex items-center overflow-hidden bg-forest min-h-[75vh] md:min-h-[90vh]"
     >
-      <img
-        src={heroPhoto}
-        alt=""
-        width={1920}
-        height={1280}
-        className="absolute inset-0 w-full h-full object-cover"
-      />
+      <video
+        className="absolute inset-0 h-full w-full object-cover"
+        poster={heroPhoto}
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="metadata"
+        aria-hidden="true"
+      >
+        <source src={heroVideoWebm.url} type="video/webm" />
+        <source src={heroVideo.url} type="video/mp4" />
+      </video>
       <div className="absolute inset-0 bg-gradient-to-br from-forest/70 via-forest/40 to-forest/80" />
 
       <div className="relative z-10 w-full max-w-[560px] mx-auto md:mx-0 px-6 md:pl-[9vw] md:pr-8 py-20 text-center md:text-start animate-fade-rise">
