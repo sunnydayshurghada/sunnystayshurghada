@@ -215,5 +215,12 @@
   },
   "legal": {
     "back": "Zurück zur Startseite"
+  },
+  "calendar": {
+    "available": "Verfügbar",
+    "unavailable": "Nicht verfügbar",
+    "nights": "{{count}} Nacht",
+    "nights_plural": "{{count}} Nächte",
+    "request_hint": "Anfrage – noch keine Buchung. Der Gastgeber bestätigt persönlich."
   }
 }

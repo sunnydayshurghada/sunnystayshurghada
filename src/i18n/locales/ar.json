@@ -173,5 +173,12 @@
   },
   "legal": {
     "back": "العودة للرئيسية"
+  },
+  "calendar": {
+    "available": "متاح",
+    "unavailable": "غير متاح",
+    "nights": "{{count}} ليلة",
+    "nights_plural": "{{count}} ليالٍ",
+    "request_hint": "طلب وليس حجزاً مؤكداً. يؤكده المضيف شخصياً."
   }
 }

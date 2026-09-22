@@ -215,5 +215,12 @@
   },
   "legal": {
     "back": "Back to home"
+  },
+  "calendar": {
+    "available": "Available",
+    "unavailable": "Unavailable",
+    "nights": "{{count}} night",
+    "nights_plural": "{{count}} nights",
+    "request_hint": "Enquiry only – not a booking yet. The host confirms personally."
   }
 }

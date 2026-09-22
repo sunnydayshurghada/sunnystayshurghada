@@ -173,5 +173,12 @@
   },
   "legal": {
     "back": "На главную"
+  },
+  "calendar": {
+    "available": "Свободно",
+    "unavailable": "Занято",
+    "nights": "{{count}} ночь",
+    "nights_plural": "{{count}} ночей",
+    "request_hint": "Это запрос, а не бронирование. Хозяин подтверждает лично."
   }
 }
