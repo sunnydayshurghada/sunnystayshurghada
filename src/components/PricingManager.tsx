@@ -10,6 +10,7 @@ import {
   clearDayPrices,
   syncPricelabsNow,
 } from "@/lib/pricing.functions";
+import type { AdminPricing } from "@/lib/pricing.functions";
 import type { NightPrice, PricingSettings } from "@/lib/pricing.server";
 
 const SOURCE_STYLES: Record<string, string> = {
@@ -65,7 +66,8 @@ export function PricingManager({
     enabled: Boolean(propertyId),
   });
 
-  const pricing = data && !("error" in data) ? data : null;
+  const pricing: AdminPricing | null =
+    data && !("error" in data) ? (data as AdminPricing) : null;
   const settings = pricing?.settings ?? null;
   const currency = settings?.currency ?? "EUR";
 
