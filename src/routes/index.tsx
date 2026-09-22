@@ -1,3 +1,4 @@
+import { useRef, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
 import {
@@ -19,7 +20,8 @@ import {
   Mail,
   MessageCircle,
   ExternalLink,
-  
+  Volume2,
+  VolumeX,
 } from "lucide-react";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { BookingWidget } from "@/components/BookingWidget";
@@ -192,12 +194,23 @@ function SiteHeader() {
 
 function Hero() {
   const { t } = useTranslation();
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [muted, setMuted] = useState(true);
+
+  const toggleSound = () => {
+    const v = videoRef.current;
+    if (!v) return;
+    v.muted = !v.muted;
+    setMuted(v.muted);
+  };
+
   return (
     <section
       id="top"
       className="relative flex items-center overflow-hidden bg-forest min-h-[75vh] md:min-h-[90vh]"
     >
       <video
+        ref={videoRef}
         className="absolute inset-0 h-full w-full object-cover"
         poster={heroPhoto}
         autoPlay
@@ -210,6 +223,18 @@ function Hero() {
         <source src={heroVideoWebm.url} type="video/webm" />
         <source src={heroVideo.url} type="video/mp4" />
       </video>
+      <button
+        type="button"
+        onClick={toggleSound}
+        aria-label={muted ? t("hero.sound_on") : t("hero.sound_off")}
+        className="absolute bottom-6 right-6 z-20 inline-flex items-center justify-center w-11 h-11 rounded-full bg-forest/40 text-paper border border-paper/30 backdrop-blur-sm hover:bg-gold hover:text-forest transition-colors"
+      >
+        {muted ? (
+          <VolumeX className="w-5 h-5" aria-hidden="true" />
+        ) : (
+          <Volume2 className="w-5 h-5" aria-hidden="true" />
+        )}
+      </button>
       <div className="absolute inset-0 bg-gradient-to-br from-forest/70 via-forest/40 to-forest/80" />
 
       <div className="relative z-10 w-full max-w-[560px] mx-auto md:mx-0 px-6 md:pl-[9vw] md:pr-8 py-20 text-center md:text-start animate-fade-rise">

@@ -17,7 +17,9 @@
     "cta_secondary": "Bekijk appartement",
     "welcome_to": "WELKOM BIJ",
     "subhead": "Uw thuis aan de Rode Zee",
-    "mantra": "Ontspannen · Genieten · Thuis voelen"
+    "mantra": "Ontspannen · Genieten · Thuis voelen",
+    "sound_on": "Geluid inschakelen",
+    "sound_off": "Geluid uitschakelen"
   },
   "gallery": {
     "eyebrow": "Fotografie",

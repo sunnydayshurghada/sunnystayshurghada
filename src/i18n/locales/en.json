@@ -17,7 +17,9 @@
     "cta_secondary": "View apartment",
     "welcome_to": "WELCOME TO",
     "subhead": "Your Home by the Red Sea",
-    "mantra": "Relax · Unwind · Feel at Home"
+    "mantra": "Relax · Unwind · Feel at Home",
+    "sound_on": "Turn sound on",
+    "sound_off": "Turn sound off"
   },
   "gallery": {
     "eyebrow": "Photography",
