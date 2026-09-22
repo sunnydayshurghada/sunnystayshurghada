@@ -327,6 +327,7 @@ function AdminPage() {
             className="bg-card rounded-3xl border border-forest/10 p-6 space-y-3"
           >
             <h2 className="font-display text-xl mb-2">{t("admin.own_booking_title")}</h2>
+            <PropertySelect properties={properties} value={propertyId || syncPropertyId} />
             <div className="grid grid-cols-2 gap-3">
               <Field label={t("admin.checkin")} name="start_date" type="date" required />
               <Field label={t("admin.checkout")} name="end_date" type="date" required />
@@ -373,6 +374,7 @@ function AdminPage() {
             className="bg-card rounded-3xl border border-forest/10 p-6 space-y-3"
           >
             <h2 className="font-display text-xl mb-2">{t("admin.block_title")}</h2>
+            <PropertySelect properties={properties} value={propertyId || syncPropertyId} />
             <div className="grid grid-cols-2 gap-3">
               <Field label={t("admin.from")} name="start_date" type="date" required />
               <Field label={t("admin.to")} name="end_date" type="date" required />
@@ -389,7 +391,9 @@ function AdminPage() {
           </form>
         </section>
 
-        <AirbnbSyncPanel intlLocale={intlLocale} />
+        <AirbnbSyncPanel intlLocale={intlLocale} propertyId={syncPropertyId} />
+
+        <PropertyManager />
 
         <section>
           <h2 className="font-display text-2xl mb-4">{t("admin.entries_title")}</h2>
