@@ -70,11 +70,14 @@ export function NotificationsManager({ propertyId }: { propertyId: string | null
     queryFn: () => load({ data: { propertyId: propertyId! } }),
     enabled: Boolean(propertyId),
   });
-  const settings: {
-    recipients: RecipientRow[];
-    log: EmailLogRow[];
-    centralEmail: string;
-  } | null = data && !("error" in data) ? (data as never) : null;
+  const settings =
+    data && !("error" in data)
+      ? (data as unknown as {
+          recipients: RecipientRow[];
+          log: EmailLogRow[];
+          centralEmail: string;
+        })
+      : null;
 
   const { data: templateData } = useQuery({
     queryKey: ["admin-email-template", propertyId ?? "none", templateKey, language],
@@ -84,12 +87,15 @@ export function NotificationsManager({ propertyId }: { propertyId: string | null
       }),
     enabled: Boolean(propertyId),
   });
-  const template: {
-    subject: string;
-    body: string;
-    source: string;
-    preview: { subject: string; body: string };
-  } | null = templateData && !("error" in templateData) ? (templateData as never) : null;
+  const template =
+    templateData && !("error" in templateData)
+      ? (templateData as unknown as {
+          subject: string;
+          body: string;
+          source: string;
+          preview: { subject: string; body: string };
+        })
+      : null;
 
   useEffect(() => {
     if (template) {
