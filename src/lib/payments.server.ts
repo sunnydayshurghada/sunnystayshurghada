@@ -257,6 +257,24 @@ export async function applyVerifiedPayment(
     })
     .eq("id", p.bookingId);
 
+  // Payment receipt to the guest, plus central desk and owner notifications.
+  try {
+    const { notifyGuest, notifyInternal, safeNotify } = await import(
+      "@/lib/notifications.server"
+    );
+    await safeNotify(() => notifyGuest(p.bookingId, "payment_confirmed"), "guest payment");
+    await safeNotify(() => notifyInternal("payment_success", p.bookingId), "internal payment");
+    if (autoConfirm) {
+      await safeNotify(() => notifyGuest(p.bookingId, "booking_confirmed"), "guest confirmation");
+      await safeNotify(
+        () => notifyInternal("confirmed_booking", p.bookingId),
+        "internal confirmation",
+      );
+    }
+  } catch (e) {
+    console.error("[payments] notification failed", e);
+  }
+
   return { ok: true, confirmed: autoConfirm };
 }
 
