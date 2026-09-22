@@ -1,6 +1,8 @@
 import type { ComponentType } from 'react'
 import { template as bookingRequestHostTemplate } from './booking-request-host'
 import { template as bookingRequestGuestTemplate } from './booking-request-guest'
+import { template as propertyGuestNoticeTemplate } from './property-guest-notice'
+import { template as internalNoticeTemplate } from './internal-notice'
 
 export interface TemplateEntry {
   component: ComponentType<any>
@@ -22,4 +24,6 @@ export interface TemplateEntry {
 export const TEMPLATES: Record<string, TemplateEntry> = {
   'booking-request-host': bookingRequestHostTemplate,
   'booking-request-guest': bookingRequestGuestTemplate,
+  'property-guest-notice': propertyGuestNoticeTemplate,
+  'internal-notice': internalNoticeTemplate,
 }

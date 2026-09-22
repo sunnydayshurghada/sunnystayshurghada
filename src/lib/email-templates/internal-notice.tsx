@@ -12,7 +12,7 @@ import {
   Text,
 } from '@react-email/components'
 import type { TemplateEntry } from './registry'
-import { main, container, header, brand, card, h1, text, eyebrow, link } from './brand'
+import { main, container, header, brand, card, text, eyebrow, link } from './brand'
 
 export interface InternalRow {
   label: string
@@ -93,5 +93,3 @@ const muted = {
   fontFamily: 'Arial, sans-serif',
   margin: '8px 0 0',
 }
-const h1Unused = h1
-void h1Unused
