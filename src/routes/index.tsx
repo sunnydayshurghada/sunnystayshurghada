@@ -224,8 +224,7 @@ function Hero() {
         preload="metadata"
         aria-hidden="true"
       >
-        <source src={heroVideoWebm.url} type="video/webm" />
-        <source src={heroVideo.url} type="video/mp4" />
+        <source src={heroVideoWebm} type="video/webm" />
       </video>
       <button
         type="button"
