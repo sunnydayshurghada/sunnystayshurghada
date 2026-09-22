@@ -21,6 +21,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { parseISODate } from "@/lib/availability";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { AirbnbSyncPanel } from "@/components/AirbnbSyncPanel";
+import { PropertyManager } from "@/components/PropertyManager";
 import brandLogo from "@/assets/sunny-stays-hurghada-logo.png";
 
 export const Route = createFileRoute("/_authenticated/admin")({
@@ -88,18 +89,26 @@ function AdminPage() {
   const doCreate = useServerFn(createCalendarEntry);
   const doDelete = useServerFn(deleteCalendarEntry);
   const [busy, setBusy] = useState(false);
+  // "" = combined view across every apartment
+  const [propertyId, setPropertyId] = useState<string>("");
 
   const { data, isLoading } = useQuery({
-    queryKey: ["admin-data"],
+    queryKey: ["admin-data", propertyId || "all"],
     queryFn: async () => {
       await session();
-      return load();
+      return load({ data: { propertyId: propertyId || null } });
     },
   });
 
   const bookings = data?.bookings ?? [];
   const entries = data?.entries ?? [];
+  const properties = data?.properties ?? [];
   const isAdmin = data?.isAdmin ?? false;
+  const syncPropertyId = propertyId || properties[0]?.id || null;
+  const propertyName = (id: string) => {
+    const p = properties.find((x) => x.id === id);
+    return p?.internal_name ?? p?.public_name ?? "";
+  };
 
   const modifiers = useMemo(() => {
     const pending: Date[] = [];
