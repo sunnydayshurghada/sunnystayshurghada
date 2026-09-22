@@ -1174,7 +1174,7 @@ export type Database = {
       release_expired_holds: { Args: never; Returns: number }
     }
     Enums: {
-      app_role: "admin"
+      app_role: "admin" | "super_admin" | "booking_manager" | "owner"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -1302,7 +1302,7 @@ export type CompositeTypes<
 export const Constants = {
   public: {
     Enums: {
-      app_role: ["admin"],
+      app_role: ["admin", "super_admin", "booking_manager", "owner"],
     },
   },
 } as const
