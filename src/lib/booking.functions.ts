@@ -54,18 +54,30 @@ export const createBookingRequest = createServerFn({ method: "POST" })
       },
     });
 
-    const { data: newId, error } = await supabase.rpc("create_booking_request", {
-      _guest_name: data.guest_name,
-      _guest_email: data.guest_email,
-      _guest_phone: data.guest_phone,
-      _checkin: data.checkin,
-      _checkout: data.checkout,
-      _guests: data.guests,
-      _message: data.message,
-    });
+    // Always property-scoped; without an explicit id the first active apartment is used.
+    const { data: newId, error } = data.property_id
+      ? await supabase.rpc("create_property_booking_request", {
+          _property_id: data.property_id,
+          _guest_name: data.guest_name,
+          _guest_email: data.guest_email,
+          _guest_phone: data.guest_phone,
+          _checkin: data.checkin,
+          _checkout: data.checkout,
+          _guests: data.guests,
+          _message: data.message,
+        })
+      : await supabase.rpc("create_booking_request", {
+          _guest_name: data.guest_name,
+          _guest_email: data.guest_email,
+          _guest_phone: data.guest_phone,
+          _checkin: data.checkin,
+          _checkout: data.checkout,
+          _guests: data.guests,
+          _message: data.message,
+        });
     if (error) {
       const m = error.message.match(
-        /(checkin_in_past|invalid_range|range_too_long|invalid_guests|invalid_name|invalid_email|dates_unavailable)/
+        /(checkin_in_past|invalid_range|range_too_long|below_minimum_nights|property_not_bookable|property_not_found|invalid_guests|invalid_name|invalid_email|dates_unavailable)/
       );
       return { ok: false, error: m ? m[1] : "generic" };
     }
