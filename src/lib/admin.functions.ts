@@ -6,6 +6,8 @@ import type { Database } from "@/integrations/supabase/types";
 
 export type AdminBooking = {
   id: string;
+  property_id: string;
+  booking_number: string | null;
   guest_name: string;
   guest_email: string;
   guest_phone: string | null;
@@ -14,11 +16,17 @@ export type AdminBooking = {
   guests: number;
   message: string | null;
   status: string;
+  source: string;
+  currency: string;
+  total_amount: number;
+  cleaning_fee: number;
+  payment_status: string;
   created_at: string;
 };
 
 export type CalendarEntry = {
   id: string;
+  property_id: string;
   start_date: string;
   end_date: string;
   entry_type: string;
@@ -29,6 +37,14 @@ export type CalendarEntry = {
   note: string | null;
   created_at: string;
   external_uid: string | null;
+};
+
+export type AdminPropertyOption = {
+  id: string;
+  internal_name: string;
+  public_name: string;
+  slug: string;
+  status: string;
 };
 
 function errorCode(message: string): string {
@@ -59,35 +75,62 @@ export const getAdminSession = createServerFn({ method: "GET" })
     return { isAdmin, email: (claims["email"] as string) ?? null };
   });
 
+/**
+ * All host data. Without a property id every apartment is returned so the host
+ * can see a combined overview; with one the data is filtered to that apartment.
+ */
 export const listAdminData = createServerFn({ method: "GET" })
   .middleware([requireSupabaseAuth])
+  .inputValidator((input: unknown) =>
+    z.object({ propertyId: z.string().uuid().nullish() }).parse(input ?? {}),
+  )
   .handler(
     async ({
+      data,
       context,
-    }): Promise<{ bookings: AdminBooking[]; entries: CalendarEntry[]; isAdmin: boolean }> => {
+    }): Promise<{
+      bookings: AdminBooking[];
+      entries: CalendarEntry[];
+      properties: AdminPropertyOption[];
+      isAdmin: boolean;
+    }> => {
       const { supabase } = context;
       const isAdmin = await currentUserIsAdmin(supabase, context.userId);
-      if (!isAdmin) return { bookings: [], entries: [], isAdmin: false };
+      if (!isAdmin) return { bookings: [], entries: [], properties: [], isAdmin: false };
 
-      const [bookings, entries] = await Promise.all([
+      let bookingQuery = supabase
+        .from("bookings")
+        .select(
+          "id, property_id, booking_number, guest_name, guest_email, guest_phone, checkin, checkout, guests, message, status, source, currency, total_amount, cleaning_fee, payment_status, created_at",
+        )
+        .order("created_at", { ascending: false });
+      let entryQuery = supabase
+        .from("calendar_blocks")
+        .select(
+          "id, property_id, start_date, end_date, entry_type, source, guest_name, guests, guest_phone, note, created_at, external_uid",
+        )
+        .order("start_date", { ascending: true });
+
+      if (data.propertyId) {
+        bookingQuery = bookingQuery.eq("property_id", data.propertyId);
+        entryQuery = entryQuery.eq("property_id", data.propertyId);
+      }
+
+      const [bookings, entries, properties] = await Promise.all([
+        bookingQuery,
+        entryQuery,
         supabase
-          .from("bookings")
-          .select(
-            "id, guest_name, guest_email, guest_phone, checkin, checkout, guests, message, status, created_at",
-          )
-          .order("created_at", { ascending: false }),
-        supabase
-          .from("calendar_blocks")
-          .select(
-            "id, start_date, end_date, entry_type, source, guest_name, guests, guest_phone, note, created_at, external_uid",
-          )
-          .order("start_date", { ascending: true }),
+          .from("properties")
+          .select("id, internal_name, public_name, slug, status")
+          .order("sort_order")
+          .order("created_at"),
       ]);
 
       return {
         isAdmin: true,
         bookings: (bookings.data ?? []) as AdminBooking[],
         entries: (entries.data ?? []) as CalendarEntry[],
+        properties: (properties.data ?? []) as AdminPropertyOption[],
       };
     },
   );
@@ -96,10 +139,16 @@ export const confirmBooking = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
   .inputValidator((input: unknown) => z.object({ id: z.string().uuid() }).parse(input))
   .handler(async ({ data, context }): Promise<{ ok: boolean; error?: string }> => {
-    // Pull the latest Airbnb state first so we never confirm over an external booking.
+    // Pull the latest Airbnb state of THIS apartment first so we never confirm
+    // over an external booking.
+    const { data: row } = await context.supabase
+      .from("bookings")
+      .select("property_id")
+      .eq("id", data.id)
+      .maybeSingle();
     try {
       const { syncAirbnb } = await import("@/lib/ical.server");
-      await syncAirbnb("confirm");
+      await syncAirbnb("confirm", row?.property_id ?? null);
     } catch {
       /* sync problems must not block the confirmation check itself */
     }
@@ -125,6 +174,7 @@ export const setBookingStatus = createServerFn({ method: "POST" })
   });
 
 const entrySchema = z.object({
+  property_id: z.string().uuid().nullish(),
   start_date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
   end_date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
   entry_type: z.enum(["booking", "block"]),
@@ -140,7 +190,23 @@ export const createCalendarEntry = createServerFn({ method: "POST" })
   .inputValidator((input: unknown) => entrySchema.parse(input))
   .handler(async ({ data, context }): Promise<{ ok: boolean; error?: string }> => {
     if (data.end_date <= data.start_date) return { ok: false, error: "invalid_range" };
+
+    let propertyId = data.property_id ?? null;
+    if (!propertyId) {
+      const { data: prop } = await context.supabase
+        .from("properties")
+        .select("id")
+        .eq("status", "active")
+        .order("sort_order")
+        .order("created_at")
+        .limit(1)
+        .maybeSingle();
+      propertyId = prop?.id ?? null;
+    }
+    if (!propertyId) return { ok: false, error: "no_property" };
+
     const { error } = await context.supabase.from("calendar_blocks").insert({
+      property_id: propertyId,
       start_date: data.start_date,
       end_date: data.end_date,
       entry_type: data.entry_type,
