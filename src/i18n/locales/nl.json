@@ -493,5 +493,85 @@
       "last_minute": "Last minute discount",
       "length_of_stay": "Long stay discount"
     }
+  },
+  "notifications": {
+    "title": "Email & notifications",
+    "intro": "Recipients and templates apply to the selected apartment only.",
+    "pick_property": "Please select an apartment above first.",
+    "central_label": "Central booking desk – receives all enquiries",
+    "central_note": "This address receives every enquiry and booking of all apartments.",
+    "recipients": "Owners & recipients",
+    "flags": {
+      "receive_new_inquiries": "New enquiries",
+      "receive_confirmed_bookings": "Confirmed bookings",
+      "receive_payments": "Payments",
+      "receive_cancellations": "Cancellations",
+      "receive_booking_changes": "Changes",
+      "receive_calendar_errors": "Calendar errors"
+    },
+    "template_keys": {
+      "inquiry_received": "Enquiry received",
+      "reservation_confirmed": "Reservation confirmed",
+      "booking_confirmed": "Binding booking confirmation",
+      "payment_confirmed": "Payment confirmation",
+      "inquiry_declined": "Enquiry declined",
+      "cancellation_confirmed": "Cancellation confirmation",
+      "booking_changed": "Booking changed",
+      "payment_reminder": "Payment reminder",
+      "pre_arrival_info": "Pre-arrival information",
+      "departure_info": "Departure information"
+    },
+    "languages": {
+      "de": "German",
+      "en": "English",
+      "ar": "Arabic"
+    },
+    "sources": {
+      "property": "Apartment template",
+      "default": "Sunny Stays default template"
+    },
+    "status": {
+      "sent": "sent",
+      "failed": "failed",
+      "suppressed": "blocked",
+      "retried": "retried"
+    },
+    "name": "Name",
+    "email": "Email address",
+    "role": "Role",
+    "add": "Add recipient",
+    "update": "Save recipient",
+    "cancel": "Cancel",
+    "edit": "Edit",
+    "delete": "Delete",
+    "activate": "Activate",
+    "deactivate": "Deactivate",
+    "no_events": "No notifications",
+    "templates": "Guest templates",
+    "subject": "Subject",
+    "variables": "Available placeholders",
+    "source": "Source",
+    "save_template": "Save template",
+    "reset_template": "Restore default template",
+    "preview": "Preview with sample data",
+    "test_to": "Test email to …",
+    "send_test": "Send test email",
+    "log": "Delivery log",
+    "log_empty": "No emails sent yet.",
+    "retry_failed": "Retry failed emails",
+    "toast": {
+      "saved": "Recipient saved",
+      "deleted": "Recipient deleted",
+      "template_saved": "Template saved",
+      "template_reset": "Default template restored",
+      "test_sent": "Test email sent",
+      "retried": "Retry started"
+    },
+    "errors": {
+      "forbidden": "Not allowed.",
+      "duplicate": "This address is already set up for this apartment.",
+      "send_failed": "The email could not be sent.",
+      "generic": "That did not work."
+    }
   }
 }
