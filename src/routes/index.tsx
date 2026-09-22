@@ -63,34 +63,34 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-type Photo = { url: string; captionKey: string; aspect: string };
+type Photo = { url: string; captionKey: string; altKey: string; aspect: string };
 
 // Ordered so the strongest apartment shots surface first in the masonry.
 // Each aspect controls the intrinsic ratio inside the columns layout so
 // the masonry keeps a natural rhythm instead of stripes.
 const GALLERY: readonly Photo[] = [
-  { url: heroLivingKitchen, captionKey: "gallery.living", aspect: "aspect-[4/3]" },
-  { url: p6674, captionKey: "gallery.bedroom_master", aspect: "aspect-[4/3]" },
-  { url: p6669, captionKey: "gallery.living", aspect: "aspect-[3/4]" },
-  { url: p6681, captionKey: "gallery.bedroom_twin", aspect: "aspect-[4/3]" },
-  { url: p6670, captionKey: "gallery.balcony", aspect: "aspect-[4/3]" },
-  { url: p6724, captionKey: "gallery.kitchen_breakfast", aspect: "aspect-[4/3]" },
-  { url: p6723, captionKey: "gallery.living_entry", aspect: "aspect-[3/4]" },
-  { url: p6697, captionKey: "gallery.bathroom", aspect: "aspect-[3/4]" },
-  { url: p6718, captionKey: "gallery.living_sofa", aspect: "aspect-[4/3]" },
-  { url: p6688, captionKey: "gallery.detail", aspect: "aspect-[4/3]" },
-  { url: p6678, captionKey: "gallery.detail", aspect: "aspect-[4/5]" },
-  { url: p6721, captionKey: "gallery.living_tv", aspect: "aspect-[4/3]" },
-  { url: p6684, captionKey: "gallery.detail", aspect: "aspect-[4/3]" },
-  { url: p6687, captionKey: "gallery.detail", aspect: "aspect-[4/3]" },
-  { url: p2950, captionKey: "gallery.bedroom_twin", aspect: "aspect-video" },
-  { url: p2951, captionKey: "gallery.bedroom_twin", aspect: "aspect-video" },
-  { url: p2954, captionKey: "gallery.bedroom_twin", aspect: "aspect-video" },
-  { url: p2956, captionKey: "gallery.bedroom_master", aspect: "aspect-video" },
-  { url: p2958, captionKey: "gallery.bedroom_master", aspect: "aspect-video" },
-  { url: p2963, captionKey: "gallery.kitchen_breakfast", aspect: "aspect-video" },
-  { url: p2976, captionKey: "gallery.bathroom", aspect: "aspect-[4/3]" },
-  { url: p2982, captionKey: "gallery.kitchen_breakfast", aspect: "aspect-[4/3]" },
+  { url: heroLivingKitchen, captionKey: "gallery.living", altKey: "gallery.alt.living_kitchen", aspect: "aspect-[4/3]" },
+  { url: p6674, captionKey: "gallery.bedroom_master", altKey: "gallery.alt.bedroom_master", aspect: "aspect-[4/3]" },
+  { url: p6669, captionKey: "gallery.living", altKey: "gallery.alt.living_room", aspect: "aspect-[3/4]" },
+  { url: p6681, captionKey: "gallery.bedroom_twin", altKey: "gallery.alt.bedroom_twin", aspect: "aspect-[4/3]" },
+  { url: p6670, captionKey: "gallery.balcony", altKey: "gallery.alt.balcony", aspect: "aspect-[4/3]" },
+  { url: p6724, captionKey: "gallery.kitchen_breakfast", altKey: "gallery.alt.kitchen_dining", aspect: "aspect-[4/3]" },
+  { url: p6723, captionKey: "gallery.living_entry", altKey: "gallery.alt.living_entry", aspect: "aspect-[3/4]" },
+  { url: p6697, captionKey: "gallery.bathroom", altKey: "gallery.alt.bathroom", aspect: "aspect-[3/4]" },
+  { url: p6718, captionKey: "gallery.living_sofa", altKey: "gallery.alt.sofa_corner", aspect: "aspect-[4/3]" },
+  { url: p6688, captionKey: "gallery.detail", altKey: "gallery.alt.detail_decor", aspect: "aspect-[4/3]" },
+  { url: p6678, captionKey: "gallery.detail", altKey: "gallery.alt.detail_interior", aspect: "aspect-[4/5]" },
+  { url: p6721, captionKey: "gallery.living_tv", altKey: "gallery.alt.tv_area", aspect: "aspect-[4/3]" },
+  { url: p6684, captionKey: "gallery.detail", altKey: "gallery.alt.detail_lighting", aspect: "aspect-[4/3]" },
+  { url: p6687, captionKey: "gallery.detail", altKey: "gallery.alt.detail_furnishing", aspect: "aspect-[4/3]" },
+  { url: p2950, captionKey: "gallery.bedroom_twin", altKey: "gallery.alt.twin_beds", aspect: "aspect-video" },
+  { url: p2951, captionKey: "gallery.bedroom_twin", altKey: "gallery.alt.twin_room", aspect: "aspect-video" },
+  { url: p2954, captionKey: "gallery.bedroom_twin", altKey: "gallery.alt.twin_bright", aspect: "aspect-video" },
+  { url: p2956, captionKey: "gallery.bedroom_master", altKey: "gallery.alt.master_double_bed", aspect: "aspect-video" },
+  { url: p2958, captionKey: "gallery.bedroom_master", altKey: "gallery.alt.master_room", aspect: "aspect-video" },
+  { url: p2963, captionKey: "gallery.kitchen_breakfast", altKey: "gallery.alt.kitchen_equipped", aspect: "aspect-video" },
+  { url: p2976, captionKey: "gallery.bathroom", altKey: "gallery.alt.bathroom_bathtub", aspect: "aspect-[4/3]" },
+  { url: p2982, captionKey: "gallery.kitchen_breakfast", altKey: "gallery.alt.kitchen_overview", aspect: "aspect-[4/3]" },
 ];
 
 // Living room and kitchen — warm, sunny, welcoming.
@@ -273,7 +273,7 @@ function GallerySection() {
             >
               <img
                 src={photo.url}
-                alt={t(photo.captionKey)}
+                alt={t(photo.altKey)}
                 loading={i < 2 ? "eager" : "lazy"}
                 className={`w-full ${photo.aspect} object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]`}
               />

@@ -34,7 +34,31 @@
     "living_sofa": "Sitzecke",
     "living_tv": "TV-Bereich",
     "detail": "Details",
-    "suite": "Schlafzimmer"
+    "suite": "Schlafzimmer",
+    "alt": {
+      "living_kitchen": "Heller Wohnbereich mit offener Küche im Madaris Apartment in Hurghada",
+      "bedroom_master": "Hauptschlafzimmer mit Doppelbett und warmer Beleuchtung",
+      "living_room": "Gemütliches Wohnzimmer mit Sofa und Tageslicht",
+      "bedroom_twin": "Zweites Schlafzimmer mit zwei Einzelbetten",
+      "balcony": "Balkon des Apartments mit Sitzgelegenheit und Ausblick",
+      "kitchen_dining": "Küche mit Frühstücksplatz und Esstisch",
+      "living_entry": "Wohnbereich mit Eingang zur Wohnung",
+      "bathroom": "Modernes Badezimmer der Ferienwohnung",
+      "sofa_corner": "Sitzecke mit bequemem Sofa im Wohnzimmer",
+      "detail_decor": "Dekorative Details in der Wohnung",
+      "detail_interior": "Inneneinrichtung mit liebevollen Details",
+      "tv_area": "TV-Bereich im Wohnzimmer",
+      "detail_lighting": "Stimmungsvolle Beleuchtung im Apartment",
+      "detail_furnishing": "Hochwertige Ausstattung im Detail",
+      "twin_beds": "Zwei Einzelbetten im zweiten Schlafzimmer",
+      "twin_room": "Zweites Schlafzimmer mit zwei Betten und Klimaanlage",
+      "twin_bright": "Helles Schlafzimmer mit zwei Einzelbetten",
+      "master_double_bed": "Doppelbett im Hauptschlafzimmer",
+      "master_room": "Hauptschlafzimmer mit großem Bett und Stauraum",
+      "kitchen_equipped": "Voll ausgestattete Küche mit Herd und Spüle",
+      "bathroom_bathtub": "Badezimmer mit Badewanne",
+      "kitchen_overview": "Überblick über die Küche des Apartments"
+    }
   },
   "features": {
     "eyebrow": "Ausstattung",
