@@ -154,6 +154,13 @@ export function AvailabilityCalendar({
         onSelect={() => {}}
         onDayClick={handleDayClick}
         disabled={isDisabled}
+        modifiers={{
+          booked: (day: Date) => day >= today && blockedSet.has(toISODate(day)),
+        }}
+        modifiersClassNames={{
+          booked:
+            "[&_button]:bg-forest/15 [&_button]:text-forest/45 [&_button]:line-through [&_button]:font-medium [&_button]:hover:bg-forest/15 [&_button]:cursor-not-allowed",
+        }}
         hideNavigation
         showOutsideDays={false}
         className="w-full text-forest"
