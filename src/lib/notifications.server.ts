@@ -321,13 +321,45 @@ export async function notifyInternal(
 
   // Assigned owners of this property only.
   const flag = OWNER_FLAG[event];
-  const { data: recipients } = await db
+  const { data: recipientRows } = await db
     .from("property_notification_recipients")
     .select("*")
     .eq("property_id", property.id)
     .eq("active", true);
 
-  for (const r of recipients ?? []) {
+  // Portal owners assigned to this property with notifications enabled.
+  const { data: portalRows } = await db
+    .from("property_user_assignments")
+    .select("user_id, can_receive_notifications, active")
+    .eq("property_id", property.id)
+    .eq("active", true)
+    .eq("can_receive_notifications", true);
+  const portalIds = (portalRows ?? []).map((r) => r.user_id);
+  const { data: portalProfiles } = portalIds.length
+    ? await db
+        .from("user_profiles")
+        .select("email, first_name, last_name, active")
+        .in("user_id", portalIds)
+    : { data: [] as { email: string; first_name: string; last_name: string; active: boolean }[] };
+
+  const recipients = [
+    ...(recipientRows ?? []),
+    ...(portalProfiles ?? [])
+      .filter((p) => p.active)
+      .map((p) => ({
+        recipient_email: p.email,
+        recipient_name: `${p.first_name} ${p.last_name}`.trim() || p.email,
+        [flag]: true,
+      })),
+  ].filter(
+    (r, idx, arr) =>
+      arr.findIndex(
+        (o) => o.recipient_email.toLowerCase() === r.recipient_email.toLowerCase(),
+      ) === idx,
+  );
+
+  for (const r of recipients as Record<string, any>[]) {
+
     if (!(r as Record<string, any>)[flag]) continue;
     if (r.recipient_email.toLowerCase() === HOST_EMAIL.toLowerCase()) continue;
     // Owners get management data only — no guest contact details or messages.
