@@ -35,8 +35,7 @@ import brandLogo from "@/assets/sunny-stays-hurghada-logo.png";
 import { resolveLegalLang } from "@/lib/legal-lang";
 import hostsPhoto from "@/assets/hosts-wafaa-alex.jpg";
 import heroLivingKitchen from "@/assets/hero-living-kitchen.png";
-import heroVideo from "@/assets/madaris-hero.mp4.asset.json";
-import heroVideoWebm from "@/assets/madaris-hero.webm.asset.json";
+import heroVideoWebm from "@/assets/madaris-hero.webm";
 
 // Real photos of the apartment. No stock, no AI, no placeholder imagery.
 import p6669 from "@/assets/dsc06669.jpg";
@@ -225,8 +224,7 @@ function Hero() {
         preload="metadata"
         aria-hidden="true"
       >
-        <source src={heroVideoWebm.url} type="video/webm" />
-        <source src={heroVideo.url} type="video/mp4" />
+        <source src={heroVideoWebm} type="video/webm" />
       </video>
       <button
         type="button"
