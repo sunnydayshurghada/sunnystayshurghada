@@ -1,6 +1,8 @@
 import { createServerFn } from "@tanstack/react-start";
 import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
 import { z } from "zod";
+import type { SupabaseClient } from "@supabase/supabase-js";
+import type { Database } from "@/integrations/supabase/types";
 
 export type AdminBooking = {
   id: string;
@@ -33,17 +35,27 @@ function errorCode(message: string): string {
   return m ? m[1] : "generic";
 }
 
+async function currentUserIsAdmin(
+  supabase: SupabaseClient<Database>,
+  userId: string,
+): Promise<boolean> {
+  const { data, error } = await supabase
+    .from("user_roles")
+    .select("id")
+    .eq("user_id", userId)
+    .eq("role", "admin")
+    .maybeSingle();
+
+  return !error && data !== null;
+}
+
 /** Signs the current user in as host when their email is on the allowlist. */
 export const getAdminSession = createServerFn({ method: "GET" })
   .middleware([requireSupabaseAuth])
   .handler(async ({ context }): Promise<{ isAdmin: boolean; email: string | null }> => {
     const { supabase, claims } = context;
-    await supabase.rpc("claim_admin_role");
-    const { data } = await supabase.rpc("has_role", {
-      _user_id: context.userId,
-      _role: "admin",
-    });
-    return { isAdmin: data === true, email: (claims["email"] as string) ?? null };
+    const isAdmin = await currentUserIsAdmin(supabase, context.userId);
+    return { isAdmin, email: (claims["email"] as string) ?? null };
   });
 
 export const listAdminData = createServerFn({ method: "GET" })
@@ -53,11 +65,8 @@ export const listAdminData = createServerFn({ method: "GET" })
       context,
     }): Promise<{ bookings: AdminBooking[]; entries: CalendarEntry[]; isAdmin: boolean }> => {
       const { supabase } = context;
-      const { data: isAdmin } = await supabase.rpc("has_role", {
-        _user_id: context.userId,
-        _role: "admin",
-      });
-      if (isAdmin !== true) return { bookings: [], entries: [], isAdmin: false };
+      const isAdmin = await currentUserIsAdmin(supabase, context.userId);
+      if (!isAdmin) return { bookings: [], entries: [], isAdmin: false };
 
       const [bookings, entries] = await Promise.all([
         supabase
