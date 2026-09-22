@@ -1,9 +1,10 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useMemo, useState, type FormEvent } from "react";
+import { useTranslation } from "react-i18next";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { DayPicker } from "react-day-picker";
-import { de } from "react-day-picker/locale";
+import { de, enUS, nl, ru, ar } from "react-day-picker/locale";
 import { toast } from "sonner";
 import { LogOut, Check, X, Trash2 } from "lucide-react";
 import {
@@ -18,6 +19,7 @@ import {
 } from "@/lib/admin.functions";
 import { supabase } from "@/integrations/supabase/client";
 import { parseISODate } from "@/lib/availability";
+import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import brandLogo from "@/assets/sunny-stays-hurghada-logo.png";
 
 export const Route = createFileRoute("/_authenticated/admin")({
@@ -35,20 +37,24 @@ export const Route = createFileRoute("/_authenticated/admin")({
   component: AdminPage,
 });
 
-const ERRORS: Record<string, string> = {
-  dates_unavailable: "Dieser Zeitraum ist inzwischen belegt — Bestätigung nicht möglich.",
-  not_pending: "Diese Anfrage wurde bereits bearbeitet.",
-  not_found: "Eintrag nicht gefunden.",
-  forbidden: "Keine Berechtigung.",
-  invalid_range: "Das Abreisedatum muss nach dem Anreisedatum liegen.",
-  generic: "Etwas ist schiefgelaufen. Bitte erneut versuchen.",
+const SOURCE_KEYS = ["direct", "airbnb", "booking_com", "other"] as const;
+
+const DP_LOCALES: Record<string, typeof de> = {
+  de,
+  en: enUS,
+  nl,
+  ru,
+  ar,
+  "ar-EG": ar,
 };
 
-const SOURCES: Record<string, string> = {
-  direct: "Direkt",
-  airbnb: "Airbnb",
-  booking_com: "Booking.com",
-  other: "Andere",
+const INTL_LOCALES: Record<string, string> = {
+  de: "de-DE",
+  en: "en-GB",
+  nl: "nl-NL",
+  ru: "ru-RU",
+  ar: "ar-EG",
+  "ar-EG": "ar-EG",
 };
 
 function days(start: string, end: string): Date[] {
@@ -59,17 +65,21 @@ function days(start: string, end: string): Date[] {
   return out;
 }
 
-function fmt(d: string): string {
-  return parseISODate(d).toLocaleDateString("de-DE", {
-    day: "2-digit",
-    month: "2-digit",
-    year: "numeric",
-  });
-}
-
 function AdminPage() {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
+  const { t, i18n } = useTranslation();
+  const lang = i18n.language in DP_LOCALES ? i18n.language : "de";
+  const dir = lang.startsWith("ar") ? "rtl" : "ltr";
+  const intlLocale = INTL_LOCALES[lang] ?? "de-DE";
+
+  const fmt = (d: string) =>
+    parseISODate(d).toLocaleDateString(intlLocale, {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+    });
+
   const load = useServerFn(listAdminData);
   const session = useServerFn(getAdminSession);
   const doConfirm = useServerFn(confirmBooking);
@@ -113,14 +123,14 @@ function AdminPage() {
     try {
       const res = await fn();
       if (!res.ok) {
-        toast.error(ERRORS[res.error ?? "generic"] ?? ERRORS["generic"]);
+        toast.error(t(`admin.errors.${res.error ?? "generic"}`, t("admin.errors.generic")));
         return false;
       }
       toast.success(okMsg);
       await refresh();
       return true;
     } catch {
-      toast.error(ERRORS["generic"]);
+      toast.error(t("admin.errors.generic"));
       return false;
     } finally {
       setBusy(false);
@@ -157,7 +167,7 @@ function AdminPage() {
             note: String(fd.get("note") ?? ""),
           },
         }),
-      entry_type === "booking" ? "Buchung eingetragen." : "Zeitraum blockiert.",
+      entry_type === "booking" ? t("admin.toast.booking_created") : t("admin.toast.blocked"),
     );
     if (ok) form.reset();
   };
@@ -168,24 +178,25 @@ function AdminPage() {
   if (isLoading) {
     return (
       <main className="min-h-screen bg-sand flex items-center justify-center text-forest/60 text-sm">
-        Lade Kalender…
+        {t("admin.loading")}
       </main>
     );
   }
 
   if (!isAdmin) {
     return (
-      <main className="min-h-screen bg-sand flex items-center justify-center px-6">
+      <main className="min-h-screen bg-sand flex items-center justify-center px-6" dir={dir}>
         <div className="bg-card rounded-3xl border border-forest/10 p-10 max-w-md text-center">
-          <h1 className="font-display text-2xl text-forest mb-3">Kein Zugriff</h1>
-          <p className="text-sm text-forest/70 mb-6">
-            Dieses Konto ist nicht als Gastgeber freigeschaltet.
-          </p>
+          <div className="flex justify-center mb-6">
+            <LanguageSwitcher />
+          </div>
+          <h1 className="font-display text-2xl text-forest mb-3">{t("admin.no_access_title")}</h1>
+          <p className="text-sm text-forest/70 mb-6">{t("admin.no_access_body")}</p>
           <button
             onClick={signOut}
             className="text-xs uppercase tracking-[0.25em] text-forest/60 hover:text-gold"
           >
-            Abmelden
+            {t("admin.sign_out")}
           </button>
         </div>
       </main>
@@ -193,29 +204,33 @@ function AdminPage() {
   }
 
   return (
-    <main className="min-h-screen bg-sand text-forest">
+    <main className="min-h-screen bg-sand text-forest" dir={dir}>
       <header className="border-b border-forest/10 bg-paper">
         <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between gap-4">
           <img src={brandLogo} alt="Sunny Stays Hurghada" className="h-12 w-auto" />
-          <button
-            onClick={signOut}
-            className="inline-flex items-center gap-2 text-[11px] uppercase tracking-widest text-forest/60 hover:text-gold transition-colors"
-          >
-            <LogOut className="h-3.5 w-3.5" /> Abmelden
-          </button>
+          <div className="flex items-center gap-4">
+            <LanguageSwitcher />
+            <button
+              onClick={signOut}
+              className="inline-flex items-center gap-2 text-[11px] uppercase tracking-widest text-forest/60 hover:text-gold transition-colors"
+            >
+              <LogOut className="h-3.5 w-3.5" /> {t("admin.sign_out")}
+            </button>
+          </div>
         </div>
       </header>
 
       <div className="max-w-6xl mx-auto px-6 py-10 space-y-12">
         <section>
           <span className="block text-[10px] uppercase tracking-[0.35em] text-gold font-medium mb-2">
-            Übersicht
+            {t("admin.overview")}
           </span>
-          <h1 className="font-display text-3xl mb-6">Buchungskalender</h1>
+          <h1 className="font-display text-3xl mb-6">{t("admin.calendar_title")}</h1>
 
           <div className="bg-card rounded-3xl border border-forest/10 p-4 md:p-6 inline-block max-w-full overflow-x-auto">
             <DayPicker
-              locale={de}
+              locale={DP_LOCALES[lang]}
+              dir={dir}
               numberOfMonths={2}
               showOutsideDays={false}
               modifiers={modifiers}
@@ -228,21 +243,21 @@ function AdminPage() {
               className="[--rdp-day-height:2.3rem] [--rdp-day-width:2.3rem]"
             />
             <div className="mt-4 flex flex-wrap gap-4 text-[10px] uppercase tracking-widest text-forest/60">
-              <Legend className="bg-gold/40" label="Anfrage (pending)" />
-              <Legend className="bg-forest" label="Bestätigt" />
-              <Legend className="bg-forest/70" label="Eigene Buchung" />
-              <Legend className="bg-forest/20" label="Blockiert" />
+              <Legend className="bg-gold/40" label={t("admin.legend.pending")} />
+              <Legend className="bg-forest" label={t("admin.legend.confirmed")} />
+              <Legend className="bg-forest/70" label={t("admin.legend.manual")} />
+              <Legend className="bg-forest/20" label={t("admin.legend.blocked")} />
             </div>
           </div>
         </section>
 
         <section>
           <h2 className="font-display text-2xl mb-4">
-            Offene Anfragen{" "}
+            {t("admin.requests_open")}{" "}
             <span className="text-gold text-base align-middle">({pendingRequests.length})</span>
           </h2>
           {pendingRequests.length === 0 ? (
-            <p className="text-sm text-forest/60">Keine offenen Anfragen.</p>
+            <p className="text-sm text-forest/60">{t("admin.no_open_requests")}</p>
           ) : (
             <div className="grid gap-4 md:grid-cols-2">
               {pendingRequests.map((b) => (
@@ -250,13 +265,15 @@ function AdminPage() {
                   key={b.id}
                   booking={b}
                   busy={busy}
+                  fmt={fmt}
+                  intlLocale={intlLocale}
                   onConfirm={() =>
-                    handle(() => doConfirm({ data: { id: b.id } }), "Buchung bestätigt.")
+                    handle(() => doConfirm({ data: { id: b.id } }), t("admin.toast.confirmed"))
                   }
                   onReject={() =>
                     handle(
                       () => doStatus({ data: { id: b.id, status: "rejected" } }),
-                      "Anfrage abgelehnt.",
+                      t("admin.toast.rejected"),
                     )
                   }
                 />
@@ -270,39 +287,45 @@ function AdminPage() {
             onSubmit={(e) => onCreate(e, "booking")}
             className="bg-card rounded-3xl border border-forest/10 p-6 space-y-3"
           >
-            <h2 className="font-display text-xl mb-2">Eigene Buchung eintragen</h2>
+            <h2 className="font-display text-xl mb-2">{t("admin.own_booking_title")}</h2>
             <div className="grid grid-cols-2 gap-3">
-              <Field label="Anreise" name="start_date" type="date" required />
-              <Field label="Abreise" name="end_date" type="date" required />
+              <Field label={t("admin.checkin")} name="start_date" type="date" required />
+              <Field label={t("admin.checkout")} name="end_date" type="date" required />
             </div>
-            <Field label="Name des Gastes (optional)" name="guest_name" />
+            <Field label={t("admin.guest_name_opt")} name="guest_name" />
             <div className="grid grid-cols-2 gap-3">
-              <Field label="Anzahl Gäste (optional)" name="guests" type="number" min={1} max={12} />
-              <Field label="Telefon (optional)" name="guest_phone" />
+              <Field
+                label={t("admin.guests_opt")}
+                name="guests"
+                type="number"
+                min={1}
+                max={12}
+              />
+              <Field label={t("admin.phone_opt")} name="guest_phone" />
             </div>
             <label className="block">
               <span className="block text-[10px] uppercase tracking-widest text-forest/50 mb-1">
-                Buchungsquelle
+                {t("admin.source")}
               </span>
               <select
                 name="source"
                 defaultValue="direct"
                 className="w-full bg-card p-3 border border-forest/10 rounded-xl text-sm focus:outline-none focus:border-gold"
               >
-                {Object.entries(SOURCES).map(([v, l]) => (
+                {SOURCE_KEYS.map((v) => (
                   <option key={v} value={v}>
-                    {l}
+                    {t(`admin.sources.${v}`)}
                   </option>
                 ))}
               </select>
             </label>
-            <Field label="Notiz" name="note" />
+            <Field label={t("admin.note")} name="note" />
             <button
               type="submit"
               disabled={busy}
               className="w-full bg-forest text-sand py-4 rounded-xl text-xs uppercase tracking-[0.25em] font-bold hover:bg-gold hover:text-forest transition-colors disabled:opacity-60"
             >
-              Buchung eintragen
+              {t("admin.submit_booking")}
             </button>
           </form>
 
@@ -310,29 +333,27 @@ function AdminPage() {
             onSubmit={(e) => onCreate(e, "block")}
             className="bg-card rounded-3xl border border-forest/10 p-6 space-y-3"
           >
-            <h2 className="font-display text-xl mb-2">Zeitraum blockieren</h2>
+            <h2 className="font-display text-xl mb-2">{t("admin.block_title")}</h2>
             <div className="grid grid-cols-2 gap-3">
-              <Field label="Von" name="start_date" type="date" required />
-              <Field label="Bis" name="end_date" type="date" required />
+              <Field label={t("admin.from")} name="start_date" type="date" required />
+              <Field label={t("admin.to")} name="end_date" type="date" required />
             </div>
-            <Field label="Grund / Notiz (nur intern)" name="note" />
-            <p className="text-xs text-forest/55 leading-relaxed">
-              Gäste sehen diese Tage nur als „Nicht verfügbar“ — der Grund bleibt intern.
-            </p>
+            <Field label={t("admin.block_reason")} name="note" />
+            <p className="text-xs text-forest/55 leading-relaxed">{t("admin.block_hint")}</p>
             <button
               type="submit"
               disabled={busy}
               className="w-full bg-forest text-sand py-4 rounded-xl text-xs uppercase tracking-[0.25em] font-bold hover:bg-gold hover:text-forest transition-colors disabled:opacity-60"
             >
-              Zeitraum blockieren
+              {t("admin.submit_block")}
             </button>
           </form>
         </section>
 
         <section>
-          <h2 className="font-display text-2xl mb-4">Eigene Einträge</h2>
+          <h2 className="font-display text-2xl mb-4">{t("admin.entries_title")}</h2>
           {entries.length === 0 ? (
-            <p className="text-sm text-forest/60">Noch keine eigenen Buchungen oder Sperrzeiten.</p>
+            <p className="text-sm text-forest/60">{t("admin.entries_empty")}</p>
           ) : (
             <div className="space-y-3">
               {entries.map((e: CalendarEntry) => (
@@ -346,23 +367,28 @@ function AdminPage() {
                     </span>
                     <span className="ms-3 text-[10px] uppercase tracking-widest text-gold">
                       {e.entry_type === "booking"
-                        ? `Buchung · ${SOURCES[e.source] ?? e.source}`
-                        : "Blockiert"}
+                        ? `${t("admin.booking_label")} · ${t(`admin.sources.${e.source}`, e.source)}`
+                        : t("admin.blocked_label")}
                     </span>
                     <div className="text-forest/60 text-xs mt-1">
-                      {[e.guest_name, e.guests ? `${e.guests} Gäste` : null, e.guest_phone, e.note]
+                      {[
+                        e.guest_name,
+                        e.guests ? t("admin.guests_count", { count: e.guests }) : null,
+                        e.guest_phone,
+                        e.note,
+                      ]
                         .filter(Boolean)
                         .join(" · ")}
                     </div>
                   </div>
                   <button
                     onClick={() =>
-                      handle(() => doDelete({ data: { id: e.id } }), "Eintrag entfernt.")
+                      handle(() => doDelete({ data: { id: e.id } }), t("admin.toast.removed"))
                     }
                     disabled={busy}
                     className="inline-flex items-center gap-1.5 text-[11px] uppercase tracking-widest text-forest/50 hover:text-red-600 transition-colors"
                   >
-                    <Trash2 className="h-3.5 w-3.5" /> Entfernen
+                    <Trash2 className="h-3.5 w-3.5" /> {t("admin.remove")}
                   </button>
                 </div>
               ))}
@@ -371,9 +397,9 @@ function AdminPage() {
         </section>
 
         <section>
-          <h2 className="font-display text-2xl mb-4">Bearbeitete Anfragen</h2>
+          <h2 className="font-display text-2xl mb-4">{t("admin.handled_title")}</h2>
           {otherRequests.length === 0 ? (
-            <p className="text-sm text-forest/60">Noch keine.</p>
+            <p className="text-sm text-forest/60">{t("admin.handled_empty")}</p>
           ) : (
             <div className="grid gap-3 md:grid-cols-2">
               {otherRequests.map((b) => (
@@ -385,7 +411,8 @@ function AdminPage() {
                     <StatusBadge status={b.status} />
                   </div>
                   <div className="text-forest/60 text-xs mt-1">
-                    {b.guest_name} · {b.guests} Gäste · {b.guest_email}
+                    {b.guest_name} · {t("admin.guests_count", { count: b.guests })} ·{" "}
+                    {b.guest_email}
                   </div>
                 </div>
               ))}
@@ -407,23 +434,18 @@ function Legend({ className, label }: { className: string; label: string }) {
 }
 
 function StatusBadge({ status }: { status: string }) {
+  const { t } = useTranslation();
   const map: Record<string, string> = {
     pending: "bg-gold/25 text-forest",
     confirmed: "bg-forest text-paper",
     rejected: "bg-forest/10 text-forest/60",
     cancelled: "bg-forest/10 text-forest/60",
   };
-  const labels: Record<string, string> = {
-    pending: "Offen",
-    confirmed: "Bestätigt",
-    rejected: "Abgelehnt",
-    cancelled: "Storniert",
-  };
   return (
     <span
       className={`px-2.5 py-1 rounded-full text-[10px] uppercase tracking-widest ${map[status] ?? ""}`}
     >
-      {labels[status] ?? status}
+      {t(`admin.status.${status}`, status)}
     </span>
   );
 }
@@ -463,32 +485,39 @@ function Field({
 function RequestCard({
   booking,
   busy,
+  fmt,
+  intlLocale,
   onConfirm,
   onReject,
 }: {
   booking: AdminBooking;
   busy: boolean;
+  fmt: (d: string) => string;
+  intlLocale: string;
   onConfirm: () => void;
   onReject: () => void;
 }) {
+  const { t } = useTranslation();
   return (
     <div className="bg-card rounded-3xl border border-forest/10 p-6">
       <div className="flex items-start justify-between gap-3">
         <div>
           <h3 className="font-display text-lg">{booking.guest_name}</h3>
           <p className="text-xs text-forest/60 mt-0.5">
-            Eingegangen am {new Date(booking.created_at).toLocaleDateString("de-DE")}
+            {t("admin.received_on", {
+              date: new Date(booking.created_at).toLocaleDateString(intlLocale),
+            })}
           </p>
         </div>
         <StatusBadge status={booking.status} />
       </div>
       <dl className="mt-4 grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
-        <Info label="Anreise" value={fmt(booking.checkin)} />
-        <Info label="Abreise" value={fmt(booking.checkout)} />
-        <Info label="Gäste" value={String(booking.guests)} />
-        <Info label="Telefon" value={booking.guest_phone || "—"} />
-        <Info label="E-Mail" value={booking.guest_email} wide />
-        {booking.message ? <Info label="Nachricht" value={booking.message} wide /> : null}
+        <Info label={t("admin.checkin")} value={fmt(booking.checkin)} />
+        <Info label={t("admin.checkout")} value={fmt(booking.checkout)} />
+        <Info label={t("admin.guests")} value={String(booking.guests)} />
+        <Info label={t("admin.phone")} value={booking.guest_phone || "—"} />
+        <Info label={t("admin.email")} value={booking.guest_email} wide />
+        {booking.message ? <Info label={t("admin.message")} value={booking.message} wide /> : null}
       </dl>
       <div className="mt-5 flex gap-3">
         <button
@@ -496,14 +525,14 @@ function RequestCard({
           disabled={busy}
           className="flex-1 inline-flex items-center justify-center gap-2 bg-forest text-sand py-3 rounded-xl text-[11px] uppercase tracking-[0.2em] font-bold hover:bg-gold hover:text-forest transition-colors disabled:opacity-60"
         >
-          <Check className="h-3.5 w-3.5" /> Bestätigen
+          <Check className="h-3.5 w-3.5" /> {t("admin.confirm")}
         </button>
         <button
           onClick={onReject}
           disabled={busy}
           className="flex-1 inline-flex items-center justify-center gap-2 border border-forest/20 py-3 rounded-xl text-[11px] uppercase tracking-[0.2em] font-bold hover:border-red-500 hover:text-red-600 transition-colors disabled:opacity-60"
         >
-          <X className="h-3.5 w-3.5" /> Ablehnen
+          <X className="h-3.5 w-3.5" /> {t("admin.reject")}
         </button>
       </div>
     </div>
