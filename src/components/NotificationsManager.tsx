@@ -13,6 +13,7 @@ import {
   sendTestEmail,
   retryFailedEmails,
   type RecipientRow,
+  type EmailLogRow,
 } from "@/lib/notifications.functions";
 import { TEMPLATE_KEYS, TEMPLATE_LANGUAGES, TEMPLATE_VARIABLES } from "@/lib/email-defaults";
 
@@ -69,7 +70,11 @@ export function NotificationsManager({ propertyId }: { propertyId: string | null
     queryFn: () => load({ data: { propertyId: propertyId! } }),
     enabled: Boolean(propertyId),
   });
-  const settings = data && !("error" in data) ? data : null;
+  const settings: {
+    recipients: RecipientRow[];
+    log: EmailLogRow[];
+    centralEmail: string;
+  } | null = data && !("error" in data) ? (data as never) : null;
 
   const { data: templateData } = useQuery({
     queryKey: ["admin-email-template", propertyId ?? "none", templateKey, language],
@@ -79,7 +84,12 @@ export function NotificationsManager({ propertyId }: { propertyId: string | null
       }),
     enabled: Boolean(propertyId),
   });
-  const template = templateData && !("error" in templateData) ? templateData : null;
+  const template: {
+    subject: string;
+    body: string;
+    source: string;
+    preview: { subject: string; body: string };
+  } | null = templateData && !("error" in templateData) ? (templateData as never) : null;
 
   useEffect(() => {
     if (template) {
@@ -419,7 +429,7 @@ export function NotificationsManager({ propertyId }: { propertyId: string | null
                         : "text-forest/50"
                   }
                 >
-                  {t(`notifications.status.${row.status}`, row.status)}
+                  {String(t(`notifications.status.${row.status}`, { defaultValue: row.status }))}
                   {row.attempts ? ` (${row.attempts})` : ""}
                 </span>
               </div>
