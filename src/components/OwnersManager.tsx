@@ -33,6 +33,12 @@ const PERMS = [
   "can_create_calendar_blocks",
   "can_manage_prices",
   "can_receive_notifications",
+  "can_view_service_agreement",
+  "can_view_service_costs",
+  "can_view_owner_statements",
+  "can_view_receipts",
+  "can_download_statements",
+  "can_submit_financial_question",
 ] as const;
 
 const DEFAULT_PERMS = {
@@ -44,7 +50,14 @@ const DEFAULT_PERMS = {
   can_create_calendar_blocks: false,
   can_manage_prices: false,
   can_receive_notifications: true,
+  can_view_service_agreement: true,
+  can_view_service_costs: false,
+  can_view_owner_statements: false,
+  can_view_receipts: false,
+  can_download_statements: false,
+  can_submit_financial_question: true,
 };
+
 
 export function OwnersManager() {
   const { t } = useTranslation();
@@ -246,23 +259,17 @@ export function OwnersManager() {
                       onChange={async (e) => {
                         const res = await save({
                           data: {
+                            ...(a as unknown as Record<string, never>),
                             id: a.id,
                             user_id: o.user_id,
                             property_id: a.property_id,
                             assignment_role: a.assignment_role as "owner" | "co_owner" | "manager",
                             ownership_share_percent: a.ownership_share_percent,
-                            can_view_bookings: a.can_view_bookings,
-                            can_view_guest_contact_data: a.can_view_guest_contact_data,
-                            can_view_financials: a.can_view_financials,
-                            can_view_payments: a.can_view_payments,
-                            can_view_calendar: a.can_view_calendar,
-                            can_create_calendar_blocks: a.can_create_calendar_blocks,
-                            can_manage_prices: a.can_manage_prices,
-                            can_receive_notifications: a.can_receive_notifications,
                             active: a.active,
                             [p]: e.target.checked,
                           },
                         });
+
                         if (res && "error" in res) toast.error(t("owners.errors.generic"));
                         else refresh();
                       }}
