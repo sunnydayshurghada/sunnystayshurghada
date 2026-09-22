@@ -153,7 +153,29 @@ export const confirmBooking = createServerFn({ method: "POST" })
       /* sync problems must not block the confirmation check itself */
     }
     const { error } = await context.supabase.rpc("admin_confirm_booking", { _id: data.id });
-    if (error) return { ok: false, error: errorCode(error.message) };
+    if (error) {
+      const code = errorCode(error.message);
+      if (code === "dates_unavailable") {
+        const { notifyOperational, safeNotify } = await import("@/lib/notifications.server");
+        await safeNotify(
+          () =>
+            notifyOperational(
+              "calendar_conflict",
+              row?.property_id ?? null,
+              `Die Direktbuchung ${data.id} konnte nicht bestätigt werden: Der Zeitraum ist inzwischen belegt.`,
+            ),
+          "conflict alert",
+        );
+      }
+      return { ok: false, error: code };
+    }
+    {
+      const { notifyGuest, notifyInternal, safeNotify } = await import(
+        "@/lib/notifications.server"
+      );
+      await safeNotify(() => notifyGuest(data.id, "booking_confirmed"), "guest confirmation");
+      await safeNotify(() => notifyInternal("confirmed_booking", data.id), "internal confirmation");
+    }
     return { ok: true };
   });
 
@@ -170,6 +192,21 @@ export const setBookingStatus = createServerFn({ method: "POST" })
       _status: data.status,
     });
     if (error) return { ok: false, error: errorCode(error.message) };
+    {
+      const { notifyGuest, notifyInternal, safeNotify } = await import(
+        "@/lib/notifications.server"
+      );
+      if (data.status === "rejected") {
+        await safeNotify(() => notifyGuest(data.id, "inquiry_declined"), "guest decline");
+        await safeNotify(() => notifyInternal("booking_change", data.id), "internal decline");
+      } else if (data.status === "cancelled") {
+        await safeNotify(
+          () => notifyGuest(data.id, "cancellation_confirmed"),
+          "guest cancellation",
+        );
+        await safeNotify(() => notifyInternal("cancellation", data.id), "internal cancellation");
+      }
+    }
     return { ok: true };
   });
 
