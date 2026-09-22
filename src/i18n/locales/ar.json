@@ -77,7 +77,86 @@
     "starting_from": "ابتداءً من 20 € / ليلة",
     "note": "الأسعار الحالية على Airbnb — تتغيّر حسب الموسم.",
     "cta_airbnb": "اطّلع على الأسعار على Airbnb",
-    "cta_enquire": "أو أرسل لنا استفساراً بالأسفل"
+    "cta_enquire": "أو أرسل لنا استفساراً بالأسفل",
+    "title": "إدارة الأسعار",
+    "intro": "تُطبق الأسعار على الشقة المختارة فقط.",
+    "pick_property": "اختر شقة من الأعلى أولاً.",
+    "settings_title": "إعدادات الأسعار",
+    "mode": "مصدر السعر",
+    "modes": {
+      "manual": "يدوي",
+      "pricelabs": "تلقائي (PriceLabs)",
+      "hybrid": "مختلط (PriceLabs مع أسعار يدوية)"
+    },
+    "price_hint": "كل المبالغ بالسنت (مثال: 4000 = 40,00 €).",
+    "base_price": "السعر الأساسي",
+    "minimum_price": "أقل سعر",
+    "maximum_price": "أعلى سعر",
+    "weekend_price": "سعر عطلة نهاية الأسبوع",
+    "cleaning_fee": "رسوم التنظيف",
+    "minimum_stay": "أقل عدد ليالٍ",
+    "currency": "العملة",
+    "extra_guest_fee": "رسوم كل ضيف إضافي",
+    "extra_guest_after": "الرسوم تبدأ من الضيف رقم",
+    "direct_percent": "الحجز المباشر %",
+    "direct_fixed": "الحجز المباشر مبلغ ثابت",
+    "weekly_discount": "خصم أسبوعي %",
+    "monthly_discount": "خصم شهري %",
+    "los_nights": "خصم ابتداءً من ليالٍ",
+    "los_discount": "الخصم %",
+    "last_minute_days": "اللحظة الأخيرة خلال أيام",
+    "last_minute_discount": "اللحظة الأخيرة %",
+    "save": "حفظ الإعدادات",
+    "price_cents": "السعر (سنت)",
+    "reason": "السبب",
+    "apply": "تطبيق السعر",
+    "reset": "إلغاء الأسعار الخاصة",
+    "select_month": "اختيار الشهر كاملاً",
+    "clear_selection": "إلغاء التحديد",
+    "sources": {
+      "manual": "يدوي",
+      "pricelabs": "PriceLabs",
+      "pricelabs_override": "تعديل يدوي على PriceLabs",
+      "season": "قاعدة موسمية",
+      "weekend": "نهاية الأسبوع",
+      "base": "السعر الأساسي"
+    },
+    "detail": {
+      "used": "السعر المستخدم",
+      "pricelabs": "اقتراح PriceLabs",
+      "bounds": "أقل/أعلى سعر",
+      "source": "المصدر",
+      "updated": "آخر تحديث"
+    },
+    "toast": {
+      "saved": "تم حفظ إعدادات الأسعار",
+      "applied": "تم تطبيق الأسعار",
+      "reset": "تم إلغاء الأسعار الخاصة",
+      "synced": "تم تحديث الأسعار"
+    },
+    "errors": {
+      "forbidden": "غير مسموح.",
+      "not_found": "الشقة غير موجودة.",
+      "out_of_bounds": "السعر خارج الحد الأدنى/الأعلى.",
+      "min_above_max": "أقل سعر أعلى من أعلى سعر.",
+      "invalid_range": "فترة غير صالحة.",
+      "not_configured": "PriceLabs غير متصل بعد.",
+      "api_access_unconfirmed": "لم يتم تأكيد الوصول إلى واجهة PriceLabs.",
+      "generic": "لم تنجح العملية."
+    },
+    "pricelabs": {
+      "title": "PriceLabs",
+      "enabled": "استخدام PriceLabs لهذه الشقة",
+      "listing_id": "معرّف العقار في PriceLabs",
+      "sync_now": "تحديث الآن",
+      "last_sync": "آخر تحديث",
+      "configured": "تم حفظ بيانات الدخول. سيتم استيراد الأسعار بعد تأكيد الوصول للواجهة.",
+      "missing_key": "لا يوجد وصول إلى PriceLabs بعد — تُطبق الأسعار اليدوية.",
+      "error": {
+        "missing_api_key": "لا يوجد مفتاح PriceLabs.",
+        "api_access_unconfirmed": "لم يتم تأكيد باقة PriceLabs مع وصول الواجهة."
+      }
+    }
   },
   "booking": {
     "per_night": "/ ليلة",
@@ -399,6 +478,20 @@
       "bedrooms": "{{count}} غرف نوم",
       "beds": "{{count}} أسرّة",
       "bathrooms": "{{count}} حمامات"
+    }
+  },
+  "quote": {
+    "nights": "{{count}} ليالٍ",
+    "extra_guests": "ضيوف إضافيون",
+    "cleaning_fee": "رسوم التنظيف",
+    "discount": "خصم",
+    "total": "الإجمالي",
+    "per_night": "السعر لكل ليلة",
+    "discounts": {
+      "weekly": "خصم أسبوعي",
+      "monthly": "خصم شهري",
+      "last_minute": "خصم اللحظة الأخيرة",
+      "length_of_stay": "خصم الإقامة الطويلة"
     }
   }
 }
