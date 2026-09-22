@@ -77,10 +77,12 @@ export type Database = {
           created_by: string | null
           end_date: string
           entry_type: string
+          external_uid: string | null
           guest_name: string | null
           guest_phone: string | null
           guests: number | null
           id: string
+          last_seen_at: string | null
           note: string | null
           source: string
           start_date: string
@@ -91,10 +93,12 @@ export type Database = {
           created_by?: string | null
           end_date: string
           entry_type?: string
+          external_uid?: string | null
           guest_name?: string | null
           guest_phone?: string | null
           guests?: number | null
           id?: string
+          last_seen_at?: string | null
           note?: string | null
           source?: string
           start_date: string
@@ -105,14 +109,82 @@ export type Database = {
           created_by?: string | null
           end_date?: string
           entry_type?: string
+          external_uid?: string | null
           guest_name?: string | null
           guest_phone?: string | null
           guests?: number | null
           id?: string
+          last_seen_at?: string | null
           note?: string | null
           source?: string
           start_date?: string
           updated_at?: string
+        }
+        Relationships: []
+      }
+      ical_settings: {
+        Row: {
+          airbnb_ical_url: string | null
+          cron_secret: string
+          export_token: string
+          id: boolean
+          last_sync_at: string | null
+          last_sync_error: string | null
+          last_sync_imported: number
+          last_sync_status: string | null
+          updated_at: string
+        }
+        Insert: {
+          airbnb_ical_url?: string | null
+          cron_secret?: string
+          export_token?: string
+          id?: boolean
+          last_sync_at?: string | null
+          last_sync_error?: string | null
+          last_sync_imported?: number
+          last_sync_status?: string | null
+          updated_at?: string
+        }
+        Update: {
+          airbnb_ical_url?: string | null
+          cron_secret?: string
+          export_token?: string
+          id?: boolean
+          last_sync_at?: string | null
+          last_sync_error?: string | null
+          last_sync_imported?: number
+          last_sync_status?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      ical_sync_log: {
+        Row: {
+          id: string
+          imported: number
+          message: string | null
+          ran_at: string
+          removed: number
+          status: string
+          trigger_source: string
+        }
+        Insert: {
+          id?: string
+          imported?: number
+          message?: string | null
+          ran_at?: string
+          removed?: number
+          status: string
+          trigger_source?: string
+        }
+        Update: {
+          id?: string
+          imported?: number
+          message?: string | null
+          ran_at?: string
+          removed?: number
+          status?: string
+          trigger_source?: string
         }
         Relationships: []
       }

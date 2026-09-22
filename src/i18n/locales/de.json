@@ -252,7 +252,8 @@
       "pending": "Anfrage (offen)",
       "confirmed": "Bestätigt",
       "manual": "Eigene Buchung",
-      "blocked": "Blockiert"
+      "blocked": "Blockiert",
+      "airbnb": "Airbnb"
     },
     "requests_open": "Offene Anfragen",
     "no_open_requests": "Keine offenen Anfragen.",
@@ -311,7 +312,47 @@
       "not_found": "Eintrag nicht gefunden.",
       "forbidden": "Keine Berechtigung.",
       "invalid_range": "Das Abreisedatum muss nach dem Anreisedatum liegen.",
-      "generic": "Etwas ist schiefgelaufen. Bitte erneut versuchen."
+      "generic": "Etwas ist schiefgelaufen. Bitte erneut versuchen.",
+      "external_readonly": "Airbnb-Einträge können nur bei Airbnb geändert werden."
+    },
+    "sync": {
+      "title": "Airbnb-Synchronisation",
+      "import_title": "Airbnb-Kalender importieren",
+      "import_hint": "Trage hier die private iCal-Export-Adresse aus deinem Airbnb-Konto ein. Sie wird nur auf dem Server gespeichert und nie öffentlich angezeigt. Der Abruf erfolgt automatisch alle 15 Minuten.",
+      "url_label": "Airbnb iCal-Adresse",
+      "url_saved_hint": "Gespeichert:",
+      "save_url": "Adresse speichern",
+      "connection": "Verbindung",
+      "status_ok": "Verbunden",
+      "status_error": "Fehler",
+      "status_waiting": "Noch nicht synchronisiert",
+      "status_not_connected": "Nicht verbunden",
+      "last_sync": "Letzte Synchronisation",
+      "next_sync": "Nächster Abruf",
+      "imported_count": "Importierte Zeiträume",
+      "sync_now": "Jetzt synchronisieren",
+      "export_title": "Unser Kalender für Airbnb",
+      "export_hint": "Diese Adresse einmalig bei Airbnb als externen Kalender importieren. Sie enthält nur Datumsangaben – keine Namen, Kontaktdaten oder Preise. Airbnb-Termine werden nicht zurück exportiert.",
+      "copy": "Kopieren",
+      "rotate_token": "Neuen Link erzeugen",
+      "log_title": "Letzte Synchronisationen",
+      "log_empty": "Noch keine Synchronisation.",
+      "log_ok": "{{imported}} importiert · {{removed}} entfernt",
+      "airbnb_readonly": "Airbnb – nur über Airbnb änderbar",
+      "toast": {
+        "url_saved": "Airbnb-Adresse gespeichert.",
+        "synced": "Synchronisiert – {{count}} Zeiträume von Airbnb.",
+        "token_rotated": "Neuer Export-Link erzeugt – bitte bei Airbnb aktualisieren.",
+        "copied": "Link kopiert."
+      },
+      "errors": {
+        "no_url": "Es ist noch keine Airbnb-Adresse hinterlegt.",
+        "invalid_url": "Diese Adresse ist ungültig. Sie muss mit https:// beginnen.",
+        "fetch_failed": "Der Airbnb-Kalender ist nicht erreichbar. Bitte Adresse prüfen.",
+        "invalid_calendar": "Die Adresse liefert keinen gültigen Kalender.",
+        "forbidden": "Keine Berechtigung.",
+        "generic": "Es ist ein Fehler aufgetreten."
+      }
     }
   },
   "auth": {

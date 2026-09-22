@@ -19,6 +19,8 @@ import { Route as LangImprintRouteImport } from './routes/$lang.imprint'
 import { Route as LovableEmailTransactionalPreviewRouteImport } from './routes/lovable/email/transactional/preview'
 import { Route as LovableEmailAuthWebhookRouteImport } from './routes/lovable/email/auth/webhook'
 import { Route as LovableEmailAuthPreviewRouteImport } from './routes/lovable/email/auth/preview'
+import { Route as ApiPublicIcalSyncRouteImport } from './routes/api/public/ical/sync'
+import { Route as ApiPublicCalendarTokenRouteImport } from './routes/api/public/calendar/$token'
 
 const AuthRoute = AuthRouteImport.update({
   id: '/auth',
@@ -70,6 +72,16 @@ const LovableEmailAuthPreviewRoute = LovableEmailAuthPreviewRouteImport.update({
   path: '/lovable/email/auth/preview',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicIcalSyncRoute = ApiPublicIcalSyncRouteImport.update({
+  id: '/api/public/ical/sync',
+  path: '/api/public/ical/sync',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiPublicCalendarTokenRoute = ApiPublicCalendarTokenRouteImport.update({
+  id: '/api/public/calendar/$token',
+  path: '/api/public/calendar/$token',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -78,6 +90,8 @@ export interface FileRoutesByFullPath {
   '/$lang/privacy': typeof LangPrivacyRoute
   '/$lang/terms': typeof LangTermsRoute
   '/admin': typeof AuthenticatedAdminRoute
+  '/api/public/calendar/$token': typeof ApiPublicCalendarTokenRoute
+  '/api/public/ical/sync': typeof ApiPublicIcalSyncRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
   '/lovable/email/auth/webhook': typeof LovableEmailAuthWebhookRoute
   '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
@@ -89,6 +103,8 @@ export interface FileRoutesByTo {
   '/$lang/privacy': typeof LangPrivacyRoute
   '/$lang/terms': typeof LangTermsRoute
   '/admin': typeof AuthenticatedAdminRoute
+  '/api/public/calendar/$token': typeof ApiPublicCalendarTokenRoute
+  '/api/public/ical/sync': typeof ApiPublicIcalSyncRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
   '/lovable/email/auth/webhook': typeof LovableEmailAuthWebhookRoute
   '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
@@ -102,6 +118,8 @@ export interface FileRoutesById {
   '/$lang/privacy': typeof LangPrivacyRoute
   '/$lang/terms': typeof LangTermsRoute
   '/_authenticated/admin': typeof AuthenticatedAdminRoute
+  '/api/public/calendar/$token': typeof ApiPublicCalendarTokenRoute
+  '/api/public/ical/sync': typeof ApiPublicIcalSyncRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
   '/lovable/email/auth/webhook': typeof LovableEmailAuthWebhookRoute
   '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
@@ -115,6 +133,8 @@ export interface FileRouteTypes {
     | '/$lang/privacy'
     | '/$lang/terms'
     | '/admin'
+    | '/api/public/calendar/$token'
+    | '/api/public/ical/sync'
     | '/lovable/email/auth/preview'
     | '/lovable/email/auth/webhook'
     | '/lovable/email/transactional/preview'
@@ -126,6 +146,8 @@ export interface FileRouteTypes {
     | '/$lang/privacy'
     | '/$lang/terms'
     | '/admin'
+    | '/api/public/calendar/$token'
+    | '/api/public/ical/sync'
     | '/lovable/email/auth/preview'
     | '/lovable/email/auth/webhook'
     | '/lovable/email/transactional/preview'
@@ -138,6 +160,8 @@ export interface FileRouteTypes {
     | '/$lang/privacy'
     | '/$lang/terms'
     | '/_authenticated/admin'
+    | '/api/public/calendar/$token'
+    | '/api/public/ical/sync'
     | '/lovable/email/auth/preview'
     | '/lovable/email/auth/webhook'
     | '/lovable/email/transactional/preview'
@@ -150,6 +174,8 @@ export interface RootRouteChildren {
   LangImprintRoute: typeof LangImprintRoute
   LangPrivacyRoute: typeof LangPrivacyRoute
   LangTermsRoute: typeof LangTermsRoute
+  ApiPublicCalendarTokenRoute: typeof ApiPublicCalendarTokenRoute
+  ApiPublicIcalSyncRoute: typeof ApiPublicIcalSyncRoute
   LovableEmailAuthPreviewRoute: typeof LovableEmailAuthPreviewRoute
   LovableEmailAuthWebhookRoute: typeof LovableEmailAuthWebhookRoute
   LovableEmailTransactionalPreviewRoute: typeof LovableEmailTransactionalPreviewRoute
@@ -227,6 +253,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LovableEmailAuthPreviewRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/ical/sync': {
+      id: '/api/public/ical/sync'
+      path: '/api/public/ical/sync'
+      fullPath: '/api/public/ical/sync'
+      preLoaderRoute: typeof ApiPublicIcalSyncRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/calendar/$token': {
+      id: '/api/public/calendar/$token'
+      path: '/api/public/calendar/$token'
+      fullPath: '/api/public/calendar/$token'
+      preLoaderRoute: typeof ApiPublicCalendarTokenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -248,6 +288,8 @@ const rootRouteChildren: RootRouteChildren = {
   LangImprintRoute: LangImprintRoute,
   LangPrivacyRoute: LangPrivacyRoute,
   LangTermsRoute: LangTermsRoute,
+  ApiPublicCalendarTokenRoute: ApiPublicCalendarTokenRoute,
+  ApiPublicIcalSyncRoute: ApiPublicIcalSyncRoute,
   LovableEmailAuthPreviewRoute: LovableEmailAuthPreviewRoute,
   LovableEmailAuthWebhookRoute: LovableEmailAuthWebhookRoute,
   LovableEmailTransactionalPreviewRoute: LovableEmailTransactionalPreviewRoute,

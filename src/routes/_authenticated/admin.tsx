@@ -20,6 +20,7 @@ import {
 import { supabase } from "@/integrations/supabase/client";
 import { parseISODate } from "@/lib/availability";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
+import { AirbnbSyncPanel } from "@/components/AirbnbSyncPanel";
 import brandLogo from "@/assets/sunny-stays-hurghada-logo.png";
 
 export const Route = createFileRoute("/_authenticated/admin")({
@@ -105,15 +106,20 @@ function AdminPage() {
     const confirmed: Date[] = [];
     const manual: Date[] = [];
     const blocked: Date[] = [];
+    const airbnb: Date[] = [];
     for (const b of bookings) {
       if (b.status === "pending") pending.push(...days(b.checkin, b.checkout));
       if (b.status === "confirmed") confirmed.push(...days(b.checkin, b.checkout));
     }
     for (const e of entries) {
-      const list = e.entry_type === "booking" ? manual : blocked;
+      const list = e.external_uid
+        ? airbnb
+        : e.entry_type === "booking"
+          ? manual
+          : blocked;
       list.push(...days(e.start_date, e.end_date));
     }
-    return { pending, confirmed, manual, blocked };
+    return { pending, confirmed, manual, blocked, airbnb };
   }, [bookings, entries]);
 
   const refresh = () => queryClient.invalidateQueries({ queryKey: ["admin-data"] });
@@ -239,6 +245,7 @@ function AdminPage() {
                 confirmed: "bg-forest text-paper rounded-md",
                 manual: "bg-forest/70 text-paper rounded-md",
                 blocked: "bg-forest/20 line-through rounded-md",
+                airbnb: "bg-rose-500/70 text-paper rounded-md",
               }}
               className="[--rdp-day-height:2.3rem] [--rdp-day-width:2.3rem]"
             />
@@ -247,6 +254,7 @@ function AdminPage() {
               <Legend className="bg-forest" label={t("admin.legend.confirmed")} />
               <Legend className="bg-forest/70" label={t("admin.legend.manual")} />
               <Legend className="bg-forest/20" label={t("admin.legend.blocked")} />
+              <Legend className="bg-rose-500/70" label={t("admin.legend.airbnb")} />
             </div>
           </div>
         </section>
@@ -350,6 +358,8 @@ function AdminPage() {
           </form>
         </section>
 
+        <AirbnbSyncPanel intlLocale={intlLocale} />
+
         <section>
           <h2 className="font-display text-2xl mb-4">{t("admin.entries_title")}</h2>
           {entries.length === 0 ? (
@@ -381,15 +391,21 @@ function AdminPage() {
                         .join(" · ")}
                     </div>
                   </div>
-                  <button
-                    onClick={() =>
-                      handle(() => doDelete({ data: { id: e.id } }), t("admin.toast.removed"))
-                    }
-                    disabled={busy}
-                    className="inline-flex items-center gap-1.5 text-[11px] uppercase tracking-widest text-forest/50 hover:text-red-600 transition-colors"
-                  >
-                    <Trash2 className="h-3.5 w-3.5" /> {t("admin.remove")}
-                  </button>
+                  {e.external_uid ? (
+                    <span className="text-[11px] uppercase tracking-widest text-forest/45">
+                      {t("admin.sync.airbnb_readonly")}
+                    </span>
+                  ) : (
+                    <button
+                      onClick={() =>
+                        handle(() => doDelete({ data: { id: e.id } }), t("admin.toast.removed"))
+                      }
+                      disabled={busy}
+                      className="inline-flex items-center gap-1.5 text-[11px] uppercase tracking-widest text-forest/50 hover:text-red-600 transition-colors"
+                    >
+                      <Trash2 className="h-3.5 w-3.5" /> {t("admin.remove")}
+                    </button>
+                  )}
                 </div>
               ))}
             </div>
