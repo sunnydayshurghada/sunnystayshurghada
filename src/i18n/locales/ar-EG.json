@@ -313,6 +313,56 @@
         "forbidden": "Not allowed.",
         "generic": "Something went wrong."
       }
+    },
+    "property": "الشقة",
+    "property_filter": "تصفية حسب الشقة",
+    "all_properties": "كل الشقق",
+    "properties": {
+      "title": "إدارة الشقق",
+      "new": "شقة جديدة",
+      "cancel": "إلغاء",
+      "edit": "تعديل",
+      "activate": "تفعيل",
+      "deactivate": "تعطيل",
+      "save": "حفظ الشقة",
+      "internal_name": "الاسم الداخلي",
+      "public_name": "الاسم المعروض",
+      "slug": "الرابط",
+      "status_label": "الحالة",
+      "status": {
+        "draft": "مسودة",
+        "active": "مفعلة",
+        "inactive": "غير مفعلة"
+      },
+      "short_description": "وصف مختصر",
+      "full_description": "الوصف",
+      "address": "العنوان",
+      "area": "المنطقة",
+      "max_guests": "أقصى عدد ضيوف",
+      "bedrooms": "غرف النوم",
+      "beds": "الأسرّة",
+      "bathrooms": "الحمامات",
+      "check_in_time": "الوصول من",
+      "check_out_time": "المغادرة حتى",
+      "min_nights": "أقل عدد ليالٍ",
+      "max_nights": "أقصى عدد ليالٍ",
+      "base_price": "السعر الأساسي",
+      "min_price": "أقل سعر",
+      "max_price": "أعلى سعر",
+      "cleaning_fee": "رسوم التنظيف",
+      "currency": "العملة",
+      "sort_order": "الترتيب",
+      "price_hint": "كل المبالغ بالسنت (مثال: 2000 = 20,00 €).",
+      "direct_booking": "الحجز المباشر مفعل",
+      "instant_booking": "الحجز الفوري مفعل",
+      "toast": {
+        "saved": "تم حفظ الشقة"
+      },
+      "errors": {
+        "slug_taken": "هذا الرابط مستخدم بالفعل.",
+        "forbidden": "غير مسموح.",
+        "generic": "لم تنجح العملية."
+      }
     }
   },
   "auth": {
@@ -336,6 +386,19 @@
       "password_saved": "تم حفظ كلمة المرور.",
       "need_credentials": "يرجى إدخال البريد الإلكتروني وكلمة مرور من 8 أحرف على الأقل.",
       "signin_failed": "تعذّر تسجيل الدخول."
+    }
+  },
+  "apartments": {
+    "eyebrow": "الغردقة · البحر الأحمر",
+    "title": "شققنا",
+    "empty": "لا توجد شقة منشورة حالياً.",
+    "details": "عرض التفاصيل",
+    "back": "العودة إلى القائمة",
+    "facts": {
+      "guests": "حتى {{count}} ضيوف",
+      "bedrooms": "{{count}} غرف نوم",
+      "beds": "{{count}} أسرّة",
+      "bathrooms": "{{count}} حمامات"
     }
   }
 }

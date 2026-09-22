@@ -1,13 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-/** Scheduled Airbnb import. Requires the shared cron secret. */
+/** Scheduled Airbnb import for every property. Requires the shared cron secret. */
 async function run(request: Request): Promise<Response> {
   const url = new URL(request.url);
   const provided = request.headers.get("x-cron-secret") ?? url.searchParams.get("secret") ?? "";
 
-  const { getSettings, syncAirbnb } = await import("@/lib/ical.server");
-  const settings = await getSettings();
-  const expected = settings.cron_secret;
+  const { getCronSecret, syncAllProperties } = await import("@/lib/ical.server");
+  const expected = await getCronSecret();
 
   if (!expected || provided.length !== expected.length) {
     return new Response("Unauthorized", { status: 401 });
@@ -18,8 +17,12 @@ async function run(request: Request): Promise<Response> {
   }
   if (diff !== 0) return new Response("Unauthorized", { status: 401 });
 
-  const result = await syncAirbnb("cron");
-  return Response.json(result, { status: result.ok ? 200 : 500 });
+  const results = await syncAllProperties();
+  const ok = results.every((r) => r.result.ok);
+  const imported = results.reduce((n, r) => n + r.result.imported, 0);
+  return Response.json({ ok, properties: results.length, imported, results }, {
+    status: ok ? 200 : 500,
+  });
 }
 
 export const Route = createFileRoute("/api/public/ical/sync")({

@@ -12,6 +12,8 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ApartmentsIndexRouteImport } from './routes/apartments.index'
+import { Route as ApartmentsSlugRouteImport } from './routes/apartments.$slug'
 import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
 import { Route as LangTermsRouteImport } from './routes/$lang.terms'
 import { Route as LangPrivacyRouteImport } from './routes/$lang.privacy'
@@ -34,6 +36,16 @@ const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApartmentsIndexRoute = ApartmentsIndexRouteImport.update({
+  id: '/apartments/',
+  path: '/apartments/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApartmentsSlugRoute = ApartmentsSlugRouteImport.update({
+  id: '/apartments/$slug',
+  path: '/apartments/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthenticatedAdminRoute = AuthenticatedAdminRouteImport.update({
@@ -90,6 +102,8 @@ export interface FileRoutesByFullPath {
   '/$lang/privacy': typeof LangPrivacyRoute
   '/$lang/terms': typeof LangTermsRoute
   '/admin': typeof AuthenticatedAdminRoute
+  '/apartments/$slug': typeof ApartmentsSlugRoute
+  '/apartments/': typeof ApartmentsIndexRoute
   '/api/public/calendar/$token': typeof ApiPublicCalendarTokenRoute
   '/api/public/ical/sync': typeof ApiPublicIcalSyncRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
@@ -103,6 +117,8 @@ export interface FileRoutesByTo {
   '/$lang/privacy': typeof LangPrivacyRoute
   '/$lang/terms': typeof LangTermsRoute
   '/admin': typeof AuthenticatedAdminRoute
+  '/apartments/$slug': typeof ApartmentsSlugRoute
+  '/apartments': typeof ApartmentsIndexRoute
   '/api/public/calendar/$token': typeof ApiPublicCalendarTokenRoute
   '/api/public/ical/sync': typeof ApiPublicIcalSyncRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
@@ -118,6 +134,8 @@ export interface FileRoutesById {
   '/$lang/privacy': typeof LangPrivacyRoute
   '/$lang/terms': typeof LangTermsRoute
   '/_authenticated/admin': typeof AuthenticatedAdminRoute
+  '/apartments/$slug': typeof ApartmentsSlugRoute
+  '/apartments/': typeof ApartmentsIndexRoute
   '/api/public/calendar/$token': typeof ApiPublicCalendarTokenRoute
   '/api/public/ical/sync': typeof ApiPublicIcalSyncRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
@@ -133,6 +151,8 @@ export interface FileRouteTypes {
     | '/$lang/privacy'
     | '/$lang/terms'
     | '/admin'
+    | '/apartments/$slug'
+    | '/apartments/'
     | '/api/public/calendar/$token'
     | '/api/public/ical/sync'
     | '/lovable/email/auth/preview'
@@ -146,6 +166,8 @@ export interface FileRouteTypes {
     | '/$lang/privacy'
     | '/$lang/terms'
     | '/admin'
+    | '/apartments/$slug'
+    | '/apartments'
     | '/api/public/calendar/$token'
     | '/api/public/ical/sync'
     | '/lovable/email/auth/preview'
@@ -160,6 +182,8 @@ export interface FileRouteTypes {
     | '/$lang/privacy'
     | '/$lang/terms'
     | '/_authenticated/admin'
+    | '/apartments/$slug'
+    | '/apartments/'
     | '/api/public/calendar/$token'
     | '/api/public/ical/sync'
     | '/lovable/email/auth/preview'
@@ -174,6 +198,8 @@ export interface RootRouteChildren {
   LangImprintRoute: typeof LangImprintRoute
   LangPrivacyRoute: typeof LangPrivacyRoute
   LangTermsRoute: typeof LangTermsRoute
+  ApartmentsSlugRoute: typeof ApartmentsSlugRoute
+  ApartmentsIndexRoute: typeof ApartmentsIndexRoute
   ApiPublicCalendarTokenRoute: typeof ApiPublicCalendarTokenRoute
   ApiPublicIcalSyncRoute: typeof ApiPublicIcalSyncRoute
   LovableEmailAuthPreviewRoute: typeof LovableEmailAuthPreviewRoute
@@ -202,6 +228,20 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/apartments/': {
+      id: '/apartments/'
+      path: '/apartments'
+      fullPath: '/apartments/'
+      preLoaderRoute: typeof ApartmentsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/apartments/$slug': {
+      id: '/apartments/$slug'
+      path: '/apartments/$slug'
+      fullPath: '/apartments/$slug'
+      preLoaderRoute: typeof ApartmentsSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_authenticated/admin': {
@@ -288,6 +328,8 @@ const rootRouteChildren: RootRouteChildren = {
   LangImprintRoute: LangImprintRoute,
   LangPrivacyRoute: LangPrivacyRoute,
   LangTermsRoute: LangTermsRoute,
+  ApartmentsSlugRoute: ApartmentsSlugRoute,
+  ApartmentsIndexRoute: ApartmentsIndexRoute,
   ApiPublicCalendarTokenRoute: ApiPublicCalendarTokenRoute,
   ApiPublicIcalSyncRoute: ApiPublicIcalSyncRoute,
   LovableEmailAuthPreviewRoute: LovableEmailAuthPreviewRoute,

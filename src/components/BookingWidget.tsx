@@ -19,7 +19,7 @@ const schema = z.object({
   message: z.string().trim().max(1000).optional().or(z.literal("")),
 });
 
-export function BookingWidget() {
+export function BookingWidget({ propertyId }: { propertyId?: string | null } = {}) {
   const { t, i18n } = useTranslation();
   const [pending, setPending] = useState(false);
   const [range, setRange] = useState<DateRange | undefined>(undefined);
@@ -28,8 +28,8 @@ export function BookingWidget() {
   const queryClient = useQueryClient();
 
   const { data: blocked = [] } = useQuery({
-    queryKey: ["blocked-ranges"],
-    queryFn: () => loadRanges(),
+    queryKey: ["blocked-ranges", propertyId ?? "default"],
+    queryFn: () => loadRanges({ data: { propertyId: propertyId ?? null } }),
     staleTime: 0,
     refetchOnMount: "always",
     refetchOnWindowFocus: true,
@@ -81,6 +81,7 @@ export function BookingWidget() {
     try {
       result = await submitBooking({
         data: {
+          property_id: propertyId ?? null,
           guest_name: parsed.data.guest_name,
           guest_email: parsed.data.guest_email,
           guest_phone: parsed.data.guest_phone || "",

@@ -313,6 +313,56 @@
         "forbidden": "Not allowed.",
         "generic": "Something went wrong."
       }
+    },
+    "property": "Apartment",
+    "property_filter": "Filter by apartment",
+    "all_properties": "All apartments",
+    "properties": {
+      "title": "Manage apartments",
+      "new": "New apartment",
+      "cancel": "Cancel",
+      "edit": "Edit",
+      "activate": "Activate",
+      "deactivate": "Deactivate",
+      "save": "Save apartment",
+      "internal_name": "Internal name",
+      "public_name": "Public name",
+      "slug": "URL (slug)",
+      "status_label": "Status",
+      "status": {
+        "draft": "Draft",
+        "active": "Active",
+        "inactive": "Inactive"
+      },
+      "short_description": "Short description",
+      "full_description": "Description",
+      "address": "Address",
+      "area": "Area",
+      "max_guests": "Max. guests",
+      "bedrooms": "Bedrooms",
+      "beds": "Beds",
+      "bathrooms": "Bathrooms",
+      "check_in_time": "Check-in from",
+      "check_out_time": "Check-out until",
+      "min_nights": "Minimum nights",
+      "max_nights": "Maximum nights",
+      "base_price": "Base price",
+      "min_price": "Minimum price",
+      "max_price": "Maximum price",
+      "cleaning_fee": "Cleaning fee",
+      "currency": "Currency",
+      "sort_order": "Sort order",
+      "price_hint": "All amounts in cents (e.g. 2000 = €20.00).",
+      "direct_booking": "Direct booking enabled",
+      "instant_booking": "Instant booking enabled",
+      "toast": {
+        "saved": "Apartment saved"
+      },
+      "errors": {
+        "slug_taken": "This URL is already taken.",
+        "forbidden": "Not allowed.",
+        "generic": "That did not work."
+      }
     }
   },
   "auth": {
@@ -336,6 +386,19 @@
       "password_saved": "Password saved.",
       "need_credentials": "Please enter your email and a password with at least 8 characters.",
       "signin_failed": "Sign-in failed."
+    }
+  },
+  "apartments": {
+    "eyebrow": "Hurghada · Red Sea",
+    "title": "Our apartments",
+    "empty": "No apartment is published right now.",
+    "details": "View details",
+    "back": "Back to overview",
+    "facts": {
+      "guests": "up to {{count}} guests",
+      "bedrooms": "{{count}} bedrooms",
+      "beds": "{{count}} beds",
+      "bathrooms": "{{count}} bathrooms"
     }
   }
 }

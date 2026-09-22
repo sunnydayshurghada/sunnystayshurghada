@@ -21,6 +21,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { parseISODate } from "@/lib/availability";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { AirbnbSyncPanel } from "@/components/AirbnbSyncPanel";
+import { PropertyManager } from "@/components/PropertyManager";
 import brandLogo from "@/assets/sunny-stays-hurghada-logo.png";
 
 export const Route = createFileRoute("/_authenticated/admin")({
@@ -88,18 +89,26 @@ function AdminPage() {
   const doCreate = useServerFn(createCalendarEntry);
   const doDelete = useServerFn(deleteCalendarEntry);
   const [busy, setBusy] = useState(false);
+  // "" = combined view across every apartment
+  const [propertyId, setPropertyId] = useState<string>("");
 
   const { data, isLoading } = useQuery({
-    queryKey: ["admin-data"],
+    queryKey: ["admin-data", propertyId || "all"],
     queryFn: async () => {
       await session();
-      return load();
+      return load({ data: { propertyId: propertyId || null } });
     },
   });
 
   const bookings = data?.bookings ?? [];
   const entries = data?.entries ?? [];
+  const properties = data?.properties ?? [];
   const isAdmin = data?.isAdmin ?? false;
+  const syncPropertyId = propertyId || properties[0]?.id || null;
+  const propertyName = (id: string) => {
+    const p = properties.find((x) => x.id === id);
+    return p?.internal_name ?? p?.public_name ?? "";
+  };
 
   const modifiers = useMemo(() => {
     const pending: Date[] = [];
@@ -159,6 +168,7 @@ function AdminPage() {
       () =>
         doCreate({
           data: {
+            property_id: String(fd.get("property_id") ?? "") || syncPropertyId,
             start_date: String(fd.get("start_date") ?? ""),
             end_date: String(fd.get("end_date") ?? ""),
             entry_type,
@@ -233,6 +243,26 @@ function AdminPage() {
           </span>
           <h1 className="font-display text-3xl mb-6">{t("admin.calendar_title")}</h1>
 
+          <label className="block max-w-sm mb-6">
+            <span className="block text-[10px] uppercase tracking-widest text-forest/50 mb-1">
+              {t("admin.property_filter")}
+            </span>
+            <select
+              value={propertyId}
+              onChange={(e) => setPropertyId(e.target.value)}
+              className="w-full bg-card p-3 border border-forest/10 rounded-xl text-sm focus:outline-none focus:border-gold"
+            >
+              <option value="">{t("admin.all_properties")}</option>
+              {properties.map((p) => (
+                <option key={p.id} value={p.id}>
+                  {p.internal_name}
+                  {p.status !== "active" ? ` (${t(`admin.properties.status.${p.status}`)})` : ""}
+                </option>
+              ))}
+            </select>
+          </label>
+
+
           <div className="bg-card rounded-3xl border border-forest/10 p-4 md:p-6 inline-block max-w-full overflow-x-auto">
             <DayPicker
               locale={DP_LOCALES[lang]}
@@ -275,6 +305,7 @@ function AdminPage() {
                   busy={busy}
                   fmt={fmt}
                   intlLocale={intlLocale}
+                  propertyName={propertyName(b.property_id)}
                   onConfirm={() =>
                     handle(() => doConfirm({ data: { id: b.id } }), t("admin.toast.confirmed"))
                   }
@@ -296,6 +327,7 @@ function AdminPage() {
             className="bg-card rounded-3xl border border-forest/10 p-6 space-y-3"
           >
             <h2 className="font-display text-xl mb-2">{t("admin.own_booking_title")}</h2>
+            <PropertySelect properties={properties} value={propertyId || syncPropertyId} />
             <div className="grid grid-cols-2 gap-3">
               <Field label={t("admin.checkin")} name="start_date" type="date" required />
               <Field label={t("admin.checkout")} name="end_date" type="date" required />
@@ -342,6 +374,7 @@ function AdminPage() {
             className="bg-card rounded-3xl border border-forest/10 p-6 space-y-3"
           >
             <h2 className="font-display text-xl mb-2">{t("admin.block_title")}</h2>
+            <PropertySelect properties={properties} value={propertyId || syncPropertyId} />
             <div className="grid grid-cols-2 gap-3">
               <Field label={t("admin.from")} name="start_date" type="date" required />
               <Field label={t("admin.to")} name="end_date" type="date" required />
@@ -358,7 +391,9 @@ function AdminPage() {
           </form>
         </section>
 
-        <AirbnbSyncPanel intlLocale={intlLocale} />
+        <AirbnbSyncPanel intlLocale={intlLocale} propertyId={syncPropertyId} />
+
+        <PropertyManager />
 
         <section>
           <h2 className="font-display text-2xl mb-4">{t("admin.entries_title")}</h2>
@@ -372,6 +407,9 @@ function AdminPage() {
                   className="bg-card rounded-2xl border border-forest/10 p-4 flex flex-wrap items-center justify-between gap-3"
                 >
                   <div className="text-sm">
+                    <span className="block text-[10px] uppercase tracking-[0.3em] text-gold mb-1">
+                      {propertyName(e.property_id)}
+                    </span>
                     <span className="font-medium">
                       {fmt(e.start_date)} – {fmt(e.end_date)}
                     </span>
@@ -420,6 +458,9 @@ function AdminPage() {
             <div className="grid gap-3 md:grid-cols-2">
               {otherRequests.map((b) => (
                 <div key={b.id} className="bg-card rounded-2xl border border-forest/10 p-4 text-sm">
+                  <span className="block text-[10px] uppercase tracking-[0.3em] text-gold mb-1">
+                    {propertyName(b.property_id)}
+                  </span>
                   <div className="flex items-center justify-between gap-3">
                     <span className="font-medium">
                       {fmt(b.checkin)} – {fmt(b.checkout)}
@@ -437,6 +478,36 @@ function AdminPage() {
         </section>
       </div>
     </main>
+  );
+}
+
+/** Apartment picker inside the create forms — entries never land on the wrong calendar. */
+function PropertySelect({
+  properties,
+  value,
+}: {
+  properties: { id: string; internal_name: string }[];
+  value: string | null;
+}) {
+  const { t } = useTranslation();
+  return (
+    <label className="block">
+      <span className="block text-[10px] uppercase tracking-widest text-forest/50 mb-1">
+        {t("admin.property")}
+      </span>
+      <select
+        name="property_id"
+        defaultValue={value ?? ""}
+        key={value ?? ""}
+        className="w-full bg-card p-3 border border-forest/10 rounded-xl text-sm focus:outline-none focus:border-gold"
+      >
+        {properties.map((p) => (
+          <option key={p.id} value={p.id}>
+            {p.internal_name}
+          </option>
+        ))}
+      </select>
+    </label>
   );
 }
 
@@ -503,6 +574,7 @@ function RequestCard({
   busy,
   fmt,
   intlLocale,
+  propertyName,
   onConfirm,
   onReject,
 }: {
@@ -510,6 +582,7 @@ function RequestCard({
   busy: boolean;
   fmt: (d: string) => string;
   intlLocale: string;
+  propertyName: string;
   onConfirm: () => void;
   onReject: () => void;
 }) {
@@ -518,6 +591,9 @@ function RequestCard({
     <div className="bg-card rounded-3xl border border-forest/10 p-6">
       <div className="flex items-start justify-between gap-3">
         <div>
+          <span className="block text-[10px] uppercase tracking-[0.3em] text-gold mb-1">
+            {propertyName}
+          </span>
           <h3 className="font-display text-lg">{booking.guest_name}</h3>
           <p className="text-xs text-forest/60 mt-0.5">
             {t("admin.received_on", {
