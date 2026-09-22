@@ -399,6 +399,9 @@ function AdminPage() {
 
         <NotificationsManager propertyId={syncPropertyId} />
 
+        <OwnersManager />
+
+
         <PropertyManager />
 
         <section>
