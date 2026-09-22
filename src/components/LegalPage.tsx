@@ -24,11 +24,11 @@ export function LegalPage({
       {/* Minimal header */}
       <header className="border-b border-navy/10">
         <div className="max-w-5xl mx-auto px-6 md:px-8 h-20 md:h-28 flex items-center justify-between">
-          <Link to="/" className="inline-flex items-center gap-3">
+          <Link to="/" className="inline-flex items-center self-stretch py-2">
             <img
               src={brandLogo}
               alt="Sunny Stays Hurghada"
-              className="h-24 md:h-32 w-auto select-none"
+              className="h-full max-h-full w-auto object-contain select-none"
               draggable={false}
             />
           </Link>
