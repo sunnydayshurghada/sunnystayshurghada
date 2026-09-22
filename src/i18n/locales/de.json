@@ -17,7 +17,9 @@
     "cta_secondary": "Wohnung ansehen",
     "welcome_to": "WILLKOMMEN BEI",
     "subhead": "Ihr Zuhause am Roten Meer",
-    "mantra": "Entspannen · Auftanken · Zuhause fühlen"
+    "mantra": "Entspannen · Auftanken · Zuhause fühlen",
+    "sound_on": "Ton einschalten",
+    "sound_off": "Ton ausschalten"
   },
   "gallery": {
     "eyebrow": "Fotografie",
