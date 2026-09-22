@@ -305,6 +305,7 @@ function AdminPage() {
                   busy={busy}
                   fmt={fmt}
                   intlLocale={intlLocale}
+                  propertyName={propertyName(b.property_id)}
                   onConfirm={() =>
                     handle(() => doConfirm({ data: { id: b.id } }), t("admin.toast.confirmed"))
                   }
@@ -533,6 +534,7 @@ function RequestCard({
   busy,
   fmt,
   intlLocale,
+  propertyName,
   onConfirm,
   onReject,
 }: {
@@ -540,6 +542,7 @@ function RequestCard({
   busy: boolean;
   fmt: (d: string) => string;
   intlLocale: string;
+  propertyName: string;
   onConfirm: () => void;
   onReject: () => void;
 }) {
@@ -548,6 +551,9 @@ function RequestCard({
     <div className="bg-card rounded-3xl border border-forest/10 p-6">
       <div className="flex items-start justify-between gap-3">
         <div>
+          <span className="block text-[10px] uppercase tracking-[0.3em] text-gold mb-1">
+            {propertyName}
+          </span>
           <h3 className="font-display text-lg">{booking.guest_name}</h3>
           <p className="text-xs text-forest/60 mt-0.5">
             {t("admin.received_on", {
