@@ -119,7 +119,7 @@ export function AvailabilityCalendar({
   const Next = rtl ? ChevronLeft : ChevronRight;
 
   return (
-    <div className="rounded-3xl border border-forest/10 bg-card p-4 sm:p-6 shadow-[0_10px_30px_-18px_rgb(23_59_99_/_0.35)]">
+    <div className="rounded-3xl border border-forest/10 bg-card p-2 sm:p-6 shadow-[0_10px_30px_-18px_rgb(23_59_99_/_0.35)]">
       <div className="mb-4 flex items-center justify-between gap-3">
         <button
           type="button"
@@ -162,13 +162,13 @@ export function AvailabilityCalendar({
           month: "flex-1",
           month_caption:
             "mb-2 flex justify-center text-xs uppercase tracking-[0.25em] text-forest/50",
-          month_grid: "w-full border-collapse",
+          month_grid: "w-full table-fixed border-collapse",
           weekdays: "",
           weekday:
             "pb-2 text-[11px] font-medium uppercase tracking-widest text-forest/40",
           day: "p-0.5 text-center",
           day_button:
-            "mx-auto flex h-11 w-11 items-center justify-center rounded-full text-sm transition-colors hover:bg-gold/15",
+            "mx-auto flex h-9 w-9 sm:h-11 sm:w-11 items-center justify-center rounded-full text-sm transition-colors hover:bg-gold/15",
           today: "[&_button]:ring-1 [&_button]:ring-gold/60 [&_button]:font-semibold",
           selected: "",
           range_start:
