@@ -36,6 +36,7 @@ import { resolveLegalLang } from "@/lib/legal-lang";
 import hostsPhoto from "@/assets/hosts-wafaa-alex.jpg";
 import heroLivingKitchen from "@/assets/hero-living-kitchen.png";
 import heroVideoWebm from "@/assets/madaris-hero.webm";
+import heroVideoMp4 from "@/assets/madaris-hero.mp4";
 
 // Real photos of the apartment. No stock, no AI, no placeholder imagery.
 import p6669 from "@/assets/dsc06669.jpg";
@@ -229,6 +230,7 @@ function Hero() {
         aria-hidden="true"
       >
         <source src={heroVideoWebm} type="video/webm" />
+        <source src={heroVideoMp4} type="video/mp4" />
       </video>
       <button
         type="button"
