@@ -19,15 +19,29 @@ export const Route = createFileRoute("/auth")({
   component: AuthPage,
 });
 
+type Mode = "signin" | "forgot" | "update";
+
 function AuthPage() {
   const navigate = useNavigate();
-  const [mode, setMode] = useState<"signin" | "signup">("signin");
+  const [mode, setMode] = useState<Mode>("signin");
   const [pending, setPending] = useState(false);
 
   useEffect(() => {
+    const { data: sub } = supabase.auth.onAuthStateChange((event) => {
+      if (event === "PASSWORD_RECOVERY") setMode("update");
+    });
     void supabase.auth.getSession().then(({ data }) => {
+      const isRecovery =
+        typeof window !== "undefined" &&
+        (window.location.hash.includes("type=recovery") ||
+          window.location.search.includes("type=recovery"));
+      if (isRecovery) {
+        setMode("update");
+        return;
+      }
       if (data.session) void navigate({ to: "/admin", replace: true });
     });
+    return () => sub.subscription.unsubscribe();
   }, [navigate]);
 
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -35,31 +49,63 @@ function AuthPage() {
     const fd = new FormData(e.currentTarget);
     const email = String(fd.get("email") ?? "").trim();
     const password = String(fd.get("password") ?? "");
+
+    if (mode === "forgot") {
+      if (!email) {
+        toast.error("Bitte E-Mail-Adresse eingeben.");
+        return;
+      }
+      setPending(true);
+      const { error } = await supabase.auth.resetPasswordForEmail(email, {
+        redirectTo: `${window.location.origin}/auth`,
+      });
+      setPending(false);
+      if (error) {
+        toast.error(error.message);
+        return;
+      }
+      toast.success("Falls ein Zugang existiert, haben wir dir einen Link zum Zurücksetzen geschickt.");
+      setMode("signin");
+      return;
+    }
+
+    if (mode === "update") {
+      if (password.length < 8) {
+        toast.error("Bitte ein Passwort mit mindestens 8 Zeichen eingeben.");
+        return;
+      }
+      setPending(true);
+      const { error } = await supabase.auth.updateUser({ password });
+      setPending(false);
+      if (error) {
+        toast.error(error.message);
+        return;
+      }
+      toast.success("Passwort gespeichert.");
+      void navigate({ to: "/admin", replace: true });
+      return;
+    }
+
     if (!email || password.length < 8) {
       toast.error("Bitte E-Mail und ein Passwort mit mindestens 8 Zeichen eingeben.");
       return;
     }
     setPending(true);
-    const result =
-      mode === "signin"
-        ? await supabase.auth.signInWithPassword({ email, password })
-        : await supabase.auth.signUp({
-            email,
-            password,
-            options: { emailRedirectTo: `${window.location.origin}/admin` },
-          });
+    const { data, error } = await supabase.auth.signInWithPassword({ email, password });
     setPending(false);
-
-    if (result.error) {
-      toast.error(result.error.message);
+    if (error) {
+      toast.error(error.message);
       return;
     }
-    if (!result.data.session) {
-      toast.success("Bitte bestätige zuerst die E-Mail, die wir dir geschickt haben.");
+    if (!data.session) {
+      toast.error("Anmeldung nicht möglich.");
       return;
     }
     void navigate({ to: "/admin", replace: true });
   };
+
+  const title =
+    mode === "signin" ? "Gastgeber-Login" : mode === "forgot" ? "Passwort zurücksetzen" : "Neues Passwort";
 
   return (
     <main className="min-h-screen bg-sand flex items-center justify-center px-6 py-16">
@@ -71,42 +117,52 @@ function AuthPage() {
           <span className="block text-[10px] uppercase tracking-[0.3em] text-gold font-medium mb-2">
             Intern
           </span>
-          <h1 className="font-display text-2xl text-forest mb-6">
-            {mode === "signin" ? "Gastgeber-Login" : "Zugang einrichten"}
-          </h1>
+          <h1 className="font-display text-2xl text-forest mb-6">{title}</h1>
           <form onSubmit={onSubmit} className="space-y-3">
-            <input
-              name="email"
-              type="email"
-              required
-              autoComplete="email"
-              placeholder="E-Mail"
-              className="w-full bg-card p-4 border border-forest/10 rounded-xl text-sm focus:outline-none focus:border-gold"
-            />
-            <input
-              name="password"
-              type="password"
-              required
-              minLength={8}
-              autoComplete={mode === "signin" ? "current-password" : "new-password"}
-              placeholder="Passwort"
-              className="w-full bg-card p-4 border border-forest/10 rounded-xl text-sm focus:outline-none focus:border-gold"
-            />
+            {mode !== "update" && (
+              <input
+                name="email"
+                type="email"
+                required
+                autoComplete="email"
+                placeholder="E-Mail"
+                className="w-full bg-card p-4 border border-forest/10 rounded-xl text-sm focus:outline-none focus:border-gold"
+              />
+            )}
+            {mode !== "forgot" && (
+              <input
+                name="password"
+                type="password"
+                required
+                minLength={8}
+                autoComplete={mode === "signin" ? "current-password" : "new-password"}
+                placeholder={mode === "update" ? "Neues Passwort" : "Passwort"}
+                className="w-full bg-card p-4 border border-forest/10 rounded-xl text-sm focus:outline-none focus:border-gold"
+              />
+            )}
             <button
               type="submit"
               disabled={pending}
               className="w-full bg-forest text-sand py-4 rounded-xl text-xs uppercase tracking-[0.25em] font-bold hover:bg-gold hover:text-forest transition-colors disabled:opacity-60"
             >
-              {pending ? "Bitte warten…" : mode === "signin" ? "Anmelden" : "Registrieren"}
+              {pending
+                ? "Bitte warten…"
+                : mode === "signin"
+                  ? "Anmelden"
+                  : mode === "forgot"
+                    ? "Link senden"
+                    : "Passwort speichern"}
             </button>
           </form>
-          <button
-            type="button"
-            onClick={() => setMode(mode === "signin" ? "signup" : "signin")}
-            className="mt-5 w-full text-center text-[11px] uppercase tracking-widest text-forest/55 hover:text-gold transition-colors"
-          >
-            {mode === "signin" ? "Noch keinen Zugang? Registrieren" : "Zurück zum Login"}
-          </button>
+          {mode !== "update" && (
+            <button
+              type="button"
+              onClick={() => setMode(mode === "signin" ? "forgot" : "signin")}
+              className="mt-5 w-full text-center text-[11px] uppercase tracking-widest text-forest/55 hover:text-gold transition-colors"
+            >
+              {mode === "signin" ? "Passwort vergessen?" : "Zurück zum Login"}
+            </button>
+          )}
         </div>
       </div>
     </main>
