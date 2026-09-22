@@ -28,6 +28,7 @@ export type CalendarEntry = {
   guest_phone: string | null;
   note: string | null;
   created_at: string;
+  external_uid: string | null;
 };
 
 function errorCode(message: string): string {
@@ -78,7 +79,7 @@ export const listAdminData = createServerFn({ method: "GET" })
         supabase
           .from("calendar_blocks")
           .select(
-            "id, start_date, end_date, entry_type, source, guest_name, guests, guest_phone, note, created_at",
+            "id, start_date, end_date, entry_type, source, guest_name, guests, guest_phone, note, created_at, external_uid",
           )
           .order("start_date", { ascending: true }),
       ]);
@@ -95,6 +96,13 @@ export const confirmBooking = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
   .inputValidator((input: unknown) => z.object({ id: z.string().uuid() }).parse(input))
   .handler(async ({ data, context }): Promise<{ ok: boolean; error?: string }> => {
+    // Pull the latest Airbnb state first so we never confirm over an external booking.
+    try {
+      const { syncAirbnb } = await import("@/lib/ical.server");
+      await syncAirbnb("confirm");
+    } catch {
+      /* sync problems must not block the confirmation check itself */
+    }
     const { error } = await context.supabase.rpc("admin_confirm_booking", { _id: data.id });
     if (error) return { ok: false, error: errorCode(error.message) };
     return { ok: true };
@@ -151,6 +159,12 @@ export const deleteCalendarEntry = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
   .inputValidator((input: unknown) => z.object({ id: z.string().uuid() }).parse(input))
   .handler(async ({ data, context }): Promise<{ ok: boolean; error?: string }> => {
+    const { data: row } = await context.supabase
+      .from("calendar_blocks")
+      .select("external_uid")
+      .eq("id", data.id)
+      .maybeSingle();
+    if (row?.external_uid) return { ok: false, error: "external_readonly" };
     const { error } = await context.supabase.from("calendar_blocks").delete().eq("id", data.id);
     if (error) return { ok: false, error: errorCode(error.message) };
     return { ok: true };
