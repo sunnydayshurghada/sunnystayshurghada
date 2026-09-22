@@ -119,6 +119,6 @@
 }
 
 
-html { scroll-behavior: smooth; scroll-padding-top: 96px; }
+html { scroll-behavior: smooth; scroll-padding-top: 128px; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 

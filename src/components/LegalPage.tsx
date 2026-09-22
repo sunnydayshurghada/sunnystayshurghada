@@ -23,12 +23,12 @@ export function LegalPage({
     <div className="min-h-screen flex flex-col bg-paper text-navy">
       {/* Minimal header */}
       <header className="border-b border-navy/10">
-        <div className="max-w-5xl mx-auto px-6 md:px-8 h-20 flex items-center justify-between">
+        <div className="max-w-5xl mx-auto px-6 md:px-8 h-20 md:h-28 flex items-center justify-between">
           <Link to="/" className="inline-flex items-center gap-3">
             <img
               src={brandLogo}
               alt="Sunny Stays Hurghada"
-              className="h-10 md:h-12 w-auto select-none"
+              className="h-14 md:h-20 w-auto select-none"
               draggable={false}
             />
           </Link>
