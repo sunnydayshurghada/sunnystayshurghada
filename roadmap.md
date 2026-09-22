@@ -6,16 +6,20 @@
 - [x] Privatsphäre-sicherer .ics-Export mit Geheim-Token
 - [x] Adminbereich "Airbnb-Synchronisation" inkl. Protokoll
 - [x] Konfliktschutz vor Bestätigung (Sync vor Confirm)
-- [ ] Abschlusstest im Adminbereich + Testdaten entfernen
+- [x] Abschlusstest im Adminbereich + Testdaten entfernt
 
 ## Zahlungsvorbereitung (neu, noch keine echten Zahlungen)
-- [ ] Buchungstabelle erweitern: booking_type, booking_status, payment_status,
+- [x] Buchungstabelle erweitern: booking_type, booking_status, payment_status,
       payment_provider, payment_method, currency, Beträge als Integer
       (nightly_total, cleaning_fee, discount_amount, total_amount,
       deposit_amount, amount_paid), payment_transaction_id, payment_reference,
       payment_expires_at, confirmed_at, cancelled_at, refunded_at, price_snapshot (JSON)
-- [ ] Zeitlich begrenzte Reservierung (15 Min) + automatisches Freigeben abgelaufener Holds
-- [ ] Serverseitige Verfügbarkeitsprüfung vor Zahlung und vor Bestätigung
-- [ ] Saubere Schnittstellen/Platzhalter für Paymob und PayPal (Secrets nur serverseitig)
-- [ ] Einstellung: Direktbuchungen automatisch bestätigen oder manuell freigeben
-- [ ] Bestehende Anfragefunktion bleibt unverändert
+- [x] Zeitlich begrenzte Reservierung (15 Min) + automatisches Freigeben abgelaufener Holds
+- [x] Serverseitige Verfügbarkeitsprüfung vor Zahlung und vor Bestätigung
+- [x] Saubere Schnittstellen/Platzhalter für Paymob und PayPal (Secrets nur serverseitig)
+- [x] Einstellung: Direktbuchungen automatisch bestätigen oder manuell freigeben
+- [x] Bestehende Anfragefunktion bleibt unverändert
+
+## Status 22.09.
+Airbnb-Sync getestet (Import, Duplikate, Änderung, Stornierung, Export, Konflikt, Datenschutz) — Testdaten entfernt.
+Zahlungsvorbereitung: Schema + Serverschnittstellen fertig, keine aktive Zahlung.
