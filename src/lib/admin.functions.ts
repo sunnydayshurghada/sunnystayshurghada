@@ -234,8 +234,9 @@ export const setBookingStatus = createServerFn({ method: "POST" })
       })
       .parse(input),
   )
-
+  .handler(async ({ data, context }): Promise<{ ok: boolean; error?: string }> => {
     const { error } = await context.supabase.rpc("admin_set_booking_status", {
+
       _id: data.id,
       _status: data.status,
     });
