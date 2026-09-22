@@ -14,6 +14,7 @@ import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ApartmentsIndexRouteImport } from './routes/apartments.index'
 import { Route as ApartmentsSlugRouteImport } from './routes/apartments.$slug'
+import { Route as AuthenticatedOwnerRouteImport } from './routes/_authenticated/owner'
 import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
 import { Route as LangTermsRouteImport } from './routes/$lang.terms'
 import { Route as LangPrivacyRouteImport } from './routes/$lang.privacy'
@@ -47,6 +48,11 @@ const ApartmentsSlugRoute = ApartmentsSlugRouteImport.update({
   id: '/apartments/$slug',
   path: '/apartments/$slug',
   getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedOwnerRoute = AuthenticatedOwnerRouteImport.update({
+  id: '/owner',
+  path: '/owner',
+  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedAdminRoute = AuthenticatedAdminRouteImport.update({
   id: '/admin',
@@ -102,6 +108,7 @@ export interface FileRoutesByFullPath {
   '/$lang/privacy': typeof LangPrivacyRoute
   '/$lang/terms': typeof LangTermsRoute
   '/admin': typeof AuthenticatedAdminRoute
+  '/owner': typeof AuthenticatedOwnerRoute
   '/apartments/$slug': typeof ApartmentsSlugRoute
   '/apartments/': typeof ApartmentsIndexRoute
   '/api/public/calendar/$token': typeof ApiPublicCalendarTokenRoute
@@ -117,6 +124,7 @@ export interface FileRoutesByTo {
   '/$lang/privacy': typeof LangPrivacyRoute
   '/$lang/terms': typeof LangTermsRoute
   '/admin': typeof AuthenticatedAdminRoute
+  '/owner': typeof AuthenticatedOwnerRoute
   '/apartments/$slug': typeof ApartmentsSlugRoute
   '/apartments': typeof ApartmentsIndexRoute
   '/api/public/calendar/$token': typeof ApiPublicCalendarTokenRoute
@@ -134,6 +142,7 @@ export interface FileRoutesById {
   '/$lang/privacy': typeof LangPrivacyRoute
   '/$lang/terms': typeof LangTermsRoute
   '/_authenticated/admin': typeof AuthenticatedAdminRoute
+  '/_authenticated/owner': typeof AuthenticatedOwnerRoute
   '/apartments/$slug': typeof ApartmentsSlugRoute
   '/apartments/': typeof ApartmentsIndexRoute
   '/api/public/calendar/$token': typeof ApiPublicCalendarTokenRoute
@@ -151,6 +160,7 @@ export interface FileRouteTypes {
     | '/$lang/privacy'
     | '/$lang/terms'
     | '/admin'
+    | '/owner'
     | '/apartments/$slug'
     | '/apartments/'
     | '/api/public/calendar/$token'
@@ -166,6 +176,7 @@ export interface FileRouteTypes {
     | '/$lang/privacy'
     | '/$lang/terms'
     | '/admin'
+    | '/owner'
     | '/apartments/$slug'
     | '/apartments'
     | '/api/public/calendar/$token'
@@ -182,6 +193,7 @@ export interface FileRouteTypes {
     | '/$lang/privacy'
     | '/$lang/terms'
     | '/_authenticated/admin'
+    | '/_authenticated/owner'
     | '/apartments/$slug'
     | '/apartments/'
     | '/api/public/calendar/$token'
@@ -243,6 +255,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/apartments/$slug'
       preLoaderRoute: typeof ApartmentsSlugRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/owner': {
+      id: '/_authenticated/owner'
+      path: '/owner'
+      fullPath: '/owner'
+      preLoaderRoute: typeof AuthenticatedOwnerRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/admin': {
       id: '/_authenticated/admin'
@@ -312,10 +331,12 @@ declare module '@tanstack/react-router' {
 
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedAdminRoute: typeof AuthenticatedAdminRoute
+  AuthenticatedOwnerRoute: typeof AuthenticatedOwnerRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedAdminRoute: AuthenticatedAdminRoute,
+  AuthenticatedOwnerRoute: AuthenticatedOwnerRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =
