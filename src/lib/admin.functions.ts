@@ -233,6 +233,19 @@ export const setBookingStatus = createServerFn({ method: "POST" })
       _status: data.status,
     });
     if (error) return { ok: false, error: errorCode(error.message) };
+    // Cancelled bookings stay on record with reason, actor and refund state.
+    if (data.status !== "pending") {
+      await context.supabase
+        .from("bookings")
+        .update({
+          cancellation_reason: data.reason ?? null,
+          cancelled_by: data.cancelledBy ?? "admin",
+          refund_amount: data.refundAmount ?? 0,
+          refund_status: data.refundStatus ?? (data.refundAmount ? "pending" : "none"),
+        })
+        .eq("id", data.id);
+    }
+
     {
       const { notifyGuest, notifyInternal, safeNotify } = await import(
         "@/lib/notifications.server"
