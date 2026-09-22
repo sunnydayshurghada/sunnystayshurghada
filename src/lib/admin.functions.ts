@@ -224,10 +224,17 @@ export const setBookingStatus = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
   .inputValidator((input: unknown) =>
     z
-      .object({ id: z.string().uuid(), status: z.enum(["rejected", "cancelled", "pending"]) })
+      .object({
+        id: z.string().uuid(),
+        status: z.enum(["rejected", "cancelled", "pending"]),
+        reason: z.string().trim().max(500).nullish(),
+        cancelledBy: z.string().trim().max(120).nullish(),
+        refundAmount: z.number().int().min(0).nullish(),
+        refundStatus: z.enum(["none", "pending", "partial", "refunded"]).nullish(),
+      })
       .parse(input),
   )
-  .handler(async ({ data, context }): Promise<{ ok: boolean; error?: string }> => {
+
     const { error } = await context.supabase.rpc("admin_set_booking_status", {
       _id: data.id,
       _status: data.status,
