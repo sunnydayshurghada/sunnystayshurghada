@@ -353,6 +353,56 @@
         "forbidden": "Keine Berechtigung.",
         "generic": "Es ist ein Fehler aufgetreten."
       }
+    },
+    "property": "Wohnung",
+    "property_filter": "Wohnung filtern",
+    "all_properties": "Alle Wohnungen",
+    "properties": {
+      "title": "Wohnungen verwalten",
+      "new": "Neue Wohnung",
+      "cancel": "Abbrechen",
+      "edit": "Bearbeiten",
+      "activate": "Aktivieren",
+      "deactivate": "Deaktivieren",
+      "save": "Wohnung speichern",
+      "internal_name": "Interner Name",
+      "public_name": "Öffentlicher Name",
+      "slug": "Adresse (slug)",
+      "status_label": "Status",
+      "status": {
+        "draft": "Entwurf",
+        "active": "Aktiv",
+        "inactive": "Inaktiv"
+      },
+      "short_description": "Kurzbeschreibung",
+      "full_description": "Beschreibung",
+      "address": "Adresse",
+      "area": "Gegend",
+      "max_guests": "Max. Gäste",
+      "bedrooms": "Schlafzimmer",
+      "beds": "Betten",
+      "bathrooms": "Bäder",
+      "check_in_time": "Anreise ab",
+      "check_out_time": "Abreise bis",
+      "min_nights": "Mindestnächte",
+      "max_nights": "Höchstnächte",
+      "base_price": "Grundpreis",
+      "min_price": "Mindestpreis",
+      "max_price": "Höchstpreis",
+      "cleaning_fee": "Reinigungsgebühr",
+      "currency": "Währung",
+      "sort_order": "Reihenfolge",
+      "price_hint": "Alle Beträge in Cent angeben (z. B. 2000 = 20,00 €).",
+      "direct_booking": "Direktbuchung erlaubt",
+      "instant_booking": "Sofortbuchung erlaubt",
+      "toast": {
+        "saved": "Wohnung gespeichert"
+      },
+      "errors": {
+        "slug_taken": "Diese Adresse ist bereits vergeben.",
+        "forbidden": "Keine Berechtigung.",
+        "generic": "Das hat nicht geklappt."
+      }
     }
   },
   "auth": {
@@ -376,6 +426,19 @@
       "password_saved": "Passwort gespeichert.",
       "need_credentials": "Bitte E-Mail und ein Passwort mit mindestens 8 Zeichen eingeben.",
       "signin_failed": "Anmeldung nicht möglich."
+    }
+  },
+  "apartments": {
+    "eyebrow": "Hurghada · Rotes Meer",
+    "title": "Unsere Wohnungen",
+    "empty": "Zurzeit ist keine Wohnung veröffentlicht.",
+    "details": "Details ansehen",
+    "back": "Zurück zur Übersicht",
+    "facts": {
+      "guests": "bis {{count}} Gäste",
+      "bedrooms": "{{count}} Schlafzimmer",
+      "beds": "{{count}} Betten",
+      "bathrooms": "{{count}} Bäder"
     }
   }
 }
