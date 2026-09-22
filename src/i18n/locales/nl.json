@@ -194,5 +194,11 @@
     "not_selected": "Nog niet gekozen",
     "nights_other": "{{count}} nachten",
     "nights_one": "{{count}} nacht"
+  },
+  "dive": {
+    "eyebrow": "Een persoonlijke aanrader van Wafaa & Alex",
+    "title": "Duiken in de Rode Zee",
+    "body": "Wilt u tijdens uw verblijf de fascinerende onderwaterwereld van de Rode Zee ontdekken? Wij raden u het duikcentrum van onze vrienden, Bluemarlin Red Sea in Hurghada, van harte aan – geschikt voor beginners en ervaren duikers.",
+    "cta": "Ontdek Bluemarlin Red Sea"
   }
 }

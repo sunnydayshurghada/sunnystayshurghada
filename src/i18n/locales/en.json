@@ -234,5 +234,11 @@
     "not_selected": "Not selected yet",
     "nights_other": "{{count}} nights",
     "nights_one": "{{count}} night"
+  },
+  "dive": {
+    "eyebrow": "A personal recommendation from Wafaa & Alex",
+    "title": "Discover the Red Sea",
+    "body": "Would you like to explore the fascinating underwater world of the Red Sea during your stay? We recommend our friends at Bluemarlin Red Sea in Hurghada – suitable for beginners and experienced divers.",
+    "cta": "Discover Bluemarlin Red Sea"
   }
 }
