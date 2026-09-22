@@ -183,8 +183,8 @@ function icalDate(d: string): string {
   return d.replace(/-/g, "");
 }
 
-function stamp(): string {
-  return new Date().toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, "");
+function stamp(d: Date = new Date()): string {
+  return d.toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, "");
 }
 
 function fold(line: string): string {
@@ -229,7 +229,7 @@ export async function buildExportIcs(): Promise<string> {
       "BEGIN:VEVENT",
       `UID:${uid}`,
       `DTSTAMP:${stamp()}`,
-      `LAST-MODIFIED:${changed ? changed.replace(/[-:]/g, "").replace(/\.\d+/, "") : stamp()}`,
+      `LAST-MODIFIED:${changed ? stamp(new Date(changed)) : stamp()}`,
       `DTSTART;VALUE=DATE:${icalDate(start)}`,
       `DTEND;VALUE=DATE:${icalDate(end)}`,
       "SUMMARY:Sunny Stays – nicht verfügbar",
