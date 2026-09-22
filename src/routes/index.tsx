@@ -48,6 +48,14 @@ import p6718 from "@/assets/dsc06718.jpg";
 import p6721 from "@/assets/dsc06721.jpg";
 import p6723 from "@/assets/dsc06723.jpg";
 import p6724 from "@/assets/dsc06724.jpg";
+import p2950 from "@/assets/img-2950.jpg";
+import p2951 from "@/assets/img-2951.jpg";
+import p2954 from "@/assets/img-2954.jpg";
+import p2956 from "@/assets/img-2956.jpg";
+import p2958 from "@/assets/img-2958.jpg";
+import p2963 from "@/assets/img-2963.jpg";
+import p2976 from "@/assets/img-2976.jpg";
+import p2982 from "@/assets/img-2982.webp";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -72,6 +80,14 @@ const GALLERY: readonly Photo[] = [
   { url: p6721, captionKey: "gallery.living_tv", aspect: "aspect-[4/3]" },
   { url: p6684, captionKey: "gallery.detail", aspect: "aspect-[4/3]" },
   { url: p6687, captionKey: "gallery.detail", aspect: "aspect-[4/3]" },
+  { url: p2950, captionKey: "gallery.bedroom_twin", aspect: "aspect-video" },
+  { url: p2951, captionKey: "gallery.bedroom_twin", aspect: "aspect-video" },
+  { url: p2954, captionKey: "gallery.bedroom_twin", aspect: "aspect-video" },
+  { url: p2956, captionKey: "gallery.bedroom_master", aspect: "aspect-video" },
+  { url: p2958, captionKey: "gallery.bedroom_master", aspect: "aspect-video" },
+  { url: p2963, captionKey: "gallery.kitchen_breakfast", aspect: "aspect-video" },
+  { url: p2976, captionKey: "gallery.bathroom", aspect: "aspect-[4/3]" },
+  { url: p2982, captionKey: "gallery.kitchen_breakfast", aspect: "aspect-[4/3]" },
 ];
 
 // Living room and kitchen — warm, sunny, welcoming.
