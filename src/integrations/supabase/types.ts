@@ -125,6 +125,7 @@ export type Database = {
           deposit_amount: number
           discount_amount: number
           guest_email: string
+          guest_language: string
           guest_name: string
           guest_phone: string | null
           guests: number
@@ -160,6 +161,7 @@ export type Database = {
           deposit_amount?: number
           discount_amount?: number
           guest_email: string
+          guest_language?: string
           guest_name: string
           guest_phone?: string | null
           guests?: number
@@ -195,6 +197,7 @@ export type Database = {
           deposit_amount?: number
           discount_amount?: number
           guest_email?: string
+          guest_language?: string
           guest_name?: string
           guest_phone?: string | null
           guests?: number
@@ -404,36 +407,54 @@ export type Database = {
       }
       email_notifications: {
         Row: {
+          attempts: number
           booking_id: string | null
           created_at: string
           error: string | null
           id: string
+          language: string | null
+          last_attempt_at: string | null
+          message_id: string | null
           property_id: string | null
           recipient: string
+          recipient_type: string
           sent_at: string | null
           status: string
+          subject: string | null
           template: string
         }
         Insert: {
+          attempts?: number
           booking_id?: string | null
           created_at?: string
           error?: string | null
           id?: string
+          language?: string | null
+          last_attempt_at?: string | null
+          message_id?: string | null
           property_id?: string | null
           recipient: string
+          recipient_type?: string
           sent_at?: string | null
           status?: string
+          subject?: string | null
           template: string
         }
         Update: {
+          attempts?: number
           booking_id?: string | null
           created_at?: string
           error?: string | null
           id?: string
+          language?: string | null
+          last_attempt_at?: string | null
+          message_id?: string | null
           property_id?: string | null
           recipient?: string
+          recipient_type?: string
           sent_at?: string | null
           status?: string
+          subject?: string | null
           template?: string
         }
         Relationships: [
@@ -446,6 +467,50 @@ export type Database = {
           },
           {
             foreignKeyName: "email_notifications_property_id_fkey"
+            columns: ["property_id"]
+            isOneToOne: false
+            referencedRelation: "properties"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      email_templates: {
+        Row: {
+          active: boolean
+          body: string
+          created_at: string
+          id: string
+          language: string
+          property_id: string | null
+          subject: string
+          template_key: string
+          updated_at: string
+        }
+        Insert: {
+          active?: boolean
+          body: string
+          created_at?: string
+          id?: string
+          language?: string
+          property_id?: string | null
+          subject: string
+          template_key: string
+          updated_at?: string
+        }
+        Update: {
+          active?: boolean
+          body?: string
+          created_at?: string
+          id?: string
+          language?: string
+          property_id?: string | null
+          subject?: string
+          template_key?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "email_templates_property_id_fkey"
             columns: ["property_id"]
             isOneToOne: false
             referencedRelation: "properties"
@@ -697,6 +762,7 @@ export type Database = {
         Row: {
           address: string | null
           area: string | null
+          arrival_instructions: string | null
           base_price: number
           bathrooms: number
           bedrooms: number
@@ -706,8 +772,13 @@ export type Database = {
           cleaning_fee: number
           created_at: string
           currency: string
+          departure_instructions: string | null
           direct_booking_enabled: boolean
+          email_from_name: string | null
+          email_signature: string | null
           full_description: string | null
+          host_contact: string | null
+          house_rules: string | null
           id: string
           instant_booking_enabled: boolean
           internal_name: string
@@ -729,6 +800,7 @@ export type Database = {
         Insert: {
           address?: string | null
           area?: string | null
+          arrival_instructions?: string | null
           base_price?: number
           bathrooms?: number
           bedrooms?: number
@@ -738,8 +810,13 @@ export type Database = {
           cleaning_fee?: number
           created_at?: string
           currency?: string
+          departure_instructions?: string | null
           direct_booking_enabled?: boolean
+          email_from_name?: string | null
+          email_signature?: string | null
           full_description?: string | null
+          host_contact?: string | null
+          house_rules?: string | null
           id?: string
           instant_booking_enabled?: boolean
           internal_name: string
@@ -761,6 +838,7 @@ export type Database = {
         Update: {
           address?: string | null
           area?: string | null
+          arrival_instructions?: string | null
           base_price?: number
           bathrooms?: number
           bedrooms?: number
@@ -770,8 +848,13 @@ export type Database = {
           cleaning_fee?: number
           created_at?: string
           currency?: string
+          departure_instructions?: string | null
           direct_booking_enabled?: boolean
+          email_from_name?: string | null
+          email_signature?: string | null
           full_description?: string | null
+          host_contact?: string | null
+          house_rules?: string | null
           id?: string
           instant_booking_enabled?: boolean
           internal_name?: string
@@ -823,6 +906,65 @@ export type Database = {
         Relationships: [
           {
             foreignKeyName: "property_images_property_id_fkey"
+            columns: ["property_id"]
+            isOneToOne: false
+            referencedRelation: "properties"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      property_notification_recipients: {
+        Row: {
+          active: boolean
+          created_at: string
+          id: string
+          property_id: string
+          receive_booking_changes: boolean
+          receive_calendar_errors: boolean
+          receive_cancellations: boolean
+          receive_confirmed_bookings: boolean
+          receive_new_inquiries: boolean
+          receive_payments: boolean
+          recipient_email: string
+          recipient_name: string
+          recipient_role: string
+          updated_at: string
+        }
+        Insert: {
+          active?: boolean
+          created_at?: string
+          id?: string
+          property_id: string
+          receive_booking_changes?: boolean
+          receive_calendar_errors?: boolean
+          receive_cancellations?: boolean
+          receive_confirmed_bookings?: boolean
+          receive_new_inquiries?: boolean
+          receive_payments?: boolean
+          recipient_email: string
+          recipient_name: string
+          recipient_role?: string
+          updated_at?: string
+        }
+        Update: {
+          active?: boolean
+          created_at?: string
+          id?: string
+          property_id?: string
+          receive_booking_changes?: boolean
+          receive_calendar_errors?: boolean
+          receive_cancellations?: boolean
+          receive_confirmed_bookings?: boolean
+          receive_new_inquiries?: boolean
+          receive_payments?: boolean
+          recipient_email?: string
+          recipient_name?: string
+          recipient_role?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "property_notification_recipients_property_id_fkey"
             columns: ["property_id"]
             isOneToOne: false
             referencedRelation: "properties"
