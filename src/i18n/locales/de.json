@@ -234,5 +234,11 @@
     "not_selected": "Noch nicht gewählt",
     "nights_other": "{{count}} Nächte",
     "nights_one": "{{count}} Nacht"
+  },
+  "dive": {
+    "eyebrow": "Eine Empfehlung von Wafaa & Alex",
+    "title": "Tauchen im Roten Meer",
+    "body": "Sie möchten während Ihres Aufenthalts die faszinierende Unterwasserwelt des Roten Meeres entdecken? Wir empfehlen Ihnen unsere befreundete Tauchbasis Bluemarlin Red Sea in Hurghada – geeignet für Anfänger und erfahrene Taucher.",
+    "cta": "Bluemarlin Red Sea entdecken"
   }
 }

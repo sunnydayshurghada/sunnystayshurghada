@@ -22,6 +22,7 @@ import {
   ExternalLink,
   Volume2,
   VolumeX,
+  Waves,
 } from "lucide-react";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { BookingWidget } from "@/components/BookingWidget";
@@ -133,6 +134,7 @@ function Index() {
       <WhySection />
       <LocationSection />
       <BookingSection />
+      <DivingSection />
       <SiteFooter />
       {/* Preserve legacy translation key so the fallback locale still resolves */}
       <span className="sr-only">{t("brand")}</span>
@@ -467,6 +469,48 @@ function BookingSection() {
         </div>
 
         <BookingWidget />
+      </div>
+    </section>
+  );
+}
+
+/* ---------------- Hosts' diving recommendation ---------------- */
+
+const BLUEMARLIN_URL = "https://www.bluemarlin-redsea.com/";
+
+function DivingSection() {
+  const { t } = useTranslation();
+  return (
+    <section className="py-24 md:py-32 bg-cloud">
+      <div className="max-w-3xl mx-auto px-6">
+        <div className="relative bg-paper rounded-3xl shadow-soft border border-forest/[0.06] px-7 py-12 md:px-16 md:py-16 text-center overflow-hidden">
+          {/* subtle gold hairline, echoing the footer's top line */}
+          <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold/40 to-transparent" />
+
+          <span className="inline-flex items-center justify-center h-14 w-14 rounded-full bg-gradient-to-br from-gold/15 to-gold/5 text-gold">
+            <Waves className="h-6 w-6" strokeWidth={1.5} aria-hidden="true" />
+          </span>
+
+          <span className="mt-6 block text-[11px] uppercase tracking-[0.35em] text-gold font-medium">
+            {t("dive.eyebrow")}
+          </span>
+          <h2 className="mt-3 font-display text-3xl md:text-4xl text-forest leading-tight">
+            {t("dive.title")}
+          </h2>
+          <p className="mt-5 text-[15px] md:text-base text-forest/75 leading-relaxed font-light max-w-xl mx-auto">
+            {t("dive.body")}
+          </p>
+
+          <a
+            href={BLUEMARLIN_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-9 inline-flex items-center justify-center gap-2 bg-forest text-paper px-7 py-3.5 rounded-full text-xs uppercase tracking-[0.25em] font-semibold hover:bg-gold hover:text-forest transition-colors"
+          >
+            {t("dive.cta")}
+            <ExternalLink className="h-3.5 w-3.5" strokeWidth={2} aria-hidden="true" />
+          </a>
+        </div>
       </div>
     </section>
   );
