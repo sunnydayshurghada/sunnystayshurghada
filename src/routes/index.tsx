@@ -482,7 +482,7 @@ function SiteFooter() {
             <img
               src={brandLogo}
               alt="Sunny Stays Hurghada"
-              className="h-12 md:h-14 w-auto select-none"
+              className="h-14 md:h-16 w-auto select-none"
               draggable={false}
             />
           </div>
