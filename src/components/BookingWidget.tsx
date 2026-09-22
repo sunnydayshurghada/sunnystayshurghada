@@ -7,6 +7,7 @@ import { toast } from "sonner";
 import { z } from "zod";
 import { createBookingRequest } from "@/lib/booking.functions";
 import { getBlockedRanges } from "@/lib/availability.functions";
+import { getPriceCalendar, getStayQuote } from "@/lib/pricing.functions";
 import { AvailabilityCalendar } from "@/components/AvailabilityCalendar";
 import { toISODate, nightsBetween, rangeIsFree } from "@/lib/availability";
 import { AIRBNB_LISTING_URL } from "@/lib/airbnb";
@@ -35,9 +36,55 @@ export function BookingWidget({ propertyId }: { propertyId?: string | null } = {
     refetchOnWindowFocus: true,
   });
 
+  const loadPrices = useServerFn(getPriceCalendar);
+  const loadQuote = useServerFn(getStayQuote);
+
+  // Nightly prices for the next 12 months, so the calendar can label each day.
+  const priceWindow = (() => {
+    const start = new Date();
+    const end = new Date(start);
+    end.setFullYear(end.getFullYear() + 1);
+    return { from: toISODate(start), to: toISODate(end) };
+  })();
+
+  const { data: priceData } = useQuery({
+    queryKey: ["price-calendar", propertyId ?? "default", priceWindow.from],
+    queryFn: () =>
+      loadPrices({ data: { propertyId: propertyId ?? null, ...priceWindow } }),
+    staleTime: 5 * 60 * 1000,
+  });
+
+  const prices = Object.fromEntries((priceData?.nights ?? []).map((n) => [n.date, n.price]));
+  const currency = priceData?.currency ?? "EUR";
+
   const checkin = range?.from;
   const checkout = range?.to;
   const nights = checkin && checkout ? nightsBetween(checkin, checkout) : 0;
+
+  const [guestCount, setGuestCount] = useState(2);
+
+  const { data: quote } = useQuery({
+    queryKey: [
+      "stay-quote",
+      propertyId ?? "default",
+      checkin ? toISODate(checkin) : null,
+      checkout ? toISODate(checkout) : null,
+      guestCount,
+    ],
+    queryFn: () =>
+      loadQuote({
+        data: {
+          propertyId: propertyId ?? null,
+          checkin: toISODate(checkin!),
+          checkout: toISODate(checkout!),
+          guests: guestCount,
+        },
+      }),
+    enabled: Boolean(checkin && checkout && nights > 0),
+  });
+
+  const money = (cents: number) =>
+    new Intl.NumberFormat(i18n.language, { style: "currency", currency }).format(cents / 100);
 
   const dateLabel = (d: Date | undefined) =>
     d ? d.toLocaleDateString(i18n.language, { day: "2-digit", month: "short", year: "numeric" }) : "—";
@@ -127,7 +174,13 @@ export function BookingWidget({ propertyId }: { propertyId?: string | null } = {
       </div>
 
       <form onSubmit={onSubmit} className="space-y-3">
-        <AvailabilityCalendar ranges={blocked} selected={range} onSelect={setRange} />
+        <AvailabilityCalendar
+          ranges={blocked}
+          selected={range}
+          onSelect={setRange}
+          prices={prices}
+          currency={currency}
+        />
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div className="rounded-2xl border border-forest/10 bg-card p-4">
@@ -166,6 +219,7 @@ export function BookingWidget({ propertyId }: { propertyId?: string | null } = {
           <select
             name="guests"
             defaultValue="2"
+            onChange={(e) => setGuestCount(Number(e.target.value))}
             required
             className="w-full text-sm font-medium focus:outline-none bg-transparent"
           >
@@ -175,6 +229,52 @@ export function BookingWidget({ propertyId }: { propertyId?: string | null } = {
           </select>
         </div>
 
+
+        {quote ? (
+          <div className="rounded-2xl border border-forest/10 bg-card p-4 text-sm space-y-1.5">
+            <div className="flex justify-between">
+              <span>{t("quote.nights", { count: quote.nightCount })}</span>
+              <span>{money(quote.nightlyTotal)}</span>
+            </div>
+            {quote.extraGuestFee > 0 ? (
+              <div className="flex justify-between text-forest/70">
+                <span>{t("quote.extra_guests")}</span>
+                <span>{money(quote.extraGuestFee)}</span>
+              </div>
+            ) : null}
+            {quote.cleaningFee > 0 ? (
+              <div className="flex justify-between text-forest/70">
+                <span>{t("quote.cleaning_fee")}</span>
+                <span>{money(quote.cleaningFee)}</span>
+              </div>
+            ) : null}
+            {quote.discountAmount > 0 ? (
+              <div className="flex justify-between text-gold">
+                <span>{t(`quote.discounts.${quote.discountLabel}`, t("quote.discount"))}</span>
+                <span>−{money(quote.discountAmount)}</span>
+              </div>
+            ) : null}
+            <div className="flex justify-between border-t border-forest/10 pt-2 font-semibold">
+              <span>{t("quote.total")}</span>
+              <span>
+                {money(quote.totalAmount)} {quote.currency}
+              </span>
+            </div>
+            <details className="pt-1">
+              <summary className="text-[11px] uppercase tracking-widest text-forest/50 cursor-pointer">
+                {t("quote.per_night")}
+              </summary>
+              <ul className="mt-2 space-y-0.5 text-xs text-forest/70">
+                {quote.nights.map((n) => (
+                  <li key={n.date} className="flex justify-between">
+                    <span>{n.date}</span>
+                    <span>{money(n.price)}</span>
+                  </li>
+                ))}
+              </ul>
+            </details>
+          </div>
+        ) : null}
 
         <div className="grid grid-cols-1 gap-3">
           <input
