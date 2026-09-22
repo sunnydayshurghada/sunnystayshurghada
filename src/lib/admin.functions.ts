@@ -1,6 +1,8 @@
 import { createServerFn } from "@tanstack/react-start";
 import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
 import { z } from "zod";
+import type { SupabaseClient } from "@supabase/supabase-js";
+import type { Database } from "@/integrations/supabase/types";
 
 export type AdminBooking = {
   id: string;
@@ -34,7 +36,7 @@ function errorCode(message: string): string {
 }
 
 async function currentUserIsAdmin(
-  supabase: Parameters<Parameters<typeof requireSupabaseAuth>[0]>[0]["context"]["supabase"],
+  supabase: SupabaseClient<Database>,
   userId: string,
 ): Promise<boolean> {
   const { data, error } = await supabase
