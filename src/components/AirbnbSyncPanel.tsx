@@ -27,8 +27,8 @@ export function AirbnbSyncPanel({
   const [busy, setBusy] = useState(false);
 
   const { data } = useQuery({
-    queryKey: ["ical-status"],
-    queryFn: () => loadStatus(),
+    queryKey: ["ical-status", propertyId ?? "default"],
+    queryFn: () => loadStatus({ data: { propertyId: propertyId ?? null } }),
     refetchOnMount: "always",
   });
 
@@ -49,7 +49,9 @@ export function AirbnbSyncPanel({
     e.preventDefault();
     const fd = new FormData(e.currentTarget);
     setBusy(true);
-    const res = await saveUrl({ data: { url: String(fd.get("url") ?? "") } });
+    const res = await saveUrl({
+      data: { propertyId: propertyId ?? null, url: String(fd.get("url") ?? "") },
+    });
     setBusy(false);
     if (!res.ok) {
       toast.error(t(`admin.sync.errors.${res.error ?? "generic"}`, t("admin.errors.generic")));
@@ -62,7 +64,7 @@ export function AirbnbSyncPanel({
 
   const onSync = async () => {
     setBusy(true);
-    const res = await syncNow();
+    const res = await syncNow({ data: { propertyId: propertyId ?? null } });
     setBusy(false);
     if (!res.ok) {
       toast.error(t(`admin.sync.errors.${res.error ?? "generic"}`, t("admin.errors.generic")));
@@ -74,7 +76,7 @@ export function AirbnbSyncPanel({
 
   const onRotate = async () => {
     setBusy(true);
-    const res = await rotate();
+    const res = await rotate({ data: { propertyId: propertyId ?? null } });
     setBusy(false);
     if (!res.ok) toast.error(t("admin.errors.generic"));
     else toast.success(t("admin.sync.toast.token_rotated"));
