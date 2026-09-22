@@ -2,6 +2,7 @@ import { createServerFn } from "@tanstack/react-start";
 import { createClient } from "@supabase/supabase-js";
 import { z } from "zod";
 import type { Database } from "@/integrations/supabase/types";
+import { HOST_EMAIL } from "@/lib/airbnb";
 
 const bookingSchema = z.object({
   guest_name: z.string().trim().min(2).max(120),
