@@ -33,6 +33,12 @@ const PERMS = [
   "can_create_calendar_blocks",
   "can_manage_prices",
   "can_receive_notifications",
+  "can_view_service_agreement",
+  "can_view_service_costs",
+  "can_view_owner_statements",
+  "can_view_receipts",
+  "can_download_statements",
+  "can_submit_financial_question",
 ] as const;
 
 const DEFAULT_PERMS = {
@@ -44,7 +50,14 @@ const DEFAULT_PERMS = {
   can_create_calendar_blocks: false,
   can_manage_prices: false,
   can_receive_notifications: true,
+  can_view_service_agreement: true,
+  can_view_service_costs: false,
+  can_view_owner_statements: false,
+  can_view_receipts: false,
+  can_download_statements: false,
+  can_submit_financial_question: true,
 };
+
 
 export function OwnersManager() {
   const { t } = useTranslation();
