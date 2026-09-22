@@ -99,7 +99,11 @@
     "no_charge": "Direct boeken bij de gastheer",
     "submitted_title": "Aanvraag verstuurd",
     "submitted_desc": "We nemen binnen 24 uur contact met u op.",
-    "airbnb_trust": "Ook geverifieerd op Airbnb"
+    "airbnb_trust": "Ook geverifieerd op Airbnb",
+    "errors": {
+      "select_dates": "Kies een aankomst- en vertrekdatum.",
+      "select_guests": "Kies het aantal gasten."
+    }
   },
   "footer": {
     "brand_line": "Sunny Stays Hurghada",
@@ -179,6 +183,14 @@
     "unavailable": "Niet beschikbaar",
     "nights": "{{count}} nacht",
     "nights_plural": "{{count}} nachten",
-    "request_hint": "Aanvraag – nog geen boeking. De gastheer bevestigt persoonlijk."
+    "request_hint": "Aanvraag – nog geen boeking. De gastheer bevestigt persoonlijk.",
+    "selected": "Geselecteerd",
+    "prev_month": "Vorige maand",
+    "next_month": "Volgende maand",
+    "hint_checkin": "Kies je aankomstdatum.",
+    "hint_checkout": "Kies nu je vertrekdatum.",
+    "checkin_time": "Inchecken vanaf 14:00 uur",
+    "checkout_time": "Uitchecken tot 11:00 uur",
+    "not_selected": "Nog niet gekozen"
   }
 }

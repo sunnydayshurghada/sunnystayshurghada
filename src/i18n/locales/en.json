@@ -140,7 +140,9 @@
       "invalid_guests": "Please choose between 1 and 6 guests.",
       "invalid_name": "Please enter a valid name.",
       "invalid_email": "Please enter a valid email address.",
-      "dates_unavailable": "Sorry, these dates are already booked."
+      "dates_unavailable": "Sorry, these dates are already booked.",
+      "select_dates": "Please select arrival and departure dates.",
+      "select_guests": "Please select the number of guests."
     }
   },
   "footer": {
@@ -221,6 +223,14 @@
     "unavailable": "Unavailable",
     "nights": "{{count}} night",
     "nights_plural": "{{count}} nights",
-    "request_hint": "Enquiry only – not a booking yet. The host confirms personally."
+    "request_hint": "Enquiry only – not a booking yet. The host confirms personally.",
+    "selected": "Selected",
+    "prev_month": "Previous month",
+    "next_month": "Next month",
+    "hint_checkin": "Select your arrival date.",
+    "hint_checkout": "Now select your departure date.",
+    "checkin_time": "Check-in from 2:00 PM",
+    "checkout_time": "Check-out until 11:00 AM",
+    "not_selected": "Not selected yet"
   }
 }

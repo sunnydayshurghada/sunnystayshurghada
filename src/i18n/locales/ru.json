@@ -99,7 +99,11 @@
     "no_charge": "Бронирование напрямую у хозяев",
     "submitted_title": "Запрос отправлен",
     "submitted_desc": "Ответим в течение 24 часов.",
-    "airbnb_trust": "Также подтверждено на Airbnb"
+    "airbnb_trust": "Также подтверждено на Airbnb",
+    "errors": {
+      "select_dates": "Выберите даты заезда и отъезда.",
+      "select_guests": "Укажите количество гостей."
+    }
   },
   "footer": {
     "brand_line": "Sunny Stays Hurghada",
@@ -179,6 +183,14 @@
     "unavailable": "Занято",
     "nights": "{{count}} ночь",
     "nights_plural": "{{count}} ночей",
-    "request_hint": "Это запрос, а не бронирование. Хозяин подтверждает лично."
+    "request_hint": "Это запрос, а не бронирование. Хозяин подтверждает лично.",
+    "selected": "Выбрано",
+    "prev_month": "Предыдущий месяц",
+    "next_month": "Следующий месяц",
+    "hint_checkin": "Выберите дату заезда.",
+    "hint_checkout": "Теперь выберите дату отъезда.",
+    "checkin_time": "Заезд с 14:00",
+    "checkout_time": "Выезд до 11:00",
+    "not_selected": "Ещё не выбрано"
   }
 }
