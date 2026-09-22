@@ -67,6 +67,175 @@ export type Database = {
           },
         ]
       }
+      booking_financial_items: {
+        Row: {
+          amount: number
+          booking_id: string | null
+          charged_to: string
+          created_at: string
+          created_by: string | null
+          currency: string
+          description: string
+          direction: string
+          exchange_rate: number | null
+          exchange_rate_at: string | null
+          id: string
+          immutable_snapshot: boolean
+          item_type: string
+          property_id: string
+          reason: string | null
+          source: string
+          source_amount: number | null
+          source_currency: string | null
+          statement_id: string | null
+        }
+        Insert: {
+          amount?: number
+          booking_id?: string | null
+          charged_to?: string
+          created_at?: string
+          created_by?: string | null
+          currency?: string
+          description?: string
+          direction?: string
+          exchange_rate?: number | null
+          exchange_rate_at?: string | null
+          id?: string
+          immutable_snapshot?: boolean
+          item_type: string
+          property_id: string
+          reason?: string | null
+          source?: string
+          source_amount?: number | null
+          source_currency?: string | null
+          statement_id?: string | null
+        }
+        Update: {
+          amount?: number
+          booking_id?: string | null
+          charged_to?: string
+          created_at?: string
+          created_by?: string | null
+          currency?: string
+          description?: string
+          direction?: string
+          exchange_rate?: number | null
+          exchange_rate_at?: string | null
+          id?: string
+          immutable_snapshot?: boolean
+          item_type?: string
+          property_id?: string
+          reason?: string | null
+          source?: string
+          source_amount?: number | null
+          source_currency?: string | null
+          statement_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "booking_financial_items_booking_id_fkey"
+            columns: ["booking_id"]
+            isOneToOne: false
+            referencedRelation: "bookings"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "booking_financial_items_property_id_fkey"
+            columns: ["property_id"]
+            isOneToOne: false
+            referencedRelation: "properties"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      booking_service_items: {
+        Row: {
+          actual_cost: number | null
+          booking_id: string
+          completed_at: string | null
+          completed_by: string | null
+          cost_bearer: string
+          created_at: string
+          currency: string
+          description_snapshot: string
+          id: string
+          included_in_management_fee: boolean
+          notes: string | null
+          property_id: string
+          quantity: number
+          receipt_url: string | null
+          service_id: string | null
+          status: string
+          total_price: number
+          unit_price: number
+          updated_at: string
+        }
+        Insert: {
+          actual_cost?: number | null
+          booking_id: string
+          completed_at?: string | null
+          completed_by?: string | null
+          cost_bearer?: string
+          created_at?: string
+          currency?: string
+          description_snapshot?: string
+          id?: string
+          included_in_management_fee?: boolean
+          notes?: string | null
+          property_id: string
+          quantity?: number
+          receipt_url?: string | null
+          service_id?: string | null
+          status?: string
+          total_price?: number
+          unit_price?: number
+          updated_at?: string
+        }
+        Update: {
+          actual_cost?: number | null
+          booking_id?: string
+          completed_at?: string | null
+          completed_by?: string | null
+          cost_bearer?: string
+          created_at?: string
+          currency?: string
+          description_snapshot?: string
+          id?: string
+          included_in_management_fee?: boolean
+          notes?: string | null
+          property_id?: string
+          quantity?: number
+          receipt_url?: string | null
+          service_id?: string | null
+          status?: string
+          total_price?: number
+          unit_price?: number
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "booking_service_items_booking_id_fkey"
+            columns: ["booking_id"]
+            isOneToOne: false
+            referencedRelation: "bookings"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "booking_service_items_property_id_fkey"
+            columns: ["property_id"]
+            isOneToOne: false
+            referencedRelation: "properties"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "booking_service_items_service_id_fkey"
+            columns: ["service_id"]
+            isOneToOne: false
+            referencedRelation: "service_catalog"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       booking_settings: {
         Row: {
           auto_confirm_direct_bookings: boolean
@@ -352,6 +521,83 @@ export type Database = {
           },
         ]
       }
+      cost_receipts: {
+        Row: {
+          amount: number | null
+          booking_id: string | null
+          created_at: string
+          currency: string
+          file_name: string
+          file_path: string
+          id: string
+          note: string | null
+          property_id: string
+          receipt_type: string
+          service_item_id: string | null
+          statement_id: string | null
+          uploaded_by: string | null
+        }
+        Insert: {
+          amount?: number | null
+          booking_id?: string | null
+          created_at?: string
+          currency?: string
+          file_name?: string
+          file_path: string
+          id?: string
+          note?: string | null
+          property_id: string
+          receipt_type?: string
+          service_item_id?: string | null
+          statement_id?: string | null
+          uploaded_by?: string | null
+        }
+        Update: {
+          amount?: number | null
+          booking_id?: string | null
+          created_at?: string
+          currency?: string
+          file_name?: string
+          file_path?: string
+          id?: string
+          note?: string | null
+          property_id?: string
+          receipt_type?: string
+          service_item_id?: string | null
+          statement_id?: string | null
+          uploaded_by?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "cost_receipts_booking_id_fkey"
+            columns: ["booking_id"]
+            isOneToOne: false
+            referencedRelation: "bookings"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "cost_receipts_property_id_fkey"
+            columns: ["property_id"]
+            isOneToOne: false
+            referencedRelation: "properties"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "cost_receipts_service_item_id_fkey"
+            columns: ["service_item_id"]
+            isOneToOne: false
+            referencedRelation: "booking_service_items"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "cost_receipts_statement_id_fkey"
+            columns: ["statement_id"]
+            isOneToOne: false
+            referencedRelation: "owner_statements"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       daily_prices: {
         Row: {
           calculated_price: number | null
@@ -603,6 +849,231 @@ export type Database = {
         Relationships: [
           {
             foreignKeyName: "ical_sync_log_property_id_fkey"
+            columns: ["property_id"]
+            isOneToOne: false
+            referencedRelation: "properties"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      owner_financial_questions: {
+        Row: {
+          answer: string | null
+          booking_id: string | null
+          created_at: string
+          id: string
+          message: string
+          owner_user_id: string | null
+          property_id: string | null
+          statement_id: string | null
+          status: string
+          subject: string
+          updated_at: string
+        }
+        Insert: {
+          answer?: string | null
+          booking_id?: string | null
+          created_at?: string
+          id?: string
+          message: string
+          owner_user_id?: string | null
+          property_id?: string | null
+          statement_id?: string | null
+          status?: string
+          subject?: string
+          updated_at?: string
+        }
+        Update: {
+          answer?: string | null
+          booking_id?: string | null
+          created_at?: string
+          id?: string
+          message?: string
+          owner_user_id?: string | null
+          property_id?: string | null
+          statement_id?: string | null
+          status?: string
+          subject?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "owner_financial_questions_booking_id_fkey"
+            columns: ["booking_id"]
+            isOneToOne: false
+            referencedRelation: "bookings"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "owner_financial_questions_property_id_fkey"
+            columns: ["property_id"]
+            isOneToOne: false
+            referencedRelation: "properties"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "owner_financial_questions_statement_id_fkey"
+            columns: ["statement_id"]
+            isOneToOne: false
+            referencedRelation: "owner_statements"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      owner_payouts: {
+        Row: {
+          amount: number
+          confirmed_at: string | null
+          confirmed_by: string | null
+          created_at: string
+          currency: string
+          id: string
+          internal_note: string | null
+          method: string | null
+          owner_user_id: string | null
+          paid_on: string | null
+          period_end: string | null
+          period_start: string | null
+          property_id: string | null
+          receipt_url: string | null
+          statement_id: string | null
+          status: string
+          transaction_reference: string | null
+          updated_at: string
+        }
+        Insert: {
+          amount?: number
+          confirmed_at?: string | null
+          confirmed_by?: string | null
+          created_at?: string
+          currency?: string
+          id?: string
+          internal_note?: string | null
+          method?: string | null
+          owner_user_id?: string | null
+          paid_on?: string | null
+          period_end?: string | null
+          period_start?: string | null
+          property_id?: string | null
+          receipt_url?: string | null
+          statement_id?: string | null
+          status?: string
+          transaction_reference?: string | null
+          updated_at?: string
+        }
+        Update: {
+          amount?: number
+          confirmed_at?: string | null
+          confirmed_by?: string | null
+          created_at?: string
+          currency?: string
+          id?: string
+          internal_note?: string | null
+          method?: string | null
+          owner_user_id?: string | null
+          paid_on?: string | null
+          period_end?: string | null
+          period_start?: string | null
+          property_id?: string | null
+          receipt_url?: string | null
+          statement_id?: string | null
+          status?: string
+          transaction_reference?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "owner_payouts_property_id_fkey"
+            columns: ["property_id"]
+            isOneToOne: false
+            referencedRelation: "properties"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "owner_payouts_statement_id_fkey"
+            columns: ["statement_id"]
+            isOneToOne: false
+            referencedRelation: "owner_statements"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      owner_statements: {
+        Row: {
+          adjustments: number
+          breakdown: Json
+          created_at: string
+          currency: string
+          finalized_at: string | null
+          gross_booking_revenue: number
+          guest_fees: number
+          id: string
+          management_fees: number
+          owner_net_amount: number
+          owner_user_id: string | null
+          paid_at: string | null
+          paid_out_amount: number
+          payment_fees: number
+          period_end: string
+          period_start: string
+          platform_fees: number
+          property_id: string | null
+          refunds: number
+          service_costs: number
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          adjustments?: number
+          breakdown?: Json
+          created_at?: string
+          currency?: string
+          finalized_at?: string | null
+          gross_booking_revenue?: number
+          guest_fees?: number
+          id?: string
+          management_fees?: number
+          owner_net_amount?: number
+          owner_user_id?: string | null
+          paid_at?: string | null
+          paid_out_amount?: number
+          payment_fees?: number
+          period_end: string
+          period_start: string
+          platform_fees?: number
+          property_id?: string | null
+          refunds?: number
+          service_costs?: number
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          adjustments?: number
+          breakdown?: Json
+          created_at?: string
+          currency?: string
+          finalized_at?: string | null
+          gross_booking_revenue?: number
+          guest_fees?: number
+          id?: string
+          management_fees?: number
+          owner_net_amount?: number
+          owner_user_id?: string | null
+          paid_at?: string | null
+          paid_out_amount?: number
+          payment_fees?: number
+          period_end?: string
+          period_start?: string
+          platform_fees?: number
+          property_id?: string | null
+          refunds?: number
+          service_costs?: number
+          status?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "owner_statements_property_id_fkey"
             columns: ["property_id"]
             isOneToOne: false
             referencedRelation: "properties"
@@ -966,6 +1437,65 @@ export type Database = {
           },
         ]
       }
+      property_management_agreements: {
+        Row: {
+          active: boolean
+          calculation_basis: string
+          created_at: string
+          currency: string
+          fee_type: string
+          fixed_fee: number
+          id: string
+          minimum_fee: number
+          notes: string | null
+          percentage_rate: number
+          property_id: string
+          updated_at: string
+          valid_from: string
+          valid_until: string | null
+        }
+        Insert: {
+          active?: boolean
+          calculation_basis?: string
+          created_at?: string
+          currency?: string
+          fee_type?: string
+          fixed_fee?: number
+          id?: string
+          minimum_fee?: number
+          notes?: string | null
+          percentage_rate?: number
+          property_id: string
+          updated_at?: string
+          valid_from?: string
+          valid_until?: string | null
+        }
+        Update: {
+          active?: boolean
+          calculation_basis?: string
+          created_at?: string
+          currency?: string
+          fee_type?: string
+          fixed_fee?: number
+          id?: string
+          minimum_fee?: number
+          notes?: string | null
+          percentage_rate?: number
+          property_id?: string
+          updated_at?: string
+          valid_from?: string
+          valid_until?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "property_management_agreements_property_id_fkey"
+            columns: ["property_id"]
+            isOneToOne: false
+            referencedRelation: "properties"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       property_notification_recipients: {
         Row: {
           active: boolean
@@ -1123,18 +1653,102 @@ export type Database = {
           },
         ]
       }
+      property_service_agreements: {
+        Row: {
+          active: boolean
+          automatic_charge: boolean
+          calculation_type: string
+          cost_bearer: string
+          created_at: string
+          currency: string
+          custom_price: number | null
+          id: string
+          included_in_management_fee: boolean
+          notes: string | null
+          property_id: string
+          provided_by_sunny_stays: boolean
+          service_id: string
+          updated_at: string
+          valid_from: string | null
+          valid_until: string | null
+          visible_to_guest: boolean
+          visible_to_owner: boolean
+        }
+        Insert: {
+          active?: boolean
+          automatic_charge?: boolean
+          calculation_type?: string
+          cost_bearer?: string
+          created_at?: string
+          currency?: string
+          custom_price?: number | null
+          id?: string
+          included_in_management_fee?: boolean
+          notes?: string | null
+          property_id: string
+          provided_by_sunny_stays?: boolean
+          service_id: string
+          updated_at?: string
+          valid_from?: string | null
+          valid_until?: string | null
+          visible_to_guest?: boolean
+          visible_to_owner?: boolean
+        }
+        Update: {
+          active?: boolean
+          automatic_charge?: boolean
+          calculation_type?: string
+          cost_bearer?: string
+          created_at?: string
+          currency?: string
+          custom_price?: number | null
+          id?: string
+          included_in_management_fee?: boolean
+          notes?: string | null
+          property_id?: string
+          provided_by_sunny_stays?: boolean
+          service_id?: string
+          updated_at?: string
+          valid_from?: string | null
+          valid_until?: string | null
+          visible_to_guest?: boolean
+          visible_to_owner?: boolean
+        }
+        Relationships: [
+          {
+            foreignKeyName: "property_service_agreements_property_id_fkey"
+            columns: ["property_id"]
+            isOneToOne: false
+            referencedRelation: "properties"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "property_service_agreements_service_id_fkey"
+            columns: ["service_id"]
+            isOneToOne: false
+            referencedRelation: "service_catalog"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       property_user_assignments: {
         Row: {
           active: boolean
           assignment_role: string
           can_create_calendar_blocks: boolean
+          can_download_statements: boolean
           can_manage_prices: boolean
           can_receive_notifications: boolean
+          can_submit_financial_question: boolean
           can_view_bookings: boolean
           can_view_calendar: boolean
           can_view_financials: boolean
           can_view_guest_contact_data: boolean
+          can_view_owner_statements: boolean
           can_view_payments: boolean
+          can_view_receipts: boolean
+          can_view_service_agreement: boolean
+          can_view_service_costs: boolean
           created_at: string
           id: string
           ownership_share_percent: number | null
@@ -1146,13 +1760,19 @@ export type Database = {
           active?: boolean
           assignment_role?: string
           can_create_calendar_blocks?: boolean
+          can_download_statements?: boolean
           can_manage_prices?: boolean
           can_receive_notifications?: boolean
+          can_submit_financial_question?: boolean
           can_view_bookings?: boolean
           can_view_calendar?: boolean
           can_view_financials?: boolean
           can_view_guest_contact_data?: boolean
+          can_view_owner_statements?: boolean
           can_view_payments?: boolean
+          can_view_receipts?: boolean
+          can_view_service_agreement?: boolean
+          can_view_service_costs?: boolean
           created_at?: string
           id?: string
           ownership_share_percent?: number | null
@@ -1164,13 +1784,19 @@ export type Database = {
           active?: boolean
           assignment_role?: string
           can_create_calendar_blocks?: boolean
+          can_download_statements?: boolean
           can_manage_prices?: boolean
           can_receive_notifications?: boolean
+          can_submit_financial_question?: boolean
           can_view_bookings?: boolean
           can_view_calendar?: boolean
           can_view_financials?: boolean
           can_view_guest_contact_data?: boolean
+          can_view_owner_statements?: boolean
           can_view_payments?: boolean
+          can_view_receipts?: boolean
+          can_view_service_agreement?: boolean
+          can_view_service_costs?: boolean
           created_at?: string
           id?: string
           ownership_share_percent?: number | null
@@ -1228,6 +1854,60 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      service_catalog: {
+        Row: {
+          active: boolean
+          calculation_type: string
+          category: string
+          created_at: string
+          currency: string
+          default_cost_bearer: string
+          default_price: number
+          description: string | null
+          id: string
+          key: string
+          name: Json
+          publicly_visible: boolean
+          sort_order: number
+          tax_percent: number
+          updated_at: string
+        }
+        Insert: {
+          active?: boolean
+          calculation_type?: string
+          category?: string
+          created_at?: string
+          currency?: string
+          default_cost_bearer?: string
+          default_price?: number
+          description?: string | null
+          id?: string
+          key: string
+          name?: Json
+          publicly_visible?: boolean
+          sort_order?: number
+          tax_percent?: number
+          updated_at?: string
+        }
+        Update: {
+          active?: boolean
+          calculation_type?: string
+          category?: string
+          created_at?: string
+          currency?: string
+          default_cost_bearer?: string
+          default_price?: number
+          description?: string | null
+          id?: string
+          key?: string
+          name?: Json
+          publicly_visible?: boolean
+          sort_order?: number
+          tax_percent?: number
+          updated_at?: string
+        }
+        Relationships: []
       }
       user_profiles: {
         Row: {
