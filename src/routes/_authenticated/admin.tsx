@@ -243,6 +243,26 @@ function AdminPage() {
           </span>
           <h1 className="font-display text-3xl mb-6">{t("admin.calendar_title")}</h1>
 
+          <label className="block max-w-sm mb-6">
+            <span className="block text-[10px] uppercase tracking-widest text-forest/50 mb-1">
+              {t("admin.property_filter")}
+            </span>
+            <select
+              value={propertyId}
+              onChange={(e) => setPropertyId(e.target.value)}
+              className="w-full bg-card p-3 border border-forest/10 rounded-xl text-sm focus:outline-none focus:border-gold"
+            >
+              <option value="">{t("admin.all_properties")}</option>
+              {properties.map((p) => (
+                <option key={p.id} value={p.id}>
+                  {p.internal_name}
+                  {p.status !== "active" ? ` (${t(`admin.properties.status.${p.status}`)})` : ""}
+                </option>
+              ))}
+            </select>
+          </label>
+
+
           <div className="bg-card rounded-3xl border border-forest/10 p-4 md:p-6 inline-block max-w-full overflow-x-auto">
             <DayPicker
               locale={DP_LOCALES[lang]}
