@@ -101,7 +101,86 @@
     "starting_from": "Ab 20 € / Nacht",
     "note": "Aktuelle Preise auf Airbnb — variieren nach Saison.",
     "cta_airbnb": "Preise auf Airbnb ansehen",
-    "cta_enquire": "Oder senden Sie uns unten eine Anfrage"
+    "cta_enquire": "Oder senden Sie uns unten eine Anfrage",
+    "title": "Preisverwaltung",
+    "intro": "Preise gelten immer nur für die ausgewählte Wohnung.",
+    "pick_property": "Bitte zuerst oben eine Wohnung auswählen.",
+    "settings_title": "Preiseinstellungen",
+    "mode": "Preisquelle",
+    "modes": {
+      "manual": "Manuell",
+      "pricelabs": "Automatisch (PriceLabs)",
+      "hybrid": "Hybrid (PriceLabs + eigene Preise)"
+    },
+    "price_hint": "Alle Beträge in Cent angeben (z. B. 4000 = 40,00 €).",
+    "base_price": "Standardpreis",
+    "minimum_price": "Mindestpreis",
+    "maximum_price": "Höchstpreis",
+    "weekend_price": "Wochenendpreis",
+    "cleaning_fee": "Reinigungsgebühr",
+    "minimum_stay": "Mindestaufenthalt (Nächte)",
+    "currency": "Währung",
+    "extra_guest_fee": "Aufschlag je zusätzlichem Gast",
+    "extra_guest_after": "Aufschlag ab Gast Nr.",
+    "direct_percent": "Direktbuchung %",
+    "direct_fixed": "Direktbuchung fest",
+    "weekly_discount": "Wochenrabatt %",
+    "monthly_discount": "Monatsrabatt %",
+    "los_nights": "Rabatt ab Nächten",
+    "los_discount": "Rabatt %",
+    "last_minute_days": "Last-Minute ab Tagen",
+    "last_minute_discount": "Last-Minute %",
+    "save": "Einstellungen speichern",
+    "price_cents": "Preis (Cent)",
+    "reason": "Begründung",
+    "apply": "Preis anwenden",
+    "reset": "Sonderpreise zurücksetzen",
+    "select_month": "Ganzen Monat wählen",
+    "clear_selection": "Auswahl aufheben",
+    "sources": {
+      "manual": "Manuell",
+      "pricelabs": "PriceLabs",
+      "pricelabs_override": "PriceLabs überschrieben",
+      "season": "Saisonregel",
+      "weekend": "Wochenende",
+      "base": "Standardpreis"
+    },
+    "detail": {
+      "used": "Verwendeter Preis",
+      "pricelabs": "PriceLabs-Empfehlung",
+      "bounds": "Mindest-/Höchstpreis",
+      "source": "Quelle",
+      "updated": "Letzte Aktualisierung"
+    },
+    "toast": {
+      "saved": "Preiseinstellungen gespeichert",
+      "applied": "Preise übernommen",
+      "reset": "Sonderpreise zurückgesetzt",
+      "synced": "Preise aktualisiert"
+    },
+    "errors": {
+      "forbidden": "Keine Berechtigung.",
+      "not_found": "Wohnung nicht gefunden.",
+      "out_of_bounds": "Preis liegt außerhalb von Mindest- und Höchstpreis.",
+      "min_above_max": "Mindestpreis liegt über dem Höchstpreis.",
+      "invalid_range": "Ungültiger Zeitraum.",
+      "not_configured": "PriceLabs ist noch nicht verbunden.",
+      "api_access_unconfirmed": "PriceLabs-API-Zugang ist noch nicht bestätigt.",
+      "generic": "Das hat nicht geklappt."
+    },
+    "pricelabs": {
+      "title": "PriceLabs",
+      "enabled": "PriceLabs für diese Wohnung nutzen",
+      "listing_id": "PriceLabs-Objekt-ID",
+      "sync_now": "Jetzt aktualisieren",
+      "last_sync": "Letzte Aktualisierung",
+      "configured": "Zugangsdaten hinterlegt. Automatische Preise werden übernommen, sobald der API-Zugang bestätigt ist.",
+      "missing_key": "Noch kein PriceLabs-Zugang hinterlegt – bis dahin gelten die manuellen Preise.",
+      "error": {
+        "missing_api_key": "Es ist kein PriceLabs-Schlüssel hinterlegt.",
+        "api_access_unconfirmed": "Der PriceLabs-Tarif mit API-Zugang ist noch nicht bestätigt."
+      }
+    }
   },
   "review": {
     "title": "Ihre Gastgeber",
@@ -439,6 +518,20 @@
       "bedrooms": "{{count}} Schlafzimmer",
       "beds": "{{count}} Betten",
       "bathrooms": "{{count}} Bäder"
+    }
+  },
+  "quote": {
+    "nights": "{{count}} Nächte",
+    "extra_guests": "Zusätzliche Gäste",
+    "cleaning_fee": "Reinigungsgebühr",
+    "discount": "Rabatt",
+    "total": "Gesamtpreis",
+    "per_night": "Preise pro Nacht",
+    "discounts": {
+      "weekly": "Wochenrabatt",
+      "monthly": "Monatsrabatt",
+      "last_minute": "Last-Minute-Rabatt",
+      "length_of_stay": "Langzeitrabatt"
     }
   }
 }

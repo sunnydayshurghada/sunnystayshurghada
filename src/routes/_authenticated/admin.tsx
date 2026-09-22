@@ -22,6 +22,7 @@ import { parseISODate } from "@/lib/availability";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { AirbnbSyncPanel } from "@/components/AirbnbSyncPanel";
 import { PropertyManager } from "@/components/PropertyManager";
+import { PricingManager } from "@/components/PricingManager";
 import brandLogo from "@/assets/sunny-stays-hurghada-logo.png";
 
 export const Route = createFileRoute("/_authenticated/admin")({
@@ -392,6 +393,8 @@ function AdminPage() {
         </section>
 
         <AirbnbSyncPanel intlLocale={intlLocale} propertyId={syncPropertyId} />
+
+        <PricingManager propertyId={syncPropertyId} intlLocale={intlLocale} />
 
         <PropertyManager />
 

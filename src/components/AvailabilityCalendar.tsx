@@ -38,10 +38,15 @@ export function AvailabilityCalendar({
   ranges,
   selected,
   onSelect,
+  prices,
+  currency = "EUR",
 }: {
   ranges: BlockedRange[];
   selected: DateRange | undefined;
   onSelect: (range: DateRange | undefined) => void;
+  /** Final nightly price per ISO date, in the smallest currency unit. */
+  prices?: Record<string, number>;
+  currency?: string;
 }) {
   const { t, i18n } = useTranslation();
   const today = startOfToday();
@@ -115,6 +120,13 @@ export function AvailabilityCalendar({
       ? `${label.format(month)} – ${label.format(addMonths(month, 1))}`
       : label.format(month);
 
+  const hasPrices = Boolean(prices && Object.keys(prices).length);
+  const priceFmt = new Intl.NumberFormat(i18n.language, {
+    style: "currency",
+    currency,
+    maximumFractionDigits: 0,
+  });
+
   const Prev = rtl ? ChevronRight : ChevronLeft;
   const Next = rtl ? ChevronLeft : ChevronRight;
 
@@ -163,6 +175,26 @@ export function AvailabilityCalendar({
         }}
         hideNavigation
         showOutsideDays={false}
+        components={
+          hasPrices
+            ? {
+                DayButton: ({ day, modifiers, ...buttonProps }) => {
+                  const iso = toISODate(day.date);
+                  const amount = prices?.[iso];
+                  return (
+                    <button {...buttonProps} type="button">
+                      <span className="leading-none">{day.date.getDate()}</span>
+                      {amount && !modifiers["disabled"] ? (
+                        <span className="mt-0.5 block text-[9px] font-medium leading-none opacity-80">
+                          {priceFmt.format(amount / 100)}
+                        </span>
+                      ) : null}
+                    </button>
+                  );
+                },
+              }
+            : undefined
+        }
         className="w-full text-forest"
         classNames={{
           months: "flex flex-col md:flex-row gap-4 md:gap-6 justify-center",
@@ -174,8 +206,9 @@ export function AvailabilityCalendar({
           weekday:
             "pb-1.5 text-[10px] font-medium uppercase tracking-widest text-forest/40",
           day: "p-0.5 text-center",
-          day_button:
-            "mx-auto flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-full text-xs sm:text-sm transition-colors hover:bg-gold/15",
+          day_button: hasPrices
+            ? "mx-auto flex h-10 w-10 sm:h-12 sm:w-12 flex-col items-center justify-center rounded-2xl text-xs sm:text-sm transition-colors hover:bg-gold/15"
+            : "mx-auto flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-full text-xs sm:text-sm transition-colors hover:bg-gold/15",
           today: "[&_button]:ring-1 [&_button]:ring-gold/60 [&_button]:font-semibold",
           selected: "",
           range_start:

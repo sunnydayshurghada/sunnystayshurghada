@@ -77,7 +77,86 @@
     "starting_from": "От 20 € / ночь",
     "note": "Актуальные цены — на Airbnb, зависят от сезона.",
     "cta_airbnb": "Посмотреть цены на Airbnb",
-    "cta_enquire": "Или отправьте нам запрос ниже"
+    "cta_enquire": "Или отправьте нам запрос ниже",
+    "title": "Pricing",
+    "intro": "Prices always apply to the selected apartment only.",
+    "pick_property": "Please select an apartment above first.",
+    "settings_title": "Price settings",
+    "mode": "Price source",
+    "modes": {
+      "manual": "Manual",
+      "pricelabs": "Automatic (PriceLabs)",
+      "hybrid": "Hybrid (PriceLabs + manual)"
+    },
+    "price_hint": "All amounts in cents (e.g. 4000 = €40.00).",
+    "base_price": "Base price",
+    "minimum_price": "Minimum price",
+    "maximum_price": "Maximum price",
+    "weekend_price": "Weekend price",
+    "cleaning_fee": "Cleaning fee",
+    "minimum_stay": "Minimum stay (nights)",
+    "currency": "Currency",
+    "extra_guest_fee": "Extra guest fee",
+    "extra_guest_after": "Extra fee from guest no.",
+    "direct_percent": "Direct booking %",
+    "direct_fixed": "Direct booking fixed",
+    "weekly_discount": "Weekly discount %",
+    "monthly_discount": "Monthly discount %",
+    "los_nights": "Discount from nights",
+    "los_discount": "Discount %",
+    "last_minute_days": "Last minute within days",
+    "last_minute_discount": "Last minute %",
+    "save": "Save settings",
+    "price_cents": "Price (cents)",
+    "reason": "Reason",
+    "apply": "Apply price",
+    "reset": "Reset special prices",
+    "select_month": "Select whole month",
+    "clear_selection": "Clear selection",
+    "sources": {
+      "manual": "Manual",
+      "pricelabs": "PriceLabs",
+      "pricelabs_override": "PriceLabs overridden",
+      "season": "Season rule",
+      "weekend": "Weekend",
+      "base": "Base price"
+    },
+    "detail": {
+      "used": "Price used",
+      "pricelabs": "PriceLabs recommendation",
+      "bounds": "Minimum / maximum price",
+      "source": "Source",
+      "updated": "Last update"
+    },
+    "toast": {
+      "saved": "Price settings saved",
+      "applied": "Prices applied",
+      "reset": "Special prices reset",
+      "synced": "Prices updated"
+    },
+    "errors": {
+      "forbidden": "Not allowed.",
+      "not_found": "Apartment not found.",
+      "out_of_bounds": "Price is outside the minimum/maximum price.",
+      "min_above_max": "Minimum price is above the maximum price.",
+      "invalid_range": "Invalid date range.",
+      "not_configured": "PriceLabs is not connected yet.",
+      "api_access_unconfirmed": "PriceLabs API access is not confirmed yet.",
+      "generic": "That did not work."
+    },
+    "pricelabs": {
+      "title": "PriceLabs",
+      "enabled": "Use PriceLabs for this apartment",
+      "listing_id": "PriceLabs listing ID",
+      "sync_now": "Sync now",
+      "last_sync": "Last sync",
+      "configured": "Credentials stored. Automatic prices are imported as soon as API access is confirmed.",
+      "missing_key": "No PriceLabs access stored yet — manual prices apply until then.",
+      "error": {
+        "missing_api_key": "No PriceLabs key stored.",
+        "api_access_unconfirmed": "A PriceLabs plan with API access is not confirmed yet."
+      }
+    }
   },
   "booking": {
     "per_night": "/ ночь",
@@ -399,6 +478,20 @@
       "bedrooms": "{{count}} bedrooms",
       "beds": "{{count}} beds",
       "bathrooms": "{{count}} bathrooms"
+    }
+  },
+  "quote": {
+    "nights": "{{count}} nights",
+    "extra_guests": "Extra guests",
+    "cleaning_fee": "Cleaning fee",
+    "discount": "Discount",
+    "total": "Total",
+    "per_night": "Price per night",
+    "discounts": {
+      "weekly": "Weekly discount",
+      "monthly": "Monthly discount",
+      "last_minute": "Last minute discount",
+      "length_of_stay": "Long stay discount"
     }
   }
 }

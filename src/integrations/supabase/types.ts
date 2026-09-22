@@ -336,32 +336,59 @@ export type Database = {
       }
       daily_prices: {
         Row: {
+          calculated_price: number | null
           created_at: string
+          currency: string
           date: string
+          final_price: number | null
           id: string
+          manual_override: boolean
           minimum_nights: number | null
+          override_expires_at: string | null
+          override_reason: string | null
           price: number
+          price_source: string
+          pricelabs_price: number | null
           property_id: string
+          provider_updated_at: string | null
           source: string
           updated_at: string
         }
         Insert: {
+          calculated_price?: number | null
           created_at?: string
+          currency?: string
           date: string
+          final_price?: number | null
           id?: string
+          manual_override?: boolean
           minimum_nights?: number | null
+          override_expires_at?: string | null
+          override_reason?: string | null
           price: number
+          price_source?: string
+          pricelabs_price?: number | null
           property_id: string
+          provider_updated_at?: string | null
           source?: string
           updated_at?: string
         }
         Update: {
+          calculated_price?: number | null
           created_at?: string
+          currency?: string
           date?: string
+          final_price?: number | null
           id?: string
+          manual_override?: boolean
           minimum_nights?: number | null
+          override_expires_at?: string | null
+          override_reason?: string | null
           price?: number
+          price_source?: string
+          pricelabs_price?: number | null
           property_id?: string
+          provider_updated_at?: string | null
           source?: string
           updated_at?: string
         }
@@ -566,9 +593,49 @@ export type Database = {
           },
         ]
       }
+      pricing_audit_log: {
+        Row: {
+          action: string
+          actor_email: string | null
+          actor_id: string | null
+          created_at: string
+          detail: Json
+          id: string
+          property_id: string | null
+        }
+        Insert: {
+          action: string
+          actor_email?: string | null
+          actor_id?: string | null
+          created_at?: string
+          detail?: Json
+          id?: string
+          property_id?: string | null
+        }
+        Update: {
+          action?: string
+          actor_email?: string | null
+          actor_id?: string | null
+          created_at?: string
+          detail?: Json
+          id?: string
+          property_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "pricing_audit_log_property_id_fkey"
+            columns: ["property_id"]
+            isOneToOne: false
+            referencedRelation: "properties"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       pricing_rules: {
         Row: {
           active: boolean
+          adjustment_type: string
+          adjustment_value: number
           created_at: string
           end_date: string | null
           id: string
@@ -584,6 +651,8 @@ export type Database = {
         }
         Insert: {
           active?: boolean
+          adjustment_type?: string
+          adjustment_value?: number
           created_at?: string
           end_date?: string | null
           id?: string
@@ -599,6 +668,8 @@ export type Database = {
         }
         Update: {
           active?: boolean
+          adjustment_type?: string
+          adjustment_value?: number
           created_at?: string
           end_date?: string | null
           id?: string
@@ -754,6 +825,104 @@ export type Database = {
             foreignKeyName: "property_images_property_id_fkey"
             columns: ["property_id"]
             isOneToOne: false
+            referencedRelation: "properties"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      property_pricing_settings: {
+        Row: {
+          base_price: number
+          cleaning_fee: number
+          created_at: string
+          currency: string
+          direct_booking_adjustment_fixed: number
+          direct_booking_adjustment_percent: number
+          extra_guest_after: number
+          extra_guest_fee: number
+          id: string
+          last_minute_days: number | null
+          last_minute_discount_percent: number
+          length_of_stay_discount_percent: number
+          length_of_stay_nights: number | null
+          maximum_price: number
+          minimum_price: number
+          minimum_stay: number
+          monthly_discount_percent: number
+          pricelabs_enabled: boolean
+          pricelabs_last_sync_at: string | null
+          pricelabs_listing_id: string | null
+          pricelabs_sync_error: string | null
+          pricelabs_sync_status: string | null
+          pricing_mode: string
+          property_id: string
+          updated_at: string
+          weekend_price: number | null
+          weekly_discount_percent: number
+        }
+        Insert: {
+          base_price?: number
+          cleaning_fee?: number
+          created_at?: string
+          currency?: string
+          direct_booking_adjustment_fixed?: number
+          direct_booking_adjustment_percent?: number
+          extra_guest_after?: number
+          extra_guest_fee?: number
+          id?: string
+          last_minute_days?: number | null
+          last_minute_discount_percent?: number
+          length_of_stay_discount_percent?: number
+          length_of_stay_nights?: number | null
+          maximum_price?: number
+          minimum_price?: number
+          minimum_stay?: number
+          monthly_discount_percent?: number
+          pricelabs_enabled?: boolean
+          pricelabs_last_sync_at?: string | null
+          pricelabs_listing_id?: string | null
+          pricelabs_sync_error?: string | null
+          pricelabs_sync_status?: string | null
+          pricing_mode?: string
+          property_id: string
+          updated_at?: string
+          weekend_price?: number | null
+          weekly_discount_percent?: number
+        }
+        Update: {
+          base_price?: number
+          cleaning_fee?: number
+          created_at?: string
+          currency?: string
+          direct_booking_adjustment_fixed?: number
+          direct_booking_adjustment_percent?: number
+          extra_guest_after?: number
+          extra_guest_fee?: number
+          id?: string
+          last_minute_days?: number | null
+          last_minute_discount_percent?: number
+          length_of_stay_discount_percent?: number
+          length_of_stay_nights?: number | null
+          maximum_price?: number
+          minimum_price?: number
+          minimum_stay?: number
+          monthly_discount_percent?: number
+          pricelabs_enabled?: boolean
+          pricelabs_last_sync_at?: string | null
+          pricelabs_listing_id?: string | null
+          pricelabs_sync_error?: string | null
+          pricelabs_sync_status?: string | null
+          pricing_mode?: string
+          property_id?: string
+          updated_at?: string
+          weekend_price?: number | null
+          weekly_discount_percent?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "property_pricing_settings_property_id_fkey"
+            columns: ["property_id"]
+            isOneToOne: true
             referencedRelation: "properties"
             referencedColumns: ["id"]
           },

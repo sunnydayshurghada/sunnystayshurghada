@@ -36,6 +36,13 @@
       "when": 1790101578168,
       "tag": "0004_multi_property",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1790102065545,
+      "tag": "0005_pricing_engine",
+      "breakpoints": true
     }
   ]
 }
