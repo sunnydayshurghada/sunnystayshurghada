@@ -200,8 +200,13 @@ function Hero() {
   const toggleSound = () => {
     const v = videoRef.current;
     if (!v) return;
-    v.muted = !v.muted;
-    setMuted(v.muted);
+    const next = !v.muted;
+    v.muted = next;
+    v.volume = 1;
+    setMuted(next);
+    if (!next) {
+      void v.play().catch(() => undefined);
+    }
   };
 
   return (
