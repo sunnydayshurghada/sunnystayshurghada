@@ -1,5 +1,6 @@
 import { createServerFn } from "@tanstack/react-start";
 import { createClient } from "@supabase/supabase-js";
+import { z } from "zod";
 import type { Database } from "@/integrations/supabase/types";
 import type { BlockedRange } from "@/lib/availability";
 
@@ -27,16 +28,21 @@ export function createPublicSupabase() {
 }
 
 /**
- * Public, privacy-safe availability: only date ranges, never guest data.
+ * Public, privacy-safe availability for ONE apartment: only date ranges,
+ * never guest data. Without a property id the first active apartment is used.
  */
-export const getBlockedRanges = createServerFn({ method: "GET" }).handler(
-  async (): Promise<BlockedRange[]> => {
+export const getBlockedRanges = createServerFn({ method: "GET" })
+  .inputValidator((input: unknown) =>
+    z.object({ propertyId: z.string().uuid().nullish() }).parse(input ?? {}),
+  )
+  .handler(async ({ data }): Promise<BlockedRange[]> => {
     const supabase = createPublicSupabase();
-    const { data, error } = await supabase.rpc("public_blocked_ranges");
+    const { data: rows, error } = data.propertyId
+      ? await supabase.rpc("public_blocked_ranges_for", { _property_id: data.propertyId })
+      : await supabase.rpc("public_blocked_ranges");
     if (error) {
-      console.error("[availability] public_blocked_ranges failed", error.message);
+      console.error("[availability] blocked ranges failed", error.message);
       return [];
     }
-    return (data ?? []) as BlockedRange[];
-  },
-);
+    return (rows ?? []) as BlockedRange[];
+  });
