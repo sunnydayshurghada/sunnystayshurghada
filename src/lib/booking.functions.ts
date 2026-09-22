@@ -83,6 +83,39 @@ export const createBookingRequest = createServerFn({ method: "POST" })
     }
     const bookingId = newId as string;
 
+    // Immutable price snapshot: the price shown at request time is frozen on the
+    // booking, so later price changes never alter an existing booking.
+    try {
+      const { loadPricingContext, quoteStay } = await import("@/lib/pricing.server");
+      const { data: row } = await supabase
+        .from("bookings")
+        .select("property_id")
+        .eq("id", bookingId)
+        .maybeSingle();
+      const propertyId = row?.property_id ?? data.property_id ?? null;
+      if (propertyId) {
+        const ctx = await loadPricingContext(supabase, propertyId, data.checkin, data.checkout);
+        if (ctx) {
+          const quote = quoteStay(ctx, data.checkin, data.checkout, data.guests);
+          const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+          await supabaseAdmin
+            .from("bookings")
+            .update({
+              currency: quote.currency,
+              nightly_total: quote.nightlyTotal,
+              cleaning_fee: quote.cleaningFee,
+              discount_amount: quote.discountAmount,
+              total_amount: quote.totalAmount,
+              price_snapshot: quote as never,
+            })
+            .eq("id", bookingId);
+        }
+      }
+    } catch (e) {
+      console.error("[booking] price snapshot failed", e);
+    }
+
+
     // Notify the hosts and acknowledge to the guest. Email problems must never
     // fail the booking request itself.
     try {
