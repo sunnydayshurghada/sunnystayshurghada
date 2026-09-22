@@ -150,7 +150,7 @@ function SiteHeader() {
           <img
             src={brandLogo}
             alt="Sunny Stays Hurghada"
-            className="h-14 md:h-20 w-auto select-none"
+            className="h-16 md:h-24 w-auto select-none"
             draggable={false}
           />
         </a>
@@ -482,7 +482,7 @@ function SiteFooter() {
             <img
               src={brandLogo}
               alt="Sunny Stays Hurghada"
-              className="h-14 md:h-16 w-auto select-none"
+              className="h-16 md:h-20 w-auto select-none"
               draggable={false}
             />
           </div>
