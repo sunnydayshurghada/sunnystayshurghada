@@ -47,7 +47,14 @@ export interface OwnerAccount {
     can_create_calendar_blocks: boolean;
     can_manage_prices: boolean;
     can_receive_notifications: boolean;
+    can_view_service_agreement: boolean;
+    can_view_service_costs: boolean;
+    can_view_owner_statements: boolean;
+    can_view_receipts: boolean;
+    can_download_statements: boolean;
+    can_submit_financial_question: boolean;
     active: boolean;
+
   }[];
 }
 
