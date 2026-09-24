@@ -135,12 +135,15 @@ export type HoldResult =
  * The hold blocks the calendar until `payment_expires_at`; after that it frees itself
  * (availability is evaluated against the timestamp, and `release_expired_holds` marks it).
  */
-export async function startPaymentHold(bookingId: string): Promise<HoldResult> {
+export async function startPaymentHold(
+  bookingId: string,
+  paymentCurrency?: "EGP" | "EUR" | "USD",
+): Promise<HoldResult> {
   const db = await admin();
   const settings = await getBookingSettings();
   const { data: booking } = await db
     .from("bookings")
-    .select("id, checkin, checkout, booking_status")
+    .select("id, checkin, checkout, booking_status, property_id")
     .eq("id", bookingId)
     .maybeSingle();
   if (!booking) return { ok: false, error: "not_found" };
@@ -153,6 +156,22 @@ export async function startPaymentHold(bookingId: string): Promise<HoldResult> {
 
   const quote = await buildQuote(booking.checkin, booking.checkout);
   const expiresAt = new Date(Date.now() + settings.hold_minutes * 60_000).toISOString();
+
+  // Freeze the exchange rate for 15 minutes when the guest pays in another currency.
+  let conversion: { id: string | null; converted_amount: number; to: string } | null = null;
+  const { isCurrency } = await import("@/lib/currency");
+  if (paymentCurrency && isCurrency(quote.currency) && paymentCurrency !== quote.currency) {
+    const { lockPaymentRate } = await import("@/lib/currency.server");
+    conversion = await lockPaymentRate(db, {
+      bookingId,
+      propertyId: booking.property_id,
+      amount: quote.totalAmount,
+      from: quote.currency,
+      to: paymentCurrency,
+    });
+    if (!conversion) return { ok: false, error: "invalid_state" }; // no valid rate — never pay with 0
+  }
+
   await db
     .from("bookings")
     .update({
@@ -166,6 +185,9 @@ export async function startPaymentHold(bookingId: string): Promise<HoldResult> {
       total_amount: quote.totalAmount,
       deposit_amount: quote.depositAmount,
       price_snapshot: quote.nights,
+      payment_currency: conversion?.to ?? quote.currency,
+      payment_amount_converted: conversion?.converted_amount ?? quote.totalAmount,
+      payment_conversion_id: conversion?.id ?? null,
     })
     .eq("id", bookingId);
 

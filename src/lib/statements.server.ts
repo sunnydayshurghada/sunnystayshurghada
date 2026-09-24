@@ -5,6 +5,8 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 import type { Database } from "@/integrations/supabase/types";
 import { settleBooking, type BookingLike } from "@/lib/billing.server";
+import { convert, getCurrencySettings } from "@/lib/currency.server";
+import { isCurrency } from "@/lib/currency";
 
 export async function buildStatement(
   admin: SupabaseClient<Database>,
@@ -100,8 +102,28 @@ export async function buildStatement(
       status: "draft",
     };
 
-    if (existing) await admin.from("owner_statements").update(row as never).eq("id", existing.id);
-    else await admin.from("owner_statements").insert(row as never);
+    // Statement currency: convert the net once and store rate + amount with it.
+    const cs = await getCurrencySettings(admin, pair.property_id);
+    let conv = null as Awaited<ReturnType<typeof convert>>;
+    if (isCurrency(currency)) {
+      conv = await convert(admin, {
+        amount: net,
+        from: currency,
+        to: cs.owner_statement_currency,
+        propertyId: pair.property_id,
+        context: "owner_statement",
+        persist: currency !== cs.owner_statement_currency,
+      });
+    }
+    const full = {
+      ...row,
+      statement_currency: conv ? cs.owner_statement_currency : currency,
+      converted_net_amount: conv ? conv.converted_amount : net,
+      conversion_id: conv?.id ?? null,
+    };
+
+    if (existing) await admin.from("owner_statements").update(full as never).eq("id", existing.id);
+    else await admin.from("owner_statements").insert(full as never);
     created += 1;
   }
 
