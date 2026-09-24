@@ -304,6 +304,9 @@ export type Database = {
           id: string
           message: string | null
           nightly_total: number
+          payment_amount_converted: number | null
+          payment_conversion_id: string | null
+          payment_currency: string | null
           payment_expires_at: string | null
           payment_method: string | null
           payment_provider: string | null
@@ -345,6 +348,9 @@ export type Database = {
           id?: string
           message?: string | null
           nightly_total?: number
+          payment_amount_converted?: number | null
+          payment_conversion_id?: string | null
+          payment_currency?: string | null
           payment_expires_at?: string | null
           payment_method?: string | null
           payment_provider?: string | null
@@ -386,6 +392,9 @@ export type Database = {
           id?: string
           message?: string | null
           nightly_total?: number
+          payment_amount_converted?: number | null
+          payment_conversion_id?: string | null
+          payment_currency?: string | null
           payment_expires_at?: string | null
           payment_method?: string | null
           payment_provider?: string | null
@@ -403,6 +412,13 @@ export type Database = {
           updated_at?: string
         }
         Relationships: [
+          {
+            foreignKeyName: "bookings_payment_conversion_id_fkey"
+            columns: ["payment_conversion_id"]
+            isOneToOne: false
+            referencedRelation: "currency_conversions"
+            referencedColumns: ["id"]
+          },
           {
             foreignKeyName: "bookings_property_id_fkey"
             columns: ["property_id"]
@@ -598,6 +614,75 @@ export type Database = {
           },
         ]
       }
+      currency_conversions: {
+        Row: {
+          booking_id: string | null
+          context: string
+          converted_amount: number
+          created_at: string
+          from_currency: string
+          id: string
+          locked_until: string | null
+          markup_percent: number
+          original_amount: number
+          property_id: string | null
+          rate: number
+          rate_fetched_at: string
+          rate_source: string
+          rate_valid_until: string
+          to_currency: string
+        }
+        Insert: {
+          booking_id?: string | null
+          context: string
+          converted_amount: number
+          created_at?: string
+          from_currency: string
+          id?: string
+          locked_until?: string | null
+          markup_percent?: number
+          original_amount: number
+          property_id?: string | null
+          rate: number
+          rate_fetched_at: string
+          rate_source: string
+          rate_valid_until: string
+          to_currency: string
+        }
+        Update: {
+          booking_id?: string | null
+          context?: string
+          converted_amount?: number
+          created_at?: string
+          from_currency?: string
+          id?: string
+          locked_until?: string | null
+          markup_percent?: number
+          original_amount?: number
+          property_id?: string | null
+          rate?: number
+          rate_fetched_at?: string
+          rate_source?: string
+          rate_valid_until?: string
+          to_currency?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "currency_conversions_booking_id_fkey"
+            columns: ["booking_id"]
+            isOneToOne: false
+            referencedRelation: "bookings"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "currency_conversions_property_id_fkey"
+            columns: ["property_id"]
+            isOneToOne: false
+            referencedRelation: "properties"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       daily_prices: {
         Row: {
           calculated_price: number | null
@@ -779,6 +864,53 @@ export type Database = {
           },
         ]
       }
+      exchange_rates: {
+        Row: {
+          base_currency: string
+          created_at: string
+          created_by: string | null
+          fetched_at: string
+          id: string
+          property_id: string | null
+          quote_currency: string
+          rate: number
+          source: string
+          valid_until: string
+        }
+        Insert: {
+          base_currency: string
+          created_at?: string
+          created_by?: string | null
+          fetched_at?: string
+          id?: string
+          property_id?: string | null
+          quote_currency: string
+          rate: number
+          source: string
+          valid_until?: string
+        }
+        Update: {
+          base_currency?: string
+          created_at?: string
+          created_by?: string | null
+          fetched_at?: string
+          id?: string
+          property_id?: string | null
+          quote_currency?: string
+          rate?: number
+          source?: string
+          valid_until?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "exchange_rates_property_id_fkey"
+            columns: ["property_id"]
+            isOneToOne: false
+            referencedRelation: "properties"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       ical_settings: {
         Row: {
           airbnb_ical_url: string | null
@@ -925,6 +1057,7 @@ export type Database = {
           amount: number
           confirmed_at: string | null
           confirmed_by: string | null
+          conversion_id: string | null
           created_at: string
           currency: string
           id: string
@@ -936,6 +1069,8 @@ export type Database = {
           period_start: string | null
           property_id: string | null
           receipt_url: string | null
+          source_amount: number | null
+          source_currency: string | null
           statement_id: string | null
           status: string
           transaction_reference: string | null
@@ -945,6 +1080,7 @@ export type Database = {
           amount?: number
           confirmed_at?: string | null
           confirmed_by?: string | null
+          conversion_id?: string | null
           created_at?: string
           currency?: string
           id?: string
@@ -956,6 +1092,8 @@ export type Database = {
           period_start?: string | null
           property_id?: string | null
           receipt_url?: string | null
+          source_amount?: number | null
+          source_currency?: string | null
           statement_id?: string | null
           status?: string
           transaction_reference?: string | null
@@ -965,6 +1103,7 @@ export type Database = {
           amount?: number
           confirmed_at?: string | null
           confirmed_by?: string | null
+          conversion_id?: string | null
           created_at?: string
           currency?: string
           id?: string
@@ -976,12 +1115,21 @@ export type Database = {
           period_start?: string | null
           property_id?: string | null
           receipt_url?: string | null
+          source_amount?: number | null
+          source_currency?: string | null
           statement_id?: string | null
           status?: string
           transaction_reference?: string | null
           updated_at?: string
         }
         Relationships: [
+          {
+            foreignKeyName: "owner_payouts_conversion_id_fkey"
+            columns: ["conversion_id"]
+            isOneToOne: false
+            referencedRelation: "currency_conversions"
+            referencedColumns: ["id"]
+          },
           {
             foreignKeyName: "owner_payouts_property_id_fkey"
             columns: ["property_id"]
@@ -1002,6 +1150,8 @@ export type Database = {
         Row: {
           adjustments: number
           breakdown: Json
+          conversion_id: string | null
+          converted_net_amount: number | null
           created_at: string
           currency: string
           finalized_at: string | null
@@ -1020,12 +1170,15 @@ export type Database = {
           property_id: string | null
           refunds: number
           service_costs: number
+          statement_currency: string | null
           status: string
           updated_at: string
         }
         Insert: {
           adjustments?: number
           breakdown?: Json
+          conversion_id?: string | null
+          converted_net_amount?: number | null
           created_at?: string
           currency?: string
           finalized_at?: string | null
@@ -1044,12 +1197,15 @@ export type Database = {
           property_id?: string | null
           refunds?: number
           service_costs?: number
+          statement_currency?: string | null
           status?: string
           updated_at?: string
         }
         Update: {
           adjustments?: number
           breakdown?: Json
+          conversion_id?: string | null
+          converted_net_amount?: number | null
           created_at?: string
           currency?: string
           finalized_at?: string | null
@@ -1068,10 +1224,18 @@ export type Database = {
           property_id?: string | null
           refunds?: number
           service_costs?: number
+          statement_currency?: string | null
           status?: string
           updated_at?: string
         }
         Relationships: [
+          {
+            foreignKeyName: "owner_statements_conversion_id_fkey"
+            columns: ["conversion_id"]
+            isOneToOne: false
+            referencedRelation: "currency_conversions"
+            referencedColumns: ["id"]
+          },
           {
             foreignKeyName: "owner_statements_property_id_fkey"
             columns: ["property_id"]
@@ -1360,6 +1524,50 @@ export type Database = {
           updated_at?: string
         }
         Relationships: []
+      }
+      property_currency_settings: {
+        Row: {
+          base_currency: string
+          created_at: string
+          markup_percent: number
+          owner_statement_currency: string
+          payout_currency: string
+          property_id: string
+          rate_mode: string
+          rounding_rule: string
+          updated_at: string
+        }
+        Insert: {
+          base_currency?: string
+          created_at?: string
+          markup_percent?: number
+          owner_statement_currency?: string
+          payout_currency?: string
+          property_id: string
+          rate_mode?: string
+          rounding_rule?: string
+          updated_at?: string
+        }
+        Update: {
+          base_currency?: string
+          created_at?: string
+          markup_percent?: number
+          owner_statement_currency?: string
+          payout_currency?: string
+          property_id?: string
+          rate_mode?: string
+          rounding_rule?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "property_currency_settings_property_id_fkey"
+            columns: ["property_id"]
+            isOneToOne: true
+            referencedRelation: "properties"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       property_financial_settings: {
         Row: {
@@ -1921,6 +2129,7 @@ export type Database = {
           last_login_at: string | null
           last_name: string
           phone: string | null
+          preferred_display_currency: string
           preferred_language: string
           role: string
           updated_at: string
@@ -1937,6 +2146,7 @@ export type Database = {
           last_login_at?: string | null
           last_name?: string
           phone?: string | null
+          preferred_display_currency?: string
           preferred_language?: string
           role?: string
           updated_at?: string
@@ -1953,6 +2163,7 @@ export type Database = {
           last_login_at?: string | null
           last_name?: string
           phone?: string | null
+          preferred_display_currency?: string
           preferred_language?: string
           role?: string
           updated_at?: string
