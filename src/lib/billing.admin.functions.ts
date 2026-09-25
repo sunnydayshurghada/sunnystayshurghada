@@ -45,8 +45,8 @@ export interface BillingOverview {
     publicly_visible: boolean;
     active: boolean;
   }[];
-  agreements: Record<string, unknown>[];
-  management: Record<string, unknown>[];
+  agreements: Record<string, any>[];
+  management: Record<string, any>[];
   bookings: {
     id: string;
     booking_number: string | null;
@@ -58,8 +58,8 @@ export interface BillingOverview {
     currency: string;
     settlement: Settlement;
   }[];
-  statements: Record<string, unknown>[];
-  payouts: Record<string, unknown>[];
+  statements: Record<string, any>[];
+  payouts: Record<string, any>[];
   owners: { user_id: string; name: string; email: string; property_id: string }[];
 }
 
@@ -84,10 +84,10 @@ export const getBillingOverview = createServerFn({ method: "POST" })
           supabaseAdmin
             .from("property_service_agreements")
             .select("*, service:service_catalog(key, name, category, default_price)") as never,
-        ) as never as Promise<{ data: Record<string, unknown>[] | null }>,
+        ) as never as Promise<{ data: Record<string, any>[] | null }>,
         q(
           supabaseAdmin.from("property_management_agreements").select("*") as never,
-        ) as never as Promise<{ data: Record<string, unknown>[] | null }>,
+        ) as never as Promise<{ data: Record<string, any>[] | null }>,
         q(
           supabaseAdmin
             .from("bookings")
@@ -95,21 +95,21 @@ export const getBillingOverview = createServerFn({ method: "POST" })
             .in("status", ["confirmed", "cancelled"])
             .order("checkin", { ascending: false })
             .limit(60) as never,
-        ) as never as Promise<{ data: Record<string, unknown>[] | null }>,
+        ) as never as Promise<{ data: Record<string, any>[] | null }>,
         q(
           supabaseAdmin
             .from("owner_statements")
             .select("*")
             .order("period_start", { ascending: false })
             .limit(50) as never,
-        ) as never as Promise<{ data: Record<string, unknown>[] | null }>,
+        ) as never as Promise<{ data: Record<string, any>[] | null }>,
         q(
           supabaseAdmin
             .from("owner_payouts")
             .select("*")
             .order("created_at", { ascending: false })
             .limit(50) as never,
-        ) as never as Promise<{ data: Record<string, unknown>[] | null }>,
+        ) as never as Promise<{ data: Record<string, any>[] | null }>,
         q(
           supabaseAdmin
             .from("property_user_assignments")
@@ -367,7 +367,7 @@ export const getBookingBilling = createServerFn({ method: "POST" })
       data,
       context,
     }): Promise<
-      | { settlement: Settlement; items: Record<string, unknown>[]; ledger: Record<string, unknown>[] }
+      | { settlement: Settlement; items: Record<string, any>[]; ledger: Record<string, any>[] }
       | { error: string }
     > => {
       if (!(await isStaff(context.supabase, context.userId))) return { error: "forbidden" };
