@@ -778,5 +778,39 @@
       "self_lock": "Das eigene Konto kann nicht deaktiviert werden.",
       "generic": "Das hat nicht geklappt."
     }
+  },
+  "currency": {
+    "eyebrow": "Währungen",
+    "title": "Währung & Wechselkurse",
+    "hint": "Beträge werden immer in ihrer Originalwährung gespeichert. Umrechnungen werden mit Kurs, Quelle und Zeitpunkt protokolliert; spätere Kursänderungen verändern keine bestehenden Buchungen oder Abrechnungen.",
+    "base": "Basiswährung der Wohnung",
+    "statement": "Abrechnungswährung Eigentümer",
+    "payout": "Auszahlungswährung",
+    "mode": "Wechselkursermittlung",
+    "markup": "Kursaufschlag (%)",
+    "rounding": "Rundungsregel",
+    "save": "Speichern",
+    "saved": "Gespeichert",
+    "error": "Speichern fehlgeschlagen",
+    "rates": "Aktuelle Wechselkurse",
+    "refresh": "Kurse aktualisieren",
+    "refreshed": "Kurse aktualisiert",
+    "providerDown": "Kursdienst nicht erreichbar – letzter gespeicherter Kurs wird verwendet",
+    "noRate": "Kein gültiger Kurs vorhanden – es wird nicht umgerechnet.",
+    "stale": "Kurs veraltet, zuletzt aktualisiert {{time}}",
+    "rate": "Kurs",
+    "saveRate": "Manuellen Kurs speichern",
+    "invalidRate": "Bitte einen Kurs größer als 0 angeben",
+    "display": "Anzeigewährung",
+    "displayNote": "Beträge umgerechnet in {{currency}} (Originalbetrag in Klammern, nur Anzeige)",
+    "rateLine": "Wechselkurs: 1 {{from}} = {{rate}} {{to}} · Kurszeitpunkt: {{time}}",
+    "opt": {
+      "auto": "Automatisch",
+      "manual": "Manuell",
+      "half_up": "Kaufmännisch runden",
+      "down": "Abrunden",
+      "up": "Aufrunden",
+      "whole_unit": "Auf ganze Einheiten"
+    }
   }
 }
