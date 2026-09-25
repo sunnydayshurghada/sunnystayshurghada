@@ -605,6 +605,22 @@ function OwnerPortal() {
             }}
           />
         ) : null}
+        {usedRates.size > 0 ? (
+          <div className={`${card} text-xs text-forest/70 space-y-1`}>
+            <p className="font-medium text-forest">{t("currency.displayNote", { currency: display })}</p>
+            {[...usedRates.values()].map((r) => (
+              <p key={r.from + r.to}>
+                {t("currency.rateLine", {
+                  from: r.from,
+                  to: r.to,
+                  rate: r.rate.toLocaleString(intlLocale, { maximumFractionDigits: 4 }),
+                  time: fmtTime(r.fetched_at),
+                })}
+                {r.stale ? ` — ${t("currency.stale", { time: fmtTime(r.fetched_at) })}` : ""}
+              </p>
+            ))}
+          </div>
+        ) : null}
       </div>
     </div>
   );

@@ -778,5 +778,39 @@
       "self_lock": "You cannot deactivate your own account.",
       "generic": "That did not work."
     }
+  },
+  "currency": {
+    "eyebrow": "Currencies",
+    "title": "Currency & exchange rates",
+    "hint": "Amounts are always stored in their original currency. Conversions are logged with rate, source and time; later rate changes never alter existing bookings or statements.",
+    "base": "Property base currency",
+    "statement": "Owner statement currency",
+    "payout": "Payout currency",
+    "mode": "Rate source",
+    "markup": "Rate markup (%)",
+    "rounding": "Rounding rule",
+    "save": "Save",
+    "saved": "Saved",
+    "error": "Saving failed",
+    "rates": "Current exchange rates",
+    "refresh": "Refresh rates",
+    "refreshed": "Rates refreshed",
+    "providerDown": "Rate service unreachable – last stored rate is used",
+    "noRate": "No valid rate available – no conversion is performed.",
+    "stale": "Rate outdated, last updated {{time}}",
+    "rate": "Rate",
+    "saveRate": "Save manual rate",
+    "invalidRate": "Please enter a rate greater than 0",
+    "display": "Display currency",
+    "displayNote": "Amounts converted to {{currency}} (original in brackets, display only)",
+    "rateLine": "Exchange rate: 1 {{from}} = {{rate}} {{to}} · Rate time: {{time}}",
+    "opt": {
+      "auto": "Automatic",
+      "manual": "Manual",
+      "half_up": "Round half up",
+      "down": "Round down",
+      "up": "Round up",
+      "whole_unit": "Whole units"
+    }
   }
 }

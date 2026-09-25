@@ -23,3 +23,9 @@
 ## Status 22.09.
 Airbnb-Sync getestet (Import, Duplikate, Änderung, Stornierung, Export, Konflikt, Datenschutz) — Testdaten entfernt.
 Zahlungsvorbereitung: Schema + Serverschnittstellen fertig, keine aktive Zahlung.
+
+## Mehrwährung (EGP/EUR/USD)
+- [x] Kurs-Tabellen, Umrechnungsprotokoll, Währungseinstellungen je Wohnung
+- [x] Kursdienst mit Fallback auf letzten Kurs, nie Kurs 0
+- [x] 15-Minuten-Kursfixierung beim Zahlungsstart
+- [x] Adminbereich Währung + Eigentümer-Anzeigewährung
