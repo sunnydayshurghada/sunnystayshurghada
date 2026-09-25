@@ -18,6 +18,8 @@ import {
   type OwnerCalendarEntry,
 } from "@/lib/owner.functions";
 import { recordLogin } from "@/lib/owners.admin.functions";
+import { getDisplayRates, setDisplayCurrency } from "@/lib/currency.functions";
+import { CURRENCIES, type Currency } from "@/lib/currency";
 
 export const Route = createFileRoute("/_authenticated/owner")({
   head: () => ({
@@ -141,13 +143,27 @@ function OwnerPortal() {
     ? (calendarRaw as OwnerCalendarEntry[])
     : [];
 
-  const money = useMemo(
-    () => (cents: number | null | undefined, currency = overview?.totals.currency ?? "EUR") =>
-      cents === null || cents === undefined
-        ? "—"
-        : new Intl.NumberFormat(intlLocale, { style: "currency", currency }).format(cents / 100),
-    [intlLocale, overview?.totals.currency],
-  );
+  const loadRates = useServerFn(getDisplayRates);
+  const saveDisplay = useServerFn(setDisplayCurrency);
+  const { data: rateData } = useQuery({ queryKey: ["owner-rates"], queryFn: () => loadRates() });
+  const [displayCur, setDisplayCur] = useState<Currency | null>(null);
+  const display: Currency = displayCur ?? rateData?.preferred ?? "EUR";
+  const fmtTime = (s: string) =>
+    new Intl.DateTimeFormat(intlLocale, { dateStyle: "short", timeStyle: "short" }).format(new Date(s));
+  const usedRates = new Map<string, { rate: number; fetched_at: string; stale: boolean; from: string; to: string }>();
+
+  // Display-only conversion: stored amounts are never changed.
+  const money = (cents: number | null | undefined, currency = overview?.totals.currency ?? "EUR") => {
+    if (cents === null || cents === undefined) return "—";
+    const fmt = (v: number, c: string) =>
+      new Intl.NumberFormat(intlLocale, { style: "currency", currency: c }).format(v / 100);
+    if (currency === display) return fmt(cents, currency);
+    const r = rateData?.rates.find((x) => x.from === currency && x.to === display);
+    if (!r || !(r.rate > 0)) return fmt(cents, currency);
+    usedRates.set(`${r.from}${r.to}`, r);
+    return `${fmt(Math.round(cents * r.rate), display)} (${fmt(cents, currency)})`;
+  };
+  void useMemo;
 
   const canBlock = (overview?.properties ?? []).some((p) => p.permissions.blocks);
   const blockProperty =
@@ -190,6 +206,20 @@ function OwnerPortal() {
           </div>
           <div className="flex items-center gap-3">
             <LanguageSwitcher />
+            <select
+              aria-label={t("currency.display")}
+              className="rounded-full border border-forest/20 bg-card px-3 py-1.5 text-xs text-forest"
+              value={display}
+              onChange={(e) => {
+                const c = e.target.value as Currency;
+                setDisplayCur(c);
+                void saveDisplay({ data: { currency: c } });
+              }}
+            >
+              {CURRENCIES.map((c) => (
+                <option key={c} value={c}>{c}</option>
+              ))}
+            </select>
             <button
               type="button"
               className={`${chip} border-forest/20 text-forest hover:border-gold hover:text-gold`}
