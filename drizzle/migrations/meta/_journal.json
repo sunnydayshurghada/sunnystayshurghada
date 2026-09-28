@@ -78,6 +78,13 @@
       "when": 1790265376507,
       "tag": "0010_multi_currency",
       "breakpoints": true
+    },
+    {
+      "idx": 11,
+      "version": "7",
+      "when": 1790597424051,
+      "tag": "0011_staff_tasks_enum",
+      "breakpoints": true
     }
   ]
 }

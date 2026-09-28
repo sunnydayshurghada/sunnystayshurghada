@@ -2280,7 +2280,14 @@ export type Database = {
       release_expired_holds: { Args: never; Returns: number }
     }
     Enums: {
-      app_role: "admin" | "super_admin" | "booking_manager" | "owner"
+      app_role:
+        | "admin"
+        | "super_admin"
+        | "booking_manager"
+        | "owner"
+        | "team_lead"
+        | "staff"
+        | "contractor"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -2408,7 +2415,15 @@ export type CompositeTypes<
 export const Constants = {
   public: {
     Enums: {
-      app_role: ["admin", "super_admin", "booking_manager", "owner"],
+      app_role: [
+        "admin",
+        "super_admin",
+        "booking_manager",
+        "owner",
+        "team_lead",
+        "staff",
+        "contractor",
+      ],
     },
   },
 } as const
