@@ -2117,6 +2117,667 @@ export type Database = {
         }
         Relationships: []
       }
+      staff_profiles: {
+        Row: {
+          active: boolean
+          available: boolean
+          can_view_guest_contact: boolean
+          can_view_team_tasks: boolean
+          created_at: string
+          currency: string
+          default_fixed_rate: number | null
+          default_hourly_rate: number | null
+          email: string
+          first_name: string
+          id: string
+          invited_at: string | null
+          last_name: string
+          notes: string | null
+          phone: string | null
+          preferred_language: string
+          staff_type: string
+          team_id: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          active?: boolean
+          available?: boolean
+          can_view_guest_contact?: boolean
+          can_view_team_tasks?: boolean
+          created_at?: string
+          currency?: string
+          default_fixed_rate?: number | null
+          default_hourly_rate?: number | null
+          email: string
+          first_name?: string
+          id?: string
+          invited_at?: string | null
+          last_name?: string
+          notes?: string | null
+          phone?: string | null
+          preferred_language?: string
+          staff_type?: string
+          team_id?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          active?: boolean
+          available?: boolean
+          can_view_guest_contact?: boolean
+          can_view_team_tasks?: boolean
+          created_at?: string
+          currency?: string
+          default_fixed_rate?: number | null
+          default_hourly_rate?: number | null
+          email?: string
+          first_name?: string
+          id?: string
+          invited_at?: string | null
+          last_name?: string
+          notes?: string | null
+          phone?: string | null
+          preferred_language?: string
+          staff_type?: string
+          team_id?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "staff_profiles_team_id_fkey"
+            columns: ["team_id"]
+            isOneToOne: false
+            referencedRelation: "teams"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      staff_property_assignments: {
+        Row: {
+          created_at: string
+          id: string
+          property_id: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          property_id: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          property_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "staff_property_assignments_property_id_fkey"
+            columns: ["property_id"]
+            isOneToOne: false
+            referencedRelation: "properties"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      staff_task_type_assignments: {
+        Row: {
+          id: string
+          task_type_id: string
+          user_id: string
+        }
+        Insert: {
+          id?: string
+          task_type_id: string
+          user_id: string
+        }
+        Update: {
+          id?: string
+          task_type_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "staff_task_type_assignments_task_type_id_fkey"
+            columns: ["task_type_id"]
+            isOneToOne: false
+            referencedRelation: "task_types"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      task_attachments: {
+        Row: {
+          category: string
+          created_at: string
+          description: string | null
+          file_path: string
+          file_type: string | null
+          id: string
+          task_id: string
+          uploaded_by: string | null
+          visibility: string
+        }
+        Insert: {
+          category?: string
+          created_at?: string
+          description?: string | null
+          file_path: string
+          file_type?: string | null
+          id?: string
+          task_id: string
+          uploaded_by?: string | null
+          visibility?: string
+        }
+        Update: {
+          category?: string
+          created_at?: string
+          description?: string | null
+          file_path?: string
+          file_type?: string | null
+          id?: string
+          task_id?: string
+          uploaded_by?: string | null
+          visibility?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "task_attachments_task_id_fkey"
+            columns: ["task_id"]
+            isOneToOne: false
+            referencedRelation: "tasks"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      task_audit_log: {
+        Row: {
+          action: string
+          actor_id: string | null
+          created_at: string
+          detail: Json
+          id: string
+          task_id: string | null
+        }
+        Insert: {
+          action: string
+          actor_id?: string | null
+          created_at?: string
+          detail?: Json
+          id?: string
+          task_id?: string | null
+        }
+        Update: {
+          action?: string
+          actor_id?: string | null
+          created_at?: string
+          detail?: Json
+          id?: string
+          task_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "task_audit_log_task_id_fkey"
+            columns: ["task_id"]
+            isOneToOne: false
+            referencedRelation: "tasks"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      task_automation_rules: {
+        Row: {
+          active: boolean
+          anchor: string
+          created_at: string
+          default_assignee: string | null
+          id: string
+          offset_minutes: number
+          priority: string
+          property_id: string
+          task_type_id: string
+          updated_at: string
+        }
+        Insert: {
+          active?: boolean
+          anchor: string
+          created_at?: string
+          default_assignee?: string | null
+          id?: string
+          offset_minutes?: number
+          priority?: string
+          property_id: string
+          task_type_id: string
+          updated_at?: string
+        }
+        Update: {
+          active?: boolean
+          anchor?: string
+          created_at?: string
+          default_assignee?: string | null
+          id?: string
+          offset_minutes?: number
+          priority?: string
+          property_id?: string
+          task_type_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "task_automation_rules_property_id_fkey"
+            columns: ["property_id"]
+            isOneToOne: false
+            referencedRelation: "properties"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "task_automation_rules_task_type_id_fkey"
+            columns: ["task_type_id"]
+            isOneToOne: false
+            referencedRelation: "task_types"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      task_checklist_items: {
+        Row: {
+          done: boolean
+          done_at: string | null
+          done_by: string | null
+          id: string
+          label: string
+          required: boolean
+          sort_order: number
+          task_id: string
+        }
+        Insert: {
+          done?: boolean
+          done_at?: string | null
+          done_by?: string | null
+          id?: string
+          label: string
+          required?: boolean
+          sort_order?: number
+          task_id: string
+        }
+        Update: {
+          done?: boolean
+          done_at?: string | null
+          done_by?: string | null
+          id?: string
+          label?: string
+          required?: boolean
+          sort_order?: number
+          task_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "task_checklist_items_task_id_fkey"
+            columns: ["task_id"]
+            isOneToOne: false
+            referencedRelation: "tasks"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      task_checklist_templates: {
+        Row: {
+          active: boolean
+          created_at: string
+          id: string
+          label: Json
+          property_id: string | null
+          required: boolean
+          sort_order: number
+          task_type_id: string
+        }
+        Insert: {
+          active?: boolean
+          created_at?: string
+          id?: string
+          label: Json
+          property_id?: string | null
+          required?: boolean
+          sort_order?: number
+          task_type_id: string
+        }
+        Update: {
+          active?: boolean
+          created_at?: string
+          id?: string
+          label?: Json
+          property_id?: string | null
+          required?: boolean
+          sort_order?: number
+          task_type_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "task_checklist_templates_property_id_fkey"
+            columns: ["property_id"]
+            isOneToOne: false
+            referencedRelation: "properties"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "task_checklist_templates_task_type_id_fkey"
+            columns: ["task_type_id"]
+            isOneToOne: false
+            referencedRelation: "task_types"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      task_status_history: {
+        Row: {
+          changed_by: string | null
+          comment: string | null
+          created_at: string
+          id: string
+          new_status: string
+          old_status: string | null
+          task_id: string
+        }
+        Insert: {
+          changed_by?: string | null
+          comment?: string | null
+          created_at?: string
+          id?: string
+          new_status: string
+          old_status?: string | null
+          task_id: string
+        }
+        Update: {
+          changed_by?: string | null
+          comment?: string | null
+          created_at?: string
+          id?: string
+          new_status?: string
+          old_status?: string | null
+          task_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "task_status_history_task_id_fkey"
+            columns: ["task_id"]
+            isOneToOne: false
+            referencedRelation: "tasks"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      task_time_entries: {
+        Row: {
+          corrected_by: string | null
+          corrected_minutes: number | null
+          correction_reason: string | null
+          created_at: string
+          ended_at: string | null
+          id: string
+          kind: string
+          started_at: string
+          task_id: string
+          user_id: string
+        }
+        Insert: {
+          corrected_by?: string | null
+          corrected_minutes?: number | null
+          correction_reason?: string | null
+          created_at?: string
+          ended_at?: string | null
+          id?: string
+          kind?: string
+          started_at?: string
+          task_id: string
+          user_id: string
+        }
+        Update: {
+          corrected_by?: string | null
+          corrected_minutes?: number | null
+          correction_reason?: string | null
+          created_at?: string
+          ended_at?: string | null
+          id?: string
+          kind?: string
+          started_at?: string
+          task_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "task_time_entries_task_id_fkey"
+            columns: ["task_id"]
+            isOneToOne: false
+            referencedRelation: "tasks"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      task_types: {
+        Row: {
+          active: boolean
+          category: string
+          created_at: string
+          default_duration_minutes: number
+          guest_contact_allowed: boolean
+          id: string
+          key: string
+          materials: string | null
+          name: Json
+          requires_checklist: boolean
+          requires_photos: boolean
+          sort_order: number
+          updated_at: string
+        }
+        Insert: {
+          active?: boolean
+          category?: string
+          created_at?: string
+          default_duration_minutes?: number
+          guest_contact_allowed?: boolean
+          id?: string
+          key: string
+          materials?: string | null
+          name: Json
+          requires_checklist?: boolean
+          requires_photos?: boolean
+          sort_order?: number
+          updated_at?: string
+        }
+        Update: {
+          active?: boolean
+          category?: string
+          created_at?: string
+          default_duration_minutes?: number
+          guest_contact_allowed?: boolean
+          id?: string
+          key?: string
+          materials?: string | null
+          name?: Json
+          requires_checklist?: boolean
+          requires_photos?: boolean
+          sort_order?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      tasks: {
+        Row: {
+          actual_cost: number | null
+          assigned_team_id: string | null
+          assigned_user_id: string | null
+          automation_key: string | null
+          booking_id: string | null
+          calendar_block_id: string | null
+          cancellation_reason: string | null
+          cancelled_at: string | null
+          completed_at: string | null
+          created_at: string
+          created_by: string | null
+          currency: string
+          description: string | null
+          due_at: string | null
+          employee_notes: string | null
+          estimated_cost: number | null
+          id: string
+          internal_notes: string | null
+          owner_visible_notes: string | null
+          priority: string
+          property_id: string
+          requires_checklist: boolean
+          requires_photos: boolean
+          scheduled_date: string | null
+          scheduled_end: string | null
+          scheduled_start: string | null
+          service_item_id: string | null
+          started_at: string | null
+          status: string
+          task_type_id: string
+          team_visible: boolean
+          title: string
+          updated_at: string
+          worked_minutes: number
+        }
+        Insert: {
+          actual_cost?: number | null
+          assigned_team_id?: string | null
+          assigned_user_id?: string | null
+          automation_key?: string | null
+          booking_id?: string | null
+          calendar_block_id?: string | null
+          cancellation_reason?: string | null
+          cancelled_at?: string | null
+          completed_at?: string | null
+          created_at?: string
+          created_by?: string | null
+          currency?: string
+          description?: string | null
+          due_at?: string | null
+          employee_notes?: string | null
+          estimated_cost?: number | null
+          id?: string
+          internal_notes?: string | null
+          owner_visible_notes?: string | null
+          priority?: string
+          property_id: string
+          requires_checklist?: boolean
+          requires_photos?: boolean
+          scheduled_date?: string | null
+          scheduled_end?: string | null
+          scheduled_start?: string | null
+          service_item_id?: string | null
+          started_at?: string | null
+          status?: string
+          task_type_id: string
+          team_visible?: boolean
+          title: string
+          updated_at?: string
+          worked_minutes?: number
+        }
+        Update: {
+          actual_cost?: number | null
+          assigned_team_id?: string | null
+          assigned_user_id?: string | null
+          automation_key?: string | null
+          booking_id?: string | null
+          calendar_block_id?: string | null
+          cancellation_reason?: string | null
+          cancelled_at?: string | null
+          completed_at?: string | null
+          created_at?: string
+          created_by?: string | null
+          currency?: string
+          description?: string | null
+          due_at?: string | null
+          employee_notes?: string | null
+          estimated_cost?: number | null
+          id?: string
+          internal_notes?: string | null
+          owner_visible_notes?: string | null
+          priority?: string
+          property_id?: string
+          requires_checklist?: boolean
+          requires_photos?: boolean
+          scheduled_date?: string | null
+          scheduled_end?: string | null
+          scheduled_start?: string | null
+          service_item_id?: string | null
+          started_at?: string | null
+          status?: string
+          task_type_id?: string
+          team_visible?: boolean
+          title?: string
+          updated_at?: string
+          worked_minutes?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "tasks_assigned_team_id_fkey"
+            columns: ["assigned_team_id"]
+            isOneToOne: false
+            referencedRelation: "teams"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "tasks_booking_id_fkey"
+            columns: ["booking_id"]
+            isOneToOne: false
+            referencedRelation: "bookings"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "tasks_property_id_fkey"
+            columns: ["property_id"]
+            isOneToOne: false
+            referencedRelation: "properties"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "tasks_service_item_id_fkey"
+            columns: ["service_item_id"]
+            isOneToOne: false
+            referencedRelation: "booking_service_items"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "tasks_task_type_id_fkey"
+            columns: ["task_type_id"]
+            isOneToOne: false
+            referencedRelation: "task_types"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      teams: {
+        Row: {
+          active: boolean
+          created_at: string
+          id: string
+          lead_user_id: string | null
+          name: string
+          updated_at: string
+        }
+        Insert: {
+          active?: boolean
+          created_at?: string
+          id?: string
+          lead_user_id?: string | null
+          name: string
+          updated_at?: string
+        }
+        Update: {
+          active?: boolean
+          created_at?: string
+          id?: string
+          lead_user_id?: string | null
+          name?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       user_profiles: {
         Row: {
           active: boolean
@@ -2216,6 +2877,10 @@ export type Database = {
         Args: { _id: string; _status: string }
         Returns: string
       }
+      can_view_task: {
+        Args: { _task_id: string; _uid: string }
+        Returns: boolean
+      }
       check_availability: {
         Args: { _checkin: string; _checkout: string }
         Returns: boolean
@@ -2263,6 +2928,7 @@ export type Database = {
         Returns: boolean
       }
       is_staff: { Args: { _user_id: string }; Returns: boolean }
+      is_task_manager: { Args: { _uid: string }; Returns: boolean }
       public_blocked_ranges: {
         Args: never
         Returns: {
