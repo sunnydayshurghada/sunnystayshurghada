@@ -216,6 +216,13 @@ export const confirmBooking = createServerFn({ method: "POST" })
       await safeNotify(() => notifyGuest(data.id, "booking_confirmed"), "guest confirmation");
       await safeNotify(() => notifyInternal("confirmed_booking", data.id), "internal confirmation");
     }
+    try {
+      const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+      const { generateTasksForBooking } = await import("@/lib/tasks.server");
+      await generateTasksForBooking(supabaseAdmin, data.id, context.userId);
+    } catch (e) {
+      console.error("[tasks] auto-generate failed", e);
+    }
 
     return { ok: true };
   });
@@ -241,6 +248,15 @@ export const setBookingStatus = createServerFn({ method: "POST" })
       _status: data.status,
     });
     if (error) return { ok: false, error: errorCode(error.message) };
+    if (data.status !== "pending") {
+      try {
+        const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+        const { cancelTasksForStay } = await import("@/lib/tasks.server");
+        await cancelTasksForStay(supabaseAdmin, { bookingId: data.id }, context.userId, `booking ${data.status}`);
+      } catch (e) {
+        console.error("[tasks] cancel failed", e);
+      }
+    }
     // Cancelled bookings stay on record with reason, actor and refund state.
     if (data.status !== "pending") {
       await context.supabase
