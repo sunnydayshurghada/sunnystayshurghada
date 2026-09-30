@@ -216,6 +216,13 @@ export const confirmBooking = createServerFn({ method: "POST" })
       await safeNotify(() => notifyGuest(data.id, "booking_confirmed"), "guest confirmation");
       await safeNotify(() => notifyInternal("confirmed_booking", data.id), "internal confirmation");
     }
+    try {
+      const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+      const { generateTasksForBooking } = await import("@/lib/tasks.server");
+      await generateTasksForBooking(supabaseAdmin, data.id, context.userId);
+    } catch (e) {
+      console.error("[tasks] auto-generate failed", e);
+    }
 
     return { ok: true };
   });
@@ -241,6 +248,15 @@ export const setBookingStatus = createServerFn({ method: "POST" })
       _status: data.status,
     });
     if (error) return { ok: false, error: errorCode(error.message) };
+    if (data.status !== "pending") {
+      try {
+        const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+        const { cancelTasksForStay } = await import("@/lib/tasks.server");
+        await cancelTasksForStay(supabaseAdmin, { bookingId: data.id }, context.userId, `booking ${data.status}`);
+      } catch (e) {
+        console.error("[tasks] cancel failed", e);
+      }
+    }
     // Cancelled bookings stay on record with reason, actor and refund state.
     if (data.status !== "pending") {
       await context.supabase
@@ -304,7 +320,7 @@ export const createCalendarEntry = createServerFn({ method: "POST" })
     }
     if (!propertyId) return { ok: false, error: "no_property" };
 
-    const { error } = await context.supabase.from("calendar_blocks").insert({
+    const { data: inserted, error } = await context.supabase.from("calendar_blocks").insert({
       property_id: propertyId,
       start_date: data.start_date,
       end_date: data.end_date,
@@ -315,8 +331,17 @@ export const createCalendarEntry = createServerFn({ method: "POST" })
       guest_phone: data.guest_phone || null,
       note: data.note || null,
       created_by: context.userId,
-    });
+    }).select("id").single();
     if (error) return { ok: false, error: errorCode(error.message) };
+    if (inserted && data.entry_type === "booking") {
+      try {
+        const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+        const { generateTasksForBlock } = await import("@/lib/tasks.server");
+        await generateTasksForBlock(supabaseAdmin, inserted.id, context.userId);
+      } catch (e) {
+        console.error("[tasks] block tasks failed", e);
+      }
+    }
     return { ok: true };
   });
 
@@ -332,5 +357,12 @@ export const deleteCalendarEntry = createServerFn({ method: "POST" })
     if (row?.external_uid) return { ok: false, error: "external_readonly" };
     const { error } = await context.supabase.from("calendar_blocks").delete().eq("id", data.id);
     if (error) return { ok: false, error: errorCode(error.message) };
+    try {
+      const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+      const { cancelTasksForStay } = await import("@/lib/tasks.server");
+      await cancelTasksForStay(supabaseAdmin, { blockId: data.id }, context.userId, "entry deleted");
+    } catch (e) {
+      console.error("[tasks] cancel failed", e);
+    }
     return { ok: true };
   });

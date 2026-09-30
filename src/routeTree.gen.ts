@@ -14,6 +14,7 @@ import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ApartmentsIndexRouteImport } from './routes/apartments.index'
 import { Route as ApartmentsSlugRouteImport } from './routes/apartments.$slug'
+import { Route as AuthenticatedStaffRouteImport } from './routes/_authenticated/staff'
 import { Route as AuthenticatedOwnerRouteImport } from './routes/_authenticated/owner'
 import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
 import { Route as LangTermsRouteImport } from './routes/$lang.terms'
@@ -48,6 +49,11 @@ const ApartmentsSlugRoute = ApartmentsSlugRouteImport.update({
   id: '/apartments/$slug',
   path: '/apartments/$slug',
   getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedStaffRoute = AuthenticatedStaffRouteImport.update({
+  id: '/staff',
+  path: '/staff',
+  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedOwnerRoute = AuthenticatedOwnerRouteImport.update({
   id: '/owner',
@@ -109,6 +115,7 @@ export interface FileRoutesByFullPath {
   '/$lang/terms': typeof LangTermsRoute
   '/admin': typeof AuthenticatedAdminRoute
   '/owner': typeof AuthenticatedOwnerRoute
+  '/staff': typeof AuthenticatedStaffRoute
   '/apartments/$slug': typeof ApartmentsSlugRoute
   '/apartments/': typeof ApartmentsIndexRoute
   '/api/public/calendar/$token': typeof ApiPublicCalendarTokenRoute
@@ -125,6 +132,7 @@ export interface FileRoutesByTo {
   '/$lang/terms': typeof LangTermsRoute
   '/admin': typeof AuthenticatedAdminRoute
   '/owner': typeof AuthenticatedOwnerRoute
+  '/staff': typeof AuthenticatedStaffRoute
   '/apartments/$slug': typeof ApartmentsSlugRoute
   '/apartments': typeof ApartmentsIndexRoute
   '/api/public/calendar/$token': typeof ApiPublicCalendarTokenRoute
@@ -143,6 +151,7 @@ export interface FileRoutesById {
   '/$lang/terms': typeof LangTermsRoute
   '/_authenticated/admin': typeof AuthenticatedAdminRoute
   '/_authenticated/owner': typeof AuthenticatedOwnerRoute
+  '/_authenticated/staff': typeof AuthenticatedStaffRoute
   '/apartments/$slug': typeof ApartmentsSlugRoute
   '/apartments/': typeof ApartmentsIndexRoute
   '/api/public/calendar/$token': typeof ApiPublicCalendarTokenRoute
@@ -161,6 +170,7 @@ export interface FileRouteTypes {
     | '/$lang/terms'
     | '/admin'
     | '/owner'
+    | '/staff'
     | '/apartments/$slug'
     | '/apartments/'
     | '/api/public/calendar/$token'
@@ -177,6 +187,7 @@ export interface FileRouteTypes {
     | '/$lang/terms'
     | '/admin'
     | '/owner'
+    | '/staff'
     | '/apartments/$slug'
     | '/apartments'
     | '/api/public/calendar/$token'
@@ -194,6 +205,7 @@ export interface FileRouteTypes {
     | '/$lang/terms'
     | '/_authenticated/admin'
     | '/_authenticated/owner'
+    | '/_authenticated/staff'
     | '/apartments/$slug'
     | '/apartments/'
     | '/api/public/calendar/$token'
@@ -255,6 +267,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/apartments/$slug'
       preLoaderRoute: typeof ApartmentsSlugRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/staff': {
+      id: '/_authenticated/staff'
+      path: '/staff'
+      fullPath: '/staff'
+      preLoaderRoute: typeof AuthenticatedStaffRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/owner': {
       id: '/_authenticated/owner'
@@ -332,11 +351,13 @@ declare module '@tanstack/react-router' {
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedAdminRoute: typeof AuthenticatedAdminRoute
   AuthenticatedOwnerRoute: typeof AuthenticatedOwnerRoute
+  AuthenticatedStaffRoute: typeof AuthenticatedStaffRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedAdminRoute: AuthenticatedAdminRoute,
   AuthenticatedOwnerRoute: AuthenticatedOwnerRoute,
+  AuthenticatedStaffRoute: AuthenticatedStaffRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =
