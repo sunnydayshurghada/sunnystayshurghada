@@ -215,11 +215,17 @@ export async function syncAirbnb(
           .from("calendar_blocks")
           .update({ start_date: e.start, end_date: e.end, last_seen_at: now })
           .eq("id", existing.id);
+        try {
+          const { rescheduleForBlock } = await import("@/lib/tasks.server");
+          await rescheduleForBlock(db, existing.id, null);
+        } catch (err) {
+          console.error("[tasks] reschedule failed", err);
+        }
       } else {
         await db.from("calendar_blocks").update({ last_seen_at: now }).eq("id", existing.id);
       }
     } else {
-      await db.from("calendar_blocks").insert({
+      const { data: newBlock } = await db.from("calendar_blocks").insert({
         property_id: pid,
         start_date: e.start,
         end_date: e.end,
@@ -228,7 +234,15 @@ export async function syncAirbnb(
         external_uid: uid,
         last_seen_at: now,
         note: null,
-      });
+      }).select("id").single();
+      if (newBlock) {
+        try {
+          const { generateTasksForBlock } = await import("@/lib/tasks.server");
+          await generateTasksForBlock(db, newBlock.id, null);
+        } catch (err) {
+          console.error("[tasks] airbnb tasks failed", err);
+        }
+      }
     }
     imported += 1;
   }
@@ -242,6 +256,14 @@ export async function syncAirbnb(
     .not("external_uid", "is", null)
     .lt("last_seen_at", now)
     .select("id");
+  for (const r of removedRows ?? []) {
+    try {
+      const { cancelTasksForStay } = await import("@/lib/tasks.server");
+      await cancelTasksForStay(db, { blockId: r.id }, null, "airbnb cancelled");
+    } catch (err) {
+      console.error("[tasks] airbnb cancel failed", err);
+    }
+  }
 
   return finish({ ok: true, imported, removed: removedRows?.length ?? 0 });
 }
