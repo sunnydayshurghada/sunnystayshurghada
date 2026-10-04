@@ -14,6 +14,7 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { useTranslation } from "react-i18next";
 import { Toaster } from "@/components/ui/sonner";
 import "@/i18n/config";
+import { captureAttribution } from "@/lib/utm";
 import brandLogo from "@/assets/sunny-stays-hurghada-logo.png";
 
 function NotFoundComponent() {
@@ -127,6 +128,7 @@ function RootShell({ children }: { children: ReactNode }) {
 }
 
 function RootComponent() {
+  useEffect(() => { captureAttribution(); }, []);
   const { queryClient } = Route.useRouteContext();
 
   return (
