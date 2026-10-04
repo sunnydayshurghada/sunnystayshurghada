@@ -36,4 +36,4 @@ Zahlungsvorbereitung: Schema + Serverschnittstellen fertig, keine aktive Zahlung
 - [ ] Etappe 3: Verfügbarkeitskalender, Benachrichtigungen (E-Mail/intern)
 
 ## UTM-Tracking
-- [ ] UTM-Parameter erfassen, an Anfragen speichern, Auswertung im Adminbereich
+- [x] UTM-Parameter erfassen, an Anfragen speichern, Auswertung im Adminbereich
