@@ -34,3 +34,6 @@ Zahlungsvorbereitung: Schema + Serverschnittstellen fertig, keine aktive Zahlung
 - [x] Etappe 1: Rollen, Konten, Katalog, Checklisten, Automatik, Status, Zeiten, Fotos, Mitarbeiter-App, Admin-Dashboard
 - [ ] Etappe 2: Vergütung vs. Eigentümerpreis, Reparatur-Freigaben, Übergabe an Abrechnung, Eigentümer-Ansicht
 - [ ] Etappe 3: Verfügbarkeitskalender, Benachrichtigungen (E-Mail/intern)
+
+## UTM-Tracking
+- [ ] UTM-Parameter erfassen, an Anfragen speichern, Auswertung im Adminbereich
