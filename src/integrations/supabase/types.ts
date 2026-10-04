@@ -302,6 +302,7 @@ export type Database = {
           guest_phone: string | null
           guests: number
           id: string
+          landing_page: string | null
           message: string | null
           nightly_total: number
           payment_amount_converted: number | null
@@ -315,6 +316,7 @@ export type Database = {
           payment_transaction_id: string | null
           price_snapshot: Json | null
           property_id: string
+          referrer: string | null
           refund_amount: number
           refund_status: string
           refunded_at: string | null
@@ -322,6 +324,11 @@ export type Database = {
           status: string
           total_amount: number
           updated_at: string
+          utm_campaign: string | null
+          utm_content: string | null
+          utm_medium: string | null
+          utm_source: string | null
+          utm_term: string | null
         }
         Insert: {
           amount_paid?: number
@@ -346,6 +353,7 @@ export type Database = {
           guest_phone?: string | null
           guests?: number
           id?: string
+          landing_page?: string | null
           message?: string | null
           nightly_total?: number
           payment_amount_converted?: number | null
@@ -359,6 +367,7 @@ export type Database = {
           payment_transaction_id?: string | null
           price_snapshot?: Json | null
           property_id?: string
+          referrer?: string | null
           refund_amount?: number
           refund_status?: string
           refunded_at?: string | null
@@ -366,6 +375,11 @@ export type Database = {
           status?: string
           total_amount?: number
           updated_at?: string
+          utm_campaign?: string | null
+          utm_content?: string | null
+          utm_medium?: string | null
+          utm_source?: string | null
+          utm_term?: string | null
         }
         Update: {
           amount_paid?: number
@@ -390,6 +404,7 @@ export type Database = {
           guest_phone?: string | null
           guests?: number
           id?: string
+          landing_page?: string | null
           message?: string | null
           nightly_total?: number
           payment_amount_converted?: number | null
@@ -403,6 +418,7 @@ export type Database = {
           payment_transaction_id?: string | null
           price_snapshot?: Json | null
           property_id?: string
+          referrer?: string | null
           refund_amount?: number
           refund_status?: string
           refunded_at?: string | null
@@ -410,6 +426,11 @@ export type Database = {
           status?: string
           total_amount?: number
           updated_at?: string
+          utm_campaign?: string | null
+          utm_content?: string | null
+          utm_medium?: string | null
+          utm_source?: string | null
+          utm_term?: string | null
         }
         Relationships: [
           {

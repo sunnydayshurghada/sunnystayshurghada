@@ -409,6 +409,8 @@ function AdminPage() {
           </form>
         </section>
 
+        <UtmSummary bookings={bookings} />
+
         <TasksManager />
 
         <StaffManager />
@@ -642,6 +644,9 @@ function RequestCard({
         <Info label={t("admin.guests")} value={String(booking.guests)} />
         <Info label={t("admin.phone")} value={booking.guest_phone || "—"} />
         <Info label={t("admin.email")} value={booking.guest_email} wide />
+        {booking.utm_source && (
+          <Info label={t("admin.utm_source")} value={[booking.utm_source, booking.utm_medium, booking.utm_campaign].filter(Boolean).join(" / ")} wide />
+        )}
         {booking.message ? <Info label={t("admin.message")} value={booking.message} wide /> : null}
       </dl>
       <div className="mt-5 flex gap-3">
@@ -670,5 +675,28 @@ function Info({ label, value, wide }: { label: string; value: string; wide?: boo
       <dt className="text-[10px] uppercase tracking-widest text-forest/45">{label}</dt>
       <dd className="text-forest/85 break-words">{value}</dd>
     </div>
+  );
+}
+
+function UtmSummary({ bookings }: { bookings: AdminBooking[] }) {
+  const { t } = useTranslation();
+  const rows = Object.entries(
+    bookings.reduce<Record<string, number>>((acc, b) => {
+      const k = b.utm_source ? [b.utm_source, b.utm_medium, b.utm_campaign].filter(Boolean).join(" / ") : t("admin.utm_direct");
+      acc[k] = (acc[k] ?? 0) + 1;
+      return acc;
+    }, {}),
+  ).sort((a, b) => b[1] - a[1]);
+  if (!rows.length) return null;
+  return (
+    <section className="mt-12 rounded-3xl bg-card p-6 shadow-soft">
+      <h2 className="font-display text-2xl">{t("admin.utm_title")}</h2>
+      <p className="mt-1 text-sm text-muted-foreground">{t("admin.utm_hint")}</p>
+      <ul className="mt-4 divide-y divide-border">
+        {rows.map(([k, n]) => (
+          <li key={k} className="flex justify-between py-2 text-sm"><span>{k}</span><span className="font-medium">{n}</span></li>
+        ))}
+      </ul>
+    </section>
   );
 }

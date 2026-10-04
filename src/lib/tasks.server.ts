@@ -266,7 +266,7 @@ export async function cancelTasksForStay(
       await safeNotify(
         () =>
           notifyOperational(
-            "booking_change",
+            "calendar_conflict",
             tasks?.[0]?.property_id ?? null,
             `Stornierung: ${kept.length} Aufgabe(n) wurden bereits begonnen oder sind kostenpflichtig und bleiben bestehen – bitte mögliche Kosten prüfen: ${kept.join("; ")}`,
           ),

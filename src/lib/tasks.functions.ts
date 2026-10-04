@@ -260,7 +260,7 @@ export const staffTaskAction = createServerFn({ method: "POST" })
     if ("ok" in res && data.action === "decline") {
       const { notifyOperational, safeNotify } = await import("@/lib/notifications.server");
       await safeNotify(
-        () => notifyOperational("booking_change", t.property_id, `Aufgabe abgelehnt: ${t.title}. ${data.comment ?? ""}`),
+        () => notifyOperational("calendar_conflict", t.property_id, `Aufgabe abgelehnt: ${t.title}. ${data.comment ?? ""}`),
         "task declined",
       );
     }

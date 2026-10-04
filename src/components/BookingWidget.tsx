@@ -6,6 +6,7 @@ import type { DateRange } from "react-day-picker";
 import { toast } from "sonner";
 import { z } from "zod";
 import { createBookingRequest } from "@/lib/booking.functions";
+import { readAttribution } from "@/lib/utm";
 import { getBlockedRanges } from "@/lib/availability.functions";
 import { getPriceCalendar, getStayQuote } from "@/lib/pricing.functions";
 import { AvailabilityCalendar } from "@/components/AvailabilityCalendar";
@@ -137,6 +138,7 @@ export function BookingWidget({ propertyId }: { propertyId?: string | null } = {
           guests: parsed.data.guests,
           message: parsed.data.message || "",
           language: i18n.language,
+          attribution: readAttribution(),
         },
       });
     } catch {
