@@ -14,6 +14,12 @@ const bookingSchema = z.object({
   guests: z.number().int().min(1).max(6),
   message: z.string().trim().max(1000).default(""),
   language: z.string().trim().max(10).default("de"),
+  attribution: z.object({
+    utm_source: z.string().max(200).optional(), utm_medium: z.string().max(200).optional(),
+    utm_campaign: z.string().max(200).optional(), utm_term: z.string().max(200).optional(),
+    utm_content: z.string().max(200).optional(), referrer: z.string().max(300).optional(),
+    landing_page: z.string().max(300).optional(),
+  }).optional(),
 });
 
 export type BookingInput = z.infer<typeof bookingSchema>;
@@ -83,6 +89,13 @@ export const createBookingRequest = createServerFn({ method: "POST" })
       return { ok: false, error: m ? m[1] : "generic" };
     }
     const bookingId = newId as string;
+
+    if (data.attribution && Object.keys(data.attribution).length) {
+      try {
+        const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+        await supabaseAdmin.from("bookings").update(data.attribution).eq("id", bookingId);
+      } catch (e) { console.error("[booking] attribution save failed", e); }
+    }
 
     // Immutable price snapshot: the price shown at request time is frozen on the
     // booking, so later price changes never alter an existing booking.
