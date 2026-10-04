@@ -442,7 +442,11 @@
         "forbidden": "غير مسموح.",
         "generic": "لم تنجح العملية."
       }
-    }
+    },
+    "utm_title": "الطلبات حسب المصدر",
+    "utm_hint": "المصدر / الوسيط / الحملة من روابط UTM، مثل ?utm_source=instagram&utm_medium=social",
+    "utm_direct": "مباشر / غير معروف",
+    "utm_source": "المصدر"
   },
   "auth": {
     "internal": "داخلي",

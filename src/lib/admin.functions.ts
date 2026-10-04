@@ -22,6 +22,9 @@ export type AdminBooking = {
   cleaning_fee: number;
   payment_status: string;
   created_at: string;
+  utm_source: string | null;
+  utm_medium: string | null;
+  utm_campaign: string | null;
 };
 
 export type CalendarEntry = {
@@ -101,7 +104,7 @@ export const listAdminData = createServerFn({ method: "GET" })
       let bookingQuery = supabase
         .from("bookings")
         .select(
-          "id, property_id, booking_number, guest_name, guest_email, guest_phone, checkin, checkout, guests, message, status, source, currency, total_amount, cleaning_fee, payment_status, created_at",
+          "id, property_id, booking_number, guest_name, guest_email, guest_phone, checkin, checkout, guests, message, status, source, currency, total_amount, cleaning_fee, payment_status, created_at, utm_source, utm_medium, utm_campaign",
         )
         .order("created_at", { ascending: false });
       let entryQuery = supabase

@@ -482,7 +482,11 @@
         "forbidden": "Not allowed.",
         "generic": "That did not work."
       }
-    }
+    },
+    "utm_title": "Requests by source",
+    "utm_hint": "Source / medium / campaign from UTM links, e.g. ?utm_source=instagram&utm_medium=social&utm_campaign=summer",
+    "utm_direct": "Direct / unknown",
+    "utm_source": "Source"
   },
   "auth": {
     "internal": "Internal",

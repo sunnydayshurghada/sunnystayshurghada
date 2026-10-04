@@ -482,7 +482,11 @@
         "forbidden": "Keine Berechtigung.",
         "generic": "Das hat nicht geklappt."
       }
-    }
+    },
+    "utm_title": "Anfragen nach Herkunft",
+    "utm_hint": "Quelle / Medium / Kampagne aus UTM-Links, z. B. ?utm_source=instagram&utm_medium=social&utm_campaign=sommer",
+    "utm_direct": "Direkt / unbekannt",
+    "utm_source": "Herkunft"
   },
   "auth": {
     "internal": "Intern",
