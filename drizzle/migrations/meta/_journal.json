@@ -99,6 +99,13 @@
       "when": 1791121925096,
       "tag": "0013_booking_utm",
       "breakpoints": true
+    },
+    {
+      "idx": 14,
+      "version": "7",
+      "when": 1791125611067,
+      "tag": "0014_tighten_permissive_read_policies",
+      "breakpoints": true
     }
   ]
 }

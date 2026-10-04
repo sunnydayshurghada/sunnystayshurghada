@@ -2948,6 +2948,8 @@ export type Database = {
         }
         Returns: boolean
       }
+      is_active_property: { Args: { _property_id: string }; Returns: boolean }
+      is_portal_user: { Args: { _uid: string }; Returns: boolean }
       is_staff: { Args: { _user_id: string }; Returns: boolean }
       is_task_manager: { Args: { _uid: string }; Returns: boolean }
       public_blocked_ranges: {
