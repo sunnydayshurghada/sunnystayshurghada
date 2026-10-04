@@ -83,7 +83,10 @@ describe("policy definitions", () => {
 });
 
 describe("helper decisions", () => {
-  const fn = (name: string) => one(`select pg_get_functiondef('public.${name}'::regproc)`) ?? "";
+  const fn = (name: string) =>
+    execFileSync("psql", ["-AtX", "-c", `select pg_get_functiondef('public.${name}'::regproc)`], {
+      encoding: "utf8",
+    });
 
   it("is_active_property: true only for status 'active'", () => {
     expect(fn("is_active_property")).toMatch(/status = 'active'/);
