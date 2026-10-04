@@ -18,10 +18,10 @@ import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 
 function sql(query: string): string[][] {
-  const out = execFileSync("psql", ["-AtX", "-F", "\t", "-v", "ON_ERROR_STOP=1", "-c", query], {
+  const out = execFileSync("psql", ["-AtX", "-F", "\t", "-R", "\x1e", "-v", "ON_ERROR_STOP=1", "-c", query], {
     encoding: "utf8",
   });
-  return out.trim() ? out.trim().split("\n").map((l) => l.split("\t")) : [];
+  return out.trim() ? out.trim().split("\x1e").map((l) => l.split("\t")) : [];
 }
 const one = (q: string) => sql(q)[0]?.[0] ?? null;
 
