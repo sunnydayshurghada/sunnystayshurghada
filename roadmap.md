@@ -29,3 +29,8 @@ Zahlungsvorbereitung: Schema + Serverschnittstellen fertig, keine aktive Zahlung
 - [x] Kursdienst mit Fallback auf letzten Kurs, nie Kurs 0
 - [x] 15-Minuten-Kursfixierung beim Zahlungsstart
 - [x] Adminbereich Währung + Eigentümer-Anzeigewährung
+
+## Mitarbeiter & Aufgaben
+- [x] Etappe 1: Rollen, Konten, Katalog, Checklisten, Automatik, Status, Zeiten, Fotos, Mitarbeiter-App, Admin-Dashboard
+- [ ] Etappe 2: Vergütung vs. Eigentümerpreis, Reparatur-Freigaben, Übergabe an Abrechnung, Eigentümer-Ansicht
+- [ ] Etappe 3: Verfügbarkeitskalender, Benachrichtigungen (E-Mail/intern)

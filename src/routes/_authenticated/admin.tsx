@@ -1,5 +1,5 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { useMemo, useState, type FormEvent } from "react";
+import { useEffect, useMemo, useState, type FormEvent } from "react";
 import { useTranslation } from "react-i18next";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
@@ -26,6 +26,10 @@ import { PricingManager } from "@/components/PricingManager";
 import { NotificationsManager } from "@/components/NotificationsManager";
 import { OwnersManager } from "@/components/OwnersManager";
 import { CurrencyManager } from "@/components/CurrencyManager";
+import { TasksManager } from "@/components/TasksManager";
+import { StaffManager } from "@/components/StaffManager";
+import { TaskSettingsManager } from "@/components/TaskSettingsManager";
+import { getStaffSession } from "@/lib/tasks.functions";
 
 import brandLogo from "@/assets/sunny-stays-hurghada-logo.png";
 
@@ -192,6 +196,15 @@ function AdminPage() {
     );
     if (ok) form.reset();
   };
+
+  const staffSession = useServerFn(getStaffSession);
+  useEffect(() => {
+    if (isLoading || isAdmin) return;
+    void staffSession().then((s) => {
+      if (s.isStaff) void navigate({ to: "/staff", replace: true });
+      else if (s.isOwner) void navigate({ to: "/owner", replace: true });
+    }).catch(() => {});
+  }, [isLoading, isAdmin]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const pendingRequests = bookings.filter((b) => b.status === "pending");
   const otherRequests = bookings.filter((b) => b.status !== "pending");
@@ -395,6 +408,12 @@ function AdminPage() {
             </button>
           </form>
         </section>
+
+        <TasksManager />
+
+        <StaffManager />
+
+        <TaskSettingsManager propertyId={syncPropertyId} />
 
         <AirbnbSyncPanel intlLocale={intlLocale} propertyId={syncPropertyId} />
 
